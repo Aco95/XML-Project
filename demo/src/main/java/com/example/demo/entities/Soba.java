@@ -8,9 +8,12 @@
 
 package com.example.demo.entities;
 
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -51,8 +54,12 @@ public class Soba {
     protected Integer broj;
     @XmlAttribute(name = "kapacitet")
     protected Integer kapacitet;
-    @XmlAttribute(name = "slobodna")
-    protected Boolean slobodna;
+//    @XmlAttribute(name = "slobodna")
+//    protected Boolean slobodna;
+    
+    @XmlElement(required = true)
+	protected List<String> datumi_rezervacija;
+	
 
     /**
      * Gets the value of the id property.
@@ -134,9 +141,9 @@ public class Soba {
      *     {@link Boolean }
      *     
      */
-    public Boolean isSlobodna() {
-        return slobodna;
-    }
+//    public Boolean isSlobodna() {
+//        return slobodna;
+//    }
 
     /**
      * Sets the value of the slobodna property.
@@ -146,21 +153,35 @@ public class Soba {
      *     {@link Boolean }
      *     
      */
-    public void setSlobodna(Boolean value) {
-        this.slobodna = value;
-    }
+//    public void setSlobodna(Boolean value) {
+//        this.slobodna = value;
+//    }
+//    
+    
+	public List<String> getDatumi_rezervacija() {
+		return datumi_rezervacija;
+	}
 
+	public void setDatumi_rezervacija(List<String> datumi_rezervacija) {
+		this.datumi_rezervacija = datumi_rezervacija;
+	}
+
+
+	
 	public Soba() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Soba(Integer broj, Integer kapacitet, Boolean slobodna) {
+	public Soba(Integer broj, Integer kapacitet, List<String> datumi_rezervacija) {
 		super();
 		this.broj = broj;
 		this.kapacitet = kapacitet;
-		this.slobodna = slobodna;
+		this.datumi_rezervacija = datumi_rezervacija;
 	}
+
+	
+	
 
     
     

@@ -53,6 +53,8 @@ public class Komentar {
     protected XMLGregorianCalendar datum;
     @XmlAttribute(name = "sadrzaj")
     protected String sadrzaj;
+    @XmlAttribute(name = "odobren")
+    protected Boolean odobren;
 
     /**
      * Gets the value of the id property.
@@ -125,19 +127,46 @@ public class Komentar {
     public void setSadrzaj(String value) {
         this.sadrzaj = value;
     }
+    
+    
+    /**
+     * Gets the value of the odobren property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+
+	public Boolean getOdobren() {
+		return odobren;
+	}
+
+	 /**
+     * Sets the value of the odobren property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+	
+	public void setOdobren(Boolean odobren) {
+		this.odobren = odobren;
+	}
 
 	public Komentar() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Komentar(XMLGregorianCalendar datum, String sadrzaj) {
+	public Komentar(XMLGregorianCalendar datum, String sadrzaj, Boolean odobren) {
 		super();
 		this.datum = datum;
 		this.sadrzaj = sadrzaj;
+		this.odobren = odobren;
 	}
 
-    
     
     
 }

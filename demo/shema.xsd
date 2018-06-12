@@ -25,10 +25,13 @@
     </xs:element>
     <xs:element name="soba">
         <xs:complexType>
+            <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                <xs:element name="datumi_rezervacija" type="xs:string" />
+            </xs:sequence>
             <xs:attribute name="id" type="xs:string"/>
             <xs:attribute name="broj" type="xs:int"/>
             <xs:attribute name="kapacitet" type="xs:int"/>
-            <xs:attribute name="slobodna" type="xs:boolean"/>
+     <!--   <xs:attribute name="slobodna" type="xs:boolean"/>	-->
         </xs:complexType>
     </xs:element>
     <xs:element name="korisnik">
@@ -59,6 +62,7 @@
             <xs:attribute name="id" type="xs:string"/>
             <xs:attribute name="datum" type="xs:dateTime"/>
             <xs:attribute name="sadrzaj" type="xs:string"/>
+            <xs:attribute name="odobren" type="xs:boolean"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>
