@@ -10,6 +10,12 @@ package com.example.agent.entities;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
+import com.example.agent.entities.Komentar;
+import com.example.agent.entities.Korisnik;
+import com.example.agent.entities.Recenzija;
+import com.example.agent.entities.Smestaj;
+import com.example.agent.entities.Soba;
+
 
 /**
  * This object contains factory methods for each 
@@ -29,7 +35,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 public class ObjectFactory {
 
 
-    /**
+	/**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.example.demo.entities
      * 
      */

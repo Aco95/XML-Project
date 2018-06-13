@@ -20,6 +20,8 @@ import javax.xml.bind.annotation.XmlType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.example.agent.entities.Soba;
+
 
 /**
  * <p>Java class for anonymous complex type.
@@ -64,15 +66,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection="Smestaji")
 public class Smestaj {
 
-    @XmlElement(required = true)
+	@XmlElement(required = true)
     protected List<Soba> soba;
     
     @Id
     @XmlAttribute(name = "id")
     protected String id;
     
+    @XmlAttribute(name = "naziv")
+    protected String naziv;
     @XmlAttribute(name = "adresa")
     protected String adresa;
+    @XmlAttribute(name = "mesto")
+    protected String mesto;
     @XmlAttribute(name = "kategorija")
     protected String kategorija;
     @XmlAttribute(name = "tip")
@@ -154,6 +160,30 @@ public class Smestaj {
     public void setId(String value) {
         this.id = value;
     }
+    
+    /**
+     * Gets the value of the id property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNaziv() {
+        return naziv;
+    }
+
+    /**
+     * Sets the value of the id property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNaziv(String value) {
+        this.naziv = value;
+    }
 
     /**
      * Gets the value of the adresa property.
@@ -177,6 +207,30 @@ public class Smestaj {
      */
     public void setAdresa(String value) {
         this.adresa = value;
+    }
+    
+    /**
+     * Gets the value of the mesto property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMesto() {
+        return mesto;
+    }
+
+    /**
+     * Sets the value of the mesto property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMesto(String value) {
+        this.mesto = value;
     }
 
     /**
