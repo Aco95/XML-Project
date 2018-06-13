@@ -51,6 +51,8 @@ public class DbSeeder implements CommandLineRunner{
 		
 		List<Korisnik> korisnici = Arrays.asList(k1,k2);
 
+		korisnikRepository.deleteAll();
+		
 		korisnikRepository.saveAll(korisnici);
 		
 		 

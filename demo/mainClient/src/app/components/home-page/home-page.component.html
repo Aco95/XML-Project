@@ -1,3 +1,191 @@
-<h1>
-  Hello Mavene Jodza!!!
-</h1>
+<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+
+  <a class="navbar-brand" href="homeSearch">Booking.com</a>
+
+  <ul class="navbar-nav mr-auto">
+  </ul>
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="login">Login</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="register">Register</a>
+    </li>
+  </ul>
+</nav> 
+
+<br>
+
+ <!-- Page Content -->
+ <div class="container"> 
+
+  <form>
+
+    <div class="row"> <!-- start row -->
+
+      <div class="col">
+        <div class="form-group">
+          <label for="place">Place:</label>
+          <input type="text" [(ngModel)]="place" class="form-control" placeholder="Place">
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="numberOfPersons">Number of persons:</label>
+          <select class="custom-select" [(ngModel)]="numberOfPersons">
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+            <option value="4">Four</option>
+          </select>
+        </div>
+      </div>
+      <div class="col">
+          <div class="form-group">
+            <label for="fromDate">From:</label>
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                      name="datePicker" [(ngModel)]="dateFrom" ngbDatepicker #df="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="df.toggle()" type="button">
+                  <img src="../../../assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                </button>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="col">
+          <div class="form-group">
+            <label for="toDate">To:</label>
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                      name="datePicker" [(ngModel)]="dateTo" ngbDatepicker #dt="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="dt.toggle()" type="button">
+                  <img src="../../../assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                </button>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="col">
+        <br>
+        <button type="submit" class="btn btn-primary" (click)="submitSearch()">Search</button>
+      </div>
+
+    </div>  <!-- end row -->
+
+    
+    <div id="accordion">
+
+      <div class="card">
+        <div class="card-header">
+          <a class="collapsed card-link" data-toggle="collapse" href="#advancedSearch"  (click)="clickAdvancedSearch()">
+            Advanced search
+          </a>
+        </div>
+        <div id="advancedSearch" class="collapse" data-parent="#accordion">
+          <div class="card-body">
+
+            <div class="row"> <!-- start row -->
+              <div class="col">
+                <div class="form-group">
+                  <label for="place">Type of accommodation:</label>
+                  <select class="custom-select" [(ngModel)]="type">
+                    <option value="1" selected>hotel</option>
+                    <option value="2">bed&breakfast</option>
+                    <option value="3">apartman</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col">
+                  <div class="form-group">
+                    <label for="place">Category:</label>
+                    <select class="custom-select" [(ngModel)]="category">
+                      <option value="0">uncategorized</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                  </div>
+              </div>
+
+            </div> <!-- end row -->
+
+            <br>
+
+            <div class="row"> <!-- start row -->
+              <div class="col">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="parking"> Parking
+                    </label>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="wifi"> Wifi
+                    </label>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="breakfast"> Breakfast
+                    </label>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="half_board"> Half-board
+                    </label>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="board"> Board
+                    </label>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="TV"> TV
+                    </label>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="kitchen"> Kitchen
+                    </label>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="bathroom"> Private bathroom
+                    </label>
+                  </div>
+              </div>
+
+            </div> <!-- end row -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+      
+      
+
+
+  </form>
+
+</div>
+<!-- /.container -->

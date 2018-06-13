@@ -71,8 +71,12 @@ public class Smestaj {
     @XmlAttribute(name = "id")
     protected String id;
     
+    @XmlAttribute(name = "naziv")
+    protected String naziv;
     @XmlAttribute(name = "adresa")
     protected String adresa;
+    @XmlAttribute(name = "mesto")
+    protected String mesto;
     @XmlAttribute(name = "kategorija")
     protected String kategorija;
     @XmlAttribute(name = "tip")
@@ -154,6 +158,30 @@ public class Smestaj {
     public void setId(String value) {
         this.id = value;
     }
+    
+    /**
+     * Gets the value of the id property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNaziv() {
+        return naziv;
+    }
+
+    /**
+     * Sets the value of the id property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNaziv(String value) {
+        this.naziv = value;
+    }
 
     /**
      * Gets the value of the adresa property.
@@ -177,6 +205,30 @@ public class Smestaj {
      */
     public void setAdresa(String value) {
         this.adresa = value;
+    }
+    
+    /**
+     * Gets the value of the mesto property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMesto() {
+        return mesto;
+    }
+
+    /**
+     * Sets the value of the mesto property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMesto(String value) {
+        this.mesto = value;
     }
 
     /**

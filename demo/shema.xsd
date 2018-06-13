@@ -6,7 +6,9 @@
                 <xs:element ref="soba"/>
             </xs:sequence>
             <xs:attribute name="id" type="xs:string"/>
+             <xs:attribute name="naziv" type="xs:string"/>
             <xs:attribute name="adresa" type="xs:string"/>
+            <xs:attribute name="mesto" type="xs:string"/>
             <xs:attribute name="kategorija" type="xs:string"/>
             <xs:attribute name="tip" type="xs:int"/>
             <xs:attribute name="parking" type="xs:boolean"/>

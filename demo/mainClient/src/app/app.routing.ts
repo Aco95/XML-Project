@@ -10,7 +10,7 @@ const appRoutes: Routes =
         path: '',
         redirectTo: '/homeSearch',
         pathMatch:'full'
-        //component: LoginComponent
+    
     },
 
     {
