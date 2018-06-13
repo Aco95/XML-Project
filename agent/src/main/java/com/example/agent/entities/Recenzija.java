@@ -18,6 +18,10 @@ import javax.xml.bind.annotation.XmlType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.example.agent.entities.Komentar;
+import com.example.agent.entities.Korisnik;
+import com.example.agent.entities.Smestaj;
+
 
 /**
  * <p>Java class for anonymous complex type.
@@ -50,7 +54,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection="Recenzije")
 public class Recenzija {
 
-    @XmlElement(required = true)
+	@XmlElement(required = true)
     protected Korisnik korisnik;
     @XmlElement(required = true)
     protected Smestaj smestaj;
