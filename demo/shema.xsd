@@ -9,7 +9,7 @@
              <xs:attribute name="naziv" type="xs:string"/>
             <xs:attribute name="adresa" type="xs:string"/>
             <xs:attribute name="mesto" type="xs:string"/>
-            <xs:attribute name="kategorija" type="xs:string"/>
+            <xs:attribute name="kategorija" type="xs:int"/>
             <xs:attribute name="tip" type="xs:int"/>
             <xs:attribute name="parking" type="xs:boolean"/>
             <xs:attribute name="wifi" type="xs:boolean"/>

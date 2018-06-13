@@ -53,6 +53,34 @@ public class SmestajController {
 			@PathVariable("dateFrom") String dateFrom, @PathVariable("dateTo") String dateTo){
 		
 		
+		
+		// radim nestoo ... ..  .
+		
+		
+		
+		return smestajRepository.findByPlace(place);
+		
+	}
+	
+	
+	@RequestMapping(
+			value = "/advancedSearch/{place}/{numberOfPersons}/{dateFrom}/{dateTo}/{type}/{category}"
+					+ "/{parking}/{wifi}/{breakfast}/{half_board}/{board}/{TV}/{kitchen}/{bathroom}",
+			method = RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Smestaj> advancedSearch(@PathVariable("place") String place,
+			@PathVariable("numberOfPersons") int numberOfPersons,
+			@PathVariable("dateFrom") String dateFrom, @PathVariable("dateTo") String dateTo,
+			@PathVariable("type") int type, @PathVariable("category") int category,
+			@PathVariable("parking") boolean parking, @PathVariable("wifi") boolean wifi,
+			@PathVariable("breakfast") String breakfast, @PathVariable("half_board") String half_board,  @PathVariable("board") String board, 
+			@PathVariable("TV") String TV, @PathVariable("kitchen") String kitchen, @PathVariable("bathroom") String bathroom){
+		
+		
+		
+		// radom nestoo// / // ///.. . . 
+		
+		
 		return smestajRepository.findByPlace(place);
 		
 	}

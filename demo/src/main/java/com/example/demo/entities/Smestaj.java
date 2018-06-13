@@ -78,9 +78,9 @@ public class Smestaj {
     @XmlAttribute(name = "mesto")
     protected String mesto;
     @XmlAttribute(name = "kategorija")
-    protected String kategorija;
+    protected Integer kategorija;			// moze biti 0-nekategorisan, 1,2,3,4,5
     @XmlAttribute(name = "tip")
-    protected Integer tip;
+    protected Integer tip;					// moze biti 0-hotel, 1-bad$breakfast, 2-apartman
     @XmlAttribute(name = "parking")
     protected Boolean parking;
     @XmlAttribute(name = "wifi")
@@ -239,7 +239,7 @@ public class Smestaj {
      *     {@link String }
      *     
      */
-    public String getKategorija() {
+    public Integer getKategorija() {
         return kategorija;
     }
 
@@ -251,7 +251,7 @@ public class Smestaj {
      *     {@link String }
      *     
      */
-    public void setKategorija(String value) {
+    public void setKategorija(Integer value) {
         this.kategorija = value;
     }
 
@@ -572,12 +572,14 @@ public class Smestaj {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Smestaj(List<Soba> soba, String adresa, String kategorija, Integer tip, Boolean parking, Boolean wifi,
-			Boolean dorucak, Boolean polupansion, Boolean pansion, Boolean tv, Boolean miniKuhinja,
-			Boolean privatnoKupatilo, Integer ocena, String opis, String cena, String url) {
+	public Smestaj(List<Soba> soba, String naziv, String adresa, String mesto, Integer kategorija, Integer tip,
+			Boolean parking, Boolean wifi, Boolean dorucak, Boolean polupansion, Boolean pansion, Boolean tv,
+			Boolean miniKuhinja, Boolean privatnoKupatilo, Integer ocena, String opis, String cena, String url) {
 		super();
 		this.soba = soba;
+		this.naziv = naziv;
 		this.adresa = adresa;
+		this.mesto = mesto;
 		this.kategorija = kategorija;
 		this.tip = tip;
 		this.parking = parking;
@@ -593,6 +595,8 @@ public class Smestaj {
 		this.cena = cena;
 		this.url = url;
 	}
+
+	
     
     
     
