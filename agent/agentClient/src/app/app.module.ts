@@ -2,9 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { routing } from './app.routing';
 
+
 import { AppComponent } from './app.component';
 import { AgentHomePageComponent } from './components/agent-home-page/agent-home-page.component';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,8 @@ import { AgentHomePageComponent } from './components/agent-home-page/agent-home-
   ],
   imports: [
     BrowserModule,
-    routing
+    routing,
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
