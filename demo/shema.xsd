@@ -24,14 +24,14 @@
             <xs:attribute name="tv" type="xs:boolean"/>
             <xs:attribute name="mini_kuhinja" type="xs:boolean"/>
             <xs:attribute name="privatno_kupatilo" type="xs:boolean"/>
-            <xs:attribute name="ocena" type="xs:int"/>
+            <xs:attribute name="ocena" type="xs:long"/>
             <xs:attribute name="opis" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="soba">
         <xs:complexType>
-   			<xs:sequence maxOccurs="unbounded" minOccurs="0">
-            	<xs:element name="datumi_rezervacija" type="xs:string"/>
+            <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                <xs:element name="datumi_rezervacija" type="xs:string"/>
             </xs:sequence>
             <xs:attribute name="id" type="xs:string"/>
             <xs:attribute name="id_smestaja" type="xs:string"/>
