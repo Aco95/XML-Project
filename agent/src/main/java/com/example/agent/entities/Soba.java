@@ -8,6 +8,7 @@
 
 package com.example.agent.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -47,21 +48,58 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection="Sobe")
 public class Soba {
 
-	@Id
+	@XmlElement(name = "datumi_rezervacija")
+    protected List<String> datumiRezervacija;
+    
+    @Id
     @XmlAttribute(name = "id")
     protected String id;
+    @XmlAttribute(name = "id_smestaja")
+    protected String idSmestaja;
     @XmlAttribute(name = "broj")
     protected Integer broj;
     @XmlAttribute(name = "kapacitet")
     protected Integer kapacitet;
-//    @XmlAttribute(name = "slobodna")
-//    protected Boolean slobodna;
-    
-    @XmlElement(required = true)
-	protected List<String> datumi_rezervacija;
-	
+    @XmlAttribute(name = "cena")
+    protected Integer cena;
 
     /**
+     * Gets the value of the datumiRezervacija property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the datumiRezervacija property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getDatumiRezervacija().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     */
+    public List<String> getDatumiRezervacija() {
+        if (datumiRezervacija == null) {
+            datumiRezervacija = new ArrayList<String>();
+        }
+        return this.datumiRezervacija;
+    }
+    
+    
+    public void setDatumiRezervacija(List<String> datumiRezervacija) {
+		this.datumiRezervacija = datumiRezervacija;
+	}
+
+
+
+	/**
      * Gets the value of the id property.
      * 
      * @return
@@ -84,8 +122,36 @@ public class Soba {
     public void setId(String value) {
         this.id = value;
     }
+    
+      
+
+	/**
+     * Gets the value of the id_smestaja property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIdSmestaja() {
+		return idSmestaja;
+	}
+
 
     /**
+     * Sets the value of the id_smestaja property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+	public void setIdSmestaja(String idSmestaja) {
+		this.idSmestaja = idSmestaja;
+	}
+
+
+	/**
      * Gets the value of the broj property.
      * 
      * @return
@@ -134,56 +200,46 @@ public class Soba {
     }
 
     /**
-     * Gets the value of the slobodna property.
+     * Gets the value of the cena property.
      * 
      * @return
      *     possible object is
-     *     {@link Boolean }
+     *     {@link Integer }
      *     
      */
-//    public Boolean isSlobodna() {
-//        return slobodna;
-//    }
+    public Integer getCena() {
+        return cena;
+    }
 
     /**
-     * Sets the value of the slobodna property.
+     * Sets the value of the cena property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Boolean }
+     *     {@link Integer }
      *     
      */
-//    public void setSlobodna(Boolean value) {
-//        this.slobodna = value;
-//    }
-//    
+    public void setCena(Integer value) {
+        this.cena = value;
+    }
+
+
     
-	public List<String> getDatumi_rezervacija() {
-		return datumi_rezervacija;
-	}
-
-	public void setDatumi_rezervacija(List<String> datumi_rezervacija) {
-		this.datumi_rezervacija = datumi_rezervacija;
-	}
-
-
-	
+    
 	public Soba() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Soba(Integer broj, Integer kapacitet, List<String> datumi_rezervacija) {
+
+	public Soba(List<String> datumiRezervacija, String idSmestaja, Integer broj, Integer kapacitet, Integer cena) {
 		super();
+		this.datumiRezervacija = datumiRezervacija;
+		this.idSmestaja = idSmestaja;
 		this.broj = broj;
 		this.kapacitet = kapacitet;
-		this.datumi_rezervacija = datumi_rezervacija;
+		this.cena = cena;
 	}
-
-	
-	
-
-    
     
     
     

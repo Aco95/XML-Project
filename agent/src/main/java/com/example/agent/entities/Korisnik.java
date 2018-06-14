@@ -57,7 +57,7 @@ public class Korisnik {
     @XmlAttribute(name = "prezime")
     protected String prezime;
     @XmlAttribute(name = "uloga")
-    protected Integer uloga;
+    protected Uloga uloga;
     @XmlAttribute(name = "username")
     protected String username;
     @XmlAttribute(name = "password")
@@ -144,10 +144,10 @@ public class Korisnik {
      * 
      * @return
      *     possible object is
-     *     {@link Integer }
+     *     {@link String }
      *     
      */
-    public Integer getUloga() {
+    public Uloga getUloga() {
         return uloga;
     }
 
@@ -156,10 +156,10 @@ public class Korisnik {
      * 
      * @param value
      *     allowed object is
-     *     {@link Integer }
+     *     {@link String }
      *     
      */
-    public void setUloga(Integer value) {
+    public void setUloga(Uloga value) {
         this.uloga = value;
     }
 
@@ -216,7 +216,7 @@ public class Korisnik {
      * 
      * @return
      *     possible object is
-     *     {@link Long }
+     *     {@link String }
      *     
      */
     public String getMaticniBroj() {
@@ -228,7 +228,7 @@ public class Korisnik {
      * 
      * @param value
      *     allowed object is
-     *     {@link Long }
+     *     {@link String }
      *     
      */
     public void setMaticniBroj(String value) {
@@ -264,7 +264,7 @@ public class Korisnik {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Korisnik(String ime, String prezime, Integer uloga, String username, String password, String maticniBroj,
+	public Korisnik(String ime, String prezime, Uloga uloga, String username, String password, String maticniBroj,
 			String adresa) {
 		super();
 		this.ime = ime;
@@ -275,8 +275,6 @@ public class Korisnik {
 		this.maticniBroj = maticniBroj;
 		this.adresa = adresa;
 	}
-
-    
     
     
 }

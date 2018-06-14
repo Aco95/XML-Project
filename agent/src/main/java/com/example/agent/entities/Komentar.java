@@ -127,8 +127,7 @@ public class Komentar {
     public void setSadrzaj(String value) {
         this.sadrzaj = value;
     }
-    
-    
+
     /**
      * Gets the value of the odobren property.
      * 
@@ -137,12 +136,11 @@ public class Komentar {
      *     {@link Boolean }
      *     
      */
+    public Boolean isOdobren() {
+        return odobren;
+    }
 
-	public Boolean getOdobren() {
-		return odobren;
-	}
-
-	 /**
+    /**
      * Sets the value of the odobren property.
      * 
      * @param value
@@ -150,11 +148,13 @@ public class Komentar {
      *     {@link Boolean }
      *     
      */
-	
-	public void setOdobren(Boolean odobren) {
-		this.odobren = odobren;
-	}
+    public void setOdobren(Boolean value) {
+        this.odobren = value;
+    }
 
+    
+    
+    
 	public Komentar() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -166,7 +166,6 @@ public class Komentar {
 		this.sadrzaj = sadrzaj;
 		this.odobren = odobren;
 	}
-
     
     
 }

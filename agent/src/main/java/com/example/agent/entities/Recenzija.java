@@ -64,7 +64,6 @@ public class Recenzija {
     @Id
     @XmlAttribute(name = "id")
     protected String id;
-    
     @XmlAttribute(name = "ocena")
     protected Integer ocena;
 
@@ -200,7 +199,6 @@ public class Recenzija {
 		this.komentar = komentar;
 		this.ocena = ocena;
 	}
-    
     
     
 
