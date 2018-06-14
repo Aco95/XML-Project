@@ -275,6 +275,5 @@ public class Korisnik {
 		this.adresa = adresa;
 	}
     
-    
 
 }
