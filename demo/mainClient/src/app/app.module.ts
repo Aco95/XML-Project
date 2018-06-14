@@ -12,11 +12,13 @@ import { HomePageComponent } from "./components/home-page/home-page.component";
 
 
 import { SearchService } from "./services/search.service";
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent
+    HomePageComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
