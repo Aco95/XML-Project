@@ -104,7 +104,7 @@ public class Smestaj {
     @XmlAttribute(name = "privatno_kupatilo")
     protected Boolean privatnoKupatilo;
     @XmlAttribute(name = "ocena")
-    protected Integer ocena;
+    protected double ocena;
     @XmlAttribute(name = "opis")
     protected String opis;
 
@@ -130,17 +130,13 @@ public class Smestaj {
      * 
      * 
      */
-    public List<Soba> getSoba() {
-        if (sobe == null) {
-            sobe = new ArrayList<Soba>();
-        }
-        return this.sobe;
-    }
-    
-    
+ 
 
     public List<Soba> getSobe() {
-		return sobe;
+    	 if (sobe == null) {
+             sobe = new ArrayList<Soba>();
+         }
+         return this.sobe;
 	}
 
 
@@ -179,8 +175,16 @@ public class Smestaj {
         }
         return this.slikeUrl;
     }
+    
+    
 
-    /**
+    public void setSlikeUrl(List<String> slikeUrl) {
+		this.slikeUrl = slikeUrl;
+	}
+
+
+
+	/**
      * Gets the value of the id property.
      * 
      * @return
@@ -524,7 +528,7 @@ public class Smestaj {
      *     {@link Integer }
      *     
      */
-    public Integer getOcena() {
+    public double getOcena() {
         return ocena;
     }
 
@@ -536,7 +540,7 @@ public class Smestaj {
      *     {@link Integer }
      *     
      */
-    public void setOcena(Integer value) {
+    public void setOcena(double value) {
         this.ocena = value;
     }
 
@@ -575,7 +579,7 @@ public class Smestaj {
 
 	public Smestaj(List<Soba> sobe, List<String> slikeUrl, String naziv, String adresa, String mesto,
 			Integer kategorija, Integer tip, Boolean parking, Boolean wifi, Boolean dorucak, Boolean polupansion,
-			Boolean pansion, Boolean tv, Boolean miniKuhinja, Boolean privatnoKupatilo, Integer ocena, String opis) {
+			Boolean pansion, Boolean tv, Boolean miniKuhinja, Boolean privatnoKupatilo, double ocena, String opis) {
 		super();
 		this.sobe = sobe;
 		this.slikeUrl = slikeUrl;
