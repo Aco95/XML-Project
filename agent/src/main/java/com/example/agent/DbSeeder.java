@@ -35,42 +35,10 @@ public class DbSeeder implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		Korisnik k1 = new Korisnik();
-		k1.setId("1");
-		k1.setAdresa("Milovan Jelica 32");
-		k1.setIme("Marko");
-		k1.setPrezime("Markovic");
-		k1.setUsername("mm");
-		k1.setMaticniBroj("1234567890123");
-		k1.setPassword("test1234");
-		k1.setUloga(Uloga.ADMIN);
-		
-		Korisnik k2 = new Korisnik();
-		k2.setId("2");
-		k2.setAdresa("Milovan Jelica 32");
-		k2.setIme("Pera");
-		k2.setPrezime("Peric");
-		k2.setUsername("pp");
-		k2.setMaticniBroj("1234567890123");
-		k2.setPassword("test1234");
-		k2.setUloga(Uloga.AGENT);
-		
-		Korisnik k3 = new Korisnik();
-		k3.setId("3");
-		k3.setAdresa("Milovan Jelica 32");
-		k3.setIme("Nikola");
-		k3.setPrezime("Nikolic");
-		k3.setUsername("nn");
-		k3.setMaticniBroj("1234567890123");
-		k3.setPassword("test1234");
-		k3.setUloga(Uloga.USER);
 		
 		
-		korisnikRepository.deleteAll();
 		
-		List<Korisnik> korisnici = Arrays.asList(k1,k2,k3);
 		
-		korisnikRepository.saveAll(korisnici);
 		
 		
 		Soba s1 = new Soba();
@@ -150,12 +118,54 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj2.setPrivatnoKupatilo(true);
 		smestaj2.setTv(true);
 		
-		 
 		smestajRepository.deleteAll();
 		
 		List<Smestaj> smestaji = Arrays.asList(smestaj1,smestaj2);
 		
 		smestajRepository.saveAll(smestaji);
+		
+		ArrayList<Smestaj> smestajiAgenta = new ArrayList();
+		smestajiAgenta.add(smestaj1);
+		smestajiAgenta.add(smestaj2);
+		
+		Korisnik k1 = new Korisnik();
+		k1.setId("1");
+		k1.setAdresa("Milovan Jelica 32");
+		k1.setIme("Marko");
+		k1.setPrezime("Markovic");
+		k1.setUsername("mm");
+		k1.setMaticniBroj("1234567890123");
+		k1.setPassword("test1234");
+		k1.setUloga(Uloga.ADMIN);
+		
+		Korisnik k2 = new Korisnik();
+		k2.setId("2");
+		k2.setAdresa("Milovan Jelica 32");
+		k2.setIme("Pera");
+		k2.setPrezime("Peric");
+		k2.setUsername("pp");
+		k2.setMaticniBroj("1234567890123");
+		k2.setPassword("test1234");
+		k2.setUloga(Uloga.AGENT);
+		k2.setSmestaji(smestajiAgenta);
+		
+		Korisnik k3 = new Korisnik();
+		k3.setId("3");
+		k3.setAdresa("Milovan Jelica 32");
+		k3.setIme("Nikola");
+		k3.setPrezime("Nikolic");
+		k3.setUsername("nn");
+		k3.setMaticniBroj("1234567890123");
+		k3.setPassword("test1234");
+		k3.setUloga(Uloga.USER);
+		
+		korisnikRepository.deleteAll();
+		
+		List<Korisnik> korisnici = Arrays.asList(k1,k2,k3);
+		
+		korisnikRepository.saveAll(korisnici);
+		
+		
 		
 	}
 

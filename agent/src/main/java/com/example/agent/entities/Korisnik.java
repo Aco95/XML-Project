@@ -8,6 +8,8 @@
 
 package com.example.agent.entities;
 
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -65,9 +67,19 @@ public class Korisnik {
     @XmlAttribute(name = "maticni_broj")
     protected String maticniBroj;
     @XmlAttribute(name = "adresa")
-    protected String adresa;
+    protected String adresa;  
+    @XmlAttribute(name = "smestaji")
+    protected List<Smestaj> smestaji;
 
-    /**
+    public List<Smestaj> getSmestaji() {
+		return smestaji;
+	}
+
+	public void setSmestaji(List<Smestaj> smestaji) {
+		this.smestaji = smestaji;
+	}
+
+	/**
      * Gets the value of the id property.
      * 
      * @return
@@ -264,9 +276,10 @@ public class Korisnik {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Korisnik(String ime, String prezime, Uloga uloga, String username, String password, String maticniBroj,
-			String adresa) {
+	public Korisnik(String id, String ime, String prezime, Uloga uloga, String username, String password,
+			String maticniBroj, String adresa, List<Smestaj> smestaji) {
 		super();
+		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.uloga = uloga;
@@ -274,7 +287,10 @@ public class Korisnik {
 		this.password = password;
 		this.maticniBroj = maticniBroj;
 		this.adresa = adresa;
+		this.smestaji = smestaji;
 	}
+
+	
     
     
 }

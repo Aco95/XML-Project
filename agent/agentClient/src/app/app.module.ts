@@ -8,6 +8,8 @@ import { AgentHomePageComponent } from './components/agent-home-page/agent-home-
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+import {SmestajService} from './services/smestaj.service'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     routing,
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [SmestajService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
