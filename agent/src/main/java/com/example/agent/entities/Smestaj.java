@@ -66,13 +66,13 @@ import com.example.agent.entities.Soba;
 @Document(collection="Smestaji")
 public class Smestaj {
 
-	@XmlElement(required = true)
-    protected List<Soba> soba;
+	protected List<Soba> sobe;
+    @XmlElement(name = "slike_url")
+    protected List<String> slikeUrl;
     
     @Id
     @XmlAttribute(name = "id")
     protected String id;
-    
     @XmlAttribute(name = "naziv")
     protected String naziv;
     @XmlAttribute(name = "adresa")
@@ -80,7 +80,7 @@ public class Smestaj {
     @XmlAttribute(name = "mesto")
     protected String mesto;
     @XmlAttribute(name = "kategorija")
-    protected String kategorija;
+    protected Integer kategorija;
     @XmlAttribute(name = "tip")
     protected Integer tip;
     @XmlAttribute(name = "parking")
@@ -100,13 +100,9 @@ public class Smestaj {
     @XmlAttribute(name = "privatno_kupatilo")
     protected Boolean privatnoKupatilo;
     @XmlAttribute(name = "ocena")
-    protected Integer ocena;
+    protected double ocena;
     @XmlAttribute(name = "opis")
     protected String opis;
-    @XmlAttribute(name = "cena")
-    protected String cena;
-    @XmlAttribute(name = "url")
-    protected String url;
 
     /**
      * Gets the value of the soba property.
@@ -130,14 +126,61 @@ public class Smestaj {
      * 
      * 
      */
-    public List<Soba> getSoba() {
-        if (soba == null) {
-            soba = new ArrayList<Soba>();
-        }
-        return this.soba;
-    }
+ 
 
-    /**
+    public List<Soba> getSobe() {
+    	 if (sobe == null) {
+             sobe = new ArrayList<Soba>();
+         }
+         return this.sobe;
+	}
+
+
+
+	public void setSobe(List<Soba> sobe) {
+		this.sobe = sobe;
+	}
+
+
+
+	/**
+     * Gets the value of the slikeUrl property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the slikeUrl property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getSlikeUrl().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     */
+    public List<String> getSlikeUrl() {
+        if (slikeUrl == null) {
+            slikeUrl = new ArrayList<String>();
+        }
+        return this.slikeUrl;
+    }
+    
+    
+
+    public void setSlikeUrl(List<String> slikeUrl) {
+		this.slikeUrl = slikeUrl;
+	}
+
+
+
+	/**
      * Gets the value of the id property.
      * 
      * @return
@@ -160,9 +203,9 @@ public class Smestaj {
     public void setId(String value) {
         this.id = value;
     }
-    
+
     /**
-     * Gets the value of the id property.
+     * Gets the value of the naziv property.
      * 
      * @return
      *     possible object is
@@ -174,7 +217,7 @@ public class Smestaj {
     }
 
     /**
-     * Sets the value of the id property.
+     * Sets the value of the naziv property.
      * 
      * @param value
      *     allowed object is
@@ -208,7 +251,7 @@ public class Smestaj {
     public void setAdresa(String value) {
         this.adresa = value;
     }
-    
+
     /**
      * Gets the value of the mesto property.
      * 
@@ -238,10 +281,10 @@ public class Smestaj {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Integer }
      *     
      */
-    public String getKategorija() {
+    public Integer getKategorija() {
         return kategorija;
     }
 
@@ -250,10 +293,10 @@ public class Smestaj {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Integer }
      *     
      */
-    public void setKategorija(String value) {
+    public void setKategorija(Integer value) {
         this.kategorija = value;
     }
 
@@ -481,7 +524,7 @@ public class Smestaj {
      *     {@link Integer }
      *     
      */
-    public Integer getOcena() {
+    public double getOcena() {
         return ocena;
     }
 
@@ -493,7 +536,7 @@ public class Smestaj {
      *     {@link Integer }
      *     
      */
-    public void setOcena(Integer value) {
+    public void setOcena(double value) {
         this.ocena = value;
     }
 
@@ -521,65 +564,24 @@ public class Smestaj {
         this.opis = value;
     }
 
-    /**
-     * Gets the value of the cena property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getCena() {
-        return cena;
-    }
 
-    /**
-     * Sets the value of the cena property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCena(String value) {
-        this.cena = value;
-    }
-
-    /**
-     * Gets the value of the url property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     * Sets the value of the url property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setUrl(String value) {
-        this.url = value;
-    }
 
 	public Smestaj() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Smestaj(List<Soba> soba, String adresa, String kategorija, Integer tip, Boolean parking, Boolean wifi,
-			Boolean dorucak, Boolean polupansion, Boolean pansion, Boolean tv, Boolean miniKuhinja,
-			Boolean privatnoKupatilo, Integer ocena, String opis, String cena, String url) {
+
+
+	public Smestaj(List<Soba> sobe, List<String> slikeUrl, String naziv, String adresa, String mesto,
+			Integer kategorija, Integer tip, Boolean parking, Boolean wifi, Boolean dorucak, Boolean polupansion,
+			Boolean pansion, Boolean tv, Boolean miniKuhinja, Boolean privatnoKupatilo, double ocena, String opis) {
 		super();
-		this.soba = soba;
+		this.sobe = sobe;
+		this.slikeUrl = slikeUrl;
+		this.naziv = naziv;
 		this.adresa = adresa;
+		this.mesto = mesto;
 		this.kategorija = kategorija;
 		this.tip = tip;
 		this.parking = parking;
@@ -592,10 +594,7 @@ public class Smestaj {
 		this.privatnoKupatilo = privatnoKupatilo;
 		this.ocena = ocena;
 		this.opis = opis;
-		this.cena = cena;
-		this.url = url;
 	}
-    
     
     
 
