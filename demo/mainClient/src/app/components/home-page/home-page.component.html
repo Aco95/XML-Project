@@ -26,13 +26,13 @@
       <div class="col">
         <div class="form-group">
           <label for="place">Place:</label>
-          <input type="text" [(ngModel)]="place" class="form-control" placeholder="Place">
+          <input type="text" [(ngModel)]="place" name="mesto" class="form-control" placeholder="Place">
         </div>
       </div>
       <div class="col">
         <div class="form-group">
           <label for="numberOfPersons">Number of persons:</label>
-          <select class="custom-select" [(ngModel)]="numberOfPersons">
+          <select class="custom-select" [(ngModel)]="numberOfPersons" name="persons">
             <option value="1">One</option>
             <option value="2">Two</option>
             <option value="3">Three</option>
@@ -91,7 +91,7 @@
               <div class="col">
                 <div class="form-group">
                   <label for="place">Type of accommodation:</label>
-                  <select class="custom-select" [(ngModel)]="type">
+                  <select class="custom-select" [(ngModel)]="type" name="tip">
                     <option value="1" selected>hotel</option>
                     <option value="2">bed&breakfast</option>
                     <option value="3">apartman</option>
@@ -102,7 +102,7 @@
               <div class="col">
                   <div class="form-group">
                     <label for="place">Category:</label>
-                    <select class="custom-select" [(ngModel)]="category">
+                    <select class="custom-select" [(ngModel)]="category" name="kategorija">
                       <option value="0">uncategorized</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -121,56 +121,56 @@
               <div class="col">
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" [(ngModel)]="parking"> Parking
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="parking" name="park"> Parking
                     </label>
                   </div>
               </div>
               <div class="col">
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" [(ngModel)]="wifi"> Wifi
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="wifi" name="wf"> Wifi
                     </label>
                   </div>
               </div>
               <div class="col">
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" [(ngModel)]="breakfast"> Breakfast
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="breakfast" name="dorucak"> Breakfast
                     </label>
                   </div>
               </div>
               <div class="col">
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" [(ngModel)]="half_board"> Half-board
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="half_board" name="polupansion"> Half-board
                     </label>
                   </div>
               </div>
               <div class="col">
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" [(ngModel)]="board"> Board
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="board" name="pansion"> Board
                     </label>
                   </div>
               </div>
               <div class="col">
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" [(ngModel)]="TV"> TV
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="TV" name="tv"> TV
                     </label>
                   </div>
               </div>
               <div class="col">
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" [(ngModel)]="kitchen"> Kitchen
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="kitchen" name="kuhinja"> Kitchen
                     </label>
                   </div>
               </div>
               <div class="col">
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" [(ngModel)]="bathroom"> Private bathroom
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="bathroom" name="kupatilo"> Private bathroom
                     </label>
                   </div>
               </div>
