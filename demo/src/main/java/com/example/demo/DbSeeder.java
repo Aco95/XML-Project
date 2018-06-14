@@ -9,6 +9,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.entities.Korisnik;
+import com.example.demo.entities.Smestaj;
+import com.example.demo.entities.Soba;
 import com.example.demo.repository.KorisnikRepository;
 
 
@@ -45,15 +47,35 @@ public class DbSeeder implements CommandLineRunner{
 		k2.setUloga(2);
 		
 		
-		System.out.println("Izvrsio se");
-		
 		this.korisnikRepository.deleteAll();
 		
 		List<Korisnik> korisnici = Arrays.asList(k1,k2);
-
-		korisnikRepository.deleteAll();
 		
 		korisnikRepository.saveAll(korisnici);
+		
+		
+		Soba s1 = new Soba();
+		s1.setId("1");
+		s1.setBroj(1);
+		s1.setKapacitet(1); 	// jednokrevetna
+		
+		Soba s2 = new Soba();
+		s2.setId("2");
+		s2.setBroj(2);
+		s2.setKapacitet(2); 	// dvokrevetna
+		
+		Soba s3 = new Soba();
+		s3.setId("3");
+		s3.setBroj(3);
+		s3.setKapacitet(3); 	// trokrevetna
+		
+		Soba s4 = new Soba();
+		s4.setId("4");
+		s4.setBroj(4);
+		s4.setKapacitet(4); 	// cetvorokrevetna
+		
+		
+		
 		
 		 
 		
