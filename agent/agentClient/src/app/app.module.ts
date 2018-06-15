@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { routing } from './app.routing';
 
+import { HttpClientModule, HttpClient,} from '@angular/common/http';
+import { HttpModule,Http } from '@angular/http';
+
 
 import { AppComponent } from './app.component';
 import { AgentHomePageComponent } from './components/agent-home-page/agent-home-page.component';
@@ -18,7 +21,9 @@ import {SmestajService} from './services/smestaj.service'
   imports: [
     BrowserModule,
     routing,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    HttpClientModule,
+    HttpModule
   ],
   providers: [SmestajService],
   bootstrap: [AppComponent]
