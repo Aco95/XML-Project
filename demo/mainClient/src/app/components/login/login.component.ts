@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
 	maticniBroj: '1234',
 	username: 'boban',
 	password: 'boban',
-	uloga: 0
+  uloga: 0,
+  blokiran: false
   };
 
   constructor() { }

@@ -68,7 +68,15 @@ public class Korisnik {
     @XmlAttribute(name = "blokiran")
     protected boolean blokiran;
 
-    /**
+    public boolean isBlokiran() {
+		return blokiran;
+	}
+
+	public void setBlokiran(boolean blokiran) {
+		this.blokiran = blokiran;
+	}
+
+	/**
      * Gets the value of the id property.
      * 
      * @return

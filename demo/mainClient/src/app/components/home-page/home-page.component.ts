@@ -34,6 +34,7 @@ export class HomePageComponent implements OnInit {
   private bathroom : any;
 
   private isOpenAdvancedSearch : boolean;
+  public isOpenRezervacije : boolean;
 
 
   constructor(private router : Router, private searchService : SearchService ) { }
@@ -55,11 +56,24 @@ export class HomePageComponent implements OnInit {
     this.bathroom = false;
 
     this.isOpenAdvancedSearch = false;
+    this.isOpenRezervacije = false;
 
   }
 
   chooseDateFrom() {
     this.minDateTo = this.dateFrom;
+  }
+
+
+  clickRezervacije() {
+    if(!this.isOpenRezervacije) {
+      this.isOpenRezervacije = true;
+    }
+    else {
+      this.isOpenRezervacije = false;
+    }
+    console.log(this.isOpenRezervacije);
+    
   }
 
 
@@ -100,7 +114,7 @@ export class HomePageComponent implements OnInit {
       this.type, this.category, this.parking, this.wifi, this.breakfast, this.half_board,
       this.board, this.TV, this.kitchen, this.bathroom)
       .subscribe(data => { 
-          
+
           if(data.greska)
             alert("Please fill in all fields");
 
