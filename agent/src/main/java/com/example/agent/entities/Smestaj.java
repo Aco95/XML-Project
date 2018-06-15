@@ -82,7 +82,7 @@ public class Smestaj {
     @XmlAttribute(name = "kategorija")
     protected Integer kategorija;
     @XmlAttribute(name = "tip")
-    protected Integer tip;
+    protected Tip tip;
     @XmlAttribute(name = "parking")
     protected Boolean parking;
     @XmlAttribute(name = "wifi")
@@ -308,7 +308,7 @@ public class Smestaj {
      *     {@link Integer }
      *     
      */
-    public Integer getTip() {
+    public Tip getTip() {
         return tip;
     }
 
@@ -320,7 +320,7 @@ public class Smestaj {
      *     {@link Integer }
      *     
      */
-    public void setTip(Integer value) {
+    public void setTip(Tip value) {
         this.tip = value;
     }
 
@@ -573,12 +573,13 @@ public class Smestaj {
 
 
 
-	public Smestaj(List<Soba> sobe, List<String> slikeUrl, String naziv, String adresa, String mesto,
-			Integer kategorija, Integer tip, Boolean parking, Boolean wifi, Boolean dorucak, Boolean polupansion,
+	public Smestaj(List<Soba> sobe, List<String> slikeUrl, String id, String naziv, String adresa, String mesto,
+			Integer kategorija, Tip tip, Boolean parking, Boolean wifi, Boolean dorucak, Boolean polupansion,
 			Boolean pansion, Boolean tv, Boolean miniKuhinja, Boolean privatnoKupatilo, double ocena, String opis) {
 		super();
 		this.sobe = sobe;
 		this.slikeUrl = slikeUrl;
+		this.id = id;
 		this.naziv = naziv;
 		this.adresa = adresa;
 		this.mesto = mesto;
@@ -595,6 +596,10 @@ public class Smestaj {
 		this.ocena = ocena;
 		this.opis = opis;
 	}
+
+
+
+	
     
     
 

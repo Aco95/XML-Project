@@ -9,4 +9,5 @@ public interface SmestajService {
 
 	List<Smestaj> getSmestaji();
 	
+	Smestaj insertAccommodation(Smestaj s);
 }
