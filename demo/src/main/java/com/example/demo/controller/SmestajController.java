@@ -1,18 +1,24 @@
 package com.example.demo.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.RezultatPretrageDTO;
 import com.example.demo.entities.Smestaj;
-import com.example.demo.repository.SmestajRepository;
+import com.example.demo.entities.Soba;
+import com.example.demo.entities.Tip;
+import com.example.demo.service.ISmestajService;
 
 @RestController
 @RequestMapping("/public/accommodations")
@@ -20,7 +26,7 @@ import com.example.demo.repository.SmestajRepository;
 public class SmestajController {
 	
 	@Autowired
-	private SmestajRepository smestajRepository;
+	private ISmestajService smestajService;
 	
 	
 	@RequestMapping(
@@ -28,37 +34,121 @@ public class SmestajController {
 			method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Smestaj> getAll(){
-			
-		return smestajRepository.findAll();
+		
+		System.out.println("Pogodio getAll!");
+		return smestajService.getAll();
 	}
 	
 	
-//	@RequestMapping(
-//			value = "/getAccommodationByPlace/{place}",
-//			method = RequestMethod.GET, 
-//			produces = MediaType.APPLICATION_JSON_VALUE)
-//	public List<Smestaj> getAccommodationByPlace(@PathVariable("place") String place){
-//		
-//		return smestajRepository.findByPlace(place);
-//		
-//	}
+	@RequestMapping(
+			value = "/getAccommodationByPlace/{place}",
+			method = RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Smestaj> getAccommodationByPlace(@PathVariable("place") String place){
+		
+		return smestajService.getSmestajbyMesto(place);
+		
+	}
 	
 	
 	@RequestMapping(
 			value = "/basicSearch/{place}/{numberOfPersons}/{dateFrom}/{dateTo}",
 			method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Smestaj> basicSearch(@PathVariable("place") String place,
-			@PathVariable("numberOfPersons") int numberOfPersons,
-			@PathVariable("dateFrom") String dateFrom, @PathVariable("dateTo") String dateTo){
+	public RezultatPretrageDTO basicSearch(@PathVariable("place") String place,
+			@PathVariable("numberOfPersons") String numberOfPersons,
+			@PathVariable("dateFrom") String dateFrom, @PathVariable("dateTo") String dateTo) throws ParseException{
 		
 		
+		RezultatPretrageDTO rezultat = new RezultatPretrageDTO();
+		rezultat.setGreska(false);
 		
-		// radim nestoo ... ..  .
+		if(place.contains("undefined") || dateFrom.contains("undefined") || dateTo.contains("undefined")) {
+			
+			rezultat.setGreska(true);
+			return rezultat;
+		}
+			
+		
+		System.out.println(place);
+		System.out.println(place.substring(1, place.length()-1));
+		System.out.println(numberOfPersons);
+		System.out.println(numberOfPersons.substring(1, numberOfPersons.length()-1));
+		System.out.println(dateFrom);
+		System.out.println(dateTo);
 		
 		
+		List<Smestaj> smestaji = smestajService.getSmestajbyMesto(place.substring(1, place.length()-1));
+		int brojOsoba = Integer.parseInt(numberOfPersons.substring(1, numberOfPersons.length()-1));
+//		int brojOsoba = numberOfPersons;
 		
-		return smestajRepository.findByPlace(place);
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		
+		String splitted[] = dateFrom.substring(1, dateFrom.length()-1).split(",");
+		String godinaDolaska = splitted[0].split(":")[1];
+		String mesecDolaska = splitted[1].split(":")[1];
+		if(mesecDolaska.length()==1)
+			mesecDolaska = "0" + mesecDolaska;
+		String danDolaska = splitted[2].split(":")[1];
+		if(danDolaska.length()==1)
+			danDolaska = "0" + danDolaska;
+		String datumDolaskaStr = danDolaska+"-"+mesecDolaska+"-"+godinaDolaska;
+		
+		String splitted2[] = dateTo.substring(1, dateTo.length()-1).split(",");
+		String godinaOdlaska = splitted2[0].split(":")[1];
+		String mesecOdlaska = splitted2[1].split(":")[1];
+		if(mesecOdlaska.length()==1)
+			mesecOdlaska = "0" + mesecOdlaska;
+		String danOdlaska = splitted2[2].split(":")[1];
+		if(danOdlaska.length()==1)
+			danOdlaska = "0" + danOdlaska;
+		String datumOdlaskaStr = danOdlaska+"-"+mesecOdlaska+"-"+godinaOdlaska;
+		
+	
+        Date datumDolaska = formatter.parse(datumDolaskaStr);
+        Date datumOdlaska = formatter.parse(datumOdlaskaStr);
+            
+       
+		List<Smestaj> trazeniSmestaji = new ArrayList<Smestaj>();
+		
+		for(Smestaj smestaj : smestaji) {
+			for(Soba soba : smestaj.getSobe()) {
+				if(soba.getKapacitet()==brojOsoba) {
+					
+					if(soba.getDatumiRezervacija().isEmpty()) {		// soba nikada nije rezervisana do sad
+						if(!trazeniSmestaji.contains(smestaj)) {
+							trazeniSmestaji.add(smestaj);
+							continue;
+						}
+					}
+					
+					for(String datum_rezervacije : soba.getDatumiRezervacija()) {
+						
+						Date zauzetaOd = formatter.parse(datum_rezervacije.split(" ")[0]);
+						Date zauzetaDo = formatter.parse(datum_rezervacije.split(" ")[1]);
+						
+						if((datumDolaska.after(zauzetaOd) && datumDolaska.before(zauzetaDo)) || (datumOdlaska.after(zauzetaOd) && datumOdlaska.before(zauzetaDo))) {
+							System.out.println("soba "+soba.getBroj()+" je zauzeta tada..");
+							break;
+							
+						} else {
+							
+							if(!trazeniSmestaji.contains(smestaj)) {
+								trazeniSmestaji.add(smestaj);
+							}
+						}
+								
+						
+					}
+				}
+			}
+		}
+		
+		
+		System.out.println("Ima ih: " + trazeniSmestaji.size());
+		rezultat.setTrazeniSmestaji(trazeniSmestaji);
+		
+		return rezultat;
 		
 	}
 	
@@ -68,20 +158,122 @@ public class SmestajController {
 					+ "/{parking}/{wifi}/{breakfast}/{half_board}/{board}/{TV}/{kitchen}/{bathroom}",
 			method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Smestaj> advancedSearch(@PathVariable("place") String place,
-			@PathVariable("numberOfPersons") int numberOfPersons,
+	public RezultatPretrageDTO advancedSearch(@PathVariable("place") String place,
+			@PathVariable("numberOfPersons") String numberOfPersons,
 			@PathVariable("dateFrom") String dateFrom, @PathVariable("dateTo") String dateTo,
-			@PathVariable("type") int type, @PathVariable("category") int category,
+			@PathVariable("type") String type, @PathVariable("category") String category,
 			@PathVariable("parking") boolean parking, @PathVariable("wifi") boolean wifi,
-			@PathVariable("breakfast") String breakfast, @PathVariable("half_board") String half_board,  @PathVariable("board") String board, 
-			@PathVariable("TV") String TV, @PathVariable("kitchen") String kitchen, @PathVariable("bathroom") String bathroom){
+			@PathVariable("breakfast") boolean breakfast, @PathVariable("half_board") boolean half_board,  @PathVariable("board") boolean board, 
+			@PathVariable("TV") boolean TV, @PathVariable("kitchen") boolean kitchen, @PathVariable("bathroom") boolean bathroom) throws ParseException{
 		
 		
+		RezultatPretrageDTO rezultat = new RezultatPretrageDTO();
+		rezultat.setGreska(false);
 		
-		// radom nestoo// / // ///.. . . 
+		if(place.contains("undefined") || dateFrom.contains("undefined") || dateTo.contains("undefined")) {
+			
+			rezultat.setGreska(true);
+			return rezultat;
+		}
+			
+		
+		System.out.println(place);
+		System.out.println(place.substring(1, place.length()-1));
+		System.out.println(numberOfPersons);
+		System.out.println(numberOfPersons.substring(1, numberOfPersons.length()-1));
+		System.out.println(dateFrom);
+		System.out.println(dateTo);
+		
+		System.out.println(wifi);
 		
 		
-		return smestajRepository.findByPlace(place);
+		int brojOsoba = Integer.parseInt(numberOfPersons.substring(1, numberOfPersons.length()-1));
+		
+		int kategorija = Integer.parseInt(category.substring(1, category.length()-1));
+		int t = Integer.parseInt(type.substring(1, type.length()-1));
+		Tip tip = Tip.values()[t];
+		
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		
+		String splitted[] = dateFrom.substring(1, dateFrom.length()-1).split(",");
+		String godinaDolaska = splitted[0].split(":")[1];
+		String mesecDolaska = splitted[1].split(":")[1];
+		if(mesecDolaska.length()==1)
+			mesecDolaska = "0" + mesecDolaska;
+		String danDolaska = splitted[2].split(":")[1];
+		if(danDolaska.length()==1)
+			danDolaska = "0" + danDolaska;
+		String datumDolaskaStr = danDolaska+"-"+mesecDolaska+"-"+godinaDolaska;
+		
+		String splitted2[] = dateTo.substring(1, dateTo.length()-1).split(",");
+		String godinaOdlaska = splitted2[0].split(":")[1];
+		String mesecOdlaska = splitted2[1].split(":")[1];
+		if(mesecOdlaska.length()==1)
+			mesecOdlaska = "0" + mesecOdlaska;
+		String danOdlaska = splitted2[2].split(":")[1];
+		if(danOdlaska.length()==1)
+			danOdlaska = "0" + danOdlaska;
+		String datumOdlaskaStr = danOdlaska+"-"+mesecOdlaska+"-"+godinaOdlaska;
+		
+        Date datumDolaska = formatter.parse(datumDolaskaStr);
+        Date datumOdlaska = formatter.parse(datumOdlaskaStr);
+		
+        
+    	List<Smestaj> smestaji = smestajService.getSmestajbyMesto(place.substring(1, place.length()-1));
+//    	List<Smestaj> smestaji = smestajService.getSmestajbyMoreAttributes(place, kategorija, tip, parking, wifi, breakfast, half_board, board, TV, kitchen, bathroom);
+		System.out.println("broj smestaja napredni search: " + smestaji.size());
+    	
+    	
+        List<Smestaj> trazeniSmestaji = new ArrayList<Smestaj>();
+        
+        for(Smestaj smestaj : smestaji) {
+        	if(smestaj.getKategorija()==kategorija && smestaj.getTip()==tip && smestaj.isPansion()==parking
+        			&& smestaj.isWifi()==wifi && smestaj.isDorucak()==breakfast && smestaj.isPolupansion()==half_board
+        			&& smestaj.isPansion()==board && smestaj.isTv()==TV && smestaj.isMiniKuhinja()==kitchen && smestaj.isPrivatnoKupatilo()==bathroom) {
+        		
+				for(Soba soba : smestaj.getSobe()) {
+					if(soba.getKapacitet()==brojOsoba) {
+						
+						if(soba.getDatumiRezervacija().isEmpty()) {		// soba nikada nije rezervisana do sad
+							if(!trazeniSmestaji.contains(smestaj)) {
+								trazeniSmestaji.add(smestaj);
+								continue;
+							}
+						}
+						
+						for(String datum_rezervacije : soba.getDatumiRezervacija()) {
+							
+							Date zauzetaOd = formatter.parse(datum_rezervacije.split(" ")[0]);
+							Date zauzetaDo = formatter.parse(datum_rezervacije.split(" ")[1]);
+							
+							if((datumDolaska.after(zauzetaOd) && datumDolaska.before(zauzetaDo)) || (datumOdlaska.after(zauzetaOd) && datumOdlaska.before(zauzetaDo))) {
+								System.out.println("soba "+soba.getBroj()+" je zauzeta tada..");
+								break;
+								
+							} else {
+								
+								if(!trazeniSmestaji.contains(smestaj)) 
+									trazeniSmestaji.add(smestaj);
+								
+							}
+											
+						}
+						
+					}
+					
+				}
+				
+        	}
+        	
+		}
+		
+		
+		System.out.println("Broj trazenih smestaja napredni search: " + trazeniSmestaji.size());
+		rezultat.setTrazeniSmestaji(trazeniSmestaji);
+		
+		
+		return rezultat;
 		
 	}
 
