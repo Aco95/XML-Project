@@ -13,12 +13,14 @@ import { HomePageComponent } from "./components/home-page/home-page.component";
 
 import { SearchService } from "./services/search.service";
 import { LoginComponent } from './components/login/login.component';
+import { CommentsComponent } from './comments/comments.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    LoginComponent
+    LoginComponent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,

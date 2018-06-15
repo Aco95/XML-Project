@@ -8,12 +8,14 @@ import { AddAgentComponent } from './agent/add-agent.component';
 import { AppRoutingModule } from './app.routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AgentService } from './agent/agent.service';
+import { CommentsComponent } from './comments/comments.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AgentComponent,
-    AddAgentComponent
+    AddAgentComponent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,
