@@ -31,6 +31,7 @@ export class HomePageComponent implements OnInit {
   private bathroom : any;
 
   private isOpenAdvancedSearch : boolean;
+  public isOpenRezervacije : boolean;
 
 
   constructor(private router : Router, private searchService : SearchService ) { }
@@ -38,7 +39,19 @@ export class HomePageComponent implements OnInit {
   ngOnInit() {
 
     this.isOpenAdvancedSearch = false;
+    this.isOpenRezervacije = false;
 
+  }
+
+  clickRezervacije() {
+    if(!this.isOpenRezervacije) {
+      this.isOpenRezervacije = true;
+    }
+    else {
+      this.isOpenRezervacije = false;
+    }
+    console.log(this.isOpenRezervacije);
+    
   }
 
   clickAdvancedSearch() {

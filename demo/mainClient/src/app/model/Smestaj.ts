@@ -19,9 +19,11 @@ export class Smestaj {
     public ocena: Number;
     public opis: String;
 
+    /*
     public sobe: Array<Soba>;
     public slikeUrl: Array<String>;
-    
+    */
+
     constructor(
     ) {}
 }
