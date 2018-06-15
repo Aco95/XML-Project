@@ -12,7 +12,7 @@ import com.example.demo.entities.Korisnik;
 import com.example.demo.entities.Smestaj;
 import com.example.demo.entities.Soba;
 import com.example.demo.entities.Uloga;
-import com.example.demo.repository.KorisnikRepository;
+import com.example.demo.repository.AdminRepository;
 import com.example.demo.repository.SmestajRepository;
 import com.example.demo.repository.SobaRepository;
 
@@ -21,7 +21,7 @@ import com.example.demo.repository.SobaRepository;
 public class DbSeeder implements CommandLineRunner{
 	
 	@Autowired
-	private KorisnikRepository korisnikRepository;
+	private AdminRepository korisnikRepository;
 	
 	@Autowired
 	private SobaRepository sobaRepository;
@@ -44,6 +44,7 @@ public class DbSeeder implements CommandLineRunner{
 		k1.setMaticniBroj("1234567890123");
 		k1.setPassword("test1234");
 		k1.setUloga(Uloga.ADMIN);
+		k1.setBlokiran(false);
 		
 		Korisnik k2 = new Korisnik();
 		k2.setId("2");
@@ -54,6 +55,7 @@ public class DbSeeder implements CommandLineRunner{
 		k2.setMaticniBroj("1234567890123");
 		k2.setPassword("test1234");
 		k2.setUloga(Uloga.AGENT);
+		k2.setBlokiran(true);
 		
 		Korisnik k3 = new Korisnik();
 		k3.setId("3");
