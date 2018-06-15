@@ -5,7 +5,7 @@ export class Soba {
     public broj: Number;
     public kapacitet: Number;
     public cena: Number;
-    public datumi_rezervacije: Array<String>;
+    //public datumi_rezervacije: Array<String>;
     //public slobodna: boolean;
 
     constructor() {}

@@ -65,8 +65,18 @@ public class Korisnik {
     protected String maticniBroj;
     @XmlAttribute(name = "adresa")
     protected String adresa;
+    @XmlAttribute(name = "blokiran")
+    protected boolean blokiran;
 
-    /**
+    public boolean isBlokiran() {
+		return blokiran;
+	}
+
+	public void setBlokiran(boolean blokiran) {
+		this.blokiran = blokiran;
+	}
+
+	/**
      * Gets the value of the id property.
      * 
      * @return
@@ -273,6 +283,7 @@ public class Korisnik {
 		this.password = password;
 		this.maticniBroj = maticniBroj;
 		this.adresa = adresa;
+		this.blokiran=false;
 	}
     
 
