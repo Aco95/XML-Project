@@ -9,13 +9,15 @@ import { AppRoutingModule } from './app.routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AgentService } from './agent/agent.service';
 import { CommentsComponent } from './comments/comments.component';
+import { JojaComponent } from './components/joja/joja.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AgentComponent,
     AddAgentComponent,
-    CommentsComponent
+    CommentsComponent,
+    JojaComponent
   ],
   imports: [
     BrowserModule,
