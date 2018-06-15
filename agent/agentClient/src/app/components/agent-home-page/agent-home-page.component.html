@@ -205,104 +205,62 @@
         <div class="col-md-12">
           <div class="tile">
             <div class="row">
-              <div class="col-lg-6">
+              <div class="col-lg-5">
                 <form>
+
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email"><small class="form-text text-muted" id="emailHelp">We'll never share your email with anyone else.</small>
+                    <label class="control-label">Name</label>
+                    <input class="form-control" type="text" [(ngModel)] = "accommodationName" name = "accommodationName" placeholder="Enter full name">
                   </div>
+
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password">
+                    <label class="control-label">Address</label>
+                    <input class="form-control" [(ngModel)] = "accommodationAddress" name = "accommodationAddress" type="text" placeholder="Enter address">
                   </div>
+
                   <div class="form-group">
-                    <label for="exampleSelect1">Example select</label>
-                    <select class="form-control" id="exampleSelect1">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                    <label class="control-label">City</label>
+                    <input class="form-control" [(ngModel)] = "accommodationCity" name = "accommodationCity" type="text" placeholder="Enter city">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="descriptionTextArea">Description</label>
+                    <textarea class="form-control" [(ngModel)] = "accommodationDescription" name = "accommodationDescription" id="descriptionTextArea" rows="3"></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputFile">Image</label>
+                    <input class="form-control-file" [(ngModel)] = "accommodationImage" name = "accommodationImage"  id="imageInput" type="file"  aria-describedby="fileHelp"><small class="form-text text-muted " id="fileHelp">Use above input to upload image of your accommodation.</small>
+                  </div>
+          
+                  <div class="form-group">
+                    <label for="typeCombo">Type</label>
+                    <select class="form-control"  [(ngModel)] = "accommodationType" name = "accommodationType">
+                      <option>HOTEL</option>
+                      <option>BED_BREAKFAST</option>
+                      <option>APARTMAN</option> 
                     </select>
                   </div>
-                  <div class="form-group">
-                    <label for="exampleSelect2">Example multiple select</label>
-                    <select class="form-control" id="exampleSelect2" multiple="">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleTextarea">Example textarea</label>
-                    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <input class="form-control-file" id="exampleInputFile" type="file" aria-describedby="fileHelp"><small class="form-text text-muted" id="fileHelp">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
-                  </div>
-                  <fieldset class="form-group">
-                    <legend>Radio buttons</legend>
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" id="optionsRadios1" type="radio" name="optionsRadios" value="option1" checked="">Option one is this and that—be sure to include why it's great
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" id="optionsRadios2" type="radio" name="optionsRadios" value="option2">Option two can be something else and selecting it will deselect option one
-                      </label>
-                    </div>
-                    <div class="form-check disabled">
-                      <label class="form-check-label">
-                        <input class="form-check-input" id="optionsRadios3" type="radio" name="optionsRadios" value="option3" disabled="">Option three is disabled
-                      </label>
-                    </div>
-                  </fieldset>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox">Check me out
-                    </label>
-                  </div>
+ 
                 </form>
               </div>
-              <div class="col-lg-4 offset-lg-1">
+              <div class="col-lg-5 offset-lg-1">
                 <form>
                   <div class="form-group">
-                    <fieldset disabled="">
-                      <label class="control-label" for="disabledInput">Disabled input</label>
-                      <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here..." disabled="">
-                    </fieldset>
+                    <label class="control-label">Number of single rooms</label>
+                    <input class="form-control" [(ngModel)] = "accommodationSingleRooms" name = "accommodationSingleRooms" type="text" placeholder="Enter number of rooms">
                   </div>
                   <div class="form-group">
-                    <fieldset>
-                      <label class="control-label" for="readOnlyInput">Readonly input</label>
-                      <input class="form-control" id="readOnlyInput" type="text" placeholder="Readonly input here…" readonly="">
-                    </fieldset>
-                  </div>
-                  <div class="form-group has-success">
-                    <label class="form-control-label" for="inputSuccess1">Valid input</label>
-                    <input class="form-control is-valid" id="inputValid" type="text">
-                    <div class="form-control-feedback">Success! You've done it.</div>
-                  </div>
-                  <div class="form-group has-danger">
-                    <label class="form-control-label" for="inputDanger1">Invalid input</label>
-                    <input class="form-control is-invalid" id="inputInvalid" type="text">
-                    <div class="form-control-feedback">Sorry, that username's taken. Try another?</div>
+                    <label class="control-label">Number of double rooms</label>
+                    <input class="form-control" [(ngModel)] = "accommodationDoubleRooms" name = "accommodationDoubleRooms" type="text" placeholder="Enter number of rooms">
                   </div>
                   <div class="form-group">
-                    <label class="col-form-label col-form-label-lg" for="inputLarge">Large input</label>
-                    <input class="form-control form-control-lg" id="inputLarge" type="text">
+                    <label class="control-label">Number of triple rooms</label>
+                    <input class="form-control" [(ngModel)] = "accommodationTripleRooms" name = "accommodationTripleRooms" type="text" placeholder="Enter number of rooms">
                   </div>
                   <div class="form-group">
-                    <label class="col-form-label" for="inputDefault">Default input</label>
-                    <input class="form-control" id="inputDefault" type="text">
-                  </div>
-                  <div class="form-group">
-                    <label class="col-form-label col-form-label-sm" for="inputSmall">Small input</label>
-                    <input class="form-control form-control-sm" id="inputSmall" type="text">
+                    <label class="control-label">Number of quad rooms</label>
+                    <input class="form-control" [(ngModel)] = "accommodationQuadRooms" name = "accommodationQuadRooms" type="text" placeholder="Enter number of rooms">
                   </div>
                   <div class="form-group">
                     <label class="control-label">Input addons</label>
@@ -315,11 +273,78 @@
                       </div>
                     </div>
                   </div>
+
+                  <div class="form-group">
+
+                      <label class="control-label">Additional services</label>
+
+                      <div  class="row">
+
+                      
+                          <div class="col-lg-5">
+      
+                              <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" [(ngModel)] = "accommodationWIFI" name = "accommodationWIFI" type="checkbox">WIFI
+                                  </label>
+                              </div>
+      
+                              <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" [(ngModel)] = "accommodationPARKING" name = "accommodationPARKING" type="checkbox">PARKING
+                                  </label>
+                              </div>
+      
+                              <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input"  [(ngModel)] = "accommodationTV" name = "accommodationTV" type="checkbox">TV
+                                  </label>
+                              </div>
+      
+                              <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" [(ngModel)] = "accommodationBREAKFAST" name = "accommodationBREAKFAST" type="checkbox">BREAKFAST
+                                  </label>
+                              </div>
+      
+                          </div>
+      
+                          <div class="col-lg-5">
+      
+                              <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" [(ngModel)] = "accommodationBOARDING_HOUSE" name = "accommodationBOARDING_HOUSE" type="checkbox">BOARDING HOUSE
+                                  </label>
+                              </div>
+      
+                              <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" [(ngModel)] = "accommodationHALF_BOARD" name = "accommodationHALF_BOARD" type="checkbox">HALF BOARD
+                                  </label>
+                              </div>
+      
+                              <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" [(ngModel)] = "accommodationSMALL_KITCHEN" name = "accommodationSMALL_KITCHEN" type="checkbox">SMALL KITCHEN
+                                  </label>
+                              </div>
+      
+                              <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" [(ngModel)] = "accommodationPRIVATE_BATHROOM" name = "accommodationPRIVATE_BATHROOM" type="checkbox">PRIVATE BATHROOM
+                                  </label>
+                              </div>
+      
+                          </div>
+      
+                        </div>
+                  </div>
+   
                 </form>
               </div>
             </div>
             <div class="tile-footer">
-              <button class="btn btn-primary" type="submit">Submit</button>
+              <button class="btn btn-primary" (click) = "insertNewAccommodation()" type="submit">Submit</button>
             </div>
           </div>
         </div>

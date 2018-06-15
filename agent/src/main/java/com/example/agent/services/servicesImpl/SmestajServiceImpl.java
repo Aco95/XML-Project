@@ -20,4 +20,10 @@ public class SmestajServiceImpl implements SmestajService {
 		
 		return smestajRepository.findAll();
 	}
+
+	@Override
+	public Smestaj insertAccommodation(Smestaj s) {
+		
+		return smestajRepository.insert(s);
+	}
 }

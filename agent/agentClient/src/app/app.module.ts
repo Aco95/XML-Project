@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { routing } from './app.routing';
+import { FormsModule} from '@angular/forms'
 
 import { HttpClientModule, HttpClient,} from '@angular/common/http';
 import { HttpModule,Http } from '@angular/http';
@@ -23,7 +24,8 @@ import {SmestajService} from './services/smestaj.service'
     routing,
     NgbModule.forRoot(),
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [SmestajService],
   bootstrap: [AppComponent]
