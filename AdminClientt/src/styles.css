@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+
+.header_div{
+	background-color: #d86c70;
+	height:50px;
+	position:relative;
+	text-align: center;
+	line-height:50px;
+	color:white;	
+	font-family: ubuntu;
+}
+
+.admin_view_div{	
+	height: 100%;
+	float:left;
+}
+
+.user_info_div{
+	height:100%;
+	float:right;
+	font-size: 120%;
+}
+
+#adminId{
+	color:white;
+	text-decoration:none;
+	font-size:200%;
+}
+
+#logout_button {
+	margin-left:5px;
+  -webkit-border-radius: 7;
+  -moz-border-radius: 7;
+  border-radius: 7px;
+  font-family: Ubuntu;
+  color: #000000;
+  font-size: 15px;
+  background: edf0f0;
+  padding: 5px 10px 5px 10px;
+  text-decoration: none;
+}
+
+#logout_button:hover {
+  background: #dae0e3;
+  text-decoration: none;
+  cursor: pointer;
+}
