@@ -1,0 +1,304 @@
+<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+
+  <a class="navbar-brand" href="homeSearch">Booking.com</a>
+
+  <a class="navbar-brand" href="rezervacije">Rezervacije</a>
+
+  <ul class="navbar-nav mr-auto">
+  </ul>
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="login">Login</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="register">Register</a>
+    </li>
+  </ul>
+</nav> 
+
+<br>
+
+
+<br>
+
+ <!-- Page Content -->
+ <div class="container"> 
+
+  <form>
+
+    <div class="row"> <!-- start row -->
+
+      <div class="col">
+        <div class="form-group">
+          <label for="place">Place:</label>
+          <input type="text" [(ngModel)]="place" name="mesto" class="form-control" placeholder="Place" required>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="numberOfPersons">Number of persons:</label>
+          <select class="custom-select" [(ngModel)]="numberOfPersons" name="persons" required>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+            <option value="4">Four</option>
+          </select>
+        </div>
+      </div>
+      <div class="col">
+          <div class="form-group">
+            <label for="fromDate">From:</label>
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                      name="datePicker"  [(ngModel)]="dateFrom" [minDate]="minDateFrom" (ngModelChange)="chooseDateFrom()" ngbDatepicker #df="ngbDatepicker" required>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="df.toggle()" type="button">
+                  <img src="../../../assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                </button>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="col">
+          <div class="form-group">
+            <label for="toDate">To:</label>
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                      name="datePicker" [(ngModel)]="dateTo" [minDate]="minDateTo" ngbDatepicker #dt="ngbDatepicker" required>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="dt.toggle()" type="button">
+                  <img src="../../../assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                </button>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="col">
+        <br>
+        <button type="submit" class="btn btn-primary" (click)="submitSearch()">Search</button>
+      </div>
+
+    </div>  <!-- end row -->
+
+    
+    <div id="accordion">
+
+      <div class="card">
+        <div class="card-header">
+          <a class="collapsed card-link" data-toggle="collapse" href="#advancedSearch"  (click)="clickAdvancedSearch()">
+            Advanced search
+          </a>
+        </div>
+        <div id="advancedSearch" class="collapse" data-parent="#accordion">
+          <div class="card-body">
+
+            <div class="row"> <!-- start row -->
+              <div class="col">
+                <div class="form-group">
+                  <label for="place">Type of accommodation:</label>
+                  <select class="custom-select" [(ngModel)]="type" name="tip" required>
+                    <option value="0">hotel</option>
+                    <option value="1">bed&breakfast</option>
+                    <option value="2">apartman</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col">
+                  <div class="form-group">
+                    <label for="place">Category:</label>
+                    <select class="custom-select" [(ngModel)]="category" name="kategorija" required>
+                      <option value="0">uncategorized</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                  </div>
+              </div>
+
+            </div> <!-- end row -->
+
+            <br>
+
+            <div class="row"> <!-- start row -->
+              <div class="col">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="parking" name="park"> Parking
+                    </label>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="wifi" name="wf"> Wifi
+                    </label>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="breakfast" name="dorucak"> Breakfast
+                    </label>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="half_board" name="polupansion"> Half-board
+                    </label>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="board" name="pansion"> Board
+                    </label>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="TV" name="tv"> TV
+                    </label>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="kitchen" name="kuhinja"> Kitchen
+                    </label>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="bathroom" name="kupatilo"> Private bathroom
+                    </label>
+                  </div>
+              </div>
+
+            </div> <!-- end row -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+      
+  </form>
+
+  <br>
+
+  <div class="container h-100" *ngIf="accommodationArray.length===0">
+    <div class="row h-100 justify-content-center align-items-center">
+        <h6>No results</h6>
+    </div>
+  </div>
+
+  <main class="app-content">
+ 
+    <div class="row" *ngFor="let accommodation of accommodationArray; let i = index">
+      <div class="col-md-8" >
+        <div class="tile">
+          <div class="row">
+  
+            <div class="col-md-10">
+                <h2 class="tile-title"><span class="badge badge-info">{{accommodation.tip}} </span> &nbsp; {{accommodation.naziv}}</h2>
+            </div>
+
+          </div>
+          
+          <div id="{{i}}" class="carousel slide" data-ride="carousel">
+              <ul class="carousel-indicators" >
+                <li data-target="#demo" *ngFor="let slika of accommodation.slikeUrl; let j = index;" data-slide-to="j"  class="active"></li>
+                
+              </ul>
+              <div class="carousel-inner">
+                <div class="carousel-item active" >
+                  <img src="{{accommodation.slikeUrl[0]}}" alt="Cover" width="1000" height="400">
+                  <div  class="carousel-caption">
+                    <h3>Description:</h3>
+                    <p>{{accommodation.opis}}</p>
+                  </div>  
+                </div>
+                <div class="carousel-item" *ngFor="let slika of accommodation.slikeUrl | slice:1; let j = index;">
+                  <img  src="{{slika}}" alt="Additional" width="1000" height="400">
+                  <div  class="carousel-caption">
+                    <h3>Description:</h3>
+                    <p>{{accommodation.opis}}</p>
+                  </div>   
+                </div>
+                
+              </div>
+              <a class="carousel-control-prev" href="#{{i}}" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+              </a>
+              <a class="carousel-control-next" href="#{{i}}" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+              </a>
+          </div>
+  
+          <div class="row-md-2">
+  
+              <h3>Additional services:</h3>
+  
+              <div class="row-md-50">
+                  <span class="badge badge-success" *ngIf=accommodation.wifi>WIFI</span>
+                  <span class="badge badge-success" *ngIf=accommodation.parking>PARKING</span>
+                  <span class="badge badge-success" *ngIf=accommodation.tv>TV</span>
+                  <span class="badge badge-success" *ngIf=accommodation.dorucak>BREAKFAST</span>
+                  <span class="badge badge-success" *ngIf=accommodation.pansion>BOARDING HOUSE</span>
+                  <span class="badge badge-success" *ngIf=accommodation.polupansion>HALF BOARD</span>
+                  <span class="badge badge-success" *ngIf=accommodation.miniKuhinja>SMALL KITCHEN</span>
+                  <span class="badge badge-success" *ngIf=accommodation.privatnoKupatilo>PRIVATE BATHROOM</span>
+              </div>
+              
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <br><br>
+        <div class="app-title" class="col-md-1">
+          <h5> Category: </h5>
+        </div>
+
+        <div class="col-md-1">
+            <ngb-rating max="5">
+                <ng-template let-fill="fill" let-index="index">
+                  <span class="star" [class.filled]="fill === 20" [class.bad]="index < 3">&#9733;</span>
+                </ng-template>
+            </ngb-rating>
+        </div>
+
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+
+        <div class="col-md-1">
+          <button type="submit" class="btn btn-dark" (click)="reserve()">Reserve</button>
+        </div> 
+      </div>
+
+      <div class="col-md-2">
+        <br><br>
+        <div class="app-title" class="col-md-1">
+          <h5> Rating: </h5>
+        </div>
+
+        <div class="col-md-1">
+          <p>{{accommodation.ocena}}</p>
+        </div>
+ 
+      </div>
+  
+    </div>
+    
+  </main>
+
+  <br><br>
+
+</div>
+<!-- /.container -->
+
+
