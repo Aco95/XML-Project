@@ -2,15 +2,19 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.AdminKorisnikDto;
+import com.example.demo.dto.AgentRegisterDto;
 import com.example.demo.service.AdminServiceImp;
 
 @RestController
@@ -48,6 +52,14 @@ public class AdminController {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public void  obrisiKorisnika(@PathVariable("id") int id){
 			adminService.obrisiKorisnik(id);
+	}
+	
+	@RequestMapping(
+			value = "/agent",
+			method = RequestMethod.POST, 
+			consumes=MediaType.APPLICATION_JSON_VALUE)
+	public void  registrujAgenta(@Valid  @RequestBody  AgentRegisterDto agentRegisterDto){
+			adminService.registrujAgenta(agentRegisterDto);
 	}
 	
 }

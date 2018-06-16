@@ -49,6 +49,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Korisnik {
 
 	@Id
+	
     @XmlAttribute(name = "id")
     protected String id;
     @XmlAttribute(name = "ime")
