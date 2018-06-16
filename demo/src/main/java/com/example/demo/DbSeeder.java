@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.example.demo.entities.Korisnik;
 import com.example.demo.entities.Smestaj;
 import com.example.demo.entities.Soba;
+import com.example.demo.entities.Tip;
 import com.example.demo.entities.Uloga;
 import com.example.demo.repository.AdminRepository;
 import com.example.demo.repository.SmestajRepository;
@@ -89,6 +90,18 @@ public class DbSeeder implements CommandLineRunner{
 		s2.setDatumiRezervacija(new ArrayList<String>());
 		s2.setIdSmestaja("1");
 		
+		Soba s5 = new Soba();
+		s5.setId("5");
+		s5.setBroj(5);
+		s5.setKapacitet(2); 	// dvokrevetna
+		ArrayList<String> datumi_rez = new ArrayList<String>();
+		datumi_rez.add("17-06-2018 23-06-2018");
+		datumi_rez.add("01-07-2018 12-07-2018");
+		s5.setDatumiRezervacija(datumi_rez);
+		s5.setIdSmestaja("1");
+		
+		
+		
 		Soba s3 = new Soba();
 		s3.setId("3");
 		s3.setBroj(3);
@@ -105,22 +118,33 @@ public class DbSeeder implements CommandLineRunner{
 		
 		sobaRepository.deleteAll();
 		
-		List<Soba> sobe = Arrays.asList(s1,s2,s3,s4);
+		List<Soba> sobe = Arrays.asList(s1,s2,s3,s4,s5);
 		
 		sobaRepository.saveAll(sobe);
 		
-		List<Soba> sobe1 = Arrays.asList(s1,s2);
+		List<Soba> sobe1 = Arrays.asList(s1,s2,s5);
 		Smestaj smestaj1 = new Smestaj();
 		smestaj1.setId("1");
 		smestaj1.setNaziv("Hotel Park");
 		smestaj1.setMesto("Novi Sad");
 		smestaj1.setAdresa("Bulevar Kralja Aleksandra 24");
 		smestaj1.setKategorija(4);
-		smestaj1.setTip(0);
+		smestaj1.setTip(Tip.HOTEL);
 		smestaj1.setOcena(8.7);
 		smestaj1.setOpis("Najbolji hotel u gradu...");
 		smestaj1.setSobe(sobe1);
-		smestaj1.setSlikeUrl(new ArrayList<String>());
+		List<String> slikeSmestaj1 = new ArrayList<String>();
+		String sl1 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "hotelPark2.jpg";
+		String sl2 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "hotelParkEnterijer.jpg";
+		String sl3 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "hotelParkSoba.jpg";
+		String sl4 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "hotelParkBazen.jpg";
+		String sl5 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "hotelParkSala.jpg";
+		slikeSmestaj1.add(sl1);
+		slikeSmestaj1.add(sl2);
+		slikeSmestaj1.add(sl3);
+		slikeSmestaj1.add(sl4);
+		slikeSmestaj1.add(sl5);
+		smestaj1.setSlikeUrl(slikeSmestaj1);
 		smestaj1.setParking(true);
 		smestaj1.setWifi(true);
 		smestaj1.setPansion(true);
@@ -138,11 +162,16 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj2.setMesto("Smederevo");
 		smestaj2.setAdresa("Lukijana Musickog 17");
 		smestaj2.setKategorija(3);
-		smestaj2.setTip(2);
+		smestaj2.setTip(Tip.APARTMAN);
 		smestaj2.setOcena(9.1);
 		smestaj2.setOpis("Najbolji apartmani u Smederevu i sire...");
 		smestaj2.setSobe(sobe2);
-		smestaj2.setSlikeUrl(new ArrayList<String>());
+		List<String> slikeSmestaj2 = new ArrayList();
+		String sl21 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "apartmaniJancic.jpg";
+		String sl22 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "jancicDnevna.jpg";
+		slikeSmestaj2.add(sl21);
+		slikeSmestaj2.add(sl22);
+		smestaj2.setSlikeUrl(slikeSmestaj2);
 		smestaj2.setParking(false);
 		smestaj2.setWifi(true);
 		smestaj2.setPansion(false);

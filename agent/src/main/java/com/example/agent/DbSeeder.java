@@ -14,6 +14,7 @@ import com.example.agent.repositories.SmestajRepository;
 import com.example.agent.repositories.SobaRepository;
 import com.example.agent.entities.Smestaj;
 import com.example.agent.entities.Soba;
+import com.example.agent.entities.Tip;
 import com.example.agent.entities.Uloga;
 
 
@@ -75,6 +76,18 @@ public class DbSeeder implements CommandLineRunner{
 		
 		sobaRepository.saveAll(sobe);
 		
+		List<String> slikeSmestaj1 = new ArrayList<String>();
+		String sl1 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "hotelPark2.jpg";
+		String sl2 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "hotelParkEnterijer.jpg";
+		String sl3 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "hotelParkSoba.jpg";
+		String sl4 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "hotelParkBazen.jpg";
+		String sl5 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "hotelParkSala.jpg";
+		slikeSmestaj1.add(sl1);
+		slikeSmestaj1.add(sl2);
+		slikeSmestaj1.add(sl3);
+		slikeSmestaj1.add(sl4);
+		slikeSmestaj1.add(sl5);
+		
 		List<Soba> sobe1 = Arrays.asList(s1,s2);
 		Smestaj smestaj1 = new Smestaj();
 		smestaj1.setId("1");
@@ -82,7 +95,7 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj1.setMesto("Novi Sad");
 		smestaj1.setAdresa("Bulevar Kralja Aleksandra 24");
 		smestaj1.setKategorija(4);
-		smestaj1.setTip(0);
+		smestaj1.setTip(Tip.HOTEL);
 		smestaj1.setOcena(8.7);
 		smestaj1.setOpis("Najbolji hotel u gradu...");
 		smestaj1.setSobe(sobe1);
@@ -95,7 +108,16 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj1.setMiniKuhinja(true);
 		smestaj1.setPrivatnoKupatilo(true);
 		smestaj1.setTv(true);
+		smestaj1.setSlikeUrl(slikeSmestaj1);
 		
+		
+		List<String> slikeSmestaj2 = new ArrayList();
+		String sl21 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "apartmaniJancic.jpg";
+		String sl22 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "jancicDnevna.jpg";
+		
+		slikeSmestaj2.add(sl21);
+		slikeSmestaj2.add(sl22);
+
 		
 		List<Soba> sobe2 = Arrays.asList(s3,s4);
 		Smestaj smestaj2 = new Smestaj();
@@ -104,7 +126,7 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj2.setMesto("Smederevo");
 		smestaj2.setAdresa("Lukijana Musickog 17");
 		smestaj2.setKategorija(3);
-		smestaj2.setTip(2);
+		smestaj2.setTip(Tip.APARTMAN);
 		smestaj2.setOcena(9.1);
 		smestaj2.setOpis("Najbolji apartmani u Smederevu i sire...");
 		smestaj2.setSobe(sobe2);
@@ -117,6 +139,7 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj2.setMiniKuhinja(true);
 		smestaj2.setPrivatnoKupatilo(true);
 		smestaj2.setTv(true);
+		smestaj2.setSlikeUrl(slikeSmestaj2);
 		
 		smestajRepository.deleteAll();
 		

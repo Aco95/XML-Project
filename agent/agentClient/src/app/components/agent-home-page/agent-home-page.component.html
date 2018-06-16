@@ -108,12 +108,12 @@
   </div>
   
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6" *ngFor="let accommodation of accommodations; let i = index">
       <div class="tile">
         <div class="row">
 
           <div class="col-md-10">
-              <h3 class="tile-title"><span class="badge badge-success">APARTMAN</span> &nbsp; Vila Moskva</h3>
+              <h3 class="tile-title"><span class="badge badge-info">{{accommodation.tip}} </span> &nbsp; {{accommodation.naziv}}</h3>
           </div>
 
           <div class="col-md-2">
@@ -137,119 +137,32 @@
           </div>
         </div>
         
-        <div id="demo" class="carousel slide" data-ride="carousel">
-            <ul class="carousel-indicators">
-              <li data-target="#demo" data-slide-to="0" class="active"></li>
-              <li data-target="#demo" data-slide-to="1"></li>
-              <li data-target="#demo" data-slide-to="2"></li>
+        <div id="{{i}}" class="carousel slide" data-ride="carousel">
+            <ul class="carousel-indicators" >
+              <li data-target="#demo" *ngFor="let slika of accommodation.slikeUrl; let j = index;" data-slide-to="j"  class="active"></li>
+              
             </ul>
             <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="../../../assets/images/moskva2.jpg" alt="Los Angeles" width="1100" height="500">
+              <div class="carousel-item active" >
+                <img src="{{accommodation.slikeUrl[0]}}" alt="Cover" width="1100" height="500">
                 <div class="carousel-caption">
-                  <h3>Eksterijer</h3>
-                  <p>Predivna vila, s pogledom na nebo.</p>
+                  <h3>Address:</h3>
+                  <p>{{accommodation.adresa}}  , {{accommodation.mesto}}</p>
                 </div>   
               </div>
-              <div class="carousel-item">
-                <img src="../../../assets/images/moskva_unutra.jpg" alt="Chicago" width="1100" height="500">
-                <div class="carousel-caption">
-                  <h3>Enterijer</h3>
-                  <p>Zaista svecano, predivni stonjaci.</p>
+              <div class="carousel-item" *ngFor="let slika of accommodation.slikeUrl | slice:1; let j = index;">
+                <img  src="{{slika}}" alt="Additional" width="1100" height="500">
+                <div  class="carousel-caption">
+                  <h3>Description:</h3>
+                  <p>{{accommodation.opis}}</p>
                 </div>   
-              </div>
-              <div class="carousel-item">
-                <img src="../../../assets/images/moskva_pod2.jpg" alt="New York" width="1100" height="500">
-                <div class="carousel-caption">
-                  <h3>Ulaz</h3>
-                  <p>Podovi cisti, divan dizajn.</p>
-                </div>   
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#demo" data-slide="prev">
-              <span class="carousel-control-prev-icon"></span>
-            </a>
-            <a class="carousel-control-next" href="#demo" data-slide="next">
-              <span class="carousel-control-next-icon"></span>
-            </a>
-        </div>
-
-        <div class="row-md-2">
-
-            <h2>Additional services:</h2>
-
-            <div class="row-md-50">
-                <span class="badge badge-success">WIFI</span>
-                <span class="badge badge-success">Parking</span>
-                <span class="badge badge-success">TV</span>
-            </div>
-            
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="tile">
-        <div class="row">
-
-          <div class="col-md-10">
-              <h3 class="tile-title"><span class="badge badge-success">HOTEL</span> &nbsp; Hotel Park</h3>
-          </div>
-
-          <div class="col-md-2">
-
-              <div class="app-title" class="col-md-1">
-
-                <p> Category: </p>
-
-              </div>
-
-              <div class="col-md-1">
-
-                  <ngb-rating max="5">
-                      <ng-template let-fill="fill" let-index="index">
-                        <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
-                      </ng-template>
-                  </ngb-rating>
-
               </div>
               
-          </div>
-        </div>
-        
-        <div id="demo1" class="carousel slide" data-ride="carousel">
-            <ul class="carousel-indicators">
-              <li data-target="#demo1" data-slide-to="0" class="active"></li>
-              <li data-target="#demo1" data-slide-to="1"></li>
-              <li data-target="#demo1" data-slide-to="2"></li>
-            </ul>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="../../../assets/images/hotelPark2.jpg" alt="Los Angeles" width="1100" height="500">
-                <div class="carousel-caption">
-                  <h3>Eksterijer</h3>
-                  <p>Hotel se nalazi pored Futoskog parka.</p>
-                </div>   
-              </div>
-              <div class="carousel-item">
-                <img src="../../../assets/images/hotelParkEnterijer.jpg" alt="Chicago" width="1100" height="500">
-                <div class="carousel-caption">
-                  <h3>Enterijer</h3>
-                  <p>Svecani lobi je svakako zastitni znak hotela.</p>
-                </div>   
-              </div>
-              <div class="carousel-item">
-                <img src="../../../assets/images/hotelParkSoba.jpg" alt="New York" width="1100" height="500">
-                <div class="carousel-caption">
-                  <h3>Soba</h3>
-                  <p>Sobe su dvokrevetne, kreveti udobni.</p>
-                </div>   
-              </div>
             </div>
-            <a class="carousel-control-prev" href="#demo1" data-slide="prev">
+            <a class="carousel-control-prev" href="#{{i}}" data-slide="prev">
               <span class="carousel-control-prev-icon"></span>
             </a>
-            <a class="carousel-control-next" href="#demo1" data-slide="next">
+            <a class="carousel-control-next" href="#{{i}}" data-slide="next">
               <span class="carousel-control-next-icon"></span>
             </a>
         </div>
@@ -259,15 +172,21 @@
             <h2>Additional services:</h2>
 
             <div class="row-md-50">
-                
-                <span class="badge badge-success">Parking</span>
-                <span class="badge badge-success">TV</span>
-                <span class="badge badge-success">Polupansion</span>
+                <span class="badge badge-success" *ngIf=accommodation.wifi>WIFI</span>
+                <span class="badge badge-success" *ngIf=accommodation.parking>PARKING</span>
+                <span class="badge badge-success" *ngIf=accommodation.tv>TV</span>
+                <span class="badge badge-success" *ngIf=accommodation.dorucak>BREAKFAST</span>
+                <span class="badge badge-success" *ngIf=accommodation.pansion>BOARDING HOUSE</span>
+                <span class="badge badge-success" *ngIf=accommodation.polupansion>HALF BOARD</span>
+                <span class="badge badge-success" *ngIf=accommodation.miniKuhinja>SMALL KITCHEN</span>
+                <span class="badge badge-success" *ngIf=accommodation.privatnoKupatilo>PRIVATE BATHROOM</span>
             </div>
             
         </div>
       </div>
     </div>
+
+    
     
       
   </div>
@@ -275,10 +194,161 @@
 </main>
 
 <main class="app-content" *ngIf=panels[1]>
-    <h1>
+    <div class="app-title">
+      <div>
+          <h1><i class="fa fa-edit"></i> Insert accomodation</h1>
+          <p>Fill in all the requires fields if you want to add new accomodation.</p>
+        </div>
+       
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+            <div class="row">
+              <div class="col-lg-5">
+                <form>
 
-      Mejvene 1
-    </h1>
+                  <div class="form-group">
+                    <label class="control-label">Name</label>
+                    <input class="form-control" type="text" [(ngModel)] = "accommodationName" name = "accommodationName" placeholder="Enter full name">
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label">Address</label>
+                    <input class="form-control" [(ngModel)] = "accommodationAddress" name = "accommodationAddress" type="text" placeholder="Enter address">
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label">City</label>
+                    <input class="form-control" [(ngModel)] = "accommodationCity" name = "accommodationCity" type="text" placeholder="Enter city">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="descriptionTextArea">Description</label>
+                    <textarea class="form-control" [(ngModel)] = "accommodationDescription" name = "accommodationDescription" id="descriptionTextArea" rows="3"></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputFile">Image</label>
+                    <input class="form-control-file" [(ngModel)] = "accommodationImage" name = "accommodationImage"  id="imageInput" type="file"  aria-describedby="fileHelp"><small class="form-text text-muted " id="fileHelp">Use above input to upload image of your accommodation.</small>
+                  </div>
+          
+                  <div class="form-group">
+                    <label for="typeCombo">Type</label>
+                    <select class="form-control"  [(ngModel)] = "accommodationType" name = "accommodationType">
+                      <option>HOTEL</option>
+                      <option>BED_BREAKFAST</option>
+                      <option>APARTMAN</option> 
+                    </select>
+                  </div>
+ 
+                </form>
+              </div>
+              <div class="col-lg-5 offset-lg-1">
+                <form>
+                  <div class="form-group">
+                    <label class="control-label">Number of single rooms</label>
+                    <input class="form-control" [(ngModel)] = "accommodationSingleRooms" name = "accommodationSingleRooms" type="text" placeholder="Enter number of rooms">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Number of double rooms</label>
+                    <input class="form-control" [(ngModel)] = "accommodationDoubleRooms" name = "accommodationDoubleRooms" type="text" placeholder="Enter number of rooms">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Number of triple rooms</label>
+                    <input class="form-control" [(ngModel)] = "accommodationTripleRooms" name = "accommodationTripleRooms" type="text" placeholder="Enter number of rooms">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Number of quad rooms</label>
+                    <input class="form-control" [(ngModel)] = "accommodationQuadRooms" name = "accommodationQuadRooms" type="text" placeholder="Enter number of rooms">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Input addons</label>
+                    <div class="form-group">
+                      <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                        <input class="form-control" id="exampleInputAmount" type="text" placeholder="Amount">
+                        <div class="input-group-append"><span class="input-group-text">.00</span></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+
+                      <label class="control-label">Additional services</label>
+
+                      <div  class="row">
+
+                      
+                          <div class="col-lg-5">
+      
+                              <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" [(ngModel)] = "accommodationWIFI" name = "accommodationWIFI" type="checkbox">WIFI
+                                  </label>
+                              </div>
+      
+                              <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" [(ngModel)] = "accommodationPARKING" name = "accommodationPARKING" type="checkbox">PARKING
+                                  </label>
+                              </div>
+      
+                              <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input"  [(ngModel)] = "accommodationTV" name = "accommodationTV" type="checkbox">TV
+                                  </label>
+                              </div>
+      
+                              <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" [(ngModel)] = "accommodationBREAKFAST" name = "accommodationBREAKFAST" type="checkbox">BREAKFAST
+                                  </label>
+                              </div>
+      
+                          </div>
+      
+                          <div class="col-lg-5">
+      
+                              <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" [(ngModel)] = "accommodationBOARDING_HOUSE" name = "accommodationBOARDING_HOUSE" type="checkbox">BOARDING HOUSE
+                                  </label>
+                              </div>
+      
+                              <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" [(ngModel)] = "accommodationHALF_BOARD" name = "accommodationHALF_BOARD" type="checkbox">HALF BOARD
+                                  </label>
+                              </div>
+      
+                              <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" [(ngModel)] = "accommodationSMALL_KITCHEN" name = "accommodationSMALL_KITCHEN" type="checkbox">SMALL KITCHEN
+                                  </label>
+                              </div>
+      
+                              <div class="form-check">
+                                  <label class="form-check-label">
+                                    <input class="form-check-input" [(ngModel)] = "accommodationPRIVATE_BATHROOM" name = "accommodationPRIVATE_BATHROOM" type="checkbox">PRIVATE BATHROOM
+                                  </label>
+                              </div>
+      
+                          </div>
+      
+                        </div>
+                  </div>
+   
+                </form>
+              </div>
+            </div>
+            <div class="tile-footer">
+              <button class="btn btn-primary" (click) = "insertNewAccommodation()" type="submit">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </main>
 
 <main class="app-content" *ngIf=panels[2]>
