@@ -191,183 +191,112 @@
 
   <br>
 
+  <div class="container h-100" *ngIf="accommodationArray.length===0">
+    <div class="row h-100 justify-content-center align-items-center">
+        <h6>No results</h6>
+    </div>
+  </div>
+
   <main class="app-content">
-    <!-- <div class="app-title" >
-      <div>
-        <h1><i class="fa fa-dashboard"></i> Accommodations</h1>
-        <p>You can see the list of your accommodations below.</p>
-      </div>
-      
-    </div> -->
-    
-    <div class="row">
-      <div class="col-md-6">
+ 
+    <div class="row" *ngFor="let accommodation of accommodationArray; let i = index">
+      <div class="col-md-8" >
         <div class="tile">
           <div class="row">
   
             <div class="col-md-10">
-                <h3 class="tile-title"><span class="badge badge-success">APARTMAN</span> &nbsp; Vila Moskva</h3>
+                <h2 class="tile-title"><span class="badge badge-info">{{accommodation.tip}} </span> &nbsp; {{accommodation.naziv}}</h2>
             </div>
-  
-            <div class="col-md-2">
-  
-                <div class="app-title" class="col-md-1">
-  
-                  <p> Category: </p>
-  
-                </div>
-  
-                <div class="col-md-1">
-  
-                    <ngb-rating max="5">
-                        <ng-template let-fill="fill" let-index="index">
-                          <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
-                        </ng-template>
-                    </ngb-rating>
-  
-                </div>
-                
-            </div>
+
           </div>
           
-          <div id="demo" class="carousel slide" data-ride="carousel">
-              <ul class="carousel-indicators">
-                <li data-target="#demo" data-slide-to="0" class="active"></li>
-                <li data-target="#demo" data-slide-to="1"></li>
-                <li data-target="#demo" data-slide-to="2"></li>
+          <div id="{{i}}" class="carousel slide" data-ride="carousel">
+              <ul class="carousel-indicators" >
+                <li data-target="#demo" *ngFor="let slika of accommodation.slikeUrl; let j = index;" data-slide-to="j"  class="active"></li>
+                
               </ul>
               <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="../../../assets/images/moskva2.jpg" alt="Los Angeles" width="1100" height="500">
-                  <div class="carousel-caption">
-                    <h3>Eksterijer</h3>
-                    <p>Predivna vila, s pogledom na nebo.</p>
+                <div class="carousel-item active" >
+                  <img src="{{accommodation.slikeUrl[0]}}" alt="Cover" width="1000" height="400">
+                  <div  class="carousel-caption">
+                    <h3>Description:</h3>
+                    <p>{{accommodation.opis}}</p>
+                  </div>  
+                </div>
+                <div class="carousel-item" *ngFor="let slika of accommodation.slikeUrl | slice:1; let j = index;">
+                  <img  src="{{slika}}" alt="Additional" width="1000" height="400">
+                  <div  class="carousel-caption">
+                    <h3>Description:</h3>
+                    <p>{{accommodation.opis}}</p>
                   </div>   
                 </div>
-                <div class="carousel-item">
-                  <img src="../../../assets/images/moskva_unutra.jpg" alt="Chicago" width="1100" height="500">
-                  <div class="carousel-caption">
-                    <h3>Enterijer</h3>
-                    <p>Zaista svecano, predivni stonjaci.</p>
-                  </div>   
-                </div>
-                <div class="carousel-item">
-                  <img src="../../../assets/images/moskva_pod2.jpg" alt="New York" width="1100" height="500">
-                  <div class="carousel-caption">
-                    <h3>Ulaz</h3>
-                    <p>Podovi cisti, divan dizajn.</p>
-                  </div>   
-                </div>
+                
               </div>
-              <a class="carousel-control-prev" href="#demo" data-slide="prev">
+              <a class="carousel-control-prev" href="#{{i}}" data-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
               </a>
-              <a class="carousel-control-next" href="#demo" data-slide="next">
+              <a class="carousel-control-next" href="#{{i}}" data-slide="next">
                 <span class="carousel-control-next-icon"></span>
               </a>
           </div>
   
           <div class="row-md-2">
   
-              <h2>Additional services:</h2>
+              <h3>Additional services:</h3>
   
               <div class="row-md-50">
-                  <span class="badge badge-success">WIFI</span>
-                  <span class="badge badge-success">Parking</span>
-                  <span class="badge badge-success">TV</span>
+                  <span class="badge badge-success" *ngIf=accommodation.wifi>WIFI</span>
+                  <span class="badge badge-success" *ngIf=accommodation.parking>PARKING</span>
+                  <span class="badge badge-success" *ngIf=accommodation.tv>TV</span>
+                  <span class="badge badge-success" *ngIf=accommodation.dorucak>BREAKFAST</span>
+                  <span class="badge badge-success" *ngIf=accommodation.pansion>BOARDING HOUSE</span>
+                  <span class="badge badge-success" *ngIf=accommodation.polupansion>HALF BOARD</span>
+                  <span class="badge badge-success" *ngIf=accommodation.miniKuhinja>SMALL KITCHEN</span>
+                  <span class="badge badge-success" *ngIf=accommodation.privatnoKupatilo>PRIVATE BATHROOM</span>
               </div>
               
           </div>
         </div>
       </div>
-  
-      <div class="col-md-6">
-        <div class="tile">
-          <div class="row">
-  
-            <div class="col-md-10">
-                <h3 class="tile-title"><span class="badge badge-success">HOTEL</span> &nbsp; Hotel Park</h3>
-            </div>
-  
-            <div class="col-md-2">
-  
-                <div class="app-title" class="col-md-1">
-  
-                  <p> Category: </p>
-  
-                </div>
-  
-                <div class="col-md-1">
-  
-                    <ngb-rating max="5">
-                        <ng-template let-fill="fill" let-index="index">
-                          <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
-                        </ng-template>
-                    </ngb-rating>
-  
-                </div>
-                
-            </div>
-          </div>
-          
-          <div id="demo1" class="carousel slide" data-ride="carousel">
-              <ul class="carousel-indicators">
-                <li data-target="#demo1" data-slide-to="0" class="active"></li>
-                <li data-target="#demo1" data-slide-to="1"></li>
-                <li data-target="#demo1" data-slide-to="2"></li>
-              </ul>
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="../../../assets/images/hotelPark2.jpg" alt="Los Angeles" width="1100" height="500">
-                  <div class="carousel-caption">
-                    <h3>Eksterijer</h3>
-                    <p>Hotel se nalazi pored Futoskog parka.</p>
-                  </div>   
-                </div>
-                <div class="carousel-item">
-                  <img src="../../../assets/images/hotelParkEnterijer.jpg" alt="Chicago" width="1100" height="500">
-                  <div class="carousel-caption">
-                    <h3>Enterijer</h3>
-                    <p>Svecani lobi je svakako zastitni znak hotela.</p>
-                  </div>   
-                </div>
-                <div class="carousel-item">
-                  <img src="../../../assets/images/hotelParkSoba.jpg" alt="New York" width="1100" height="500">
-                  <div class="carousel-caption">
-                    <h3>Soba</h3>
-                    <p>Sobe su dvokrevetne, kreveti udobni.</p>
-                  </div>   
-                </div>
-              </div>
-              <a class="carousel-control-prev" href="#demo1" data-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-              </a>
-              <a class="carousel-control-next" href="#demo1" data-slide="next">
-                <span class="carousel-control-next-icon"></span>
-              </a>
-          </div>
-  
-          <div class="row-md-2">
-  
-              <h2>Additional services:</h2>
-  
-              <div class="row-md-50">
-                  
-                  <span class="badge badge-success">Parking</span>
-                  <span class="badge badge-success">TV</span>
-                  <span class="badge badge-success">Polupansion</span>
-              </div>
-              
-          </div>
+
+      <div class="col-md-2">
+        <br><br>
+        <div class="app-title" class="col-md-1">
+          <h5> Category: </h5>
         </div>
+
+        <div class="col-md-1">
+            <ngb-rating max="5">
+                <ng-template let-fill="fill" let-index="index">
+                  <span class="star" [class.filled]="fill === 20" [class.bad]="index < 3">&#9733;</span>
+                </ng-template>
+            </ngb-rating>
+        </div>
+
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+
+        <div class="col-md-1">
+          <button type="submit" class="btn btn-dark" (click)="reserve()">Reserve</button>
+        </div> 
       </div>
-      
-        
+
+      <div class="col-md-2">
+        <br><br>
+        <div class="app-title" class="col-md-1">
+          <h5> Rating: </h5>
+        </div>
+
+        <div class="col-md-1">
+          <p>{{accommodation.ocena}}</p>
+        </div>
+ 
+      </div>
+  
     </div>
     
-    <br>
-    
   </main>
+
+  <br><br>
 
 </div>
 <!-- /.container -->

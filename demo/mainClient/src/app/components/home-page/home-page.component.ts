@@ -41,6 +41,7 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
 
+    this.accommodationArray = [];
     this.numberOfPersons = "1";
     this.type = "0";
     this.category = "1";
