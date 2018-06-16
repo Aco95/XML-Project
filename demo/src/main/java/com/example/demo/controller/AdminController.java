@@ -58,7 +58,7 @@ public class AdminController {
 			value = "/agent",
 			method = RequestMethod.POST, 
 			consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void  registrujAgenta(@Valid  @RequestBody  AgentRegisterDto agentRegisterDto){
+	public void  registrujAgenta(@RequestBody  AgentRegisterDto agentRegisterDto){
 			adminService.registrujAgenta(agentRegisterDto);
 	}
 	

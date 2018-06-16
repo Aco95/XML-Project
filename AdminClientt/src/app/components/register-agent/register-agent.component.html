@@ -12,9 +12,9 @@
     <input type="text" class="form-control" name="adress" id="adresa" formControlName="adresa" placeholder="adress" [class.is-invalid]="!form.controls.adresa.valid">
   </div>
   <div class="form-group col-sm-10">
-    <label class="form-control-label" for="maticni_broj">Bussnes number</label>
-    <input type="text" class="form-control" name="maticni_broj" id="maticni_broj" formControlName="maticni_broj" placeholder="bussnesNum"
-      [class.is-invalid]="!form.controls.maticni_broj.valid">
+    <label class="form-control-label" for="maticniBroj">Bussnes number</label>
+    <input type="text" class="form-control" name="maticniBroj" id="maticniBroj" formControlName="maticniBroj" placeholder="bussnesNum"
+      [class.is-invalid]="!form.controls.maticniBroj.valid">
   </div>
   <button [disabled]="!form.valid" (click)="submit($event)">Submit</button>
 </form>

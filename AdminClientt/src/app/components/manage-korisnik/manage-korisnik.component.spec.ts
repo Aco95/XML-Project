@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BlockKorisnikComponent } from './block-korisnik.component';
+import { ManageKorisnikComponent } from './manage-korisnik.component';
 
 describe('BlockKorisnikComponent', () => {
-  let component: BlockKorisnikComponent;
-  let fixture: ComponentFixture<BlockKorisnikComponent>;
+  let component: ManageKorisnikComponent;
+  let fixture: ComponentFixture<ManageKorisnikComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BlockKorisnikComponent ]
+      declarations: [ManageKorisnikComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BlockKorisnikComponent);
+    fixture = TestBed.createComponent(ManageKorisnikComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

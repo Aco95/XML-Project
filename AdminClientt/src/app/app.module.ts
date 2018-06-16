@@ -5,20 +5,23 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { routing } from './app.routing';
 
-
+//************KOMPONENTE**************** 
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { CommentsComponent } from './components/comments/comments.component';
-import { BlockKorisnikComponent } from './components/block-korisnik/block-korisnik.component';
+import { ManageKorisnikComponent } from './components/manage-korisnik/manage-korisnik.component';
 import { RegisterAgentComponent } from './components/register-agent/register-agent.component';
 
+// ***********SERVISI**********
+import { RegisterAgentService } from './services/register-agent.service';
+import { ManageKorisnikService } from './services/manage-korisnik.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     CommentsComponent,
-    BlockKorisnikComponent,
+    ManageKorisnikComponent,
     RegisterAgentComponent
   ],
   imports: [
@@ -29,7 +32,7 @@ import { RegisterAgentComponent } from './components/register-agent/register-age
     routing,
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [RegisterAgentService, ManageKorisnikService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
