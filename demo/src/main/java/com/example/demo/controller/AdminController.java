@@ -33,24 +33,16 @@ public class AdminController {
 	}
 	
 	@RequestMapping(
-			value = "/korisnik/block/{id}",
-			method = RequestMethod.PUT) 
-	public void  blokirajKorisnika(@PathVariable("id") int id){
-			adminService.blokKorisnik(id);
+			value = "/korisnik/{id}/{blokiran}",
+			method = RequestMethod.GET) 
+	public void  promeniStatusKorisnika(@PathVariable("id") String id,@PathVariable("blokiran") boolean blokiran){
+			adminService.promeniStatusKorisnik(id, blokiran);
 	}
-	
-	@RequestMapping(
-			value = "/korisnik/activate/{id}",
-			method = RequestMethod.PUT)
-	public void  aktivirajKorisnika(@PathVariable("id") int id){
-			adminService.aktivirajKorisnik(id);
-	}
-	
 	@RequestMapping(
 			value = "/korisnik/{id}",
 			method = RequestMethod.DELETE, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public void  obrisiKorisnika(@PathVariable("id") int id){
+	public void  obrisiKorisnika(@PathVariable("id") String id){
 			adminService.obrisiKorisnik(id);
 	}
 	

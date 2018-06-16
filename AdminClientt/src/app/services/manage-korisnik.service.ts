@@ -14,7 +14,15 @@ export class ManageKorisnikService {
     //         map(data => data.json())
     //     )
     // }
-    getAll(korisnik_id: string) {
+    getAll() {
         return this.http_client.get("http://localhost:8080/admin/korisnik");
+    }
+
+    changeStatus(id: string, status: boolean) {
+        return this.http_client.get(`http://localhost:8080/admin/korisnik/${id}/${status}`);
+    }
+
+    remove(id: string) {
+        return this.http_client.delete(`http://localhost:8080/admin/korisnik/${id}`);
     }
 }

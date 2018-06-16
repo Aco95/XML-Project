@@ -31,29 +31,17 @@ public class AdminServiceImp implements IAdminService {
 		return korisniciDto;
 		
 	}
-
 	@Override
-	public void blokKorisnik(int id) {
-		// TODO Auto-generated method stub
-		Optional<Korisnik> korisnik=adminRepository.findById(Integer.toString(id));
-		korisnik.get().setBlokiran(true);
+	public void promeniStatusKorisnik(String id,boolean blokiran) {
+		Optional<Korisnik> korisnik=adminRepository.findById(id);
+		korisnik.get().setBlokiran(blokiran);
 		adminRepository.save(korisnik.get());
 		return;
 	}
 
 	@Override
-	public void aktivirajKorisnik(int id) {
-		// TODO Auto-generated method stub
-		Optional<Korisnik> korisnik=adminRepository.findById(Integer.toString(id));
-		korisnik.get().setBlokiran(false);
-		adminRepository.save(korisnik.get());
-		return;
-	}
-
-	@Override
-	public void obrisiKorisnik(int id) {
-		// TODO Auto-generated method stub
-		adminRepository.deleteById(Integer.toString(id));
+	public void obrisiKorisnik(String id) {
+		adminRepository.deleteById(id);
 		return;
 	}
 
