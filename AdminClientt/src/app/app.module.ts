@@ -15,6 +15,7 @@ import { RegisterAgentComponent } from './components/register-agent/register-age
 // ***********SERVISI**********
 import { RegisterAgentService } from './services/register-agent.service';
 import { ManageKorisnikService } from './services/manage-korisnik.service';
+import { CommentService } from './services/comment-service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { ManageKorisnikService } from './services/manage-korisnik.service';
     routing,
     NgbModule.forRoot()
   ],
-  providers: [RegisterAgentService, ManageKorisnikService],
+  providers: [RegisterAgentService, ManageKorisnikService, CommentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

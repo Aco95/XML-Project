@@ -11,13 +11,13 @@ export class ManageKorisnikComponent implements OnInit {
   constructor(private manageKorisnikService: ManageKorisnikService) { }
 
   ngOnInit() {
-    this.getAll();
+    //this.getAll();
   }
 
-  getAll() {
+  /*getAll() {
     this.manageKorisnikService.getAll('1').subscribe(data => {
       this.korisnici = data);
   });
 
-}
+  }*/
 }
