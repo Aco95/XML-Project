@@ -23,6 +23,9 @@ import com.example.demo.service.IKorisnikService;
 @CrossOrigin(origins="http://localhost:4200")
 public class KorisnikController {
 
+	@Autowired
+	private IKorisnikService korisnikService;
+	
 	/*
 	@RequestMapping(value="", method=RequestMethod.GET)
 	public void pogodiMe() {
@@ -33,9 +36,6 @@ public class KorisnikController {
 	public void nasaoSamTe() {
 		System.out.println("Nasao sam te!");
 	}
-	
-	
-	private IKorisnikService korisnikService;
 	
 	
 	@RequestMapping(value="/test", method = RequestMethod.GET)
@@ -68,7 +68,7 @@ public class KorisnikController {
 		
 		System.out.println(regKorisnik.getId()+" "+regKorisnik.getUsername() );
 		
-		//korisnikService.save(regKorisnik);
+		korisnikService.save(regKorisnik);
 		
 		int i = 3;
 		
