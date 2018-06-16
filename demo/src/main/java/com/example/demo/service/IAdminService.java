@@ -8,8 +8,7 @@ import com.example.demo.dto.AgentRegisterDto;
 public interface IAdminService {
 
 	public List<AdminKorisnikDto> getAllKorisnik();
-	public void blokKorisnik(int id);
-	public void aktivirajKorisnik(int id);
-	public void obrisiKorisnik(int id);
+	public void promeniStatusKorisnik(String id,boolean blokiran);
+	public void obrisiKorisnik(String id);
 	public void registrujAgenta(AgentRegisterDto agentRegisterDto);
 }

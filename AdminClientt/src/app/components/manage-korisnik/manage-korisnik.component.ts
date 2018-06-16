@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ManageKorisnikService } from "../../services/manage-korisnik.service";
+import { AdminKorisnik } from '../../models/admin-korisnik';
 
 @Component({
   selector: 'app-manage-korisnik',
@@ -11,13 +12,18 @@ export class ManageKorisnikComponent implements OnInit {
   constructor(private manageKorisnikService: ManageKorisnikService) { }
 
   ngOnInit() {
-    this.getAll();
+    this.getAllKorisnik();
   }
 
-  getAll() {
-    this.manageKorisnikService.getAll('1').subscribe(data => {
-      this.korisnici = data);
-  });
-
-}
+  getAllKorisnik() {
+    this.manageKorisnikService.getAll().subscribe(data => {
+      this.korisnici = data
+    });
+  }
+  remove(id: string) {
+    this.manageKorisnikService.remove(id).subscribe(() => this.getAllKorisnik())
+  }
+  changeStatus(id: string, status: boolean) {
+    this.manageKorisnikService.changeStatus(id, status).subscribe(() => this.getAllKorisnik())
+  }
 }
