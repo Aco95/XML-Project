@@ -20,18 +20,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  // onSubmit(name: string, password: string, rememberMe: string) {
-
-  //   alert("iz komponente: " + name + password + rememberMe);
-  //   let response = this.loginService.loginUser({ name: name, password: password, rememberMe: rememberMe })
-  //     .subscribe((next) => {
-  //       this.router.navigateByUrl("/rezervacije"); // login succeleed\
-  //       console.log("uspelo");
-  //     }, error => {
-  //       this.error = "Bad credentials"; // or extract smth from <error> object
-  //       console.log(this.error);
-  //     });
-  // }
   onSubmit(event: any) {
     let response = this.loginService.loginUser(this.form.value)
       .subscribe((next) => {

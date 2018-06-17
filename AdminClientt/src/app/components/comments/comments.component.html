@@ -1,3 +1,22 @@
-<p>
-  List of comments.
-</p>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th style="visibility: hidden;">Id</th>
+    <th align="center">Date</th>
+    <th align="center">Content</th>
+    <th align="center">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let comment of comments">
+    <td></td>
+    <td>{{comment.datum}}</td>
+    <td>
+    	<p>
+    		{{comment.sadrzaj}} 
+    	</p>
+    </td>
+    <td><button class="btn btn-danger" (click)="allowComment(comment)">Allow</button></td>
+  </tr>
+  </tbody>
+</table>

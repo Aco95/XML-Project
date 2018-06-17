@@ -34,7 +34,10 @@ export class HomePageComponent implements OnInit {
   private bathroom : any;
 
   private isOpenAdvancedSearch : boolean;
-  public isOpenRezervacije : boolean;
+  private isOpenRezervacije : boolean;
+
+
+  private selectAccommodation : any;
 
 
   constructor(private router : Router, private searchService : SearchService ) { }
@@ -49,7 +52,7 @@ export class HomePageComponent implements OnInit {
     
     this.parking = false;
     this.wifi = false;
-    this.breakfast = false;
+    this.breakfast = true;
     this.half_board = false;
     this.board = false;
     this.TV = false;
@@ -128,6 +131,22 @@ export class HomePageComponent implements OnInit {
       );
 
     }
+  }
+
+
+  onClickReserveAccommodation(Accommodation:any) : void {
+    this.selectAccommodation = Accommodation;
+    console.log("Accommodation: " + Accommodation);  
+    this.searchService.selectAccommodation(Accommodation);
+
+    this.searchService.currentAccommodation.subscribe(
+      currentAccommodation => 
+      {
+      console.log("Current Accommodation: " +  currentAccommodation);
+      }
+    );
+
+    this.router.navigateByUrl('/reserve-accommodation');
   }
 
 }

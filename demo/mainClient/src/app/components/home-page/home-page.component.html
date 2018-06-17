@@ -137,6 +137,7 @@
                     </label>
                   </div>
               </div>
+
               <div class="col">
                   <div class="form-check">
                     <label class="form-check-label">
@@ -158,6 +159,7 @@
                     </label>
                   </div>
               </div>
+
               <div class="col">
                   <div class="form-check">
                     <label class="form-check-label">
@@ -254,8 +256,11 @@
                   <span class="badge badge-success" *ngIf=accommodation.miniKuhinja>SMALL KITCHEN</span>
                   <span class="badge badge-success" *ngIf=accommodation.privatnoKupatilo>PRIVATE BATHROOM</span>
               </div>
-              
+
           </div>
+
+          <br><br>
+
         </div>
       </div>
 
@@ -266,11 +271,13 @@
         </div>
 
         <div class="col-md-1">
-            <ngb-rating max="5">
+
+            <ngb-rating max="5" [(rate)]="accommodation.kategorija"  [readonly]="true">
                 <ng-template let-fill="fill" let-index="index">
-                  <span class="star" [class.filled]="fill === 20" [class.bad]="index < 3">&#9733;</span>
+                  <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
                 </ng-template>
             </ngb-rating>
+        
         </div>
 
         <br><br><br><br><br><br><br><br><br><br><br><br>
@@ -293,6 +300,7 @@
       </div>
   
     </div>
+
     
   </main>
 

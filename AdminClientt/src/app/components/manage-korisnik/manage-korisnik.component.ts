@@ -12,6 +12,7 @@ export class ManageKorisnikComponent implements OnInit {
   constructor(private manageKorisnikService: ManageKorisnikService) { }
 
   ngOnInit() {
+
     this.getAllKorisnik();
   }
 
@@ -26,4 +27,5 @@ export class ManageKorisnikComponent implements OnInit {
   changeStatus(id: string, status: boolean) {
     this.manageKorisnikService.changeStatus(id, status).subscribe(() => this.getAllKorisnik())
   }
+
 }

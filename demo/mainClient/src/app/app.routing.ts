@@ -3,10 +3,8 @@ import { RouterModule, Routes } from "@angular/router";
 
 import { HomePageComponent } from "./components/home-page/home-page.component";
 import { LoginComponent } from "./components/login/login.component";
-import { RegisterUserComponent } from "./components/register-user/register-user.component";
-
 import { HomeRezervacijeComponent } from "./components/home-rezervacije/home-rezervacije.component";
-
+import { RegistracijaComponent } from "./components/registracija/registracija.component";
 
 const appRoutes: Routes =
     [
@@ -26,14 +24,16 @@ const appRoutes: Routes =
             path: 'login',
             component: LoginComponent
         },
+
         {
             path: 'rezervacije',
             component: HomeRezervacijeComponent
         },
+
         {
             path: 'register',
-            component: RegisterUserComponent
-        },
+            component: RegistracijaComponent
+        }
 
     ]
 

@@ -229,8 +229,8 @@ public class SmestajController {
         
         for(Smestaj smestaj : smestaji) {
         	if(smestaj.getKategorija()==kategorija && smestaj.getTip()==tip && smestaj.isPansion()==parking
-        			&& smestaj.isWifi()==wifi && smestaj.isDorucak()==breakfast && smestaj.isPolupansion()==half_board
-        			&& smestaj.isPansion()==board && smestaj.isTv()==TV && smestaj.isMiniKuhinja()==kitchen && smestaj.isPrivatnoKupatilo()==bathroom) {
+        			&& smestaj.isWifi()==wifi && (smestaj.isDorucak()==breakfast || smestaj.isPolupansion()==half_board
+        			|| smestaj.isPansion()==board) && smestaj.isTv()==TV && smestaj.isMiniKuhinja()==kitchen && smestaj.isPrivatnoKupatilo()==bathroom) {
         		
 				for(Soba soba : smestaj.getSobe()) {
 					if(soba.getKapacitet()==brojOsoba) {

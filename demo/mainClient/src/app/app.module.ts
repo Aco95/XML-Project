@@ -12,13 +12,15 @@ import { HomePageComponent } from "./components/home-page/home-page.component";
 
 
 import { SearchService } from "./services/search.service";
+import { RezervacijeService } from './services/rezervacije.service';
+import { UserService } from './services/user.service';
 
 import { HomeRezervacijeComponent } from './components/home-rezervacije/home-rezervacije.component';
 
 import { CommentsComponent } from './comments/comments.component';
+import { RegistracijaComponent } from './components/registracija/registracija.component';
 
 // register-login
-import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { LoginComponent } from './components/login/login.component';
 import { LoginLogoutComponent } from './components/login-logout/login-logout.component';
 import { LoginService } from './services/login.service';
@@ -38,9 +40,11 @@ export function providerCustomHttp(backend: XHRBackend, defaultOptions: RequestO
     HomePageComponent,
     HomeRezervacijeComponent,
     CommentsComponent,
-    RegisterUserComponent,
     LoginComponent,
-    LoginLogoutComponent
+    LoginLogoutComponent,
+    HomeRezervacijeComponent,
+    CommentsComponent,
+    RegistracijaComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,7 @@ export function providerCustomHttp(backend: XHRBackend, defaultOptions: RequestO
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [HttpClientModule, SearchService, LoginService, AuthServiceService,
+  providers: [HttpClientModule, SearchService, RezervacijeService, UserService, LoginService, AuthServiceService,
     {
       provide: Http,
       useFactory: providerCustomHttp,

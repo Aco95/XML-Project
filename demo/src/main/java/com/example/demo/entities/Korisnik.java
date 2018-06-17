@@ -70,16 +70,7 @@ public class Korisnik {
     protected boolean blokiran;
     @XmlAttribute(name = "email")
     protected String email;
-    @XmlAttribute(name = "passwordHash")
-    protected String passwordHash;
-    
-    public String getPasswordHash() {
-		return passwordHash;
-	}
 
-	public void setPasswordHash(String passwordHash) {
-		this.passwordHash = passwordHash;
-	}
 
 	public String getEmail() {
 		return email;
@@ -294,9 +285,10 @@ public class Korisnik {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Korisnik(String ime, String prezime, Uloga uloga, String username, String password, String maticniBroj,
+	public Korisnik(String id, String ime, String prezime, Uloga uloga, String username, String password, String maticniBroj,
 			String adresa) {
 		super();
+		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.uloga = uloga;
