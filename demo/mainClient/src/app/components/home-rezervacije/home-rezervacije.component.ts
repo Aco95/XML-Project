@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { KORISNICI, REZERVACIJE, SMESTAJI, SOBE } from '../../data/mock';
+import { RezervacijeService } from '../../services/rezervacije.service';
+import { Rezervacija } from '../../model/Rezervacija';
 
 
 @Component({
@@ -9,16 +10,17 @@ import { KORISNICI, REZERVACIJE, SMESTAJI, SOBE } from '../../data/mock';
 })
 export class HomeRezervacijeComponent implements OnInit {
 
-  korisnici = KORISNICI;
-  rezervacije = REZERVACIJE;
-  smestaji = SMESTAJI;
-  sobe = SOBE;
+  rezervacije: Rezervacija[];
 
-  constructor() { }
+  constructor(private rezervacijeService: RezervacijeService) { }
 
-  ngOnInit() {
-    console.log(this.sobe[1].idSmestaja);
-    
+  ngOnInit() {    
+    this.getRezervacije();
+  }
+
+  getRezervacije() : void {
+    this.rezervacijeService.getRezervacije()
+    .subscribe(rezervacije => this.rezervacije = rezervacije);
   }
 
 }

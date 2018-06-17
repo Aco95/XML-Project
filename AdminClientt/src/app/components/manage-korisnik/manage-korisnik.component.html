@@ -1,0 +1,32 @@
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      First name
+    </div>
+    <div class="col-sm">
+      Last name
+    </div>
+    <div class="col-sm">
+      Block
+    </div>
+    <div class="col-sm">
+      Remove
+    </div>
+  </div>
+  <br>
+  <br>
+  <div *ngFor="let korisnik of korisnici" class="row">
+    <div class="col">{{korisnik.ime}}</div>
+    <div class="col">{{korisnik.prezime}}</div>
+    <div class="col">
+      <form>
+        <input type="checkbox" [checked]="korisnik.blokiran" #blockCheckBox (click)="changeStatus(korisnik.id,blockCheckBox.value)">
+      </form>
+    </div>
+    <div class="col">
+      <button (click)=remove(korisnik.id)>remove</button>
+    </div>
+  </div>
+</div>

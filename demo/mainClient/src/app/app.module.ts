@@ -12,11 +12,14 @@ import { HomePageComponent } from "./components/home-page/home-page.component";
 
 
 import { SearchService } from "./services/search.service";
+import {  RezervacijeService } from './services/rezervacije.service';
+import { UserService } from './services/user.service';
 import { LoginComponent } from './components/login/login.component';
 
 import { HomeRezervacijeComponent } from './components/home-rezervacije/home-rezervacije.component';
 
 import { CommentsComponent } from './comments/comments.component';
+import { RegistracijaComponent } from './components/registracija/registracija.component';
 
 
 @NgModule({
@@ -25,7 +28,8 @@ import { CommentsComponent } from './comments/comments.component';
     HomePageComponent,
     LoginComponent,
     HomeRezervacijeComponent,
-    CommentsComponent
+    CommentsComponent,
+    RegistracijaComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,7 @@ import { CommentsComponent } from './comments/comments.component';
     NgbModule.forRoot(),
     FormsModule
   ],
-  providers: [HttpClientModule, SearchService],
+  providers: [HttpClientModule, SearchService, RezervacijeService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

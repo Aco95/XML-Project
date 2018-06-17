@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
+
 .header_div{
 	background-color: #d86c70;
 	height:50px;
@@ -22,6 +23,7 @@
 }
 
 #adminId{
+	margin-left:10px;
 	color:white;
 	text-decoration:none;
 	font-size:200%;
@@ -36,7 +38,7 @@
   color: #000000;
   font-size: 15px;
   background: edf0f0;
-  padding: 5px 10px 5px 10px;
+  /* padding: 5px 10px 5px 10px;*/
   text-decoration: none;
 }
 
