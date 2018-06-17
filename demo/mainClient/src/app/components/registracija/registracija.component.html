@@ -9,40 +9,100 @@ public id: String;
     public adresa: String;
 -->
 
-<div>
-  <h1>Register now!</h1>
+<div class="container">
+	<h1>Register now!</h1>
 
-<form (ngSubmit)="register(ime.value, prezime.value, username.value, password.value, repassword.value,
-jmbg.value, adresa.value)">
-  <label>Name:</label>
-  <input type="text" #ime>
-  <br>
+	<form (ngSubmit)="register()" #registrationForm="ngForm"> 
+		<div class="form-group">
+			<label for="ime">Name:</label>
+			  <input type="text" class="form-control" id="ime" required
+			  [(ngModel)]="noviKorisnik.ime" name="ime" #ime="ngModel">
+			  
+			  <div [hidden]="ime.valid || ime.pristine"
+     			class="alert alert-danger">
+  				Name is required
+			</div>
+		</div>
 
-  <label>Last name:</label>
-  <input type="text" #prezime>
-  <br>
+		<div class="form-group">
+			<label for="prezime">Last name:</label>	
+			<input type="text" class="form-control" id="prezime" required
+			[(ngModel)]="noviKorisnik.prezime" name="prezime" #prezime="ngModel">
 
-  <label>Username:</label>
-  <input type="text" #username>
-  <br>
+			<div [hidden]="prezime.valid || prezime.pristine"
+			class="alert alert-danger">
+				Last name is required
+			</div>
+		</div>
 
-  <label>Password:</label>
-  <input type="password" #password>
-  <br>
+		<div class="form-group">
+				<label for="email">Email:</label>	
+				<input type="email" class="form-control" id="email" required
+				[(ngModel)]="noviKorisnik.email" name="email" #email="ngModel">
 
-  <label>Confirm password:</label>
-  <input type="password" #repassword> 
-  <br>
+				<div [hidden]="email.valid || email.pristine"
+				class="alert alert-danger">
+				Email is required
+			</div>
+			</div>
+	
+		<div class="form-group">
+			<label for="username">Username:</label>
+			<input type="text" class="form-control" id="username" required
+			[(ngModel)]="noviKorisnik.username" name="username" #username="ngModel">
 
-  <label>Personal number:</label>
-  <input type="text" #jmbg>
-  <br>
+			<div [hidden]="username.valid || username.pristine"
+			class="alert alert-danger">
+				Username is required
+			</div>
+		</div>
 
-  <label>Address:</label>
-  <input type="text" #adresa>
-  <br>
+		<div class="form-group">
+			<label for="password">Password:</label>
+			<input type="password" class="form-control" id="password" required
+			[(ngModel)]="noviKorisnik.password" name="password" #password="ngModel"> 	
+			
+			<div [hidden]="password.valid || password.pristine"
+			class="alert alert-danger">
+				Password is required
+			</div>
+		</div>
 
-  <button type="submit">Register</button>
-</form>
+		<div class="form-group">
+			<label for="repassword">Confirm password:</label>
+			<input type="password" class="form-control" id="repassword" required
+			[(ngModel)]="checkPass" name="repassword" #repassword="ngModel"> 		
+			
+			<div [hidden]="repassword.valid || repassword.pristine"
+			class="alert alert-danger">
+				Enter password again
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="jmbg">Personal number:</label>
+			<input type="text" class="form-control" id="jmbg" required
+			[(ngModel)]="noviKorisnik.maticniBroj" name="jmbg" #jmbg="ngModel">	
+			
+			<div [hidden]="jmbg.valid || jmbg.pristine"
+			class="alert alert-danger">
+				Personal number is required
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="adresa">Address:</label>
+			<input type="text" class="form-control" id="adresa" required
+			[(ngModel)]="noviKorisnik.adresa" name="adresa" #adresa="ngModel">
+			
+			<div [hidden]="adresa.valid || adresa.pristine"
+			class="alert alert-danger">
+				Address is required
+			</div>
+		</div>
+		
+		<button type="submit" class="btn btn-success" [disabled]="!registrationForm.form.valid">Register</button>
+	
+	</form>
 
 </div>

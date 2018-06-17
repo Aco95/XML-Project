@@ -11,7 +11,8 @@ export class LoginComponent implements OnInit {
   korisnik: Korisnik = {
 	id: '1',
 	ime: 'Boban',
-	prezime: 'Poznanovic',
+  prezime: 'Poznanovic',
+  email:'test@gmail.com',
 	adresa: 'Slobodana Bajica 1/28',
 	maticniBroj: '1234',
 	username: 'boban',
