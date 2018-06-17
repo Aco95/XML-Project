@@ -31,7 +31,6 @@ public class KorisnikServiceImp implements IKorisnikService{
 	@Override
 	public Korisnik save(Korisnik korisnik) {
 		// TODO Auto-generated method stub
-		korisnik.setPassword(new BCryptPasswordEncoder().encode(korisnik.getPassword()));
 		return korisnikRepository.save(korisnik);
 	}
 

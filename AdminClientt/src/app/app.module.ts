@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { routing } from './app.routing';
+import { Router } from '@angular/router';
 
 //************KOMPONENTE**************** 
 import { AppComponent } from './app.component';
@@ -17,13 +18,26 @@ import { RegisterAgentService } from './services/register-agent.service';
 import { ManageKorisnikService } from './services/manage-korisnik.service';
 import { CommentService } from './services/comment-service';
 
+// register-login
+import { LoginComponent } from './components/login/login.component';
+import { LoginLogoutComponent } from './components/login-logout/login-logout.component';
+import { LoginService } from './services/login.service';
+import { AuthServiceService } from './services/auth-service.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './app.module';
+export { TokenInterceptor } from './services/token-interceptor';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     CommentsComponent,
     ManageKorisnikComponent,
-    RegisterAgentComponent
+    RegisterAgentComponent,
+    LoginComponent,
+    LoginLogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +47,10 @@ import { CommentService } from './services/comment-service';
     routing,
     NgbModule.forRoot()
   ],
-  providers: [RegisterAgentService, ManageKorisnikService, CommentService],
+  providers: [RegisterAgentService, ManageKorisnikService, CommentService, AuthServiceService, LoginService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

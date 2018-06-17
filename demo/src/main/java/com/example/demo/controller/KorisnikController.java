@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -61,7 +62,7 @@ public class KorisnikController {
 		String ime = user.getIme();
 		String prezime = user.getPrezime();
 		String username = user.getUsername();
-		String password = user.getPassword();
+		String password = new BCryptPasswordEncoder().encode(user.getPassword());
 		String jmbg = user.getMaticniBroj();
 		String adresa = user.getAdresa();
 		Uloga uloga = user.getUloga();

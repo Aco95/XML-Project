@@ -17,7 +17,10 @@ export class RegisterAgentComponent implements OnInit {
       ime: new FormControl("", [Validators.required]),
       prezime: new FormControl("", [Validators.required]),
       adresa: new FormControl("", [Validators.required]),
-      maticniBroj: new FormControl("", [Validators.required, Validators.pattern("[0-9]{3}")])
+      maticniBroj: new FormControl("", [Validators.required, Validators.pattern("[0-9]{3}")]),
+      email: new FormControl("", [Validators.required, Validators.email]),
+      password: new FormControl("", [Validators.required])
+
     });
   }
 
