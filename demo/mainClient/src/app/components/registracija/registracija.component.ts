@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Korisnik } from '../../model/Korisnik';
 import { Uloga } from '../../model/Uloga.enum';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registracija',
@@ -10,26 +12,28 @@ import { Uloga } from '../../model/Uloga.enum';
 })
 export class RegistracijaComponent implements OnInit {
 
-  noviKorisnik: Korisnik = {
-    id:'1', ime:'', prezime:'',adresa:'', blokiran: false, maticniBroj:'', password:'', uloga: Uloga.USER, username:''
-  };
-  checkPass = "";
+	noviKorisnik: Korisnik = {
+		id:'1', ime:'TestBoban', prezime:'TestPoznanovic',adresa:'TestNS', blokiran: false, maticniBroj:'1234', 
+		password:'sifra', uloga: Uloga.USER, username:'boban', email:'test@gmail.com'
+	};
+	checkPass = "sifra";
 
-  constructor(private userService: UserService) { }
+	constructor(private userService: UserService, private router: Router) { }
 
-  ngOnInit() {
-  }
+	//TODO remove
+	get diagnostic() { return JSON.stringify(this.noviKorisnik);}
 
-  register(ime: string, prezime: string, username: string, password: string, repassword: string, jmbg: string
-  , adresa: string) {
-    this.noviKorisnik.ime = ime;
-    this.noviKorisnik.prezime = prezime;
-    this.noviKorisnik.username = username;
-    this.noviKorisnik.password = password;
-    this.noviKorisnik.maticniBroj = jmbg;
-    this.noviKorisnik.adresa = adresa;
-    
-    this.userService.register(this.noviKorisnik);
-  }
+	ngOnInit(){
+	}
+
+	register() {
+
+		console.log(this.noviKorisnik);
+		
+		
+		this.userService.register(this.noviKorisnik);
+		
+		
+	}
 
 }

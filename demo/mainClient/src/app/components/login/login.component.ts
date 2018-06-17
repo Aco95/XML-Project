@@ -9,6 +9,24 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+<<<<<<< HEAD
+
+  korisnik: Korisnik = {
+	id: '1',
+	ime: 'Boban',
+  prezime: 'Poznanovic',
+  email:'test@gmail.com',
+	adresa: 'Slobodana Bajica 1/28',
+	maticniBroj: '1234',
+	username: 'boban',
+	password: 'boban',
+  uloga: 0,
+  blokiran: false
+  };
+
+  constructor() { }
+
+=======
   error: any;
   form: FormGroup;
   constructor(private loginService: LoginService, private router: Router, @Inject(FormBuilder) formBuilder: FormBuilder) {
@@ -17,6 +35,7 @@ export class LoginComponent implements OnInit {
       password: new FormControl("", [Validators.required]),
     });
   }
+>>>>>>> refs/remotes/origin/master
   ngOnInit() {
   }
 

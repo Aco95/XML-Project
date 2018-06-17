@@ -10,12 +10,12 @@ import { HomePageComponent } from "./components/home-page/home-page.component";
 
 const appRoutes: Routes =
     [
+        { path: '', component: HomePageComponent },
         { path: 'user-comments', component: CommentsComponent },
         { path: 'register-agent', component: RegisterAgentComponent },
         { path: 'manage-korisnik', component: ManageKorisnikComponent },
         { path: 'login', component: LoginComponent },
         { path: 'homePage', component: HomePageComponent }
-
     ];
 
 

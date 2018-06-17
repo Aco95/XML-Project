@@ -17,6 +17,7 @@ import { RegisterAgentComponent } from './components/register-agent/register-age
 import { RegisterAgentService } from './services/register-agent.service';
 import { ManageKorisnikService } from './services/manage-korisnik.service';
 import { CommentService } from './services/comment-service';
+import { SmestajComponent } from './smestaj/smestaj.component';
 
 // register-login
 import { LoginComponent } from './components/login/login.component';
@@ -36,6 +37,7 @@ export { TokenInterceptor } from './services/token-interceptor';
     CommentsComponent,
     ManageKorisnikComponent,
     RegisterAgentComponent,
+    SmestajComponent,
     LoginComponent,
     LoginLogoutComponent
   ],

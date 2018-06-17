@@ -32,19 +32,8 @@ export class UserService {
         console.log(data);
       }
     )
-    
-    /*
-    Dobijanje podataka sa backend-a
-    Int se dobro prosledjuje
-    
-    console.log('Primljen user: '+korisnik.username);
-    
-    this.http.get(this.backUrl+'test').subscribe(
-      data => {
-        console.log(data);
-      }
-    )
-    */
   }
+
+  
 
 }
