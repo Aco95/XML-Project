@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,20 @@ public class CommentServiceImpl implements CommentService{
 
 	@Override
 	public Komentar addComment(Komentar k) {
-		// TODO Auto-generated method stub
-		return null;
+		return komentarRepository.save(k);
 	}
+
+	@Override
+	public Optional<Komentar> findCommentById(String id) {
+		return komentarRepository.findById(id);
+	}
+
+	@Override
+	public List<Komentar> findNotAllowed(Boolean allowed) {
+		
+		return komentarRepository.findByOdobren(allowed);
+	}
+
+	
 
 }
