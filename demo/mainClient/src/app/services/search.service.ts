@@ -15,6 +15,9 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class SearchService {
 
+  private a = new BehaviorSubject<any>(null);
+  currentAccommodation = this.a.asObservable();
+
   constructor(private http: Http) { }
 
 
@@ -56,4 +59,12 @@ export class SearchService {
       { headers : headers }).map((data : Response) => data.json());
 
   }
+
+
+  selectAccommodation(accommodation : any) {
+
+    this.a.next(accommodation);
+  }
+
+
 }

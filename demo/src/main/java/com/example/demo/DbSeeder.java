@@ -75,20 +75,13 @@ public class DbSeeder implements CommandLineRunner{
 		
 		korisnikRepository.saveAll(korisnici);
 		
-		
+		// -------------------------- sobe za Hotel Park --------------------------------//
 		Soba s1 = new Soba();
 		s1.setId("1");
 		s1.setBroj(1);
 		s1.setKapacitet(1); 	// jednokrevetna
 		s1.setDatumiRezervacija(new ArrayList<String>());
 		s1.setIdSmestaja("1");
-		
-		Soba s2 = new Soba();
-		s2.setId("2");
-		s2.setBroj(2);
-		s2.setKapacitet(2); 	// dvokrevetna
-		s2.setDatumiRezervacija(new ArrayList<String>());
-		s2.setIdSmestaja("1");
 		
 		Soba s5 = new Soba();
 		s5.setId("5");
@@ -100,8 +93,23 @@ public class DbSeeder implements CommandLineRunner{
 		s5.setDatumiRezervacija(datumi_rez);
 		s5.setIdSmestaja("1");
 		
+		Soba s6 = new Soba();
+		s6.setId("6");
+		s6.setBroj(6);
+		s6.setKapacitet(3); 	// trokrevetna
+		s6.setDatumiRezervacija(new ArrayList<String>());
+		s6.setIdSmestaja("1");
+		
+		Soba s7 = new Soba();
+		s7.setId("7");
+		s7.setBroj(7);
+		s7.setKapacitet(4); 	// cetvorokrevetna
+		s7.setDatumiRezervacija(new ArrayList<String>());
+		s7.setIdSmestaja("1");	
+		// -----------------------------------------------------------------------//
 		
 		
+		// -------------------------- sobe za apartmane Jancic --------------------------------//
 		Soba s3 = new Soba();
 		s3.setId("3");
 		s3.setBroj(3);
@@ -116,13 +124,60 @@ public class DbSeeder implements CommandLineRunner{
 		s4.setDatumiRezervacija(new ArrayList<String>());
 		s4.setIdSmestaja("2");
 		
-		sobaRepository.deleteAll();
+		Soba s8 = new Soba();
+		s8.setId("8");
+		s8.setBroj(8);
+		s8.setKapacitet(1); 	// jednokrevetna
+		s8.setDatumiRezervacija(new ArrayList<String>());
+		s8.setIdSmestaja("2");
 		
-		List<Soba> sobe = Arrays.asList(s1,s2,s3,s4,s5);
+		Soba s9 = new Soba();
+		s9.setId("8");
+		s9.setBroj(8);
+		s9.setKapacitet(2); 	// jednokrevetna
+		s9.setDatumiRezervacija(new ArrayList<String>());
+		s9.setIdSmestaja("2");
+		// ---------------------------------------------------------------------------------//
 		
+		
+		// -------------------------- sobe za Hotel Aleksandar --------------------------------//
+		Soba s2 = new Soba();
+		s2.setId("2");
+		s2.setBroj(2);
+		s2.setKapacitet(1); 	// jednokrevetna
+		s2.setDatumiRezervacija(new ArrayList<String>());
+		s2.setIdSmestaja("3");
+		
+		Soba s10 = new Soba();
+		s10.setId("10");
+		s10.setBroj(10);
+		s10.setKapacitet(2); 	// dvokrevetna
+		s10.setDatumiRezervacija(new ArrayList<String>());
+		s10.setIdSmestaja("3");
+		
+		Soba s11 = new Soba();
+		s11.setId("11");
+		s11.setBroj(11);
+		s11.setKapacitet(3); 	// trokrevetna
+		s11.setDatumiRezervacija(new ArrayList<String>());
+		s11.setIdSmestaja("3");
+		
+		Soba s12 = new Soba();
+		s12.setId("12");
+		s12.setBroj(12);
+		s12.setKapacitet(4); 	// jednokrevetna
+		s12.setDatumiRezervacija(new ArrayList<String>());
+		s12.setIdSmestaja("3");
+		// -----------------------------------------------------------------------------------//
+		
+		
+		sobaRepository.deleteAll();	
+		List<Soba> sobe = Arrays.asList(s1,s2,s3,s4,s5,s7,s8,s9,s10,s11,s12);		
 		sobaRepository.saveAll(sobe);
+	
 		
-		List<Soba> sobe1 = Arrays.asList(s1,s2,s5);
+		
+		List<Soba> sobe1 = Arrays.asList(s1,s5,s6,s7);
 		Smestaj smestaj1 = new Smestaj();
 		smestaj1.setId("1");
 		smestaj1.setNaziv("Hotel Park");
@@ -155,7 +210,7 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj1.setTv(true);
 		
 		
-		List<Soba> sobe2 = Arrays.asList(s3,s4);
+		List<Soba> sobe2 = Arrays.asList(s3,s4,s8,s9);
 		Smestaj smestaj2 = new Smestaj();
 		smestaj2.setId("2");
 		smestaj2.setNaziv("Apartmani Jancic");
@@ -181,11 +236,42 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj2.setPrivatnoKupatilo(true);
 		smestaj2.setTv(true);
 		
+		
+		List<Soba> sobe3 = Arrays.asList(s2,s10,s11,s12);
+		Smestaj smestaj3 = new Smestaj();
+		smestaj3.setId("3");
+		smestaj3.setNaziv("Hotel Aleksandar");
+		smestaj3.setMesto("Novi Sad");
+		smestaj3.setAdresa("Bulevar Cara Lazara 104");
+		smestaj3.setKategorija(5);
+		smestaj3.setTip(Tip.HOTEL);
+		smestaj3.setOcena(8.8);
+		smestaj3.setOpis("Eksluzivan hotel sa limana..");
+		smestaj3.setSobe(sobe3);
+		List<String> slikeSmestaj3 = new ArrayList();
+		String sl31 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "HotelAleksandar1.jpg";
+		String sl32 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "HotelAleksandar2.jpg";
+		String sl33 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "HotelAleksandar3.jpg";
+		String sl34 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "HotelAleksandar4.jpg";
+		String sl35 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "HotelAleksandar5.jpg";
+		slikeSmestaj3.add(sl31);
+		slikeSmestaj3.add(sl32);
+		slikeSmestaj3.add(sl33);
+		slikeSmestaj3.add(sl34);
+		slikeSmestaj3.add(sl35);
+		smestaj3.setSlikeUrl(slikeSmestaj3);
+		smestaj3.setParking(true);
+		smestaj3.setWifi(true);
+		smestaj3.setPansion(false);
+		smestaj3.setDorucak(true);
+		smestaj3.setPolupansion(false);
+		smestaj3.setMiniKuhinja(true);
+		smestaj3.setPrivatnoKupatilo(true);
+		smestaj3.setTv(true);
+		
 		 
 		smestajRepository.deleteAll();
-		
-		List<Smestaj> smestaji = Arrays.asList(smestaj1,smestaj2);
-		
+		List<Smestaj> smestaji = Arrays.asList(smestaj1,smestaj2,smestaj3);
 		smestajRepository.saveAll(smestaji);
 		
 	}
