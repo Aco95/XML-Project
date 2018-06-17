@@ -16,6 +16,7 @@ import { RegisterAgentComponent } from './components/register-agent/register-age
 import { RegisterAgentService } from './services/register-agent.service';
 import { ManageKorisnikService } from './services/manage-korisnik.service';
 import { CommentService } from './services/comment-service';
+import { SmestajComponent } from './smestaj/smestaj.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CommentService } from './services/comment-service';
     HomePageComponent,
     CommentsComponent,
     ManageKorisnikComponent,
-    RegisterAgentComponent
+    RegisterAgentComponent,
+    SmestajComponent
   ],
   imports: [
     BrowserModule,
