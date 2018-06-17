@@ -27,8 +27,7 @@ import { AuthServiceService } from './services/auth-service.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './app.module';
 export { TokenInterceptor } from './services/token-interceptor';
-
-
+import { AuthGuard } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -51,7 +50,7 @@ export { TokenInterceptor } from './services/token-interceptor';
   ],
   providers: [RegisterAgentService, ManageKorisnikService, CommentService, AuthServiceService, LoginService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })
