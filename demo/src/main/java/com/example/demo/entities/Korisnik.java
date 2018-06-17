@@ -68,8 +68,28 @@ public class Korisnik {
     protected String adresa;
     @XmlAttribute(name = "blokiran")
     protected boolean blokiran;
+    @XmlAttribute(name = "email")
+    protected String email;
+    @XmlAttribute(name = "passwordHash")
+    protected String passwordHash;
+    
+    public String getPasswordHash() {
+		return passwordHash;
+	}
 
-    public boolean isBlokiran() {
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public boolean isBlokiran() {
 		return blokiran;
 	}
 
