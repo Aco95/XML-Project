@@ -44,6 +44,8 @@ public class DbSeeder implements CommandLineRunner{
 		k1.setUsername("mm");
 		k1.setMaticniBroj("1234567890123");
 		k1.setPassword("test1234");
+		k1.setEmail("email@email");
+		k1.setPassword("$2a$10$wws6XE7uyO2I23B355XXlOBnV/fSgU2GANadnkxAF3uWQ.7lYqMHS");
 		k1.setUloga(Uloga.ADMIN);
 		k1.setBlokiran(false);
 		
@@ -55,6 +57,8 @@ public class DbSeeder implements CommandLineRunner{
 		k2.setUsername("pp");
 		k2.setMaticniBroj("1234567890123");
 		k2.setPassword("test1234");
+		k1.setEmail("email@email");
+		k1.setPassword("$2a$10$wws6XE7uyO2I23B355XXlOBnV/fSgU2GANadnkxAF3uWQ.7lYqMHS");
 		k2.setUloga(Uloga.AGENT);
 		k2.setBlokiran(true);
 		
@@ -66,6 +70,8 @@ public class DbSeeder implements CommandLineRunner{
 		k3.setUsername("nn");
 		k3.setMaticniBroj("1234567890123");
 		k3.setPassword("test1234");
+		k1.setEmail("email@email");
+		k1.setPassword("$2a$10$wws6XE7uyO2I23B355XXlOBnV/fSgU2GANadnkxAF3uWQ.7lYqMHS");
 		k3.setUloga(Uloga.USER);
 		
 		

@@ -6,37 +6,36 @@ import { LoginComponent } from "./components/login/login.component";
 import { HomeRezervacijeComponent } from "./components/home-rezervacije/home-rezervacije.component";
 import { RegistracijaComponent } from "./components/registracija/registracija.component";
 
+const appRoutes: Routes =
+    [
+        {
+            path: '',
+            redirectTo: '/homeSearch',
+            pathMatch: 'full'
 
-const appRoutes: Routes = 
-[
-    {
-        path: '',
-        redirectTo: '/homeSearch',
-        pathMatch:'full'
-    
-    },
+        },
 
-    {
-        path:'homeSearch',
-        component: HomePageComponent
-    },
+        {
+            path: 'homeSearch',
+            component: HomePageComponent
+        },
 
-    {
-        path: 'login',
-        component: LoginComponent
-    },
+        {
+            path: 'login',
+            component: LoginComponent
+        },
 
-    {
-        path: 'rezervacije',
-        component: HomeRezervacijeComponent
-    },
+        {
+            path: 'rezervacije',
+            component: HomeRezervacijeComponent
+        },
 
-    { 
-        path: 'register',
-        component: RegistracijaComponent
-    }
+        {
+            path: 'register',
+            component: RegistracijaComponent
+        }
 
-]
+    ]
 
 
 

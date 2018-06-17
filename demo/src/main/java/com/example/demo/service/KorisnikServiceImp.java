@@ -1,8 +1,10 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Korisnik;
@@ -29,6 +31,7 @@ public class KorisnikServiceImp implements IKorisnikService{
 	@Override
 	public Korisnik save(Korisnik korisnik) {
 		// TODO Auto-generated method stub
+		korisnik.setPassword(new BCryptPasswordEncoder().encode(korisnik.getPassword()));
 		return korisnikRepository.save(korisnik);
 	}
 
@@ -54,5 +57,9 @@ public class KorisnikServiceImp implements IKorisnikService{
 	public Korisnik findByUsername(String username) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	@Override
+	public Optional<Korisnik> getUserByEmail(String email) {
+		return korisnikRepository.findOneByEmail(email);
 	}
 }

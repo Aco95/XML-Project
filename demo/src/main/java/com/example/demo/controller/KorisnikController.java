@@ -8,11 +8,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.entities.CurrentUser;
 import com.example.demo.entities.Korisnik;
 import com.example.demo.entities.Uloga;
 import com.example.demo.service.IKorisnikService;
@@ -74,4 +77,12 @@ public class KorisnikController {
 		
 		return new ResponseEntity<Object>(regKorisnik, HttpStatus.OK);
 	}
+	  @RequestMapping(
+	    		value = "/angularUser",
+				method = RequestMethod.GET,
+				produces = MediaType.APPLICATION_JSON_VALUE)
+	    public Korisnik getUserPageAngular(@ModelAttribute("currentUser") CurrentUser currentUser) {
+	    	System.out.println("treba da vrati:" +currentUser);
+	        return currentUser.getUser();
+	    }
 }
