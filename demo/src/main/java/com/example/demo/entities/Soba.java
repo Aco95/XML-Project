@@ -30,15 +30,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;choice>
- *         &lt;sequence maxOccurs="unbounded" minOccurs="0">
- *           &lt;element name="datumi_rezervacija" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;/sequence>
- *         &lt;choice>
- *           &lt;element ref="{}smestaj"/>
- *         &lt;/choice>
- *       &lt;/choice>
+ *       &lt;sequence maxOccurs="unbounded" minOccurs="0">
+ *         &lt;element ref="{}rezervacija"/>
+ *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="id_smestaja" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="broj" type="{http://www.w3.org/2001/XMLSchema}int" />
  *       &lt;attribute name="kapacitet" type="{http://www.w3.org/2001/XMLSchema}int" />
  *       &lt;attribute name="cena" type="{http://www.w3.org/2001/XMLSchema}int" />
@@ -51,14 +47,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "datumiRezervacija"
+    "rezervacija"
 })
 @XmlRootElement(name = "soba")
 @Document(collection="Sobe")
 public class Soba {
 
-    @XmlElement(name = "datumi_rezervacija")
-    protected List<String> datumiRezervacija;
+	protected List<Rezervacija> rezervacije;
     
     @Id
     @XmlAttribute(name = "id")
@@ -94,16 +89,16 @@ public class Soba {
      * 
      * 
      */
-    public List<String> getDatumiRezervacija() {
-        if (datumiRezervacija == null) {
-            datumiRezervacija = new ArrayList<String>();
+    public List<Rezervacija> getRezervacije() {
+        if (rezervacije == null) {
+        	rezervacije = new ArrayList<Rezervacija>();
         }
-        return this.datumiRezervacija;
+        return this.rezervacije;
     }
     
     
-    public void setDatumiRezervacija(List<String> datumiRezervacija) {
-		this.datumiRezervacija = datumiRezervacija;
+    public void setRezervacije(List<Rezervacija> rezervacije) {
+		this.rezervacije = rezervacije;
 	}
 
 
@@ -241,9 +236,9 @@ public class Soba {
 	}
 
 
-	public Soba(List<String> datumiRezervacija, String idSmestaja, Integer broj, Integer kapacitet, Integer cena) {
+	public Soba(List<Rezervacija> rezervacije, String idSmestaja, Integer broj, Integer kapacitet, Integer cena) {
 		super();
-		this.datumiRezervacija = datumiRezervacija;
+		this.rezervacije = rezervacije;
 		this.idSmestaja = idSmestaja;
 		this.broj = broj;
 		this.kapacitet = kapacitet;

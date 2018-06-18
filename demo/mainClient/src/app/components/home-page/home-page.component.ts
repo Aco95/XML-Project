@@ -36,8 +36,9 @@ export class HomePageComponent implements OnInit {
   private isOpenAdvancedSearch : boolean;
   private isOpenRezervacije : boolean;
 
+  // private eating : any;
 
-  private selectAccommodation : any;
+  // private selectAccommodation : any;
 
 
   constructor(private router : Router, private searchService : SearchService ) { }
@@ -50,9 +51,11 @@ export class HomePageComponent implements OnInit {
     this.category = "1";
     this.minDateFrom = {year: 2018, month: 6, day: 15};
     
+
+    // this.eating = "breakfast";
     this.parking = false;
     this.wifi = false;
-    this.breakfast = true;
+    this.breakfast = false;
     this.half_board = false;
     this.board = false;
     this.TV = false;
@@ -114,6 +117,15 @@ export class HomePageComponent implements OnInit {
 
     } else {
 
+      // if(this.eating ==="breakfast") 
+      //   this.breakfast = true;
+      
+      // if(this.eating === "half_board") 
+      //   this.half_board = true;
+      
+      // else
+      //   this.board = true;
+
       this.searchService.advancedSearch(this.place, this.numberOfPersons, this.dateFrom, this.dateTo,
       this.type, this.category, this.parking, this.wifi, this.breakfast, this.half_board,
       this.board, this.TV, this.kitchen, this.bathroom)
@@ -135,7 +147,7 @@ export class HomePageComponent implements OnInit {
 
 
   onClickReserveAccommodation(Accommodation:any) : void {
-    this.selectAccommodation = Accommodation;
+
     console.log("Accommodation: " + Accommodation);  
     this.searchService.selectAccommodation(Accommodation);
 
@@ -146,7 +158,7 @@ export class HomePageComponent implements OnInit {
       }
     );
 
-    this.router.navigateByUrl('/reserve-accommodation');
+    this.router.navigateByUrl('/reserveAccommodation');
   }
 
 }

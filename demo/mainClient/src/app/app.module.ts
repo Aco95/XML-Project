@@ -20,6 +20,7 @@ import { HomeRezervacijeComponent } from './components/home-rezervacije/home-rez
 
 import { CommentsComponent } from './comments/comments.component';
 import { RegistracijaComponent } from './components/registracija/registracija.component';
+import { ReserveAccommodationComponent } from './components/reserve-accommodation/reserve-accommodation.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { RegistracijaComponent } from './components/registracija/registracija.co
     LoginComponent,
     HomeRezervacijeComponent,
     CommentsComponent,
-    RegistracijaComponent
+    RegistracijaComponent,
+    ReserveAccommodationComponent
   ],
   imports: [
     BrowserModule,

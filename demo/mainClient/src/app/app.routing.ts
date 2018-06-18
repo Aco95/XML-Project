@@ -5,6 +5,7 @@ import { HomePageComponent } from "./components/home-page/home-page.component";
 import { LoginComponent } from "./components/login/login.component";
 import { HomeRezervacijeComponent } from "./components/home-rezervacije/home-rezervacije.component";
 import { RegistracijaComponent } from "./components/registracija/registracija.component";
+import { ReserveAccommodationComponent } from './components/reserve-accommodation/reserve-accommodation.component';
 
 
 const appRoutes: Routes = 
@@ -34,7 +35,12 @@ const appRoutes: Routes =
     { 
         path: 'register',
         component: RegistracijaComponent
-    }
+    },
+
+    {
+        path:'reserveAccommodation',
+        component: ReserveAccommodationComponent
+    },
 
 ]
 
