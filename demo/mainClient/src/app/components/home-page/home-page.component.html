@@ -138,6 +138,24 @@
                   </div>
               </div>
 
+              <!-- <div class="col">
+                <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" [(ngModel)]="eating" value="breakfast" name="eating" >Breakfast
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" [(ngModel)]="eating" value="half_board" name="eating">Half-board
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" [(ngModel)]="eating" value="board" name="eating">Board
+                    </label>
+                  </div>
+              </div> -->
+
               <div class="col">
                   <div class="form-check">
                     <label class="form-check-label">
@@ -159,7 +177,6 @@
                     </label>
                   </div>
               </div>
-
               <div class="col">
                   <div class="form-check">
                     <label class="form-check-label">
@@ -283,7 +300,7 @@
         <br><br><br><br><br><br><br><br><br><br><br><br>
 
         <div class="col-md-1">
-          <button type="submit" class="btn btn-dark" (click)="reserve()">Reserve</button>
+          <button type="submit" class="btn btn-dark" (click)="onClickReserveAccommodation(accommodation)">Reserve</button>
         </div> 
       </div>
 

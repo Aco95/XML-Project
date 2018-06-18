@@ -70,11 +70,17 @@ public class KorisnikController {
 		
 		Korisnik regKorisnik = new Korisnik(id, ime, prezime, uloga, username, password, jmbg, adresa); 
 		
-		System.out.println(regKorisnik.getId()+" "+regKorisnik.getUsername() );
+		int size;
+		if((size=korisnikService.count()) == 0) {
+			size = 1;
+		}
+		else {
+			size++;
+			String ssize = Integer.toString(size);
+			regKorisnik.setId(ssize);
+		}
 		
 		korisnikService.save(regKorisnik);
-		
-		int i = 3;
 		
 		return new ResponseEntity<Object>(regKorisnik, HttpStatus.OK);
 	}

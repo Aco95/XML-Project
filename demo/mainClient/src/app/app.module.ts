@@ -19,6 +19,7 @@ import { HomeRezervacijeComponent } from './components/home-rezervacije/home-rez
 
 import { CommentsComponent } from './comments/comments.component';
 import { RegistracijaComponent } from './components/registracija/registracija.component';
+import { ReserveAccommodationComponent } from './components/reserve-accommodation/reserve-accommodation.component';
 
 // register-login
 import { LoginComponent } from './components/login/login.component';
@@ -44,7 +45,8 @@ export function providerCustomHttp(backend: XHRBackend, defaultOptions: RequestO
     LoginLogoutComponent,
     HomeRezervacijeComponent,
     CommentsComponent,
-    RegistracijaComponent
+    RegistracijaComponent,
+    ReserveAccommodationComponent
   ],
   imports: [
     BrowserModule,
