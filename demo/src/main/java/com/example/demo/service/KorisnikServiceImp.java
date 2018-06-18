@@ -25,7 +25,7 @@ public class KorisnikServiceImp implements IKorisnikService{
 	@Override
 	public List<Korisnik> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return korisnikRepository.findAll();
 	}
 
 	@Override
@@ -60,5 +60,11 @@ public class KorisnikServiceImp implements IKorisnikService{
 	@Override
 	public Optional<Korisnik> getUserByEmail(String email) {
 		return korisnikRepository.findOneByEmail(email);
+	}
+
+	@Override
+	public int count() {
+		// TODO Auto-generated method stub
+		return (int)korisnikRepository.count();
 	}
 }

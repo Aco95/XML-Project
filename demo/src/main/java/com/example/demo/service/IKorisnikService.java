@@ -14,6 +14,7 @@ public interface IKorisnikService {
 	void delete(List<String> ids);
 	Korisnik findByUsername(String username);
 	Optional<Korisnik> getUserByEmail(String email);
+	int count();
 
 
 }
