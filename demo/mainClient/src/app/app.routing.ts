@@ -7,30 +7,30 @@ import { HomeRezervacijeComponent } from "./components/home-rezervacije/home-rez
 import { RegistracijaComponent } from "./components/registracija/registracija.component";
 import { ReserveAccommodationComponent } from './components/reserve-accommodation/reserve-accommodation.component';
 
+const appRoutes: Routes =
+    [
+        {
+            path: '',
+            redirectTo: '/homeSearch',
+            pathMatch: 'full'
 
-const appRoutes: Routes = 
-[
-    {
-        path: '',
-        redirectTo: '/homeSearch',
-        pathMatch:'full'
-    
-    },
+        },
 
-    {
-        path:'homeSearch',
-        component: HomePageComponent
-    },
+        {
+            path: 'homeSearch',
+            component: HomePageComponent
+        },
 
-    {
-        path: 'login',
-        component: LoginComponent
-    },
+        {
+            path: 'login',
+            component: LoginComponent
+        },
 
-    {
-        path: 'rezervacije',
-        component: HomeRezervacijeComponent
-    },
+        {
+            path: 'rezervacije',
+            component: HomeRezervacijeComponent
+        },
+
 
     { 
         path: 'register',
@@ -40,9 +40,9 @@ const appRoutes: Routes =
     {
         path:'reserveAccommodation',
         component: ReserveAccommodationComponent
-    },
+    }
 
-]
+    ]
 
 
 

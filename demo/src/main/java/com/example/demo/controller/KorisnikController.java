@@ -6,13 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.entities.CurrentUser;
 import com.example.demo.entities.Korisnik;
 import com.example.demo.entities.Uloga;
 import com.example.demo.service.IKorisnikService;
@@ -58,7 +62,7 @@ public class KorisnikController {
 		String ime = user.getIme();
 		String prezime = user.getPrezime();
 		String username = user.getUsername();
-		String password = user.getPassword();
+		String password = new BCryptPasswordEncoder().encode(user.getPassword());
 		String jmbg = user.getMaticniBroj();
 		String adresa = user.getAdresa();
 		Uloga uloga = user.getUloga();
@@ -66,12 +70,26 @@ public class KorisnikController {
 		
 		Korisnik regKorisnik = new Korisnik(id, ime, prezime, uloga, username, password, jmbg, adresa); 
 		
-		System.out.println(regKorisnik.getId()+" "+regKorisnik.getUsername() );
+		int size;
+		if((size=korisnikService.count()) == 0) {
+			size = 1;
+		}
+		else {
+			size++;
+			String ssize = Integer.toString(size);
+			regKorisnik.setId(ssize);
+		}
 		
 		korisnikService.save(regKorisnik);
 		
-		int i = 3;
-		
 		return new ResponseEntity<Object>(regKorisnik, HttpStatus.OK);
 	}
+	  @RequestMapping(
+	    		value = "/angularUser",
+				method = RequestMethod.GET,
+				produces = MediaType.APPLICATION_JSON_VALUE)
+	    public Korisnik getUserPageAngular(@ModelAttribute("currentUser") CurrentUser currentUser) {
+	    	System.out.println("treba da vrati:" +currentUser);
+	        return currentUser.getUser();
+	    }
 }

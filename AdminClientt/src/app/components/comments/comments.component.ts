@@ -13,13 +13,17 @@ import { CommentService } from '../../services/comment-service';
   
 export class CommentsComponent implements OnInit {
   comments: Comment[];
- 
+  
   constructor(private router: Router, private commentService: CommentService) {}
-
+ 
   ngOnInit() {
     this.commentService.getAllComments().subscribe( data => {
       this.comments = data;
       console.log(this.comments);
     });
+  }
+  
+  allowComment(komentar: Comment) {
+    this.commentService.allowComment(komentar).subscribe(data => this.comments = this.comments.filter(u => u !== komentar));
   }
 }

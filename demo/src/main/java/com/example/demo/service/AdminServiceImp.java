@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.AdminKorisnikDto;
@@ -53,6 +54,9 @@ public class AdminServiceImp implements IAdminService {
 		agent.setIme(agentRegisterDto.getIme());
 		agent.setPrezime(agentRegisterDto.getPrezime());
 		agent.setMaticniBroj(agentRegisterDto.getMaticniBroj());
+		agent.setEmail(agentRegisterDto.getEmail());
+		agent.setPassword(new BCryptPasswordEncoder().encode(agentRegisterDto.getPassword()));
+
 		adminRepository.save(agent);
 	}
 	

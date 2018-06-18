@@ -19,4 +19,9 @@ export class CommentService {
   public getAllComments() {
     return this.http.get<Comment[]>(this.commentUrl);
   }
+  
+  public allowComment(comment) {
+    console.log('Salje komentar na server');
+    return this.http.put<Comment>(this.commentUrl, comment);
+  }
 }
