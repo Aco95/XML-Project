@@ -1,19 +1,25 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.Komentar;
+import com.example.demo.entities.Smestaj;
 import com.example.demo.service.CommentService;
+import com.example.demo.service.ISmestajService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping({"/api_comment"})
 public class KomentarController {
@@ -21,33 +27,14 @@ public class KomentarController {
 	@Autowired
 	private CommentService commentService;
 	
+	@Autowired
+	private ISmestajService smestajService;
+	
 	
 	@GetMapping
-	public List<Komentar> getComments(){													
-		List<Komentar> komentari = commentService.getAllComments();
-		if(komentari.isEmpty()){
-			Komentar c = new Komentar(null,"Insert message here", false);
-			commentService.addComment(c);
-			
-			Komentar c2 = new Komentar(null,"Insert message here2", false);
-			commentService.addComment(c2);
-			
-			Komentar c3 = new Komentar(null,"Insert message here3", false);
-			commentService.addComment(c3);
-			
-			Komentar c4 = new Komentar(null,"Insert message here4", false);
-			commentService.addComment(c4);
-			
-			Komentar c5 = new Komentar(null,"Insert message here5", false);
-			commentService.addComment(c5);
-			
-			Komentar c6 = new Komentar(null,"Insert message here6", false);
-			commentService.addComment(c6);
-		}
-		
+	public List<Komentar> getComments(){														
 		System.out.println("DEBUG::PRONALAZI PORUKE");
-		return commentService.findNotAllowed(false);
-		//return komentari;
+		return commentService.findNotAllowed(false);		
 	}
 	
 	@PutMapping
@@ -56,5 +43,25 @@ public class KomentarController {
 		System.out.println("ULAZI U MENJANJE KOMENTARA");
 		k.setOdobren(true);
 		commentService.addComment(k);
+	}
+	
+	@RequestMapping(
+			value = "/getAll",
+			method = RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Smestaj> getAll(){
+		
+		System.out.println("Pogodio getAll!");
+		return smestajService.getAll();
+	}
+	
+	@RequestMapping(
+			value = "/getActiveEdit/{id}",
+			method = RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public Optional<Smestaj> getActiveEdit(@PathVariable("id") String id ){
+		
+		System.out.println("Pogodio getEdited");
+		return smestajService.getSmestajById(id);
 	}
 }

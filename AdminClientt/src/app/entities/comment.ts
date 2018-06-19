@@ -1,5 +1,5 @@
 export class Comment {
-  public id: number;
+  public id: String;
   public datum: String;
   public sadrzaj: String;
   public odobren: boolean;

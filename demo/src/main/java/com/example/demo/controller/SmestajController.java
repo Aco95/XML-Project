@@ -27,7 +27,7 @@ import com.example.demo.entities.Tip;
 import com.example.demo.service.ISmestajService;
 
 @RestController
-@RequestMapping("/public/accommodations")
+@RequestMapping({"/public/accommodations"})
 @CrossOrigin(origins = "*")
 public class SmestajController {
 	
