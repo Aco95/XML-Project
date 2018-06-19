@@ -56,6 +56,7 @@ public class DbSeeder implements CommandLineRunner{
 		k1.setUloga(Uloga.ADMIN);
 		k1.setBlokiran(false);
 		
+		
 		Korisnik k2 = new Korisnik();
 		k2.setId("2");
 		k2.setAdresa("Milovan Jelica 32");
@@ -64,8 +65,8 @@ public class DbSeeder implements CommandLineRunner{
 		k2.setUsername("pp");
 		k2.setMaticniBroj("1234567890123");
 		k2.setPassword("test1234");
-		k1.setEmail("email@email");
-		k1.setPassword("$2a$10$wws6XE7uyO2I23B355XXlOBnV/fSgU2GANadnkxAF3uWQ.7lYqMHS");
+		k2.setEmail("email@email");
+		k2.setPassword("$2a$10$wws6XE7uyO2I23B355XXlOBnV/fSgU2GANadnkxAF3uWQ.7lYqMHS");
 		k2.setUloga(Uloga.AGENT);
 		k2.setBlokiran(true);
 		
@@ -77,16 +78,24 @@ public class DbSeeder implements CommandLineRunner{
 		k3.setUsername("nn");
 		k3.setMaticniBroj("1234567890123");
 		k3.setPassword("test1234");
-		k1.setEmail("email@email");
-		k1.setPassword("$2a$10$wws6XE7uyO2I23B355XXlOBnV/fSgU2GANadnkxAF3uWQ.7lYqMHS");
+		k3.setEmail("email@email");
+		k3.setPassword("$2a$10$wws6XE7uyO2I23B355XXlOBnV/fSgU2GANadnkxAF3uWQ.7lYqMHS");
 		k3.setUloga(Uloga.USER);
+		k3.setRezervacije(new ArrayList<Rezervacija>());
 		
+		Korisnik k4 = new Korisnik();
+		k4.setId("4");
+		k4.setAdresa("Milovan Jelica 32");
+		k4.setIme("Bosko");
+		k4.setPrezime("Boskovic");
+		k4.setUsername("bb");
+		k4.setMaticniBroj("1234567890123");
+		k4.setPassword("bolebena");
+		k4.setEmail("bole@email");
+		k4.setPassword("$2a$10$wws6XE7uyO2I23B355XXlOBnV/fSgU2GANadnkxAF3uWQ.7lYqMHS");
+		k4.setUloga(Uloga.USER);
+		k4.setRezervacije(new ArrayList<Rezervacija>());
 		
-		korisnikRepository.deleteAll();
-		
-		List<Korisnik> korisnici = Arrays.asList(k1,k2,k3);
-		
-		korisnikRepository.saveAll(korisnici);
 		
 		// -------------------------- sobe za Hotel Park --------------------------------//
 		Soba s1 = new Soba();
@@ -106,13 +115,18 @@ public class DbSeeder implements CommandLineRunner{
 		rez51.setIdSobe("5");
 		rez51.setOd(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-07-04"));
 		rez51.setDo(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-07-12"));
+		rez51.setidKorisnika("3");
+		k3.getRezervacije().add(rez51);
 		rezervacijeZaSobu5.add(rez51);
 		Rezervacija rez52 = new Rezervacija();
 		rez52.setId("2");
 		rez52.setIdSobe("5");
 		rez52.setOd(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-08-10"));
 		rez52.setDo(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-08-20"));
+		rez52.setidKorisnika("4");
+		k4.getRezervacije().add(rez52);
 		rezervacijeZaSobu5.add(rez52);
+		
 		
 		s5.setRezervacije(rezervacijeZaSobu5);
 		s5.setIdSmestaja("1");
@@ -197,6 +211,11 @@ public class DbSeeder implements CommandLineRunner{
 		rezervacijaRepository.deleteAll();	
 		List<Rezervacija> reze = Arrays.asList(rez51,rez52);		
 		rezervacijaRepository.saveAll(reze);
+		
+		
+		korisnikRepository.deleteAll();
+		List<Korisnik> korisnici = Arrays.asList(k1,k2,k3);
+		korisnikRepository.saveAll(korisnici);
 		
 		
 		sobaRepository.deleteAll();	

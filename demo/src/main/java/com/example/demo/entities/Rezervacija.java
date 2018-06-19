@@ -51,6 +51,8 @@ public class Rezervacija {
     protected XMLGregorianCalendar _do;
     @XmlAttribute(name = "id_sobe")
     protected String idSobe;
+    @XmlAttribute(name = "id_Korisnika")
+    protected String idKorisnika;
 
     
     /**
@@ -149,18 +151,46 @@ public class Rezervacija {
     public void setIdSobe(String value) {
         this.idSobe = value;
     }
+    
+    /**
+     * Gets the value of the idKorisnika property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIdKorisnika() {
+        return idKorisnika;
+    }
+
+    /**
+     * Sets the value of the idKorisnika property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setidKorisnika(String value) {
+        this.idKorisnika = value;
+    }
+    
 
 	public Rezervacija() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Rezervacija(XMLGregorianCalendar od, XMLGregorianCalendar _do, String idSobe) {
+	public Rezervacija(XMLGregorianCalendar od, XMLGregorianCalendar _do, String idSobe, String idKorisnika) {
 		super();
 		this.od = od;
 		this._do = _do;
 		this.idSobe = idSobe;
+		this.idKorisnika = idKorisnika;
 	}
+
+	
 
 	
 

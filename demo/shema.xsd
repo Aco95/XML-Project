@@ -42,6 +42,9 @@
     </xs:element>
     <xs:element name="korisnik">
         <xs:complexType>
+         	<xs:sequence maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="rezervacija"/>
+            </xs:sequence>
             <xs:attribute name="id" type="xs:string"/>
             <xs:attribute name="ime" type="xs:string"/>
             <xs:attribute name="prezime" type="xs:string"/>
@@ -77,6 +80,7 @@
             <xs:attribute name="od" type="xs:date"/>
             <xs:attribute name="do" type="xs:date"/>
             <xs:attribute name="id_sobe" type="xs:string"/>
+            <xs:attribute name="id_korisnika" type="xs:string"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>
