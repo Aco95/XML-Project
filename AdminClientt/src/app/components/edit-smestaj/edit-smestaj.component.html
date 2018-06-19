@@ -1,0 +1,60 @@
+<form>
+	<div>
+	    <label for="naziv"> Name </label>
+    	<input type="text" value={{smestaj.naziv}} name="naziv" id="naziv" placeholder="Name">
+    </div>
+    <div>
+	    <label for="adresa"> Address </label>
+    	<input type="text" value={{smestaj.adresa}} name="adresa" id="adresa" placeholder="Address">
+    </div>
+    <div>
+	    <label for="mesto"> Location </label>
+    	<input type="text" value={{smestaj.mesto}} name="mesto" id="mesto"  placeholder="Location">
+    </div>
+    <div>
+	    <label for="tip"> Type </label>
+    	<select>
+    		<option>HOTEL</option>
+    		<option>BED_BREAKFAST</option>
+    		<option>APARTMAN</option>
+    	</select>
+    </div>
+    <div>
+	    <label for="parking"> Parking </label>
+    	<input type="checkbox" [checked]="smestaj.parking">
+    </div>
+    <div>
+	    <label for="wifi"> WiFi </label>
+    	<input type="checkbox"[checked]="smestaj.wifi">
+    </div>
+    <div>
+	    <label for="dorucak"> Breakfast </label>
+    	<input type="checkbox" [checked]="smestaj.dorucak">
+    </div>
+    <div>
+	    <label for="polupansion"> Polupansion </label>
+    	<input type="checkbox" [checked]="smestaj.polupansion">
+    </div>
+    <div>
+	    <label for="pansion"> Pansion </label>
+    	<input type="checkbox" [checked]="smestaj.pansion">
+    </div>
+    <div>
+	    <label for="tv"> TV </label>
+    	<input type="checkbox" [checked]="smestaj.tv">
+    </div>
+   	<div>
+	    <label for="miniKuhinja"> Mini kitchen </label>
+    	<input type="checkbox" [checked]="smestaj.miniKuhinja">
+    </div>
+    <div>
+	    <label for="privatnoKupatilo"> Private Bathroom </label>
+    	<input type="checkbox" [checked]="smestaj.privatnoKupatilo">
+    </div>
+    <div>
+	    <label for="opis"> First name </label>
+		<textarea>{{smestaj.opis}}</textarea>
+    </div>
+    
+    
+</form>
