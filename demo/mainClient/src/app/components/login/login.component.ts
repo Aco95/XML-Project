@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   error: any;
   form: FormGroup;
   constructor(private loginService: LoginService, private router: Router, @Inject(FormBuilder) formBuilder: FormBuilder) {
