@@ -104,11 +104,13 @@ public class DbSeeder implements CommandLineRunner{
 		s1.setKapacitet(1); 	// jednokrevetna
 		s1.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
 		s1.setIdSmestaja("1");
+		s1.setCena(100);
 		
 		Soba s5 = new Soba();
 		s5.setId("5");
 		s5.setBroj(5);
 		s5.setKapacitet(2); 	// dvokrevetna
+		s5.setCena(200);
 		ArrayList<Rezervacija> rezervacijeZaSobu5 = new ArrayList<Rezervacija>();
 		Rezervacija rez51 = new Rezervacija();
 		rez51.setId("1");
@@ -137,6 +139,15 @@ public class DbSeeder implements CommandLineRunner{
 		s6.setKapacitet(3); 	// trokrevetna
 		s6.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
 		s6.setIdSmestaja("1");
+		s6.setCena(300);
+		
+		Soba s13 = new Soba();
+		s13.setId("13");
+		s13.setBroj(13);
+		s13.setKapacitet(3); 	// trokrevetna
+		s13.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
+		s13.setIdSmestaja("1");
+		s13.setCena(350);
 		
 		Soba s7 = new Soba();
 		s7.setId("7");
@@ -144,6 +155,7 @@ public class DbSeeder implements CommandLineRunner{
 		s7.setKapacitet(4); 	// cetvorokrevetna
 		s7.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
 		s7.setIdSmestaja("1");	
+		s7.setCena(400);
 		// -----------------------------------------------------------------------//
 		
 		
@@ -154,6 +166,7 @@ public class DbSeeder implements CommandLineRunner{
 		s3.setKapacitet(3); 	// trokrevetna
 		s3.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
 		s3.setIdSmestaja("2");
+		s3.setCena(300);
 		
 		Soba s4 = new Soba();
 		s4.setId("4");
@@ -161,6 +174,7 @@ public class DbSeeder implements CommandLineRunner{
 		s4.setKapacitet(4); 	// cetvorokrevetna
 		s4.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
 		s4.setIdSmestaja("2");
+		s4.setCena(400);
 		
 		Soba s8 = new Soba();
 		s8.setId("8");
@@ -168,13 +182,15 @@ public class DbSeeder implements CommandLineRunner{
 		s8.setKapacitet(1); 	// jednokrevetna
 		s8.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
 		s8.setIdSmestaja("2");
+		s8.setCena(100);
 		
 		Soba s9 = new Soba();
 		s9.setId("8");
 		s9.setBroj(8);
-		s9.setKapacitet(2); 	// jednokrevetna
+		s9.setKapacitet(2); 	// dvokrevetna
 		s9.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
 		s9.setIdSmestaja("2");
+		s9.setCena(200);
 		// ---------------------------------------------------------------------------------//
 		
 		
@@ -185,6 +201,7 @@ public class DbSeeder implements CommandLineRunner{
 		s2.setKapacitet(1); 	// jednokrevetna
 		s2.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
 		s2.setIdSmestaja("3");
+		s2.setCena(100);
 		
 		Soba s10 = new Soba();
 		s10.setId("10");
@@ -192,6 +209,7 @@ public class DbSeeder implements CommandLineRunner{
 		s10.setKapacitet(2); 	// dvokrevetna
 		s10.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
 		s10.setIdSmestaja("3");
+		s10.setCena(200);
 		
 		Soba s11 = new Soba();
 		s11.setId("11");
@@ -199,13 +217,15 @@ public class DbSeeder implements CommandLineRunner{
 		s11.setKapacitet(3); 	// trokrevetna
 		s11.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
 		s11.setIdSmestaja("3");
+		s11.setCena(300);
 		
 		Soba s12 = new Soba();
 		s12.setId("12");
 		s12.setBroj(12);
-		s12.setKapacitet(4); 	// jednokrevetna
+		s12.setKapacitet(4); 	// cetvorokrevetna
 		s12.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
 		s12.setIdSmestaja("3");
+		s12.setCena(400);
 		// -----------------------------------------------------------------------------------//
 		
 		rezervacijaRepository.deleteAll();	
@@ -214,17 +234,17 @@ public class DbSeeder implements CommandLineRunner{
 		
 		
 		korisnikRepository.deleteAll();
-		List<Korisnik> korisnici = Arrays.asList(k1,k2,k3);
+		List<Korisnik> korisnici = Arrays.asList(k1,k2,k3,k4);
 		korisnikRepository.saveAll(korisnici);
 		
 		
 		sobaRepository.deleteAll();	
-		List<Soba> sobe = Arrays.asList(s1,s2,s3,s4,s5,s7,s8,s9,s10,s11,s12);		
+		List<Soba> sobe = Arrays.asList(s1,s2,s3,s4,s5,s7,s8,s9,s10,s11,s12,s13);		
 		sobaRepository.saveAll(sobe);
 	
 		
 		
-		List<Soba> sobe1 = Arrays.asList(s1,s5,s6,s7);
+		List<Soba> sobe1 = Arrays.asList(s1,s5,s6,s13,s7);
 		Smestaj smestaj1 = new Smestaj();
 		smestaj1.setId("1");
 		smestaj1.setNaziv("Hotel Park");

@@ -16,5 +16,6 @@ public interface IKorisnikService {
 	Optional<Korisnik> getUserByEmail(String email);
 	int count();
 
+	Optional<Korisnik> getUserById(String id);
 
 }

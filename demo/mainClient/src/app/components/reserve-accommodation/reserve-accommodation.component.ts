@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { SearchService } from "../../services/search.service";
+import { RezervacijeService } from "../../services/rezervacije.service";
+
+import { AuthServiceService} from '../../services/auth-service.service';
 
 @Component({
   selector: 'app-reserve-accommodation',
@@ -19,13 +22,25 @@ export class ReserveAccommodationComponent implements OnInit {
   private numberOfPersons : any;
   private dateFrom : any;
   private dateTo: any;
-  private price: any;
+  private pricePerNight : any;
+  private totalPrice: any;
 
   private numberOfNights : any;
 
-  constructor(private router : Router, private searchService : SearchService ) { }
+  private freeRooms : any;
+  private selectedRoom : any;
+
+
+  private modifiedDateFrom : any;
+  private modifiedDateTo: any;
+
+  private loggedInUser : any;
+
+  constructor(private router : Router, private searchService : SearchService, private rezervacijeService : RezervacijeService, private authService : AuthServiceService) { }
 
   ngOnInit() {
+
+    this.loggedInUser = this.authService.getUser();
 
     this.searchService.reservation.subscribe(
       reservation => 
@@ -52,6 +67,7 @@ export class ReserveAccommodationComponent implements OnInit {
           this.dateFrom += reservation.dateFrom.day;
         }
 
+        this.modifiedDateFrom = this.dateFrom;
         this.dateFrom += "T12:01:04.753Z";
 
         this.dateTo = reservation.dateTo.year + "-";
@@ -69,6 +85,7 @@ export class ReserveAccommodationComponent implements OnInit {
           this.dateTo += reservation.dateTo.day;
         }
 
+        this.modifiedDateTo = this.dateTo;
         this.dateTo += "T12:01:04.753Z";
 
 
@@ -79,10 +96,50 @@ export class ReserveAccommodationComponent implements OnInit {
         this.dateFrom = reservation.dateFrom;
         this.dateTo = reservation.dateTo;
 
-        this.price = this.numberOfNights * reservation.accommodation.cena;
+        this.searchService.getAccommodationFreeRooms(reservation.accommodation.id, reservation.numberOfPersons, reservation.dateFrom, reservation.dateTo)
+        .subscribe(data => {
+  
+          this.freeRooms = data;
+          console.log(this.freeRooms);
+
+          this.selectedRoom = this.freeRooms[0].cena;
+          this.pricePerNight = this.selectedRoom;
+          this.totalPrice = this.numberOfNights * this.pricePerNight;
+              
+          } 
+        );
 
       }
     );
   }
+
+  selectRoom(){
+    this.pricePerNight = this.selectedRoom;
+    console.log(this.selectedRoom);
+    this.totalPrice = this.numberOfNights * this.pricePerNight;
+  }
+
+  confirmReservation(){
+
+    this.rezervacijeService.addReservation({room_id: this.reservation.accommodation.id, dateFrom : this.modifiedDateFrom, dateTo : this.modifiedDateTo, user_id : "4"})
+    .subscribe(data =>
+      {
+        if(data){
+          alert("You have successfully made a reservation!");
+          this.router.navigateByUrl('/homeSearch');       // ovde ce trebati posle da ga redirektuje na UserProfilePage
+        }
+        else {
+          alert("An error has occurred.");
+          this.router.navigateByUrl('/reserveAccommodation');
+        }
+         
+       
+      } 
+    );
+
+  
+  }
+
+  
 
 }
