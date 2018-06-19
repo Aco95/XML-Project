@@ -5,11 +5,10 @@ import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.agent.entities.Korisnik;
+import com.example.agent.entities.Poruka;
 
 @Repository
-public interface KorisnikRepository extends MongoRepository<Korisnik, String>{
+public interface PorukaRepository extends MongoRepository<Poruka, String> {
 
-	Korisnik findByUsername(String username);
-	
+	List<Poruka> findByPrimljena(Boolean primljena);
 }

@@ -11,5 +11,5 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum Tip {
 
-	HOTEL, BED_BREAKFAST, APARTMAN
+	HOTEL, BED_BREAKFAST, APARTMENT
 }

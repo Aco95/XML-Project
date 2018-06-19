@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.example.agent.entities.Komentar;
 
 @Repository
-public interface KomentarRepository extends MongoRepository<Komentar, String>{
+public interface KomentarRepository extends MongoRepository<Komentar, String> {
 
 }

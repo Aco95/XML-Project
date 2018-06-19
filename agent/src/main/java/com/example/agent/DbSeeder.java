@@ -2,14 +2,20 @@ package com.example.agent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.GregorianCalendar;
 import java.util.List;
+
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.example.agent.entities.Korisnik;
+import com.example.agent.entities.Poruka;
 import com.example.agent.repositories.KorisnikRepository;
+import com.example.agent.repositories.PorukaRepository;
 import com.example.agent.repositories.SmestajRepository;
 import com.example.agent.repositories.SobaRepository;
 import com.example.agent.entities.Smestaj;
@@ -31,6 +37,8 @@ public class DbSeeder implements CommandLineRunner{
 	@Autowired
 	private SmestajRepository smestajRepository;
 	
+	@Autowired
+	private PorukaRepository porukaRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -126,7 +134,7 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj2.setMesto("Smederevo");
 		smestaj2.setAdresa("Lukijana Musickog 17");
 		smestaj2.setKategorija(3);
-		smestaj2.setTip(Tip.APARTMAN);
+		smestaj2.setTip(Tip.APARTMENT);
 		smestaj2.setOcena(9.1);
 		smestaj2.setOpis("Najbolji apartmani u Smederevu i sire...");
 		smestaj2.setSobe(sobe2);
@@ -159,7 +167,7 @@ public class DbSeeder implements CommandLineRunner{
 		k1.setUsername("mm");
 		k1.setMaticniBroj("1234567890123");
 		k1.setPassword("test1234");
-		k1.setUloga(Uloga.ADMIN);
+		k1.setUloga(Uloga.AGENT);
 		
 		Korisnik k2 = new Korisnik();
 		k2.setId("2");
@@ -169,7 +177,7 @@ public class DbSeeder implements CommandLineRunner{
 		k2.setUsername("pp");
 		k2.setMaticniBroj("1234567890123");
 		k2.setPassword("test1234");
-		k2.setUloga(Uloga.AGENT);
+		k2.setUloga(Uloga.USER);
 		k2.setSmestaji(smestajiAgenta);
 		
 		Korisnik k3 = new Korisnik();
@@ -181,6 +189,55 @@ public class DbSeeder implements CommandLineRunner{
 		k3.setMaticniBroj("1234567890123");
 		k3.setPassword("test1234");
 		k3.setUloga(Uloga.USER);
+		
+		
+		Poruka p1 = new Poruka();
+		p1.setId("1");
+		p1.setNaslov("Obavestenje");
+		
+		GregorianCalendar gcal1 = new GregorianCalendar();
+	      XMLGregorianCalendar xgcal1 = DatatypeFactory.newInstance()
+	            .newXMLGregorianCalendar(gcal1);
+		p1.setDatumSlanja(xgcal1);
+		
+		p1.setSadrzaj("Pozdrav, kasnicu jedan dan zbog problema sa automobilom.");
+		p1.setProcitana(false);
+		p1.setSagovornik(k2);
+		p1.setPrimljena(true);
+		
+		Poruka p2 = new Poruka();
+		p2.setId("2");
+		p2.setNaslov("Bitno pitanje oko kuhinje");
+		
+		GregorianCalendar gcal2 = new GregorianCalendar();
+	      XMLGregorianCalendar xgcal2 = DatatypeFactory.newInstance()
+	            .newXMLGregorianCalendar(gcal2);
+		p2.setDatumSlanja(xgcal2);
+		
+		p2.setSadrzaj("Pozdrav, da li postoji frizider u okviru mini kuhinje?");
+		p2.setProcitana(false);
+		p2.setSagovornik(k3);
+		p2.setPrimljena(true);
+		
+		Poruka p3 = new Poruka();
+		p3.setId("3");
+		p3.setNaslov("Bitno pitanje oko kuhinje");
+		
+		GregorianCalendar gcal3 = new GregorianCalendar();
+	      XMLGregorianCalendar xgcal3 = DatatypeFactory.newInstance()
+	            .newXMLGregorianCalendar(gcal3);
+		p3.setDatumSlanja(xgcal3);
+		
+		p3.setSadrzaj("Pozdrav, postoji frizider u kuhinji.");
+		p3.setProcitana(false);
+		p3.setSagovornik(k3);
+		p3.setPrimljena(false);
+		
+		porukaRepository.deleteAll();
+		
+		List<Poruka> poruke = Arrays.asList(p1, p2, p3);
+		
+		porukaRepository.saveAll(poruke);
 		
 		korisnikRepository.deleteAll();
 		
