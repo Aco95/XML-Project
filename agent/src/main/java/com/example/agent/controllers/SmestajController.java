@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.agent.services.SmestajService;
 import com.example.agent.dtos.SmestajDTO;
+import com.example.agent.entities.Rezervacija;
 import com.example.agent.entities.Smestaj;
 import com.example.agent.entities.Soba;
 
@@ -56,7 +57,7 @@ public class SmestajController {
 			Soba soba = new Soba();
 			soba.setId(rn.nextInt(999999) + 100000 + "");
 			soba.setIdSmestaja(sDTO.getId());
-			soba.setDatumiRezervacija(new ArrayList<String>());
+			soba.setRezervacije(new ArrayList<Rezervacija>());
 			soba.setBroj(i + 1);
 			
 			if (i < sDTO.getBrJednokrevetnih()) {

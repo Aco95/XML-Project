@@ -22,6 +22,7 @@ import com.example.agent.entities.Smestaj;
 import com.example.agent.entities.Soba;
 import com.example.agent.entities.Tip;
 import com.example.agent.entities.Uloga;
+import com.example.agent.entities.Rezervacija;
 
 
 @Component
@@ -54,28 +55,28 @@ public class DbSeeder implements CommandLineRunner{
 		s1.setId("1");
 		s1.setBroj(1);
 		s1.setKapacitet(1); 	// jednokrevetna
-		s1.setDatumiRezervacija(new ArrayList<String>());
+		s1.setRezervacije(new ArrayList<Rezervacija>());
 		s1.setIdSmestaja("1");
 		
 		Soba s2 = new Soba();
 		s2.setId("2");
 		s2.setBroj(2);
 		s2.setKapacitet(2); 	// dvokrevetna
-		s2.setDatumiRezervacija(new ArrayList<String>());
+		s2.setRezervacije(new ArrayList<Rezervacija>());
 		s2.setIdSmestaja("1");
 		
 		Soba s3 = new Soba();
 		s3.setId("3");
 		s3.setBroj(3);
 		s3.setKapacitet(3); 	// trokrevetna
-		s3.setDatumiRezervacija(new ArrayList<String>());
+		s3.setRezervacije(new ArrayList<Rezervacija>());
 		s3.setIdSmestaja("2");
 		
 		Soba s4 = new Soba();
 		s4.setId("4");
 		s4.setBroj(4);
 		s4.setKapacitet(4); 	// cetvorokrevetna
-		s4.setDatumiRezervacija(new ArrayList<String>());
+		s4.setRezervacije(new ArrayList<Rezervacija>());
 		s4.setIdSmestaja("2");
 		
 		sobaRepository.deleteAll();

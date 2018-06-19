@@ -21,6 +21,8 @@ import javax.xml.bind.annotation.XmlType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.example.agent.entities.Rezervacija;
+
 
 /**
  * <p>Java class for anonymous complex type.
@@ -48,8 +50,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection="Sobe")
 public class Soba {
 
-	@XmlElement(name = "datumi_rezervacija")
-    protected List<String> datumiRezervacija;
+	
+	protected List<Rezervacija> rezervacije;
     
     @Id
     @XmlAttribute(name = "id")
@@ -85,17 +87,7 @@ public class Soba {
      * 
      * 
      */
-    public List<String> getDatumiRezervacija() {
-        if (datumiRezervacija == null) {
-            datumiRezervacija = new ArrayList<String>();
-        }
-        return this.datumiRezervacija;
-    }
     
-    
-    public void setDatumiRezervacija(List<String> datumiRezervacija) {
-		this.datumiRezervacija = datumiRezervacija;
-	}
 
 
 
@@ -111,7 +103,15 @@ public class Soba {
         return id;
     }
 
-    /**
+    public List<Rezervacija> getRezervacije() {
+		return rezervacije;
+	}
+
+	public void setRezervacije(List<Rezervacija> rezervacije) {
+		this.rezervacije = rezervacije;
+	}
+
+	/**
      * Sets the value of the id property.
      * 
      * @param value
@@ -231,15 +231,19 @@ public class Soba {
 		// TODO Auto-generated constructor stub
 	}
 
-
-	public Soba(List<String> datumiRezervacija, String idSmestaja, Integer broj, Integer kapacitet, Integer cena) {
+	public Soba(List<com.example.agent.entities.Rezervacija> rezervacije, String id, String idSmestaja, Integer broj,
+			Integer kapacitet, Integer cena) {
 		super();
-		this.datumiRezervacija = datumiRezervacija;
+		this.rezervacije = rezervacije;
+		this.id = id;
 		this.idSmestaja = idSmestaja;
 		this.broj = broj;
 		this.kapacitet = kapacitet;
 		this.cena = cena;
 	}
+
+
+	
     
     
     
