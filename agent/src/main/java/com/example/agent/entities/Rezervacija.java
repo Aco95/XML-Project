@@ -35,6 +35,8 @@ public class Rezervacija {
     protected String idKorisnika;
     
     
+    
+	
 	public String getId() {
 		return id;
 	}
@@ -65,6 +67,8 @@ public class Rezervacija {
 	public void setIdKorisnika(String idKorisnika) {
 		this.idKorisnika = idKorisnika;
 	}
+	
+	
 	public Rezervacija(String id, XMLGregorianCalendar od, XMLGregorianCalendar _do, String idSobe,
 			String idKorisnika) {
 		super();

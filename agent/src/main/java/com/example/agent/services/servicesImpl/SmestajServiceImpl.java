@@ -1,6 +1,7 @@
 package com.example.agent.services.servicesImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,11 @@ public class SmestajServiceImpl implements SmestajService {
 	public Smestaj insertAccommodation(Smestaj s) {
 		
 		return smestajRepository.insert(s);
+	}
+
+	@Override
+	public Optional<Smestaj> getById(String id) {
+		
+		return smestajRepository.findById(id);
 	}
 }

@@ -2,6 +2,7 @@ package com.example.agent.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import java.util.List;
 
 import org.springframework.http.MediaType;
 import java.util.Random;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/smestaji")

@@ -15,6 +15,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SmestajService} from './services/smestaj.service'
 import {PorukaService} from './services/poruka.service'
 import {KorisnikService} from './services/korisnik.service'
+import {RezervacijaService} from './services/rezervacija.service'
 
 
 
@@ -31,7 +32,7 @@ import {KorisnikService} from './services/korisnik.service'
     HttpModule,
     FormsModule
   ],
-  providers: [SmestajService, PorukaService, KorisnikService],
+  providers: [SmestajService, PorukaService, KorisnikService, RezervacijaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
