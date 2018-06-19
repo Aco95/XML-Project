@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item active" *ngIf="helpStorage.getItem('user')!=null">
+      <a class="nav-link" href="/homePage">homePage
+        <span class="sr-only">(current)</span>
+      </a>
+    </li>
+  </ul>
+  <ul class="navbar-nav">
+    <li *ngIf="helpStorage.getItem('user')!=null" class="nav-item">
+      <a class="nav-link">
+        <span class="glyphicon glyphicon-log-in"></span>Loged as: {{usernameLoged()}}</a>
+    </li>
+
+    <li *ngIf="helpStorage.getItem('user')!=null" class="nav-item">
+      <a class="nav-link" href="/login" (click)='clickLogout()'>
+        <span class="glyphicon glyphicon-log-in"></span>Logout</a>
+    </li>
+    <li *ngIf="helpStorage.getItem('user')==null" class="nav-item">
+      <a class="nav-link" href="/login">
+        <span class="glyphicon glyphicon-log-in"></span>Login</a>
+    </li>
+
+  </ul>
+</nav>

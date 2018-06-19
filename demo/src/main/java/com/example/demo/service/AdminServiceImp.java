@@ -6,10 +6,13 @@ import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.AdminKorisnikDto;
+import com.example.demo.dto.AgentRegisterDto;
 import com.example.demo.entities.Korisnik;
+import com.example.demo.entities.Uloga;
 import com.example.demo.repository.AdminRepository;
 
 @Service
@@ -29,30 +32,32 @@ public class AdminServiceImp implements IAdminService {
 		return korisniciDto;
 		
 	}
-
 	@Override
-	public void blokKorisnik(int id) {
-		// TODO Auto-generated method stub
-		Optional<Korisnik> korisnik=adminRepository.findById(Integer.toString(id));
-		korisnik.get().setBlokiran(true);
+	public void promeniStatusKorisnik(String id,boolean blokiran) {
+		Optional<Korisnik> korisnik=adminRepository.findById(id);
+		korisnik.get().setBlokiran(blokiran);
 		adminRepository.save(korisnik.get());
 		return;
 	}
 
 	@Override
-	public void aktivirajKorisnik(int id) {
-		// TODO Auto-generated method stub
-		Optional<Korisnik> korisnik=adminRepository.findById(Integer.toString(id));
-		korisnik.get().setBlokiran(false);
-		adminRepository.save(korisnik.get());
+	public void obrisiKorisnik(String id) {
+		adminRepository.deleteById(id);
 		return;
 	}
 
 	@Override
-	public void obrisiKorisnik(int id) {
-		// TODO Auto-generated method stub
-		adminRepository.deleteById(Integer.toString(id));
-		return;
+	public void registrujAgenta(AgentRegisterDto agentRegisterDto) {
+		Korisnik agent=new Korisnik();
+		agent.setUloga(Uloga.AGENT);
+		agent.setAdresa(agentRegisterDto.getAdresa());
+		agent.setIme(agentRegisterDto.getIme());
+		agent.setPrezime(agentRegisterDto.getPrezime());
+		agent.setMaticniBroj(agentRegisterDto.getMaticniBroj());
+		agent.setEmail(agentRegisterDto.getEmail());
+		agent.setPassword(new BCryptPasswordEncoder().encode(agentRegisterDto.getPassword()));
+
+		adminRepository.save(agent);
 	}
 	
 	

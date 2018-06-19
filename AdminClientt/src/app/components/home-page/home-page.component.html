@@ -1,3 +1,17 @@
-<p>
-  home-page works!
-</p>
+<ngb-tabset>
+  <ngb-tab title="Manage users">
+    <ng-template ngbTabContent>
+      <app-manage-korisnik></app-manage-korisnik>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Register agent">
+    <ng-template ngbTabContent>
+      <app-register-agent></app-register-agent>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Manage comments">
+    <ng-template ngbTabContent>
+      <app-comments></app-comments>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>

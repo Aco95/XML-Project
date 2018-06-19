@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeConstants;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.RezultatPretrageDTO;
+import com.example.demo.entities.Rezervacija;
 import com.example.demo.entities.Smestaj;
 import com.example.demo.entities.Soba;
 import com.example.demo.entities.Tip;
@@ -57,7 +63,7 @@ public class SmestajController {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public RezultatPretrageDTO basicSearch(@PathVariable("place") String place,
 			@PathVariable("numberOfPersons") String numberOfPersons,
-			@PathVariable("dateFrom") String dateFrom, @PathVariable("dateTo") String dateTo) throws ParseException{
+			@PathVariable("dateFrom") String dateFrom, @PathVariable("dateTo") String dateTo) throws  DatatypeConfigurationException{
 		
 		
 		RezultatPretrageDTO rezultat = new RezultatPretrageDTO();
@@ -82,7 +88,7 @@ public class SmestajController {
 		int brojOsoba = Integer.parseInt(numberOfPersons.substring(1, numberOfPersons.length()-1));
 //		int brojOsoba = numberOfPersons;
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+//		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		
 		String splitted[] = dateFrom.substring(1, dateFrom.length()-1).split(",");
 		String godinaDolaska = splitted[0].split(":")[1];
@@ -92,7 +98,7 @@ public class SmestajController {
 		String danDolaska = splitted[2].split(":")[1];
 		if(danDolaska.length()==1)
 			danDolaska = "0" + danDolaska;
-		String datumDolaskaStr = danDolaska+"-"+mesecDolaska+"-"+godinaDolaska;
+		String datumDolaskaStr = godinaDolaska+"-"+mesecDolaska+"-"+danDolaska;
 		
 		String splitted2[] = dateTo.substring(1, dateTo.length()-1).split(",");
 		String godinaOdlaska = splitted2[0].split(":")[1];
@@ -102,11 +108,11 @@ public class SmestajController {
 		String danOdlaska = splitted2[2].split(":")[1];
 		if(danOdlaska.length()==1)
 			danOdlaska = "0" + danOdlaska;
-		String datumOdlaskaStr = danOdlaska+"-"+mesecOdlaska+"-"+godinaOdlaska;
+		String datumOdlaskaStr = godinaOdlaska+"-"+mesecOdlaska+"-"+danOdlaska;
 		
 	
-        Date datumDolaska = formatter.parse(datumDolaskaStr);
-        Date datumOdlaska = formatter.parse(datumOdlaskaStr);
+		XMLGregorianCalendar datumDolaska = DatatypeFactory.newInstance().newXMLGregorianCalendar(datumDolaskaStr);
+		XMLGregorianCalendar datumOdlaska = DatatypeFactory.newInstance().newXMLGregorianCalendar(datumOdlaskaStr);
             
        
 		List<Smestaj> trazeniSmestaji = new ArrayList<Smestaj>();
@@ -115,19 +121,17 @@ public class SmestajController {
 			for(Soba soba : smestaj.getSobe()) {
 				if(soba.getKapacitet()==brojOsoba) {
 					
-					if(soba.getDatumiRezervacija().isEmpty()) {		// soba nikada nije rezervisana do sad
+					if(soba.getRezervacije().isEmpty()) {		// soba nikada nije rezervisana do sad
 						if(!trazeniSmestaji.contains(smestaj)) {
 							trazeniSmestaji.add(smestaj);
 							continue;
 						}
 					}
 					
-					for(String datum_rezervacije : soba.getDatumiRezervacija()) {
+					for(Rezervacija rez : soba.getRezervacije()) {
 						
-						Date zauzetaOd = formatter.parse(datum_rezervacije.split(" ")[0]);
-						Date zauzetaDo = formatter.parse(datum_rezervacije.split(" ")[1]);
 						
-						if((datumDolaska.after(zauzetaOd) && datumDolaska.before(zauzetaDo)) || (datumOdlaska.after(zauzetaOd) && datumOdlaska.before(zauzetaDo))) {
+						if(isBetween(datumDolaska, rez.getOd(), rez.getDo()) || isBetween(datumOdlaska, rez.getOd(), rez.getDo())) {
 							System.out.println("soba "+soba.getBroj()+" je zauzeta tada..");
 							break;
 							
@@ -164,7 +168,7 @@ public class SmestajController {
 			@PathVariable("type") String type, @PathVariable("category") String category,
 			@PathVariable("parking") boolean parking, @PathVariable("wifi") boolean wifi,
 			@PathVariable("breakfast") boolean breakfast, @PathVariable("half_board") boolean half_board,  @PathVariable("board") boolean board, 
-			@PathVariable("TV") boolean TV, @PathVariable("kitchen") boolean kitchen, @PathVariable("bathroom") boolean bathroom) throws ParseException{
+			@PathVariable("TV") boolean TV, @PathVariable("kitchen") boolean kitchen, @PathVariable("bathroom") boolean bathroom) throws DatatypeConfigurationException {
 		
 		
 		RezultatPretrageDTO rezultat = new RezultatPretrageDTO();
@@ -194,7 +198,7 @@ public class SmestajController {
 		Tip tip = Tip.values()[t];
 		
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+//		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		
 		String splitted[] = dateFrom.substring(1, dateFrom.length()-1).split(",");
 		String godinaDolaska = splitted[0].split(":")[1];
@@ -204,7 +208,7 @@ public class SmestajController {
 		String danDolaska = splitted[2].split(":")[1];
 		if(danDolaska.length()==1)
 			danDolaska = "0" + danDolaska;
-		String datumDolaskaStr = danDolaska+"-"+mesecDolaska+"-"+godinaDolaska;
+		String datumDolaskaStr = godinaDolaska+"-"+mesecDolaska+"-"+danDolaska;
 		
 		String splitted2[] = dateTo.substring(1, dateTo.length()-1).split(",");
 		String godinaOdlaska = splitted2[0].split(":")[1];
@@ -214,11 +218,11 @@ public class SmestajController {
 		String danOdlaska = splitted2[2].split(":")[1];
 		if(danOdlaska.length()==1)
 			danOdlaska = "0" + danOdlaska;
-		String datumOdlaskaStr = danOdlaska+"-"+mesecOdlaska+"-"+godinaOdlaska;
+		String datumOdlaskaStr = godinaOdlaska+"-"+mesecOdlaska+"-"+danOdlaska;
 		
-        Date datumDolaska = formatter.parse(datumDolaskaStr);
-        Date datumOdlaska = formatter.parse(datumOdlaskaStr);
-		
+		XMLGregorianCalendar datumDolaska = DatatypeFactory.newInstance().newXMLGregorianCalendar(datumDolaskaStr);
+		XMLGregorianCalendar datumOdlaska = DatatypeFactory.newInstance().newXMLGregorianCalendar(datumOdlaskaStr);
+            
         
     	List<Smestaj> smestaji = smestajService.getSmestajbyMesto(place.substring(1, place.length()-1));
 //    	List<Smestaj> smestaji = smestajService.getSmestajbyMoreAttributes(place, kategorija, tip, parking, wifi, breakfast, half_board, board, TV, kitchen, bathroom);
@@ -229,25 +233,22 @@ public class SmestajController {
         
         for(Smestaj smestaj : smestaji) {
         	if(smestaj.getKategorija()==kategorija && smestaj.getTip()==tip && smestaj.isPansion()==parking
-        			&& smestaj.isWifi()==wifi && smestaj.isDorucak()==breakfast && smestaj.isPolupansion()==half_board
-        			&& smestaj.isPansion()==board && smestaj.isTv()==TV && smestaj.isMiniKuhinja()==kitchen && smestaj.isPrivatnoKupatilo()==bathroom) {
+        			&& smestaj.isWifi()==wifi && (smestaj.isDorucak()==breakfast || smestaj.isPolupansion()==half_board
+        			|| smestaj.isPansion()==board) && smestaj.isTv()==TV && smestaj.isMiniKuhinja()==kitchen && smestaj.isPrivatnoKupatilo()==bathroom) {
         		
 				for(Soba soba : smestaj.getSobe()) {
 					if(soba.getKapacitet()==brojOsoba) {
 						
-						if(soba.getDatumiRezervacija().isEmpty()) {		// soba nikada nije rezervisana do sad
+						if(soba.getRezervacije().isEmpty()) {		// soba nikada nije rezervisana do sad
 							if(!trazeniSmestaji.contains(smestaj)) {
 								trazeniSmestaji.add(smestaj);
 								continue;
 							}
 						}
 						
-						for(String datum_rezervacije : soba.getDatumiRezervacija()) {
+						for(Rezervacija rez : soba.getRezervacije()) {
 							
-							Date zauzetaOd = formatter.parse(datum_rezervacije.split(" ")[0]);
-							Date zauzetaDo = formatter.parse(datum_rezervacije.split(" ")[1]);
-							
-							if((datumDolaska.after(zauzetaOd) && datumDolaska.before(zauzetaDo)) || (datumOdlaska.after(zauzetaOd) && datumOdlaska.before(zauzetaDo))) {
+							if(isBetween(datumDolaska, rez.getOd(), rez.getDo()) || isBetween(datumOdlaska, rez.getOd(), rez.getDo())) {
 								System.out.println("soba "+soba.getBroj()+" je zauzeta tada..");
 								break;
 								
@@ -276,5 +277,16 @@ public class SmestajController {
 		return rezultat;
 		
 	}
+	
+	
+	
+	public static boolean isBetween(XMLGregorianCalendar date,
+	        XMLGregorianCalendar start, XMLGregorianCalendar end) {
+	    return (date.compare(start) == DatatypeConstants.GREATER || date
+	            .compare(start) == DatatypeConstants.EQUAL)
+	            && (date.compare(end) == DatatypeConstants.LESSER || date
+	                    .compare(end) == DatatypeConstants.EQUAL);
+	}
+	
 
 }

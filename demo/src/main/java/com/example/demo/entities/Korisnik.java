@@ -49,6 +49,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Korisnik {
 
 	@Id
+	
     @XmlAttribute(name = "id")
     protected String id;
     @XmlAttribute(name = "ime")
@@ -67,8 +68,19 @@ public class Korisnik {
     protected String adresa;
     @XmlAttribute(name = "blokiran")
     protected boolean blokiran;
+    @XmlAttribute(name = "email")
+    protected String email;
 
-    public boolean isBlokiran() {
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public boolean isBlokiran() {
 		return blokiran;
 	}
 
@@ -273,9 +285,10 @@ public class Korisnik {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Korisnik(String ime, String prezime, Uloga uloga, String username, String password, String maticniBroj,
+	public Korisnik(String id, String ime, String prezime, Uloga uloga, String username, String password, String maticniBroj,
 			String adresa) {
 		super();
+		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.uloga = uloga;
