@@ -2,6 +2,7 @@ package com.example.agent.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.agent.services.SmestajService;
 import com.example.agent.dtos.SmestajDTO;
+import com.example.agent.entities.Rezervacija;
 import com.example.agent.entities.Smestaj;
 import com.example.agent.entities.Soba;
 
@@ -19,6 +21,7 @@ import java.util.List;
 
 import org.springframework.http.MediaType;
 import java.util.Random;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/smestaji")
@@ -56,7 +59,7 @@ public class SmestajController {
 			Soba soba = new Soba();
 			soba.setId(rn.nextInt(999999) + 100000 + "");
 			soba.setIdSmestaja(sDTO.getId());
-			soba.setDatumiRezervacija(new ArrayList<String>());
+			soba.setRezervacije(new ArrayList<Rezervacija>());
 			soba.setBroj(i + 1);
 			
 			if (i < sDTO.getBrJednokrevetnih()) {

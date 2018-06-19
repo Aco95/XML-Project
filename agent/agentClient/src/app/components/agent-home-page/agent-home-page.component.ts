@@ -8,6 +8,8 @@ import {PorukaService} from '../../services/poruka.service';
 
 import {KorisnikService} from '../../services/korisnik.service';
 
+import {RezervacijaService} from '../../services/rezervacija.service';
+
 @Component({
   selector: 'app-agent-home-page',
   templateUrl: './agent-home-page.component.html',
@@ -22,6 +24,8 @@ export class AgentHomePageComponent implements OnInit {
   inboxSent : string[];
   msgPanels : boolean[];
   clients : any[];
+  reservations : any[];
+  reservationsEarnings : any[] = [];
 
   accommodationName : string;
   accommodationAddress : string;
@@ -52,7 +56,9 @@ export class AgentHomePageComponent implements OnInit {
   messageContent : string;
   messageRecipient : string;
 
-  constructor(private smestajService : SmestajService, private porukaService : PorukaService, private korisnikService : KorisnikService, config: NgbRatingConfig) { config.max = 5;}
+  constructor(private smestajService : SmestajService, private porukaService : PorukaService, 
+              private rezervacijaService : RezervacijaService, private korisnikService : KorisnikService, 
+              config: NgbRatingConfig) { config.max = 5;}
 
   ngOnInit() { 
 
@@ -66,6 +72,8 @@ export class AgentHomePageComponent implements OnInit {
     this.getInbox();
     this.getSent();
     this.getClients();
+    this.getReservations();
+
 
     
     
@@ -246,5 +254,22 @@ export class AgentHomePageComponent implements OnInit {
     this.messageContent = this.sent[index].sadrzaj;
   }
 
+  getReservations() {
+
+
+    this.rezervacijaService.getRezervacije().subscribe(data=> { this.reservations = data; this.calculateEarningsOfReservations(data); console.log(data)});
+
+  }
+
+  calculateEarningsOfReservations(reservations : any) {
+
+        for (let reservation of reservations) {
+      
+          var diff = Math.abs(new Date(reservation._do).getTime()- new Date(reservation.od).getTime());
+          let days = Math.ceil(diff / (1000 * 3600 * 24)); 
+          let earning = days * reservation.soba.cena;
+          this.reservationsEarnings.push(earning);
+        }
+  }
 
 }
