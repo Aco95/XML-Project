@@ -12,18 +12,17 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class SmestajService {
+export class PorukaService {
 
   constructor(private http: Http) { }
 
-
-  getSmestaji(){
+  getInbox(){
 
 
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    return this.http.get("http://localhost:8081/smestaji/getAll").map(data => data.json())
+    return this.http.get("http://localhost:8081/poruke/getPrimljenePoruke").map(data => data.json())
 
     .catch((err:HttpErrorResponse) =>
     {
@@ -33,12 +32,30 @@ export class SmestajService {
   
   }
 
-  insertAccommodation(accommodation : any) {
+  getSent(){
+
 
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:8081/smestaji/insert', 
-      JSON.stringify(accommodation), { headers : headers }).map((data : Response) => data.json());
+
+    return this.http.get("http://localhost:8081/poruke/getPoslatePoruke").map(data => data.json())
+
+    .catch((err:HttpErrorResponse) =>
+    {
+        alert(err.status + " " + err.error.error + " \n" + err.error.message);
+        return Observable.throw(err);
+    });
+  
+  }
+
+  send(message : any) {
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:8081/poruke/send', 
+      JSON.stringify(message), { headers : headers }).map((data : Response) => data.json());
   }
 
 }
+
+

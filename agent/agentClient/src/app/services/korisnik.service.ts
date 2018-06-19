@@ -12,18 +12,17 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class SmestajService {
+export class KorisnikService {
 
   constructor(private http: Http) { }
 
-
-  getSmestaji(){
+  getKorisnici(){
 
 
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    return this.http.get("http://localhost:8081/smestaji/getAll").map(data => data.json())
+    return this.http.get("http://localhost:8081/korisnici/getAll").map(data => data.json())
 
     .catch((err:HttpErrorResponse) =>
     {
@@ -31,14 +30,6 @@ export class SmestajService {
         return Observable.throw(err);
     });
   
-  }
-
-  insertAccommodation(accommodation : any) {
-
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:8081/smestaji/insert', 
-      JSON.stringify(accommodation), { headers : headers }).map((data : Response) => data.json());
   }
 
 }
