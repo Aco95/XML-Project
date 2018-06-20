@@ -13,11 +13,15 @@ export class SmestajService {
   
   constructor(private http: HttpClient) { }
   
-  public editSmestaj() {
-  
+  public deleteSmestaj(smestaj: Smestaj){
+    return this.http.delete<Smestaj>(this.serviceUrl + '/deleteSmestaj/' + smestaj.id);
   }
   
-  public getAllSmestaj(){
+  public editSmestaj(smestaj: Smestaj) {    
+    return this.http.put<Smestaj>(this.serviceUrl + '/editSmestaj', smestaj);
+  }
+  
+  public getAllSmestaj() {
     return this.http.get<Smestaj[]>(this.serviceUrl + '/getAll');
   }
   
@@ -25,4 +29,5 @@ export class SmestajService {
     let id = localStorage.getItem('activeEdit');
     return this.http.get<Smestaj>(this.serviceUrl + '/getActiveEdit/' + id);
   }
+  
 }
