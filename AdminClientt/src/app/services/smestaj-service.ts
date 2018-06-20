@@ -13,6 +13,10 @@ export class SmestajService {
   
   constructor(private http: HttpClient) { }
   
+  public deleteSmestaj(smestaj: Smestaj){
+    return this.http.delete<Smestaj>(this.serviceUrl + '/deleteSmestaj/' + smestaj.id);
+  }
+  
   public editSmestaj(smestaj: Smestaj) {    
     return this.http.put<Smestaj>(this.serviceUrl + '/editSmestaj', smestaj);
   }

@@ -19,5 +19,7 @@ public interface ISmestajService {
 	
 	Smestaj saveEditedSmestaj(Smestaj s);
 	
+	void deleteSmestaj (Smestaj s);
+	
 
 }

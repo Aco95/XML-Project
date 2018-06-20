@@ -102,5 +102,14 @@ public class KomentarController {
 		return edited;
 	}
 	
+	@RequestMapping(
+			value = "/deleteSmestaj/{id}",
+			method = RequestMethod.DELETE)
+	public List<Smestaj> deleteSmestaj(@PathVariable("id") String id ){		
+		
+		smestajService.deleteSmestaj(smestajService.getSmestajById(id).get());		
+		return smestajService.getAll();		
+	}
+	
 	
 }

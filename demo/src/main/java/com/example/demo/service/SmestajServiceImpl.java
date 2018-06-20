@@ -52,4 +52,9 @@ public class SmestajServiceImpl implements ISmestajService{
 		return smestajRepository.save(s);
 	}
 
+	@Override
+	public void deleteSmestaj(Smestaj s) {
+		smestajRepository.delete(s);
+	}
+
 }
