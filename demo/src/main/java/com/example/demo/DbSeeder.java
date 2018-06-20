@@ -90,7 +90,6 @@ public class DbSeeder implements CommandLineRunner{
 		k4.setPrezime("Boskovic");
 		k4.setUsername("bb");
 		k4.setMaticniBroj("1234567890123");
-		k4.setPassword("bolebena");
 		k4.setEmail("bole@email");
 		k4.setPassword("$2a$10$wws6XE7uyO2I23B355XXlOBnV/fSgU2GANadnkxAF3uWQ.7lYqMHS");
 		k4.setUloga(Uloga.USER);
