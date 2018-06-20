@@ -17,7 +17,7 @@ public interface ISmestajService {
 	List<Smestaj> getSmestajbyMoreAttributes(String mesto, Integer kategorija, Tip tip, Boolean parking,
 			Boolean wifi, Boolean dorucak, Boolean polupansion, Boolean pansion, Boolean tv, Boolean miniKuhinja, Boolean privatnoKupatilo);
 	
-	
+	Smestaj saveEditedSmestaj(Smestaj s);
 	
 
 }

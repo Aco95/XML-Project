@@ -47,4 +47,9 @@ public class SmestajServiceImpl implements ISmestajService{
 		return smestajRepository.findByMoreAttributes(mesto, kategorija, tip, parking, wifi, dorucak, polupansion, pansion, tv, miniKuhinja, privatnoKupatilo);
 	}
 
+	@Override
+	public Smestaj saveEditedSmestaj(Smestaj s) {		
+		return smestajRepository.save(s);
+	}
+
 }

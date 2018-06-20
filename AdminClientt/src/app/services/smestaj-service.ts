@@ -13,11 +13,11 @@ export class SmestajService {
   
   constructor(private http: HttpClient) { }
   
-  public editSmestaj() {
-  
+  public editSmestaj(smestaj: Smestaj) {    
+    return this.http.put<Smestaj>(this.serviceUrl + '/editSmestaj', smestaj);
   }
   
-  public getAllSmestaj(){
+  public getAllSmestaj() {
     return this.http.get<Smestaj[]>(this.serviceUrl + '/getAll');
   }
   
@@ -25,4 +25,5 @@ export class SmestajService {
     let id = localStorage.getItem('activeEdit');
     return this.http.get<Smestaj>(this.serviceUrl + '/getActiveEdit/' + id);
   }
+  
 }
