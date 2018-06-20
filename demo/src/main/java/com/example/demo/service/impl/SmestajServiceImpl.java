@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entities.Smestaj;
 import com.example.demo.entities.Tip;
 import com.example.demo.repository.SmestajRepository;
+import com.example.demo.service.ISmestajService;
 
 @Service
 public class SmestajServiceImpl implements ISmestajService{

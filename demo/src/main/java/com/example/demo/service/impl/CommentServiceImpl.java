@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Komentar;
 import com.example.demo.repository.KomentarRepository;
+import com.example.demo.service.CommentService;
 
 @Service
 public class CommentServiceImpl implements CommentService{
