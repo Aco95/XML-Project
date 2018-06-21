@@ -20,4 +20,16 @@ public class RezervacijaServiceImpl implements RezervacijaService {
 		
 		return rezervacijaRepository.findAll();
 	}
+
+	@Override
+	public Rezervacija update(Rezervacija r) {
+		
+		return rezervacijaRepository.save(r);
+	}
+
+	@Override
+	public Rezervacija insertRezervacija(Rezervacija r) {
+		
+		return rezervacijaRepository.insert(r);
+	}
 }

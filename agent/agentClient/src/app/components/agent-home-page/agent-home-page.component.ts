@@ -10,6 +10,11 @@ import {KorisnikService} from '../../services/korisnik.service';
 
 import {RezervacijaService} from '../../services/rezervacija.service';
 
+import {SobaService} from '../../services/soba.service';
+
+import {debounceTime} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+
 @Component({
   selector: 'app-agent-home-page',
   templateUrl: './agent-home-page.component.html',
@@ -26,6 +31,8 @@ export class AgentHomePageComponent implements OnInit {
   clients : any[];
   reservations : any[];
   reservationsEarnings : any[] = [];
+  showSuccessNotification : boolean;
+  showErrorNotification : boolean;
 
   accommodationName : string;
   accommodationAddress : string;
@@ -51,14 +58,29 @@ export class AgentHomePageComponent implements OnInit {
   sent : any[] = [];
   unread : number;
   clickedIndex : number;
+  roomNo : number;
 
   messageSubject : string;
   messageContent : string;
   messageRecipient : string;
 
+  dateFrom : any;
+  dateTo: any;
+
+  minDateFrom : any;
+  minDateTo : any;
+
+  staticAlertClosed : boolean = false;
+
   constructor(private smestajService : SmestajService, private porukaService : PorukaService, 
-              private rezervacijaService : RezervacijaService, private korisnikService : KorisnikService, 
-              config: NgbRatingConfig) { config.max = 5;}
+              private rezervacijaService : RezervacijaService, private korisnikService : KorisnikService,
+              private sobaService : SobaService, config: NgbRatingConfig) { 
+                
+                
+                config.max = 5;
+              
+                
+              }
 
   ngOnInit() { 
 
@@ -67,6 +89,11 @@ export class AgentHomePageComponent implements OnInit {
     this.inboxSent = ["nav-link active", "nav-link", "nav-link"];
     this.msgPanels = [true, false, false, false];
     this.unread = 0;
+    this.roomNo = 0;
+    this.showSuccessNotification = false;
+    this.showErrorNotification = false;
+    this.minDateFrom = {year: 0, month: 0, day: 0};
+    this.minDateTo = {year: 0, month: 0, day: 0};
     this.getAccomodations();
     this.accommodationType = "HOTEL";
     this.getInbox();
@@ -74,8 +101,7 @@ export class AgentHomePageComponent implements OnInit {
     this.getClients();
     this.getReservations();
 
-
-    
+  
     
   }
 
@@ -114,11 +140,20 @@ export class AgentHomePageComponent implements OnInit {
     this.msgPanels[index] = true;
   }
 
-
   getAccomodations() {
 
 
-    this.smestajService.getSmestaji().subscribe(data=> { this.accommodations = data; console.log(data)});
+    this.smestajService.getSmestaji().subscribe(data=> { 
+      
+      this.accommodations = data;
+      console.log(data);
+      
+      var today = new Date();
+      this.minDateFrom.year = today.getFullYear();
+      this.minDateFrom.month = today.getMonth() + 1;
+      this.minDateFrom.day = today.getDate();
+      
+    });
 
   }
 
@@ -270,6 +305,92 @@ export class AgentHomePageComponent implements OnInit {
           let earning = days * reservation.soba.cena;
           this.reservationsEarnings.push(earning);
         }
+  }
+
+  markAsRealized(index : number) {
+
+    this.reservations[index].realizacija = "REALIZED";
+
+    this.rezervacijaService.changeRealization(this.reservations[index]).subscribe(data => {
+        
+    });
+
+  }
+
+  markAsUnrealized(index : number) {
+
+    this.reservations[index].realizacija = "UNREALIZED";
+
+    this.rezervacijaService.changeRealization(this.reservations[index]).subscribe(data => {
+        
+    });
+  }
+
+  setNewSchedule(accommodation : any) {
+    
+    
+
+    if (this.dateFrom.month < 10) {
+
+      this.dateFrom.month = "0" + this.dateFrom.month;
+    }
+
+    if (this.dateTo.month < 10) {
+
+      this.dateTo.month = "0" + this.dateTo.month;
+    }
+
+    if (this.dateFrom.day < 10) {
+
+      this.dateFrom.day = "0" + this.dateFrom.day;
+    }
+
+    if (this.dateTo.day < 10) {
+
+      this.dateTo.day = "0" + this.dateTo.day;
+    }
+    
+    
+    let roomForChanging : any;
+    let fromConverted = this.dateFrom.year + "-" + this.dateFrom.month + "-" + this.dateFrom.day;
+    let toConverted = this.dateTo.year + "-" + this.dateTo.month + "-" + this.dateTo.day;
+
+    for (let room of accommodation.sobe) {
+      
+      if (room.broj == this.roomNo) {
+
+        roomForChanging = room;
+        break;
+
+      }
+    }
+    this.sobaService.changeSchedule({soba : roomForChanging, from : fromConverted, to : toConverted}).subscribe(data => {
+        
+      
+      this.getAccomodations();
+
+      if (data) {
+
+        this.showSuccessNotification = true;
+        this.showErrorNotification = false;
+
+        setTimeout(() => this.showSuccessNotification = false, 5000);
+
+      } else {
+
+        this.showErrorNotification = true;
+        this.showSuccessNotification = false;
+
+        setTimeout(() => this.showErrorNotification = false, 5000);
+      }
+    });
+
+  }
+
+  setMinDateTo() {
+
+    this.minDateTo = this.dateFrom;
+
   }
 
 }

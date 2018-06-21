@@ -33,4 +33,10 @@ public class SmestajServiceImpl implements SmestajService {
 		
 		return smestajRepository.findById(id);
 	}
+
+	@Override
+	public Smestaj update(Smestaj s) {
+		
+		return smestajRepository.save(s);
+	}
 }
