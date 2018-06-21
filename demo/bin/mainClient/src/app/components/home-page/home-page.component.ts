@@ -5,6 +5,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { SearchService } from "../../services/search.service";
 
+import { AuthServiceService} from '../../services/auth-service.service';
+
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -34,10 +36,13 @@ export class HomePageComponent implements OnInit {
   private bathroom : any;
 
   private isOpenAdvancedSearch : boolean;
-  public isOpenRezervacije : boolean;
+  private isOpenRezervacije : boolean;
+
+  private loggedInUser : any;
+  // private isLoggedIn = true;          
 
 
-  constructor(private router : Router, private searchService : SearchService ) { }
+  constructor(private router : Router, private searchService : SearchService, private authService : AuthServiceService) { }
 
   ngOnInit() {
 
@@ -58,6 +63,8 @@ export class HomePageComponent implements OnInit {
 
     this.isOpenAdvancedSearch = false;
     this.isOpenRezervacije = false;
+
+    this.loggedInUser = this.authService.getUser();
 
   }
 
@@ -98,9 +105,10 @@ export class HomePageComponent implements OnInit {
       this.searchService.basicSearch(this.place, this.numberOfPersons, this.dateFrom, this.dateTo)
       .subscribe(data => {
 
-          if(data.greska)
+          if(data.greska){
             alert("Please fill in all fields");
-
+            this.router.navigateByUrl('/homeSearch');
+          }
           else {
             this.accommodationArray = data.trazeniSmestaji;
             console.log(this.accommodationArray);
@@ -116,9 +124,10 @@ export class HomePageComponent implements OnInit {
       this.board, this.TV, this.kitchen, this.bathroom)
       .subscribe(data => { 
 
-          if(data.greska)
+          if(data.greska){
             alert("Please fill in all fields");
-
+            this.router.navigateByUrl('/homeSearch');
+          }
           else {
             this.accommodationArray = data.trazeniSmestaji;
             console.log(this.accommodationArray);
@@ -128,6 +137,28 @@ export class HomePageComponent implements OnInit {
       );
 
     }
+  }
+
+
+  onClickReserveAccommodation(Accommodation:any) : void {
+
+    this.searchService.makeReservation({accommodation:Accommodation, numberOfPersons:this.numberOfPersons, dateFrom:this.dateFrom, dateTo:this.dateTo});
+
+    if(this.loggedInUser != null) {
+      this.searchService.reservation.subscribe(
+        reservation => 
+        {
+        console.log("Reservation: " +  reservation);
+        }
+      );
+
+      this.router.navigateByUrl('/reserveAccommodation');
+    }
+
+    else {
+      this.router.navigateByUrl('/login');
+    }
+
   }
 
 }

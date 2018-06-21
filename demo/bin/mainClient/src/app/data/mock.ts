@@ -7,15 +7,15 @@ import { Rezervacija } from '../model/Rezervacija';
 export const KORISNICI: Korisnik[] = [
     {
         id: '1', ime:'Boban', prezime:'Poznanovic', adresa:'Slobodana Bajica 1/28', maticniBroj:'1234',
-        uloga: Uloga.ADMIN, username:'boban', password:'boban', blokiran:false
+        uloga: Uloga.ADMIN, username:'boban', password:'boban', blokiran:false, email:''
     },
     {
         id: '2', ime:'Aco', prezime:'Aco', adresa:'Temerinska 1', maticniBroj:'4321',
-        uloga: Uloga.AGENT, username:'acoaco', password:'acoaco', blokiran:false
+        uloga: Uloga.AGENT, username:'acoaco', password:'acoaco', blokiran:false, email:''
     },
     {
         id: '3', ime:'ogi', prezime:'og', adresa:'Slobodana Bajica 1/28', maticniBroj:'12345678',
-        uloga: Uloga.USER, username:'ogiogi', password:'ogiog', blokiran:false
+        uloga: Uloga.USER, username:'ogiogi', password:'ogiog', blokiran:false, email:''
     }
 
 ]

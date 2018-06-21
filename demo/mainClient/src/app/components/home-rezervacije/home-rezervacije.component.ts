@@ -23,4 +23,8 @@ export class HomeRezervacijeComponent implements OnInit {
     .subscribe(rezervacije => this.rezervacije = rezervacije);
   }
 
+  test() {
+    this.rezervacijeService.test();
+  }
+
 }
