@@ -87,10 +87,10 @@ public class SobaController {
 		
 		List<Soba> slobodneSobe = new ArrayList<Soba>();
 		
-		for(Soba soba : smestaj.getSobe()) {
+		for(Soba soba : smestaj.getSoba()) {
 			if(soba.getKapacitet()==brojOsoba) {
 				
-				if(soba.getRezervacije().isEmpty()) {		// soba nikada nije rezervisana do sad
+				if(soba.getRezervacija().isEmpty()) {		// soba nikada nije rezervisana do sad
 					if(!slobodneSobe.contains(soba)) {
 						slobodneSobe.add(soba);
 						continue;
@@ -98,7 +98,7 @@ public class SobaController {
 				}
 				
 				boolean slobodna = true;
-				for(Rezervacija rez : soba.getRezervacije()) {
+				for(Rezervacija rez : soba.getRezervacija()) {
 					
 					if(isBetween(datumDolaska, rez.getOd(), rez.getDo()) || isBetween(datumOdlaska, rez.getOd(), rez.getDo())) {
 						System.out.println("soba "+soba.getBroj()+" je zauzeta tada..");

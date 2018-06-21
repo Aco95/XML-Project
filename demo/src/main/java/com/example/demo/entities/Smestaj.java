@@ -70,7 +70,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection="Smestaji")
 public class Smestaj {
 
-    protected List<Soba> sobe;
+    protected List<Soba> soba;
     @XmlElement(name = "slike_url")
     protected List<String> slikeUrl;
     
@@ -132,17 +132,17 @@ public class Smestaj {
      */
  
 
-    public List<Soba> getSobe() {
-    	 if (sobe == null) {
-             sobe = new ArrayList<Soba>();
+    public List<Soba> getSoba() {
+    	 if (soba == null) {
+             soba = new ArrayList<Soba>();
          }
-         return this.sobe;
+         return this.soba;
 	}
 
 
 
-	public void setSobe(List<Soba> sobe) {
-		this.sobe = sobe;
+	public void setSoba(List<Soba> sobe) {
+		this.soba = sobe;
 	}
 
 
@@ -581,7 +581,7 @@ public class Smestaj {
 			Integer kategorija, Tip tip, Boolean parking, Boolean wifi, Boolean dorucak, Boolean polupansion,
 			Boolean pansion, Boolean tv, Boolean miniKuhinja, Boolean privatnoKupatilo, double ocena, String opis) {
 		super();
-		this.sobe = sobe;
+		this.soba = sobe;
 		this.slikeUrl = slikeUrl;
 		this.naziv = naziv;
 		this.adresa = adresa;

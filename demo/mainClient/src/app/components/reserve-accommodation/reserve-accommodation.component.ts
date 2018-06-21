@@ -121,12 +121,12 @@ export class ReserveAccommodationComponent implements OnInit {
 
   confirmReservation(){
 
-    this.rezervacijeService.addReservation({room_id: this.reservation.accommodation.id, dateFrom : this.modifiedDateFrom, dateTo : this.modifiedDateTo, user_id : "4"})
+    this.rezervacijeService.addReservation({room_id: this.reservation.accommodation.id, dateFrom : this.modifiedDateFrom, dateTo : this.modifiedDateTo, user_id : this.loggedInUser.id})
     .subscribe(data =>
       {
         if(data){
           alert("You have successfully made a reservation!");
-          this.router.navigateByUrl('/homeSearch');       // ovde ce trebati posle da ga redirektuje na UserProfilePage
+          this.router.navigateByUrl('/rezervacije');       
         }
         else {
           alert("An error has occurred.");

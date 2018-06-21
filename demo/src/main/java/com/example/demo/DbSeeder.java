@@ -9,6 +9,7 @@ import javax.xml.datatype.DatatypeFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.entities.Korisnik;
 import com.example.demo.entities.Smestaj;
@@ -42,7 +43,14 @@ public class DbSeeder implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		
+
+		/*final String uri = "http://localhost:8010/cloud-demo/us-central1/helloHttp?name=jovica";
+
+	    RestTemplate restTemplate = new RestTemplate();
+	    String result = restTemplate.getForObject(uri, String.class);
+	    System.out.println("***********************http request***************");
+	    System.out.println(result);
+	    */
 		Korisnik k1 = new Korisnik();
 		k1.setId("1");
 		k1.setAdresa("Milovan Jelica 32");
@@ -65,7 +73,7 @@ public class DbSeeder implements CommandLineRunner{
 		k2.setUsername("pp");
 		k2.setMaticniBroj("1234567890123");
 		k2.setPassword("test1234");
-		k2.setEmail("email@email");
+		k2.setEmail("jo@jo");
 		k2.setPassword("$2a$10$wws6XE7uyO2I23B355XXlOBnV/fSgU2GANadnkxAF3uWQ.7lYqMHS");
 		k2.setUloga(Uloga.AGENT);
 		k2.setBlokiran(true);
@@ -78,10 +86,14 @@ public class DbSeeder implements CommandLineRunner{
 		k3.setUsername("nn");
 		k3.setMaticniBroj("1234567890123");
 		k3.setPassword("test1234");
-		k3.setEmail("email@email");
+		k3.setEmail("ko@ko");
 		k3.setPassword("$2a$10$wws6XE7uyO2I23B355XXlOBnV/fSgU2GANadnkxAF3uWQ.7lYqMHS");
 		k3.setUloga(Uloga.USER);
-		k3.setRezervacije(new ArrayList<Rezervacija>());
+
+		k3.setRezervacija(new ArrayList<Rezervacija>());
+
+		//k3.setRezervacije(new ArrayList<Rezervacija>());
+
 		
 		Korisnik k4 = new Korisnik();
 		k4.setId("4");
@@ -93,7 +105,11 @@ public class DbSeeder implements CommandLineRunner{
 		k4.setEmail("bole@email");
 		k4.setPassword("$2a$10$wws6XE7uyO2I23B355XXlOBnV/fSgU2GANadnkxAF3uWQ.7lYqMHS");
 		k4.setUloga(Uloga.USER);
-		k4.setRezervacije(new ArrayList<Rezervacija>());
+
+		k4.setRezervacija(new ArrayList<Rezervacija>());
+
+		//k4.setRezervacije(new ArrayList<Rezervacija>());
+
 		
 		
 		// -------------------------- sobe za Hotel Park --------------------------------//
@@ -101,7 +117,7 @@ public class DbSeeder implements CommandLineRunner{
 		s1.setId("1");
 		s1.setBroj(1);
 		s1.setKapacitet(1); 	// jednokrevetna
-		s1.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
+		s1.setRezervacija(new ArrayList<Rezervacija>());		// bez rezervacija
 		s1.setIdSmestaja("1");
 		s1.setCena(100);
 		
@@ -117,7 +133,11 @@ public class DbSeeder implements CommandLineRunner{
 		rez51.setOd(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-07-04"));
 		rez51.setDo(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-07-12"));
 		rez51.setidKorisnika("3");
-		k3.getRezervacije().add(rez51);
+
+		k3.getRezervacija().add(rez51);
+
+		//k3.getRezervacije().add(rez51);
+
 		rezervacijeZaSobu5.add(rez51);
 		Rezervacija rez52 = new Rezervacija();
 		rez52.setId("2");
@@ -125,18 +145,22 @@ public class DbSeeder implements CommandLineRunner{
 		rez52.setOd(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-08-10"));
 		rez52.setDo(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-08-20"));
 		rez52.setidKorisnika("4");
-		k4.getRezervacije().add(rez52);
+
+		k4.getRezervacija().add(rez52);
+
+		//k4.getRezervacije().add(rez52);
+
 		rezervacijeZaSobu5.add(rez52);
 		
 		
-		s5.setRezervacije(rezervacijeZaSobu5);
+		s5.setRezervacija(rezervacijeZaSobu5);
 		s5.setIdSmestaja("1");
 		
 		Soba s6 = new Soba();
 		s6.setId("6");
 		s6.setBroj(6);
 		s6.setKapacitet(3); 	// trokrevetna
-		s6.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
+		s6.setRezervacija(new ArrayList<Rezervacija>());		// bez rezervacija
 		s6.setIdSmestaja("1");
 		s6.setCena(300);
 		
@@ -144,7 +168,7 @@ public class DbSeeder implements CommandLineRunner{
 		s13.setId("13");
 		s13.setBroj(13);
 		s13.setKapacitet(3); 	// trokrevetna
-		s13.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
+		s13.setRezervacija(new ArrayList<Rezervacija>());		// bez rezervacija
 		s13.setIdSmestaja("1");
 		s13.setCena(350);
 		
@@ -152,7 +176,7 @@ public class DbSeeder implements CommandLineRunner{
 		s7.setId("7");
 		s7.setBroj(7);
 		s7.setKapacitet(4); 	// cetvorokrevetna
-		s7.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
+		s7.setRezervacija(new ArrayList<Rezervacija>());		// bez rezervacija
 		s7.setIdSmestaja("1");	
 		s7.setCena(400);
 		// -----------------------------------------------------------------------//
@@ -163,7 +187,7 @@ public class DbSeeder implements CommandLineRunner{
 		s3.setId("3");
 		s3.setBroj(3);
 		s3.setKapacitet(3); 	// trokrevetna
-		s3.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
+		s3.setRezervacija(new ArrayList<Rezervacija>());		// bez rezervacija
 		s3.setIdSmestaja("2");
 		s3.setCena(300);
 		
@@ -171,7 +195,7 @@ public class DbSeeder implements CommandLineRunner{
 		s4.setId("4");
 		s4.setBroj(4);
 		s4.setKapacitet(4); 	// cetvorokrevetna
-		s4.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
+		s4.setRezervacija(new ArrayList<Rezervacija>());		// bez rezervacija
 		s4.setIdSmestaja("2");
 		s4.setCena(400);
 		
@@ -179,7 +203,7 @@ public class DbSeeder implements CommandLineRunner{
 		s8.setId("8");
 		s8.setBroj(8);
 		s8.setKapacitet(1); 	// jednokrevetna
-		s8.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
+		s8.setRezervacija(new ArrayList<Rezervacija>());		// bez rezervacija
 		s8.setIdSmestaja("2");
 		s8.setCena(100);
 		
@@ -187,7 +211,7 @@ public class DbSeeder implements CommandLineRunner{
 		s9.setId("8");
 		s9.setBroj(8);
 		s9.setKapacitet(2); 	// dvokrevetna
-		s9.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
+		s9.setRezervacija(new ArrayList<Rezervacija>());		// bez rezervacija
 		s9.setIdSmestaja("2");
 		s9.setCena(200);
 		// ---------------------------------------------------------------------------------//
@@ -198,7 +222,7 @@ public class DbSeeder implements CommandLineRunner{
 		s2.setId("2");
 		s2.setBroj(2);
 		s2.setKapacitet(1); 	// jednokrevetna
-		s2.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
+		s2.setRezervacija(new ArrayList<Rezervacija>());		// bez rezervacija
 		s2.setIdSmestaja("3");
 		s2.setCena(100);
 		
@@ -206,7 +230,7 @@ public class DbSeeder implements CommandLineRunner{
 		s10.setId("10");
 		s10.setBroj(10);
 		s10.setKapacitet(2); 	// dvokrevetna
-		s10.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
+		s10.setRezervacija(new ArrayList<Rezervacija>());		// bez rezervacija
 		s10.setIdSmestaja("3");
 		s10.setCena(200);
 		
@@ -214,7 +238,7 @@ public class DbSeeder implements CommandLineRunner{
 		s11.setId("11");
 		s11.setBroj(11);
 		s11.setKapacitet(3); 	// trokrevetna
-		s11.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
+		s11.setRezervacija(new ArrayList<Rezervacija>());		// bez rezervacija
 		s11.setIdSmestaja("3");
 		s11.setCena(300);
 		
@@ -222,7 +246,7 @@ public class DbSeeder implements CommandLineRunner{
 		s12.setId("12");
 		s12.setBroj(12);
 		s12.setKapacitet(4); 	// cetvorokrevetna
-		s12.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
+		s12.setRezervacija(new ArrayList<Rezervacija>());		// bez rezervacija
 		s12.setIdSmestaja("3");
 		s12.setCena(400);
 		// -----------------------------------------------------------------------------------//
@@ -253,7 +277,7 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj1.setTip(Tip.HOTEL);
 		smestaj1.setOcena(8.7);
 		smestaj1.setOpis("Najbolji hotel u gradu...");
-		smestaj1.setSobe(sobe1);
+		smestaj1.setSoba(sobe1);
 		List<String> slikeSmestaj1 = new ArrayList<String>();
 		String sl1 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "hotelPark2.jpg";
 		String sl2 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "hotelParkEnterijer.jpg";
@@ -286,7 +310,7 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj2.setTip(Tip.APARTMAN);
 		smestaj2.setOcena(9.1);
 		smestaj2.setOpis("Najbolji apartmani u Smederevu i sire...");
-		smestaj2.setSobe(sobe2);
+		smestaj2.setSoba(sobe2);
 		List<String> slikeSmestaj2 = new ArrayList();
 		String sl21 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "apartmaniJancic.jpg";
 		String sl22 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "jancicDnevna.jpg";
@@ -313,7 +337,7 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj3.setTip(Tip.HOTEL);
 		smestaj3.setOcena(8.8);
 		smestaj3.setOpis("Eksluzivan hotel sa limana..");
-		smestaj3.setSobe(sobe3);
+		smestaj3.setSoba(sobe3);
 		List<String> slikeSmestaj3 = new ArrayList();
 		String sl31 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "HotelAleksandar1.jpg";
 		String sl32 = ".." + "/" + ".." + "/" + ".." + "/" + "assets" + "/" + "images" + "/" + "HotelAleksandar2.jpg";

@@ -53,7 +53,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection="Sobe")
 public class Soba {
 
-	protected List<Rezervacija> rezervacije;
+	protected List<Rezervacija> rezervacija;
     
     @Id
     @XmlAttribute(name = "id")
@@ -67,38 +67,18 @@ public class Soba {
     @XmlAttribute(name = "cena")
     protected Integer cena;
 
-    /**
-     * Gets the value of the datumiRezervacija property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the datumiRezervacija property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getDatumiRezervacija().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link String }
-     * 
-     * 
-     */
-    public List<Rezervacija> getRezervacije() {
-        if (rezervacije == null) {
-        	rezervacije = new ArrayList<Rezervacija>();
+
+    
+    public List<Rezervacija> getRezervacija() {
+        if (rezervacija == null) {
+        	rezervacija = new ArrayList<Rezervacija>();
         }
-        return this.rezervacije;
+        return this.rezervacija;
     }
     
     
-    public void setRezervacije(List<Rezervacija> rezervacije) {
-		this.rezervacije = rezervacije;
+    public void setRezervacija(List<Rezervacija> rezervacija) {
+		this.rezervacija = rezervacija;
 	}
 
 
@@ -238,7 +218,7 @@ public class Soba {
 
 	public Soba(List<Rezervacija> rezervacije, String idSmestaja, Integer broj, Integer kapacitet, Integer cena) {
 		super();
-		this.rezervacije = rezervacije;
+		this.rezervacija = rezervacije;
 		this.idSmestaja = idSmestaja;
 		this.broj = broj;
 		this.kapacitet = kapacitet;

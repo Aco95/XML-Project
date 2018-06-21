@@ -46,14 +46,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "rezervacije"
+    "rezervacija"
 })
 @XmlRootElement(name = "korisnik")
 @Document(collection="Korisnici")
 public class Korisnik {
 
 	
-	protected List<Rezervacija> rezervacije;
+	protected List<Rezervacija> rezervacija;
 	
 	@Id
     @XmlAttribute(name = "id")
@@ -79,12 +79,12 @@ public class Korisnik {
 
 
     
-	public List<Rezervacija> getRezervacije() {
-		return rezervacije;
+	public List<Rezervacija> getRezervacija() {
+		return rezervacija;
 	}
 
-	public void setRezervacije(List<Rezervacija> rezervacije) {
-		this.rezervacije = rezervacije;
+	public void setRezervacija(List<Rezervacija> rezervacija) {
+		this.rezervacija = rezervacija;
 	}
 
 	public String getEmail() {

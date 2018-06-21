@@ -23,7 +23,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/**").permitAll()// / ili /public/billo sta ne prolazi autent. i moze bilo ko
-                .antMatchers("/users/**").hasAuthority("ADMIN")
+                //.antMatchers("/users/**").hasAuthority("ADMIN")
                 .anyRequest().fullyAuthenticated();
         http.cors().and().csrf().disable();
         http.headers().frameOptions().disable();
