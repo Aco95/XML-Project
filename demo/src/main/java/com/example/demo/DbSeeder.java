@@ -9,6 +9,7 @@ import javax.xml.datatype.DatatypeFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.entities.Korisnik;
 import com.example.demo.entities.Smestaj;
@@ -42,7 +43,14 @@ public class DbSeeder implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		
+
+		/*final String uri = "http://localhost:8010/cloud-demo/us-central1/helloHttp?name=jovica";
+
+	    RestTemplate restTemplate = new RestTemplate();
+	    String result = restTemplate.getForObject(uri, String.class);
+	    System.out.println("***********************http request***************");
+	    System.out.println(result);
+	    */
 		Korisnik k1 = new Korisnik();
 		k1.setId("1");
 		k1.setAdresa("Milovan Jelica 32");
