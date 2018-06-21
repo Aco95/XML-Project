@@ -73,7 +73,7 @@ public class DbSeeder implements CommandLineRunner{
 		k2.setUsername("pp");
 		k2.setMaticniBroj("1234567890123");
 		k2.setPassword("test1234");
-		k2.setEmail("email@email");
+		k2.setEmail("jo@jo");
 		k2.setPassword("$2a$10$wws6XE7uyO2I23B355XXlOBnV/fSgU2GANadnkxAF3uWQ.7lYqMHS");
 		k2.setUloga(Uloga.AGENT);
 		k2.setBlokiran(true);
@@ -86,10 +86,10 @@ public class DbSeeder implements CommandLineRunner{
 		k3.setUsername("nn");
 		k3.setMaticniBroj("1234567890123");
 		k3.setPassword("test1234");
-		k3.setEmail("email@email");
+		k3.setEmail("ko@ko");
 		k3.setPassword("$2a$10$wws6XE7uyO2I23B355XXlOBnV/fSgU2GANadnkxAF3uWQ.7lYqMHS");
 		k3.setUloga(Uloga.USER);
-		k3.setRezervacije(new ArrayList<Rezervacija>());
+		//k3.setRezervacije(new ArrayList<Rezervacija>());
 		
 		Korisnik k4 = new Korisnik();
 		k4.setId("4");
@@ -101,7 +101,7 @@ public class DbSeeder implements CommandLineRunner{
 		k4.setEmail("bole@email");
 		k4.setPassword("$2a$10$wws6XE7uyO2I23B355XXlOBnV/fSgU2GANadnkxAF3uWQ.7lYqMHS");
 		k4.setUloga(Uloga.USER);
-		k4.setRezervacije(new ArrayList<Rezervacija>());
+		//k4.setRezervacije(new ArrayList<Rezervacija>());
 		
 		
 		// -------------------------- sobe za Hotel Park --------------------------------//
@@ -125,7 +125,7 @@ public class DbSeeder implements CommandLineRunner{
 		rez51.setOd(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-07-04"));
 		rez51.setDo(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-07-12"));
 		rez51.setidKorisnika("3");
-		k3.getRezervacije().add(rez51);
+		//k3.getRezervacije().add(rez51);
 		rezervacijeZaSobu5.add(rez51);
 		Rezervacija rez52 = new Rezervacija();
 		rez52.setId("2");
@@ -133,7 +133,7 @@ public class DbSeeder implements CommandLineRunner{
 		rez52.setOd(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-08-10"));
 		rez52.setDo(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-08-20"));
 		rez52.setidKorisnika("4");
-		k4.getRezervacije().add(rez52);
+		//k4.getRezervacije().add(rez52);
 		rezervacijeZaSobu5.add(rez52);
 		
 		
