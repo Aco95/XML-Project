@@ -15,7 +15,7 @@ export class LoginLogoutComponent implements OnInit {
 
   ngOnInit() {
     this.loggedUser = this.authService.getUser();
-    console.log("logovani user" + JSON.stringify(this.loggedUser));
+    console.log("logovani user " + JSON.stringify(this.loggedUser));
   }
 
   clickLogout() {

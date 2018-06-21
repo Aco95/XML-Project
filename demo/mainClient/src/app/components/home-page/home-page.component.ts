@@ -39,6 +39,7 @@ export class HomePageComponent implements OnInit {
   private isOpenRezervacije : boolean;
 
   private loggedInUser : any;
+  // private isLoggedIn = true;          
 
 
   constructor(private router : Router, private searchService : SearchService, private authService : AuthServiceService) { }
@@ -51,8 +52,6 @@ export class HomePageComponent implements OnInit {
     this.category = "1";
     this.minDateFrom = {year: 2018, month: 6, day: 15};
     
-
-    // this.eating = "breakfast";
     this.parking = false;
     this.wifi = false;
     this.breakfast = false;
@@ -66,7 +65,6 @@ export class HomePageComponent implements OnInit {
     this.isOpenRezervacije = false;
 
     this.loggedInUser = this.authService.getUser();
-    console.log(this.loggedInUser);
 
   }
 
@@ -107,9 +105,10 @@ export class HomePageComponent implements OnInit {
       this.searchService.basicSearch(this.place, this.numberOfPersons, this.dateFrom, this.dateTo)
       .subscribe(data => {
 
-          if(data.greska)
+          if(data.greska){
             alert("Please fill in all fields");
-
+            this.router.navigateByUrl('/homeSearch');
+          }
           else {
             this.accommodationArray = data.trazeniSmestaji;
             console.log(this.accommodationArray);
@@ -125,9 +124,10 @@ export class HomePageComponent implements OnInit {
       this.board, this.TV, this.kitchen, this.bathroom)
       .subscribe(data => { 
 
-          if(data.greska)
+          if(data.greska){
             alert("Please fill in all fields");
-
+            this.router.navigateByUrl('/homeSearch');
+          }
           else {
             this.accommodationArray = data.trazeniSmestaji;
             console.log(this.accommodationArray);
@@ -144,7 +144,7 @@ export class HomePageComponent implements OnInit {
 
     this.searchService.makeReservation({accommodation:Accommodation, numberOfPersons:this.numberOfPersons, dateFrom:this.dateFrom, dateTo:this.dateTo});
 
-    // if(this.loggedInUser != null) {
+    if(this.loggedInUser != null) {
       this.searchService.reservation.subscribe(
         reservation => 
         {
@@ -153,11 +153,11 @@ export class HomePageComponent implements OnInit {
       );
 
       this.router.navigateByUrl('/reserveAccommodation');
-    // }
+    }
 
-    // else {
-    //   this.router.navigateByUrl('/login');
-    // }
+    else {
+      this.router.navigateByUrl('/login');
+    }
 
   }
 

@@ -118,10 +118,10 @@ public class SmestajController {
 		List<Smestaj> trazeniSmestaji = new ArrayList<Smestaj>();
 		
 		for(Smestaj smestaj : smestaji) {
-			for(Soba soba : smestaj.getSobe()) {
+			for(Soba soba : smestaj.getSoba()) {
 				if(soba.getKapacitet()==brojOsoba) {
 					
-					if(soba.getRezervacije().isEmpty()) {		// soba nikada nije rezervisana do sad
+					if(soba.getRezervacija().isEmpty()) {		// soba nikada nije rezervisana do sad
 						if(!trazeniSmestaji.contains(smestaj)) {
 							trazeniSmestaji.add(smestaj);
 							continue;
@@ -129,7 +129,7 @@ public class SmestajController {
 					}
 					
 					boolean slobodna = true;
-					for(Rezervacija rez : soba.getRezervacije()) {
+					for(Rezervacija rez : soba.getRezervacija()) {
 						
 						if(isBetween(datumDolaska, rez.getOd(), rez.getDo()) || isBetween(datumOdlaska, rez.getOd(), rez.getDo())) {
 							System.out.println("soba "+soba.getBroj()+" je zauzeta tada..");
@@ -237,10 +237,10 @@ public class SmestajController {
         			&& smestaj.isWifi()==wifi && (smestaj.isDorucak()==breakfast || smestaj.isPolupansion()==half_board
         			|| smestaj.isPansion()==board) && smestaj.isTv()==TV && smestaj.isMiniKuhinja()==kitchen && smestaj.isPrivatnoKupatilo()==bathroom) {
         		
-				for(Soba soba : smestaj.getSobe()) {
+				for(Soba soba : smestaj.getSoba()) {
 					if(soba.getKapacitet()==brojOsoba) {
 						
-						if(soba.getRezervacije().isEmpty()) {		// soba nikada nije rezervisana do sad
+						if(soba.getRezervacija().isEmpty()) {		// soba nikada nije rezervisana do sad
 							if(!trazeniSmestaji.contains(smestaj)) {
 								trazeniSmestaji.add(smestaj);
 								continue;
@@ -248,7 +248,7 @@ public class SmestajController {
 						}
 						
 						boolean slobodna = true;
-						for(Rezervacija rez : soba.getRezervacije()) {
+						for(Rezervacija rez : soba.getRezervacija()) {
 							
 							if(isBetween(datumDolaska, rez.getOd(), rez.getDo()) || isBetween(datumOdlaska, rez.getOd(), rez.getDo())) {
 								System.out.println("soba "+soba.getBroj()+" je zauzeta tada..");

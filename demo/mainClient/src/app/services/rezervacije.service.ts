@@ -30,7 +30,7 @@ export class RezervacijeService {
 
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    alert(JSON.stringify(reservationDTO));
+    // alert(JSON.stringify(reservationDTO));
     return this.http.post('http://localhost:8080/public/reservations/addReservation', 
       JSON.stringify(reservationDTO), { headers : headers }).map((data : Response) => data.json());
   }

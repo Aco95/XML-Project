@@ -55,11 +55,11 @@ public class RezervacijaController {
 		rezervacijaService.addReservation(rezervacija);
 		
 		Soba soba = sobaService.getSobaById(r.getRoom_id()).get();
-		soba.getRezervacije().add(rezervacija);
+		soba.getRezervacija().add(rezervacija);
 		sobaService.updateSoba(soba);
 		
 		Korisnik korisnik = korisnikService.getUserById(r.getUser_id()).get();
-		korisnik.getRezervacije().add(rezervacija);
+		korisnik.getRezervacija().add(rezervacija);
 		korisnikService.save(korisnik);
 		
 		return true;
