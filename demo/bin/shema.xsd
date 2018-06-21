@@ -24,14 +24,14 @@
             <xs:attribute name="tv" type="xs:boolean"/>
             <xs:attribute name="mini_kuhinja" type="xs:boolean"/>
             <xs:attribute name="privatno_kupatilo" type="xs:boolean"/>
-            <xs:attribute name="ocena" type="xs:long"/>
+            <xs:attribute name="ocena" type="xs:int"/>
             <xs:attribute name="opis" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="soba">
         <xs:complexType>
             <xs:sequence maxOccurs="unbounded" minOccurs="0">
-                <xs:element name="datumi_rezervacija" type="xs:string"/>
+                <xs:element ref="rezervacija"/>
             </xs:sequence>
             <xs:attribute name="id" type="xs:string"/>
             <xs:attribute name="id_smestaja" type="xs:string"/>
@@ -42,6 +42,9 @@
     </xs:element>
     <xs:element name="korisnik">
         <xs:complexType>
+         	<xs:sequence maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="rezervacija"/>
+            </xs:sequence>
             <xs:attribute name="id" type="xs:string"/>
             <xs:attribute name="ime" type="xs:string"/>
             <xs:attribute name="prezime" type="xs:string"/>
@@ -69,6 +72,15 @@
             <xs:attribute name="datum" type="xs:dateTime"/>
             <xs:attribute name="sadrzaj" type="xs:string"/>
             <xs:attribute name="odobren" type="xs:boolean"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="rezervacija">
+        <xs:complexType>
+        	<xs:attribute name="id" type="xs:string"/>
+            <xs:attribute name="od" type="xs:date"/>
+            <xs:attribute name="do" type="xs:date"/>
+            <xs:attribute name="id_sobe" type="xs:string"/>
+            <xs:attribute name="id_korisnika" type="xs:string"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

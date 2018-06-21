@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeRezervacijeComponent } from './home-rezervacije.component';
+import { LoginLogoutComponent } from './login-logout.component';
 
-describe('HomeRezervacijeComponent', () => {
-  let component: HomeRezervacijeComponent;
-  let fixture: ComponentFixture<HomeRezervacijeComponent>;
+describe('LoginLogoutComponent', () => {
+  let component: LoginLogoutComponent;
+  let fixture: ComponentFixture<LoginLogoutComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeRezervacijeComponent ]
+      declarations: [ LoginLogoutComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeRezervacijeComponent);
+    fixture = TestBed.createComponent(LoginLogoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
