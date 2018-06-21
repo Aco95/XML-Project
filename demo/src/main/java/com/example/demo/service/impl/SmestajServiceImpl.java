@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entities.Smestaj;
 import com.example.demo.entities.Tip;
 import com.example.demo.repository.SmestajRepository;
+import com.example.demo.service.ISmestajService;
 
 @Service
 public class SmestajServiceImpl implements ISmestajService{
@@ -45,6 +46,16 @@ public class SmestajServiceImpl implements ISmestajService{
 		System.out.println("broj iz servisa: " + s.size());
 		
 		return smestajRepository.findByMoreAttributes(mesto, kategorija, tip, parking, wifi, dorucak, polupansion, pansion, tv, miniKuhinja, privatnoKupatilo);
+	}
+
+	@Override
+	public Smestaj saveEditedSmestaj(Smestaj s) {		
+		return smestajRepository.save(s);
+	}
+
+	@Override
+	public void deleteSmestaj(Smestaj s) {
+		smestajRepository.delete(s);
 	}
 
 }

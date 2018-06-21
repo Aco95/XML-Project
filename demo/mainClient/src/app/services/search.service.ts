@@ -66,5 +66,13 @@ export class SearchService {
     this.rez.next(reservation);
   }
 
+  getAccommodationFreeRooms(accommodationID:any, numberOfPersons:any, dateFrom:any, dateTo:any){
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:8080/public/rooms/getAccommodationFreeRooms/'+JSON.stringify(accommodationID)+
+    "/"+JSON.stringify(numberOfPersons)+"/"+JSON.stringify(dateFrom)+"/"+JSON.stringify(dateTo), 
+      { headers : headers }).map((data : Response) => data.json());
+
+  }
 
 }

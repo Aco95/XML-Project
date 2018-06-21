@@ -120,15 +120,6 @@ export class HomePageComponent implements OnInit {
 
     } else {
 
-      // if(this.eating ==="breakfast") 
-      //   this.breakfast = true;
-      
-      // if(this.eating === "half_board") 
-      //   this.half_board = true;
-      
-      // else
-      //   this.board = true;
-
       this.searchService.advancedSearch(this.place, this.numberOfPersons, this.dateFrom, this.dateTo,
       this.type, this.category, this.parking, this.wifi, this.breakfast, this.half_board,
       this.board, this.TV, this.kitchen, this.bathroom)

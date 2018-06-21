@@ -28,4 +28,8 @@ export class SmestajComponent implements OnInit {
     this.router.navigate(['/edit-smestaj']);
   }
   
+  deleteSmestaj(smestaj: Smestaj) {
+    this.smestajService.deleteSmestaj(smestaj).subscribe(data => this.smestaji = this.smestaji.filter(u => u !== smestaj));
+  }
+  
 }

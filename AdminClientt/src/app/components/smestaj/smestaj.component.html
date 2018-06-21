@@ -5,7 +5,8 @@
     <th align="center">Name</th>
     <th align="center">Address</th>
     <th align="center">Location</th>
-    <th align="center">Action</th>
+    <th align="center">Edit</th>
+    <th align="center">Delete</th>
   </tr>
 </thead>
  <tbody>
@@ -15,6 +16,7 @@
     <td>{{smestaj.adresa}}</td>
     <td>{{smestaj.mesto}}</td>
     <td><button class="btn btn-danger" (click)="editSmestaj(smestaj)" >Edit</button></td>
+    <td><button class="btn btn-danger" (click)="deleteSmestaj(smestaj)" >Delete</button></td>
   </tr>
   </tbody>
   </table>

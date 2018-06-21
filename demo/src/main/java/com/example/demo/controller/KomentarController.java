@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.Komentar;
 import com.example.demo.entities.Smestaj;
+import com.example.demo.entities.Tip;
+import com.example.demo.repository.SmestajRepository;
 import com.example.demo.service.CommentService;
 import com.example.demo.service.ISmestajService;
 
@@ -64,4 +66,50 @@ public class KomentarController {
 		System.out.println("Pogodio getEdited");
 		return smestajService.getSmestajById(id);
 	}
+	
+	@RequestMapping(
+			value = "/editSmestaj",
+			method = RequestMethod.PUT)
+	public Smestaj editSmestaj(@RequestBody Smestaj s){				
+		System.out.println("Pogodio editovanje Smestaja");
+		
+		Smestaj edited = smestajService.getSmestajById(s.getId()).get();
+		edited.setNaziv(s.getNaziv());
+		edited.setAdresa(s.getAdresa());
+		edited.setMesto(s.getMesto());
+		edited.setParking(s.isParking());
+		edited.setWifi(s.isWifi());
+		edited.setDorucak(s.isDorucak());
+		edited.setPolupansion(s.isPolupansion());
+		edited.setPansion(s.isPansion());
+		edited.setTv(s.isTv());
+		edited.setMiniKuhinja(s.isMiniKuhinja());
+		edited.setPrivatnoKupatilo(s.isPrivatnoKupatilo());
+		edited.setOpis(s.getOpis());
+		
+		System.out.println("Sa klijenta tip je: " + s.getTip());
+		
+		for (Tip t: Tip.values()){
+			System.out.println("Trenutni tip je: " + t.toString());
+			if(t.toString().equals(s.getTip().toString())){
+				System.out.println("Tip smestaja se postavlja na: "+t.toString());
+				edited.setTip(t);
+			}
+		}
+		
+		smestajService.saveEditedSmestaj(edited);	
+		
+		return edited;
+	}
+	
+	@RequestMapping(
+			value = "/deleteSmestaj/{id}",
+			method = RequestMethod.DELETE)
+	public List<Smestaj> deleteSmestaj(@PathVariable("id") String id ){		
+		
+		smestajService.deleteSmestaj(smestajService.getSmestajById(id).get());		
+		return smestajService.getAll();		
+	}
+	
+	
 }
