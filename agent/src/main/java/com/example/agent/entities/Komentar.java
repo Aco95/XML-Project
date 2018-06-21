@@ -149,4 +149,19 @@ public class Komentar {
         this.odobren = value;
     }
 
+	public Komentar(String id, XMLGregorianCalendar datum, String sadrzaj, boolean odobren) {
+		super();
+		this.id = id;
+		this.datum = datum;
+		this.sadrzaj = sadrzaj;
+		this.odobren = odobren;
+	}
+
+	public Komentar() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+    
+    
+
 }

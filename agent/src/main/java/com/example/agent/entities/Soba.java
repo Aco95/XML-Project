@@ -195,4 +195,21 @@ public class Soba {
         this.idSmestaja = value;
     }
 
+	public Soba(List<Rezervacija> rezervacije, int cena, String id, int broj, int kapacitet, String idSmestaja) {
+		super();
+		this.rezervacije = rezervacije;
+		this.cena = cena;
+		this.id = id;
+		this.broj = broj;
+		this.kapacitet = kapacitet;
+		this.idSmestaja = idSmestaja;
+	}
+
+	public Soba() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+    
+    
+
 }

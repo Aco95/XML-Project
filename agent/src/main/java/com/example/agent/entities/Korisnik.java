@@ -58,6 +58,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
     "ime",
     "prezime",
     "uloga",
+    "email",
     "username",
     "password",
     "maticniBroj",
@@ -94,6 +95,8 @@ public class Korisnik {
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected Uloga uloga;
+    @XmlElement(required = true)
+    protected String email;
     @XmlElement(required = true)
     protected String username;
     @XmlElement(required = true)
@@ -381,5 +384,38 @@ public class Korisnik {
     public void setAdresa(String value) {
         this.adresa = value;
     }
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Korisnik(List<Smestaj> smestaji, List<Poruka> poslatePoruke, List<Poruka> primljenePoruke, String id,
+			String ime, String prezime, Uloga uloga, String email, String username, String password, String maticniBroj,
+			String adresa) {
+		super();
+		this.smestaji = smestaji;
+		this.poslatePoruke = poslatePoruke;
+		this.primljenePoruke = primljenePoruke;
+		this.id = id;
+		this.ime = ime;
+		this.prezime = prezime;
+		this.uloga = uloga;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+		this.maticniBroj = maticniBroj;
+		this.adresa = adresa;
+	}
+
+	public Korisnik() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+    
+    
 
 }

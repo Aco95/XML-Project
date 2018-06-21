@@ -224,4 +224,22 @@ public class Poruka {
         this.primljena = value;
     }
 
+	public Poruka(Korisnik sagovornik, String id, boolean procitana, XMLGregorianCalendar datumSlanja, String naslov,
+			String sadrzaj, boolean primljena) {
+		super();
+		this.sagovornik = sagovornik;
+		this.id = id;
+		this.procitana = procitana;
+		this.datumSlanja = datumSlanja;
+		this.naslov = naslov;
+		this.sadrzaj = sadrzaj;
+		this.primljena = primljena;
+	}
+
+	public Poruka() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+    
 }

@@ -224,4 +224,22 @@ public class Rezervacija {
         this.realizacija = value;
     }
 
+	public Rezervacija(String id, XMLGregorianCalendar od, XMLGregorianCalendar _do, String idSobe, String idKorisnika,
+			Realizacija realizacija) {
+		super();
+		this.id = id;
+		this.od = od;
+		this._do = _do;
+		this.idSobe = idSobe;
+		this.idKorisnika = idKorisnika;
+		this.realizacija = realizacija;
+	}
+
+	public Rezervacija() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+    
+    
+
 }

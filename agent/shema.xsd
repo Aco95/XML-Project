@@ -80,6 +80,7 @@
             <xs:element name="ime" type="xs:string"/>
             <xs:element name="prezime" type="xs:string"/>
             <xs:element name="uloga" type="tns:uloga"/>
+            <xs:element name="email" type="xs:string"/>
             <xs:element name="username" type="xs:string"/>
             <xs:element name="password" type="xs:string"/>
             <xs:element name="maticni_broj" type="xs:string"/>

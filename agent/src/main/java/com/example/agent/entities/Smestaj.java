@@ -484,4 +484,35 @@ public class Smestaj {
         this.opis = value;
     }
 
+	public Smestaj(List<Soba> sobe, List<String> slikeUrl, String id, String naziv, String adresa, String mesto,
+			int kategorija, Tip tip, boolean parking, boolean wifi, boolean dorucak, boolean polupansion,
+			boolean pansion, boolean tv, boolean miniKuhinja, boolean privatnoKupatilo, double ocena, String opis) {
+		super();
+		this.sobe = sobe;
+		this.slikeUrl = slikeUrl;
+		this.id = id;
+		this.naziv = naziv;
+		this.adresa = adresa;
+		this.mesto = mesto;
+		this.kategorija = kategorija;
+		this.tip = tip;
+		this.parking = parking;
+		this.wifi = wifi;
+		this.dorucak = dorucak;
+		this.polupansion = polupansion;
+		this.pansion = pansion;
+		this.tv = tv;
+		this.miniKuhinja = miniKuhinja;
+		this.privatnoKupatilo = privatnoKupatilo;
+		this.ocena = ocena;
+		this.opis = opis;
+	}
+
+	public Smestaj() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+    
+    
+
 }

@@ -174,4 +174,20 @@ public class Recenzija {
         this.ocena = value;
     }
 
+	public Recenzija(Korisnik korisnik, Smestaj smestaj, Komentar komentar, String id, int ocena) {
+		super();
+		this.korisnik = korisnik;
+		this.smestaj = smestaj;
+		this.komentar = komentar;
+		this.id = id;
+		this.ocena = ocena;
+	}
+
+	public Recenzija() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+    
+    
+
 }
