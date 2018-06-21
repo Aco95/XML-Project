@@ -15,6 +15,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlElement;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -70,8 +71,30 @@ public class Korisnik {
     protected String adresa;  
     @XmlAttribute(name = "smestaji")
     protected List<Smestaj> smestaji;
+    @XmlElement(name = "poslate_poruke")
+    protected List<Poruka> poslatePoruke;
+    @XmlElement(name = "primljene_poruke")
+    protected List<Poruka> primljenePoruke;
+    
+    
 
-    public List<Smestaj> getSmestaji() {
+    public List<Poruka> getPoslatePoruke() {
+		return poslatePoruke;
+	}
+
+	public void setPoslatePoruke(List<Poruka> poslatePoruke) {
+		this.poslatePoruke = poslatePoruke;
+	}
+
+	public List<Poruka> getPrimljenePoruke() {
+		return primljenePoruke;
+	}
+
+	public void setPrimljenePoruke(List<Poruka> primljenePoruke) {
+		this.primljenePoruke = primljenePoruke;
+	}
+
+	public List<Smestaj> getSmestaji() {
 		return smestaji;
 	}
 
@@ -277,7 +300,8 @@ public class Korisnik {
 	}
 
 	public Korisnik(String id, String ime, String prezime, Uloga uloga, String username, String password,
-			String maticniBroj, String adresa, List<Smestaj> smestaji) {
+			String maticniBroj, String adresa, List<Smestaj> smestaji, List<Poruka> poslatePoruke,
+			List<Poruka> primljenePoruke) {
 		super();
 		this.id = id;
 		this.ime = ime;
@@ -288,7 +312,10 @@ public class Korisnik {
 		this.maticniBroj = maticniBroj;
 		this.adresa = adresa;
 		this.smestaji = smestaji;
+		this.poslatePoruke = poslatePoruke;
+		this.primljenePoruke = primljenePoruke;
 	}
+
 
 	
     

@@ -1,5 +1,5 @@
 <br>
-
+<!-- 
 <div class="container">
   <div class="row">
     <div class="col-sm">
@@ -30,3 +30,28 @@
     </div>
   </div>
 </div>
+-->
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th style="visibility: hidden;">Id</th>
+    <th align="center">First Name</th>
+    <th align="center">Last Name</th>
+    <th align="center">Block</th>
+    <th align="center">Remove</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let korisnik of korisnici">
+    <td></td>
+    <td>{{korisnik.ime}}</td>
+    <td>{{korisnik.prezime}}</td>
+    <td>
+    	<form>
+        	<input type="checkbox" [checked]="korisnik.blokiran" #blockCheckBox (click)="changeStatus(korisnik.id,blockCheckBox.value)">
+      </form>
+    </td>
+    <td><button class="btn btn-danger" (click) = remove(korisnik.id)>remove</button></td>
+  </tr>
+  </tbody>
+</table>

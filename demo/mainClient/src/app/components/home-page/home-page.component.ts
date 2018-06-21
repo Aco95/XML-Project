@@ -5,6 +5,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { SearchService } from "../../services/search.service";
 
+import { AuthServiceService} from '../../services/auth-service.service';
+
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -36,12 +38,10 @@ export class HomePageComponent implements OnInit {
   private isOpenAdvancedSearch : boolean;
   private isOpenRezervacije : boolean;
 
-  // private eating : any;
-
-  // private selectAccommodation : any;
+  private loggedInUser : any;
 
 
-  constructor(private router : Router, private searchService : SearchService ) { }
+  constructor(private router : Router, private searchService : SearchService, private authService : AuthServiceService) { }
 
   ngOnInit() {
 
@@ -64,6 +64,9 @@ export class HomePageComponent implements OnInit {
 
     this.isOpenAdvancedSearch = false;
     this.isOpenRezervacije = false;
+
+    this.loggedInUser = this.authService.getUser();
+    console.log(this.loggedInUser);
 
   }
 
@@ -117,15 +120,6 @@ export class HomePageComponent implements OnInit {
 
     } else {
 
-      // if(this.eating ==="breakfast") 
-      //   this.breakfast = true;
-      
-      // if(this.eating === "half_board") 
-      //   this.half_board = true;
-      
-      // else
-      //   this.board = true;
-
       this.searchService.advancedSearch(this.place, this.numberOfPersons, this.dateFrom, this.dateTo,
       this.type, this.category, this.parking, this.wifi, this.breakfast, this.half_board,
       this.board, this.TV, this.kitchen, this.bathroom)
@@ -148,17 +142,23 @@ export class HomePageComponent implements OnInit {
 
   onClickReserveAccommodation(Accommodation:any) : void {
 
-    console.log("Accommodation: " + Accommodation);  
-    this.searchService.selectAccommodation(Accommodation);
+    this.searchService.makeReservation({accommodation:Accommodation, numberOfPersons:this.numberOfPersons, dateFrom:this.dateFrom, dateTo:this.dateTo});
 
-    this.searchService.currentAccommodation.subscribe(
-      currentAccommodation => 
-      {
-      console.log("Current Accommodation: " +  currentAccommodation);
-      }
-    );
+    // if(this.loggedInUser != null) {
+      this.searchService.reservation.subscribe(
+        reservation => 
+        {
+        console.log("Reservation: " +  reservation);
+        }
+      );
 
-    this.router.navigateByUrl('/reserveAccommodation');
+      this.router.navigateByUrl('/reserveAccommodation');
+    // }
+
+    // else {
+    //   this.router.navigateByUrl('/login');
+    // }
+
   }
 
 }

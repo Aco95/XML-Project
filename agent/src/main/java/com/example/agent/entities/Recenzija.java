@@ -66,6 +66,8 @@ public class Recenzija {
     protected String id;
     @XmlAttribute(name = "ocena")
     protected Integer ocena;
+    
+    
 
     /**
      * Gets the value of the korisnik property.

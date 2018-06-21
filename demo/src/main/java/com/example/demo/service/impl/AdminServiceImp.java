@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +14,7 @@ import com.example.demo.dto.AgentRegisterDto;
 import com.example.demo.entities.Korisnik;
 import com.example.demo.entities.Uloga;
 import com.example.demo.repository.AdminRepository;
+import com.example.demo.service.IAdminService;
 
 @Service
 public class AdminServiceImp implements IAdminService {

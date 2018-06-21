@@ -32,4 +32,13 @@ export class SmestajService {
     });
   
   }
+
+  insertAccommodation(accommodation : any) {
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:8081/smestaji/insert', 
+      JSON.stringify(accommodation), { headers : headers }).map((data : Response) => data.json());
+  }
+
 }

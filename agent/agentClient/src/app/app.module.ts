@@ -12,7 +12,12 @@ import { AgentHomePageComponent } from './components/agent-home-page/agent-home-
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-import {SmestajService} from './services/smestaj.service'
+import {SmestajService} from './services/smestaj.service';
+import {PorukaService} from './services/poruka.service';
+import {KorisnikService} from './services/korisnik.service';
+import {RezervacijaService} from './services/rezervacija.service';
+import {SobaService} from './services/soba.service';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +32,7 @@ import {SmestajService} from './services/smestaj.service'
     HttpModule,
     FormsModule
   ],
-  providers: [SmestajService],
+  providers: [SmestajService, PorukaService, KorisnikService, RezervacijaService, SobaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

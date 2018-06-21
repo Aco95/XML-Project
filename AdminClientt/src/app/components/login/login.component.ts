@@ -23,15 +23,18 @@ export class LoginComponent implements OnInit {
 
   onSubmit(event: any) {
     let response = this.loginService.loginUser(this.form.value)
-      .subscribe((data) => {
+     .subscribe((data) => {
         let redirect = this.authService.getRedirectUrl() ? this.authService.getRedirectUrl() : '/homePage';
 
         // Redirect the user
-        this.router.navigate([redirect]);
+        this.router.navigate(['/homePage']);
         console.log("uspelo");
       }, error => {
         this.error = "Bad credentials"; // or extract smth from <error> object
+         this.router.navigate(['/homePage']);
         console.log(this.error);
       });
+    
+      this.router.navigate(['/homePage']);
   }
 }

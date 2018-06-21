@@ -8,6 +8,8 @@
 
 package com.example.demo.entities;
 
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -43,13 +45,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
+@XmlType(name = "", propOrder = {
+    "rezervacije"
+})
 @XmlRootElement(name = "korisnik")
 @Document(collection="Korisnici")
 public class Korisnik {
 
-	@Id
 	
+	protected List<Rezervacija> rezervacije;
+	
+	@Id
     @XmlAttribute(name = "id")
     protected String id;
     @XmlAttribute(name = "ime")
@@ -71,6 +77,15 @@ public class Korisnik {
     @XmlAttribute(name = "email")
     protected String email;
 
+
+    
+	public List<Rezervacija> getRezervacije() {
+		return rezervacije;
+	}
+
+	public void setRezervacije(List<Rezervacija> rezervacije) {
+		this.rezervacije = rezervacije;
+	}
 
 	public String getEmail() {
 		return email;

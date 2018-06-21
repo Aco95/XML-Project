@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.AdminKorisnikDto;
 import com.example.demo.dto.AgentRegisterDto;
-import com.example.demo.service.AdminServiceImp;
+import com.example.demo.service.impl.AdminServiceImp;
+
+
 
 @RestController
 @RequestMapping("/admin")

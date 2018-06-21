@@ -17,7 +17,7 @@ import { RegisterAgentComponent } from './components/register-agent/register-age
 import { RegisterAgentService } from './services/register-agent.service';
 import { ManageKorisnikService } from './services/manage-korisnik.service';
 import { CommentService } from './services/comment-service';
-import { SmestajComponent } from './smestaj/smestaj.component';
+import { SmestajComponent } from './components/smestaj/smestaj.component';
 
 // register-login
 import { LoginComponent } from './components/login/login.component';
@@ -28,6 +28,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './app.module';
 export { TokenInterceptor } from './services/token-interceptor';
 import { AuthGuard } from './services/auth-guard.service';
+import { EditSmestajComponent } from './components/edit-smestaj/edit-smestaj.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AuthGuard } from './services/auth-guard.service';
     RegisterAgentComponent,
     SmestajComponent,
     LoginComponent,
-    LoginLogoutComponent
+    LoginLogoutComponent,
+    EditSmestajComponent,
   ],
   imports: [
     BrowserModule,

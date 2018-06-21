@@ -27,7 +27,7 @@ import com.example.demo.entities.Tip;
 import com.example.demo.service.ISmestajService;
 
 @RestController
-@RequestMapping("/public/accommodations")
+@RequestMapping({"/public/accommodations"})
 @CrossOrigin(origins = "*")
 public class SmestajController {
 	
@@ -128,22 +128,23 @@ public class SmestajController {
 						}
 					}
 					
+					boolean slobodna = true;
 					for(Rezervacija rez : soba.getRezervacije()) {
-						
 						
 						if(isBetween(datumDolaska, rez.getOd(), rez.getDo()) || isBetween(datumOdlaska, rez.getOd(), rez.getDo())) {
 							System.out.println("soba "+soba.getBroj()+" je zauzeta tada..");
+							slobodna = false;
 							break;
-							
-						} else {
-							
-							if(!trazeniSmestaji.contains(smestaj)) {
-								trazeniSmestaji.add(smestaj);
-							}
-						}
-								
-						
+						}	
+			
 					}
+					
+					if(slobodna) {
+						if(!trazeniSmestaji.contains(smestaj)) {
+							trazeniSmestaji.add(smestaj);
+						}
+					}
+					
 				}
 			}
 		}
@@ -246,19 +247,21 @@ public class SmestajController {
 							}
 						}
 						
+						boolean slobodna = true;
 						for(Rezervacija rez : soba.getRezervacije()) {
 							
 							if(isBetween(datumDolaska, rez.getOd(), rez.getDo()) || isBetween(datumOdlaska, rez.getOd(), rez.getDo())) {
 								System.out.println("soba "+soba.getBroj()+" je zauzeta tada..");
+								slobodna = false;
 								break;
-								
-							} else {
-								
-								if(!trazeniSmestaji.contains(smestaj)) 
-									trazeniSmestaji.add(smestaj);
-								
+							}	
+				
+						}
+						
+						if(slobodna) {
+							if(!trazeniSmestaji.contains(smestaj)) {
+								trazeniSmestaji.add(smestaj);
 							}
-											
 						}
 						
 					}
@@ -280,7 +283,7 @@ public class SmestajController {
 	
 	
 	
-	public static boolean isBetween(XMLGregorianCalendar date,
+	public boolean isBetween(XMLGregorianCalendar date,
 	        XMLGregorianCalendar start, XMLGregorianCalendar end) {
 	    return (date.compare(start) == DatatypeConstants.GREATER || date
 	            .compare(start) == DatatypeConstants.EQUAL)
