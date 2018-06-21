@@ -96,6 +96,88 @@ public class DbSeeder implements CommandLineRunner{
 		s4.setIdSmestaja("2");
 		s4.setCena(140);
 		
+		
+		Rezervacija r1 = new Rezervacija();
+		r1.setId("1");
+		r1.setIdKorisnika("2");
+		r1.setIdSobe("1");
+		
+		Calendar cal1 = Calendar.getInstance();
+		cal1.set(2018, 5, 19, 18, 42, 9);
+		Date date1 = cal1.getTime(); 
+		GregorianCalendar c1 = new GregorianCalendar();
+		c1.setTime(date1);
+		XMLGregorianCalendar xmlgr1 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c1);
+		
+		r1.setOd(xmlgr1);
+		
+		Calendar cal2 = Calendar.getInstance();
+		cal2.set(2018, 8, 5, 12, 0, 0);
+		Date date2 = cal2.getTime(); 
+		GregorianCalendar c2 = new GregorianCalendar();
+		c2.setTime(date2);
+		XMLGregorianCalendar xmlgr2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c2);
+		
+		r1.set_do(xmlgr2);
+		r1.setRealizacija(Realizacija.WAITING_TO_CHECK_IN);
+		
+		Rezervacija r2 = new Rezervacija();
+		r2.setId("2");
+		r2.setIdKorisnika("3");
+		r2.setIdSobe("2");
+		
+		Calendar cal3 = Calendar.getInstance();
+		cal3.set(2018, 7, 12, 18, 30, 0);
+		Date date3 = cal3.getTime(); 
+		GregorianCalendar c3 = new GregorianCalendar();
+		c3.setTime(date3);
+		XMLGregorianCalendar xmlgr3 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c3);
+		
+		r2.setOd(xmlgr3);
+		
+		Calendar cal4 = Calendar.getInstance();
+		cal4.set(2018, 7, 19, 15, 0, 0);
+		Date date4 = cal4.getTime(); 
+		GregorianCalendar c4 = new GregorianCalendar();
+		c4.setTime(date4);
+		XMLGregorianCalendar xmlgr4 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c4);
+		
+		r2.set_do(xmlgr4);
+		r2.setRealizacija(Realizacija.WAITING_TO_CHECK_IN);
+		
+		Rezervacija r3 = new Rezervacija();
+		r3.setId("3");
+		r3.setIdKorisnika("2");
+		r3.setIdSobe("3");
+		
+		Calendar cal5 = Calendar.getInstance();
+		cal5.set(2018, 6, 5, 9, 0, 0);
+		Date date5 = cal5.getTime(); 
+		GregorianCalendar c5 = new GregorianCalendar();
+		c5.setTime(date5);
+		XMLGregorianCalendar xmlgr5 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c5);
+		
+		r3.setOd(xmlgr5);
+		
+		Calendar cal6 = Calendar.getInstance();
+		cal6.set(2018, 6, 25, 12, 30, 0);
+		Date date6 = cal6.getTime(); 
+		GregorianCalendar c6 = new GregorianCalendar();
+		c6.setTime(date6);
+		XMLGregorianCalendar xmlgr6 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c6);
+		
+		r3.set_do(xmlgr6);
+		r3.setRealizacija(Realizacija.WAITING_TO_CHECK_IN);
+		
+		rezervacijaRepository.deleteAll();
+		
+		List<Rezervacija> rezervacije = Arrays.asList(r1, r2, r3);
+		
+		rezervacijaRepository.saveAll(rezervacije);
+		
+		s1.getRezervacije().add(r1);
+		s2.getRezervacije().add(r2);
+		s3.getRezervacije().add(r3);
 		sobaRepository.deleteAll();
 		
 		List<Soba> sobe = Arrays.asList(s1,s2,s3,s4);
@@ -262,83 +344,6 @@ public class DbSeeder implements CommandLineRunner{
 		List<Korisnik> korisnici = Arrays.asList(k1,k2,k3);
 		
 		korisnikRepository.saveAll(korisnici);
-		
-		Rezervacija r1 = new Rezervacija();
-		r1.setId("1");
-		r1.setIdKorisnika("2");
-		r1.setIdSobe("1");
-		
-		Calendar cal1 = Calendar.getInstance();
-		cal1.set(2018, 5, 19, 18, 42, 9);
-		Date date1 = cal1.getTime(); 
-		GregorianCalendar c1 = new GregorianCalendar();
-		c1.setTime(date1);
-		XMLGregorianCalendar xmlgr1 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c1);
-		
-		r1.setOd(xmlgr1);
-		
-		Calendar cal2 = Calendar.getInstance();
-		cal2.set(2018, 8, 5, 12, 0, 0);
-		Date date2 = cal2.getTime(); 
-		GregorianCalendar c2 = new GregorianCalendar();
-		c2.setTime(date2);
-		XMLGregorianCalendar xmlgr2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c2);
-		
-		r1.set_do(xmlgr2);
-		
-		Rezervacija r2 = new Rezervacija();
-		r2.setId("2");
-		r2.setIdKorisnika("3");
-		r2.setIdSobe("2");
-		
-		Calendar cal3 = Calendar.getInstance();
-		cal3.set(2018, 7, 12, 18, 30, 0);
-		Date date3 = cal3.getTime(); 
-		GregorianCalendar c3 = new GregorianCalendar();
-		c3.setTime(date3);
-		XMLGregorianCalendar xmlgr3 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c3);
-		
-		r2.setOd(xmlgr3);
-		
-		Calendar cal4 = Calendar.getInstance();
-		cal4.set(2018, 7, 19, 15, 0, 0);
-		Date date4 = cal4.getTime(); 
-		GregorianCalendar c4 = new GregorianCalendar();
-		c4.setTime(date4);
-		XMLGregorianCalendar xmlgr4 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c4);
-		
-		r2.set_do(xmlgr4);
-		
-		Rezervacija r3 = new Rezervacija();
-		r3.setId("3");
-		r3.setIdKorisnika("2");
-		r3.setIdSobe("3");
-		
-		Calendar cal5 = Calendar.getInstance();
-		cal5.set(2018, 6, 5, 9, 0, 0);
-		Date date5 = cal5.getTime(); 
-		GregorianCalendar c5 = new GregorianCalendar();
-		c5.setTime(date5);
-		XMLGregorianCalendar xmlgr5 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c5);
-		
-		r3.setOd(xmlgr5);
-		
-		Calendar cal6 = Calendar.getInstance();
-		cal6.set(2018, 6, 25, 12, 30, 0);
-		Date date6 = cal6.getTime(); 
-		GregorianCalendar c6 = new GregorianCalendar();
-		c6.setTime(date6);
-		XMLGregorianCalendar xmlgr6 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c6);
-		
-		r3.set_do(xmlgr6);
-		
-		rezervacijaRepository.deleteAll();
-		
-		List<Rezervacija> rezervacije = Arrays.asList(r1, r2, r3);
-		
-		rezervacijaRepository.saveAll(rezervacije);
-		
-		
 		
 	}
 

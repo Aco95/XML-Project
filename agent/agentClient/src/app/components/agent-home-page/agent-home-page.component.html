@@ -104,7 +104,11 @@
       <h1><i class="fa fa-dashboard"></i> Accommodations</h1>
       <p>You can see the list of your accommodations below.</p>
     </div>
+
     
+
+    <ngb-alert type="success" *ngIf="showSuccessNotification" (close)="showSuccessNotification = false">Success! You changed your working schedule.</ngb-alert>
+    <ngb-alert type="danger" *ngIf="showErrorNotification" (close)="showErrorNotification = false">Error! Some of your clients already made a reservation.</ngb-alert>
   </div>
   
   <div class="row">
@@ -179,13 +183,66 @@
             </div>
             
         </div>
+        <div class="row-md-2" style="margin-top:20px">
+
+
+          <ng-template #popContent>
+            
+            
+              <div class="form-group">
+                  <label for="typeCombo">Rooms</label>
+                  <select class="form-control" size="3"  [(ngModel)]="roomNo" name = "roomNo">
+                    <option  *ngFor="let soba of accommodation.sobe; let j = index;">{{soba.broj}}</option>
+                  </select>
+              </div>
+
+              <div class="form-group" style="margin-top:10px">
+                  <div class="form-group">
+                    <label for="fromDate">From:</label>
+                    <div class="input-group">
+                      <input class="form-control"  placeholder="yyyy-mm-dd" 
+                              name="datePicker"   [(ngModel)]="dateFrom" [minDate]="minDateFrom" (ngModelChange)="setMinDateTo()" ngbDatepicker #df="ngbDatepicker" required>
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="df.toggle()" type="button">
+                          <img src="../../../assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="form-group">
+                    <label for="toDate">To:</label>
+                    <div class="input-group">
+                      <input class="form-control" placeholder="yyyy-mm-dd"
+                              name="datePicker"  [(ngModel)]="dateTo" [minDate]="minDateTo" ngbDatepicker #dt="ngbDatepicker" required>
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="dt.toggle()" type="button">
+                          <img src="../../../assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  
+              </div>
+
+              <div class="form-group" style="margin-top:10px">
+                  <button class="btn btn-primary" (click) = "setNewSchedule(accommodation)" type="submit">Set</button>
+              </div>
+
+              
+          </ng-template>
+
+          <button type="button" class="btn btn-outline-secondary mr-2" [ngbPopover]="popContent" placement="right" popoverTitle="Set new schedule">
+            Working schedule
+          </button> 
+
+        </div>
       </div>
     </div>
 
-    
-    
-      
   </div>
+
   
 </main>
 
@@ -386,12 +443,22 @@
                     <td align="center">{{reservationsEarnings[j]}}</td>
                     <td align="center" *ngIf="reservation.realizacija=='WAITING_TO_CONFIRM_REALIZATION'">
 
-                        <button style="width:100px" class="btn btn-outline-primary" type="button">Realized</button>
-                        <button style="width:100px;margin-left:1em;" class="btn btn-outline-danger" type="button">Unrealised</button>
+                        <button style="width:100px" (click) = "markAsRealized(j)" class="btn btn-outline-primary" type="button">Realized</button>
+                        <button style="width:100px;margin-left:1em;" (click) = "markAsUnrealized(j)" class="btn btn-outline-danger" type="button">Unrealised</button>
                     </td> 
                     <td align="center" *ngIf="reservation.realizacija=='WAITING_TO_CHECK_IN'">
 
                         <button  class="btn btn-outline-info" disabled="" type="button">Waiting for client to check in</button>
+                        
+                    </td>
+                    <td align="center" *ngIf="reservation.realizacija=='REALIZED'">
+
+                        <button disabled="" class="btn btn-outline-primary" type="button">Realized</button>
+                        
+                    </td>
+                    <td align="center" *ngIf="reservation.realizacija=='UNREALIZED'">
+
+                        <button disabled="" class="btn btn-outline-danger" type="button">Unrealized</button>
                         
                     </td>
                   </tr>

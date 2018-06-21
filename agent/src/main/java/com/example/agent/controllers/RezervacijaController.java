@@ -9,8 +9,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.agent.dtos.RezervacijaDTO;
@@ -67,6 +69,10 @@ public class RezervacijaController {
 			rDTO.setOd(rezervacije.get(i).getOd());
 			rDTO.set_do(rezervacije.get(i).get_do());
 			
+			//da ne bih povukao na prikaz rezervacija one dane kada je agent zabranio rezervacije
+			if (rezervacije.get(i).getIdKorisnika().equals("-1"))
+				continue;
+			
 			k = korisnikService.getById(rezervacije.get(i).getIdKorisnika()).get();
 			s = sobaService.getById(rezervacije.get(i).getIdSobe()).get();
 			sm = smestajService.getById(s.getIdSmestaja()).get();
@@ -78,15 +84,26 @@ public class RezervacijaController {
 			//konverzija XMLGregorijana u Date da bih mogao da uporedim
 			Date od = rezervacije.get(i).getOd().toGregorianCalendar().getTime();
 			
+			//prvi if sluzi da ne bih opet menjao one koje je agend vec markirao 
+			if (rezervacije.get(i).getRealizacija() != Realizacija.REALIZED && rezervacije.get(i).getRealizacija() != Realizacija.UNREALIZED) {
 			
-			if(od.compareTo(current) >= 0){
+				if(od.compareTo(current) >= 0){
+					
+					rDTO.setRealizacija(Realizacija.WAITING_TO_CHECK_IN);
+					
+	            } else {
+	            	
+	            	rDTO.setRealizacija(Realizacija.WAITING_TO_CONFIRM_REALIZATION);
+	            	rezervacije.get(i).setRealizacija(Realizacija.WAITING_TO_CONFIRM_REALIZATION);
+	            	
+	            	//potrebno je ovu promenu odma sacuvati u bazu, jer jedino ovde proveravam dal je poceo boravak
+	            	rezervacijaService.update(rezervacije.get(i));
+	            }
+			} else {
 				
-				rDTO.setRealizacija(Realizacija.WAITING_TO_CHECK_IN);
+				rDTO.setRealizacija(rezervacije.get(i).getRealizacija());
 				
-            } else {
-            	
-            	rDTO.setRealizacija(Realizacija.WAITING_TO_CONFIRM_REALIZATION);
-            }
+			}
 			
 			
 			
@@ -96,5 +113,20 @@ public class RezervacijaController {
 		
 		return rezervacijeDTO;
 		
+	}
+	
+	@RequestMapping(value = "/changeRealizacija", method = RequestMethod.PUT)
+	public @ResponseBody Rezervacija changeRealizacija(@RequestBody RezervacijaDTO rDTO){
+	 
+		Rezervacija r = new Rezervacija();
+		r.setId(rDTO.getId());
+		r.setIdKorisnika(rDTO.getKlijent().getId());
+		r.setIdSobe(rDTO.getSoba().getId());
+		r.setOd(rDTO.getOd());
+		r.set_do(rDTO.get_do());
+		r.setRealizacija(rDTO.getRealizacija());
+		
+		
+		return rezervacijaService.update(r);
 	}
 }

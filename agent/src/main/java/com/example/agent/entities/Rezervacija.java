@@ -33,10 +33,17 @@ public class Rezervacija {
     protected String idSobe;
     @XmlAttribute(name = "id_Korisnika")
     protected String idKorisnika;
-    
+    @XmlAttribute(name = "realizacija")
+    protected Realizacija realizacija;
     
     
 	
+	public Realizacija getRealizacija() {
+		return realizacija;
+	}
+	public void setRealizacija(Realizacija realizacija) {
+		this.realizacija = realizacija;
+	}
 	public String getId() {
 		return id;
 	}
@@ -69,14 +76,16 @@ public class Rezervacija {
 	}
 	
 	
-	public Rezervacija(String id, XMLGregorianCalendar od, XMLGregorianCalendar _do, String idSobe,
-			String idKorisnika) {
+	
+	public Rezervacija(String id, XMLGregorianCalendar od, XMLGregorianCalendar _do, String idSobe, String idKorisnika,
+			Realizacija realizacija) {
 		super();
 		this.id = id;
 		this.od = od;
 		this._do = _do;
 		this.idSobe = idSobe;
 		this.idKorisnika = idKorisnika;
+		this.realizacija = realizacija;
 	}
 	public Rezervacija() {
 		super();

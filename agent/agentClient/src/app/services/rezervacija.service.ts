@@ -32,4 +32,12 @@ export class RezervacijaService {
     });
   
   }
+
+  changeRealization(reservation : any) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.put('http://localhost:8081/rezervacije/changeRealizacija', 
+      JSON.stringify(reservation), { headers : headers }).map((data : Response) => data.json());
+  }
+
 }
