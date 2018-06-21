@@ -19,6 +19,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class RezervacijeService {
 
+  s = "";
+
   constructor(private http: Http) { }
 
   getRezervacije(): Observable<Rezervacija[]> {
@@ -33,6 +35,16 @@ export class RezervacijeService {
     // alert(JSON.stringify(reservationDTO));
     return this.http.post('http://localhost:8080/public/reservations/addReservation', 
       JSON.stringify(reservationDTO), { headers : headers }).map((data : Response) => data.json());
+  }
+
+  test() {
+    this.s = '3';
+
+    this.http.post('http://localhost:8080/public/reservations/get-user-reservation', this.s ).subscribe(
+      data => {
+        console.log(data);
+      }
+    )
   }
 
 
