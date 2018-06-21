@@ -1,5 +1,8 @@
 package com.example.demo.service.impl;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +22,13 @@ public class RezervacijaServiceImpl implements IRezervacijaService{
 		// TODO Auto-generated method stub
 		System.out.println("Usao u repositor - insert rezervacija");
 		return rezervacijaRepository.insert(r);
+	}
+
+	@Override
+	public List<Rezervacija> getUserReservation(String userID) {
+		// TODO Auto-generated method stub
+		
+		return rezervacijaRepository.findByIDKorisnika(userID);
 	}
 
 }

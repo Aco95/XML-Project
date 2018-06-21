@@ -1,0 +1,81 @@
+
+<br>
+
+<!-- Page Content -->
+<div class="container"> 
+
+    <form name="myform" method="POST">
+  
+      <div class="row"> <!-- start row -->
+  
+        <div class="col">
+          <div class="form-group">
+            <label for="place">Name of accommodation:</label>
+            <input type="text" [(ngModel)]="nameOfAcccommodation" name="mesto" class="form-control" [readonly]="true" required>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="numberOfPersons">Number of persons:</label>
+            <input type="text" [(ngModel)]="numberOfPersons" name="broj" class="form-control" [readonly]="true" required>
+          </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+              <label for="fromDate">From:</label>
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd"
+                        name="datePicker"  [(ngModel)]="dateFrom" [minDate]="minDateFrom" (ngModelChange)="chooseDateFrom()" ngbDatepicker #df="ngbDatepicker" [readonly]="true" required>
+                <!-- <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" (click)="df.toggle()" type="button">
+                    <img src="../../../assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                  </button>
+                </div> -->
+              </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+              <label for="toDate">To:</label>
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd"
+                        name="datePicker" [(ngModel)]="dateTo" [minDate]="minDateTo" ngbDatepicker #dt="ngbDatepicker" [readonly]="true" required>
+                <!-- <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" (click)="dt.toggle()" type="button">
+                    <img src="../../../assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                  </button>
+                </div> -->
+              </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+              <label for="selectRoom">Select room: </label>
+              <select class="custom-select" [(ngModel)]="selectedRoom" name="izabranaSoba" (change)="selectRoom()">
+                  <option *ngFor="let r of freeRooms" [value]="r.cena">{{r.broj}}</option>
+              </select>
+          </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+              <label for="pice">Price per night ($):</label>
+              <input type="text" [(ngModel)]="pricePerNight" name="cenaNocenja" class="form-control" [readonly]="true" required>
+            </div>
+          </div>
+        <div class="col">
+            <div class="form-group">
+              <label for="pice">Total price ($):</label>
+              <input type="text" [(ngModel)]="totalPrice" name="cena" class="form-control" [readonly]="true" required>
+            </div>
+          </div>
+      </div>  <!-- end row -->
+
+      <div class="row">
+        <div class="col">
+            <br>
+            <button type="submit" class="btn btn-warning" (click)="confirmReservation()">Confirm reservation</button>
+        </div>
+      </div>
+
+  </form>
+</div>

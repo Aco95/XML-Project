@@ -1,12 +1,17 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Optional;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +40,13 @@ public class RezervacijaController {
 	@Autowired
 	private IKorisnikService korisnikService;
 	
+	@RequestMapping(value="/get-user-reservation", method=RequestMethod.POST)
+	public ResponseEntity<Object> getUserReservation(@RequestBody String id) {
+		System.out.println("Prosledjen id: "+id );
+		List<Rezervacija> ss = rezervacijaService.getUserReservation(id);
+		
+		return new ResponseEntity<Object>(ss, HttpStatus.OK);
+	}
 	
 	@RequestMapping(
 			value = "/addReservation",
