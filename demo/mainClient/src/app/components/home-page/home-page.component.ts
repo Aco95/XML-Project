@@ -7,6 +7,9 @@ import { SearchService } from "../../services/search.service";
 
 import { AuthServiceService} from '../../services/auth-service.service';
 
+import { FormControl, Validators} from "@angular/forms";
+// import { FormControl } from '@angular/forms';
+
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -20,9 +23,13 @@ export class HomePageComponent implements OnInit {
   private numberOfPersons : any;
   private dateFrom : any;
   private dateTo: any;
+  private priceFrom: any;
+  private priceTo: any;
+
 
   private minDateFrom : any;
   private minDateTo : any;
+  private minPriceTo: any;
 
   private type : any;
   private category : any;
@@ -39,7 +46,10 @@ export class HomePageComponent implements OnInit {
   private isOpenRezervacije : boolean;
 
   private loggedInUser : any;
-  // private isLoggedIn = true;          
+  // private isLoggedIn = true;    
+  
+  private listMinPrice = [];
+  private listMaxPrice = [];
 
 
   constructor(private router : Router, private searchService : SearchService, private authService : AuthServiceService) { }
@@ -51,7 +61,7 @@ export class HomePageComponent implements OnInit {
     this.type = "0";
     this.category = "1";
     this.minDateFrom = {year: 2018, month: 6, day: 15};
-    
+
     this.parking = false;
     this.wifi = false;
     this.breakfast = false;
@@ -99,10 +109,14 @@ export class HomePageComponent implements OnInit {
 
   }
 
+  inputPriceFrom() {
+    this.minPriceTo = this.priceFrom + 1;
+  }
+
   submitSearch() {
     if(!this.isOpenAdvancedSearch){
       
-      this.searchService.basicSearch(this.place, this.numberOfPersons, this.dateFrom, this.dateTo)
+      this.searchService.basicSearch(this.place, this.numberOfPersons, this.dateFrom, this.dateTo, this.priceFrom, this.priceTo)
       .subscribe(data => {
 
           if(data.greska){
@@ -112,6 +126,23 @@ export class HomePageComponent implements OnInit {
           else {
             this.accommodationArray = data.trazeniSmestaji;
             console.log(this.accommodationArray);
+
+            for(let accommodation of this.accommodationArray){
+              let min = accommodation.sobe[0].cena;
+              let max = accommodation.sobe[0].cena;
+              for(let room of accommodation.sobe){
+                if(room.cena<min)
+                  min = room.cena;
+
+                if(room.cena > max)
+                  max = room.cena;
+              }
+
+              this.listMaxPrice.push(max);
+              this.listMinPrice.push(min);
+
+            }
+            
           }
             
         } 
@@ -119,7 +150,7 @@ export class HomePageComponent implements OnInit {
 
     } else {
 
-      this.searchService.advancedSearch(this.place, this.numberOfPersons, this.dateFrom, this.dateTo,
+      this.searchService.advancedSearch(this.place, this.numberOfPersons, this.dateFrom, this.dateTo, this.priceFrom, this.priceTo,
       this.type, this.category, this.parking, this.wifi, this.breakfast, this.half_board,
       this.board, this.TV, this.kitchen, this.bathroom)
       .subscribe(data => { 
@@ -131,6 +162,23 @@ export class HomePageComponent implements OnInit {
           else {
             this.accommodationArray = data.trazeniSmestaji;
             console.log(this.accommodationArray);
+
+            for(let accommodation of this.accommodationArray){
+              let min = accommodation.soba[0].cena;
+              let max = accommodation.soba[0].cena;
+              for(let room of accommodation.soba){
+                if(room.cena<min)
+                  min = room.cena;
+
+                if(room.cena > max)
+                  max = room.cena;
+              }
+
+              this.listMaxPrice.push(max);
+              this.listMinPrice.push(min);
+
+            }
+              
           }
 
         } 

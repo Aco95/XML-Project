@@ -13,34 +13,36 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for tip.
+ * <p>Java class for realizacija.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="tip">
+ * &lt;simpleType name="realizacija">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="HOTEL"/>
- *     &lt;enumeration value="BED_BREAKFAST"/>
- *     &lt;enumeration value="APARTMENT"/>
+ *     &lt;enumeration value="REALIZED"/>
+ *     &lt;enumeration value="UNREALIZED"/>
+ *     &lt;enumeration value="WAITING_TO_CHECK_IN"/>
+ *     &lt;enumeration value="WAITING_TO_CONFIRM_REALIZATION"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "tip")
+@XmlType(name = "realizacija")
 @XmlEnum
-public enum Tip {
+public enum Realizacija {
 
-    HOTEL,
-    BED_BREAKFAST,
-    APARTMENT;
+    REALIZED,
+    UNREALIZED,
+    WAITING_TO_CHECK_IN,
+    WAITING_TO_CONFIRM_REALIZATION;
 
     public String value() {
         return name();
     }
 
-    public static Tip fromValue(String v) {
+    public static Realizacija fromValue(String v) {
         return valueOf(v);
     }
 

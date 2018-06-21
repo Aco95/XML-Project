@@ -1,5 +1,6 @@
 package com.example.demo.controller; 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.CurrentUser;
 import com.example.demo.entities.Korisnik;
+import com.example.demo.entities.Poruka;
+import com.example.demo.entities.Smestaj;
 import com.example.demo.entities.Uloga;
 import com.example.demo.service.IKorisnikService;
+import com.example.demo.entities.Rezervacija;
 
 
 @RestController
@@ -66,9 +70,12 @@ public class KorisnikController {
 		String jmbg = user.getMaticniBroj();
 		String adresa = user.getAdresa();
 		Uloga uloga = user.getUloga();
+		String email = user.getEmail();
 		boolean blokiran = user.isBlokiran();
 		
-		Korisnik regKorisnik = new Korisnik(id, ime, prezime, uloga, username, password, jmbg, adresa); 
+		Korisnik regKorisnik = new Korisnik(new ArrayList<Smestaj>(), new ArrayList<Poruka>(), new ArrayList<Poruka>(), new ArrayList<Rezervacija>(),
+											ime, prezime, uloga, email, username, password, jmbg, adresa, blokiran); 
+		regKorisnik.setId(id);
 		
 		int size;
 		if((size=korisnikService.count()) == 0) {
