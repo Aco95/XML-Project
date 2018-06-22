@@ -54,6 +54,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
     "smestaji",
     "poslatePoruke",
     "primljenePoruke",
+    "rezervacije",
     "id",
     "ime",
     "prezime",
@@ -73,6 +74,9 @@ public class Korisnik {
     protected List<Poruka> poslatePoruke;
     @XmlElement(name = "primljene_poruke", required = true)
     protected List<Poruka> primljenePoruke;
+    @XmlElement(name = "rezervacije", required = true)
+    protected List<Rezervacija> rezervacije;
+    
     public void setSmestaji(List<Smestaj> smestaji) {
 		this.smestaji = smestaji;
 	}

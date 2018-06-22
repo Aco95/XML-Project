@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="smestaj" type="{http://techprimers.com/spring-boot-soap-example}smestaj"/>
+ *         &lt;element name="smestaj" type="{http://www.w3.org/2001/XMLSchema/agent}smestaj"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

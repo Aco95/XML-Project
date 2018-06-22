@@ -1,0 +1,14 @@
+{
+  "name": "rejting-remote",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jovica cubric",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/datastore": "^1.4.1"
+  }
+}
