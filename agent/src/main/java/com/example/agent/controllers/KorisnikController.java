@@ -30,4 +30,6 @@ public class KorisnikController {
 		return korisnikService.getAll();
 		
 	}
+	
+	
 }

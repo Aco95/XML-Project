@@ -5,5 +5,5 @@
 // Generated on: 2018.06.22 at 12:05:56 AM CEST 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://techprimers.com/spring-boot-soap-example", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.w3.org/2001/XMLSchema/agent", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package com.example.agent.entities;

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:us="http://www.w3.org/2001/XMLSchema/agent">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <us:getSmestajRequest>
+            <us:id>1</us:id>
+        </us:getSmestajRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
