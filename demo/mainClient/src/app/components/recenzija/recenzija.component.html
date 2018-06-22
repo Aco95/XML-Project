@@ -1,0 +1,26 @@
+<form [formGroup]="form">
+    <div>
+        <label for="ocena">Ocena</label>
+        <select name="ocena" id="ocena" formControlName="ocena">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+          </select>
+    </div>
+    <div>
+        <label for="komentar">Komentar</label>
+        <textarea name="komentar" id="komentar" formControlName="komentar" placeholder="Enter comment here."></textarea>
+    </div>  
+    <div style="height:10px"></div>    
+    <div>
+        <button [disabled]="!form.valid" (click)="submit($event)">Submit</button>
+        <button (click)="redirect()">Cancel</button>
+    </div>  
+</form>

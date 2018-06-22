@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RezervacijeService } from '../../services/rezervacije.service';
 import { Rezervacija } from '../../model/Rezervacija';
+import { Router } from '@angular/router';
+
 import { Smestaj } from '../../model/Smestaj';
 
 
@@ -16,7 +18,7 @@ export class HomeRezervacijeComponent implements OnInit {
   tempRez : Rezervacija;
   smestajID : String;
 
-  constructor(private rezervacijeService: RezervacijeService) { }
+  constructor(private rezervacijeService: RezervacijeService, private router: Router) { }
 
   ngOnInit() {    
     this.getRezervacije();
@@ -44,10 +46,13 @@ export class HomeRezervacijeComponent implements OnInit {
     this.rezervacijeService.getSmestajByRoomID(roomID).subscribe(
       (smestaj:String) => {
         console.log(smestaj);
-        this.smestajID = smestaj;
-        
+        this.smestajID = smestaj;        
       }
     )
+  }
+
+  createRcensia(){
+    this.router.navigate(['/create-recenzija']);
   }
 
 }
