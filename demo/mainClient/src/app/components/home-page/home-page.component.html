@@ -77,19 +77,14 @@
     </div>  <!-- end row -->
 
     <div class="row"> <!-- start row -->
-      <div class="col">
+      <div class="col-md-3">
         <div class="form-group">
-            <!-- <md-input-container>
-                <label for="priceFrom">Price from ($):</label>
-                <input type="number" min="0" max="100" required mdInput placeholder="min price" [(ngModel)]="priceFrom" name="priceFrom" [formControl]="rateControl">
-                <md-error>Please enter a value between 0 and 100</md-error>
-            </md-input-container> -->
 
           <label for="priceFrom">Price from ($):</label>     
           <input type="number" [(ngModel)]="priceFrom" name="cenaOd" class="form-control" required> 
         </div>
       </div>
-      <div class="col">
+      <div class="col-md-3">
         <div class="form-group">
           <label for="priceTo">Price to ($):</label>
           <input type="number" [(ngModel)]="priceTo" name="cenaDo"  class="form-control" required>
@@ -155,24 +150,6 @@
                   </div>
               </div>
 
-              <!-- <div class="col">
-                <div class="form-check">
-                    <label class="form-check-label">
-                      <input type="radio" class="form-check-input" [(ngModel)]="eating" value="breakfast" name="eating" >Breakfast
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input type="radio" class="form-check-input" [(ngModel)]="eating" value="half_board" name="eating">Half-board
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input type="radio" class="form-check-input" [(ngModel)]="eating" value="board" name="eating">Board
-                    </label>
-                  </div>
-              </div> -->
-
               <div class="col">
                   <div class="form-check">
                     <label class="form-check-label">
@@ -227,14 +204,45 @@
 
   <br>
 
-  <div class="container h-100" *ngIf="accommodationArray.length===0">
+  <form>
+    <div class="row"> <!-- start row -->
+      <div class="col-md-3">
+          <div class="form-group">
+              <label for="rating">Rating:</label>
+              <input type="number" [(ngModel)]="rating" name="ocena"  class="form-control" required>
+          </div>
+      </div>
+      <div class="col-3">
+          <br>
+          <button type="submit" class="btn btn-dark" (click)="searchByRating()">Search by Rating</button>
+        </div>
+    </div>
+
+  </form>
+
+  <br>
+
+  <div class="container h-100" *ngIf="accommodationArray.length===0;else otherContent">
     <div class="row h-100 justify-content-center align-items-center">
         <h6>No results</h6>
     </div>
   </div>
 
+  <ng-template #otherContent>
   <main class="app-content">
- 
+      <div class="form-group row">
+
+          <label for="sort" class="col-md-2 col-form-label"> <b> Sort by: </b> </label>
+          <div class="col-md-2">
+              <select id="sort" class="form-control" [(ngModel)]="sortType" (ngModelChange)="selectSort()">
+                  <option value="Price" >Price</option>
+                  <option value="Rating">Rating</option>
+                  <option value="Category">Category</option>
+              </select>
+          </div>
+
+      </div>
+
     <div class="row" *ngFor="let accommodation of accommodationArray; let i = index">
       <div class="col-md-8" >
         <div class="tile">
@@ -318,13 +326,13 @@
         <div class="app-title" class="col-md-1">
           <h5> Price: ($)</h5>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-3">
           <p>{{listMinPrice[i]}} - {{listMaxPrice[i]}}</p>
         </div>
         <br><br><br>
 
-        <div class="col-md-1">
-          <button type="submit" class="btn btn-dark" (click)="onClickReserveAccommodation(accommodation)">Reserve</button>
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-warning" (click)="onClickReserveAccommodation(accommodation)">Reserve</button>
         </div> 
 
       </div>
@@ -345,6 +353,7 @@
 
     
   </main>
+</ng-template>
 
   <br><br>
 

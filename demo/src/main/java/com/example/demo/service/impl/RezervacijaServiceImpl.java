@@ -17,6 +17,15 @@ public class RezervacijaServiceImpl implements IRezervacijaService{
 	@Autowired
 	private RezervacijaRepository rezervacijaRepository;
 	
+	
+	@Override
+	public Optional<Rezervacija> getReservationById(String id) {
+		// TODO Auto-generated method stub
+		System.out.println("Upao ovde");
+		return rezervacijaRepository.findById(id);
+	}
+	
+	
 	@Override
 	public Rezervacija addReservation(Rezervacija r) {
 		// TODO Auto-generated method stub
@@ -30,5 +39,14 @@ public class RezervacijaServiceImpl implements IRezervacijaService{
 		
 		return rezervacijaRepository.findByIDKorisnika(userID);
 	}
+
+	@Override
+	public void deleteReservation(String reservationID) {
+		// TODO Auto-generated method stub
+		rezervacijaRepository.deleteById(reservationID);
+		
+	}
+
+
 
 }

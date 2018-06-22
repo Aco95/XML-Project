@@ -44,10 +44,25 @@ export class RezervacijeService {
   }
 
   getSmestajByRoomID(roomID:String) {
-    return this.http.post('http://localhost:8080/public/rooms/getSmestajID', roomID).map(
+    return this.http.get('http://localhost:8080/public/rooms/getSmestaj/'+roomID).map(
       (data:Response) => data.json()
     );
   }
 
+  getRoomByID(roomID) {
+    return this.http.get('http://localhost:8080/public/rooms/getRoom/'+roomID).map(
+      (data: Response) => data.json()
+    );
+  }
+
+
+  deleteReservation(reservationID : any) {
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.delete('http://localhost:8080/public/reservations/deleteReservation/'+JSON.stringify(reservationID), 
+       { headers : headers }).map((data : Response) => data.json());
+  }
 
 }

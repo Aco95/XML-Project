@@ -11,7 +11,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import com.example.demo.entities.Komentar;
 import com.example.demo.entities.Korisnik;
+import com.example.demo.entities.Recenzija;
 import com.example.demo.entities.Smestaj;
 import com.example.demo.entities.Soba;
 import com.example.demo.entities.Tip;
@@ -21,6 +23,7 @@ import com.example.demo.repository.AdminRepository;
 import com.example.demo.repository.RezervacijaRepository;
 import com.example.demo.repository.SmestajRepository;
 import com.example.demo.repository.SobaRepository;
+import com.example.demo.service.IRecenzijaService;
 
 
 @Component
@@ -37,20 +40,14 @@ public class DbSeeder implements CommandLineRunner{
 	
 	@Autowired
 	private RezervacijaRepository rezervacijaRepository;
-	
-	
+
+	@Autowired
+	private IRecenzijaService recenzijaService;
 
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-		/*final String uri = "http://localhost:8010/cloud-demo/us-central1/helloHttp?name=jovica";
-
-	    RestTemplate restTemplate = new RestTemplate();
-	    String result = restTemplate.getForObject(uri, String.class);
-	    System.out.println("***********************http request***************");
-	    System.out.println(result);
-	    */
 		Korisnik k1 = new Korisnik();
 		k1.setId("1");
 		k1.setAdresa("Milovan Jelica 32");
@@ -114,7 +111,7 @@ public class DbSeeder implements CommandLineRunner{
 		s1.setKapacitet(1); 	// jednokrevetna
 		s1.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
 		s1.setIdSmestaja("1");
-		s1.setCena(100);
+		s1.setCena(150);
 		
 		Soba s5 = new Soba();
 		s5.setId("5");
@@ -133,6 +130,35 @@ public class DbSeeder implements CommandLineRunner{
 
 
 		rezervacijeZaSobu5.add(rez51);
+		
+		//Dodajem jos jednu rezervaciju za korisnika ID='3'
+		Rezervacija rez53 = new Rezervacija();
+		rez53.setId("3");
+		rez53.setIdSobe("5");
+		rez53.setOd(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-09-04"));
+		rez53.setDo(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-09-12"));
+		rez53.setIdKorisnika("3");
+		
+		k3.getRezervacije().add(rez53);
+		
+		rezervacijeZaSobu5.add(rez53);
+		
+		//Dodajem jos  jednu  rezervaciju za korisnika ID='3', ali u drugom smestaju
+		Rezervacija rez21 = new Rezervacija();
+		rez21.setId("4");
+		rez21.setIdSobe("2");
+		rez21.setOd(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-10-04"));
+		rez21.setDo(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-10-10"));
+		rez21.setIdKorisnika("3");
+		
+		k3.getRezervacije().add(rez21);
+		
+		ArrayList<Rezervacija> rezervacijeZaSobu2 = new ArrayList<Rezervacija>();
+		
+		rezervacijeZaSobu2.add(rez21);
+		
+		
+		
 		Rezervacija rez52 = new Rezervacija();
 		rez52.setId("2");
 		rez52.setIdSobe("5");
@@ -214,7 +240,7 @@ public class DbSeeder implements CommandLineRunner{
 		s2.setId("2");
 		s2.setBroj(2);
 		s2.setKapacitet(1); 	// jednokrevetna
-		s2.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
+		s2.setRezervacije(rezervacijeZaSobu2);		// ubacena 1 rezervacija
 		s2.setIdSmestaja("3");
 		s2.setCena(100);
 		
@@ -244,7 +270,7 @@ public class DbSeeder implements CommandLineRunner{
 		// -----------------------------------------------------------------------------------//
 		
 		rezervacijaRepository.deleteAll();	
-		List<Rezervacija> reze = Arrays.asList(rez51,rez52);		
+		List<Rezervacija> reze = Arrays.asList(rez51,rez52, rez53, rez21);		
 		rezervacijaRepository.saveAll(reze);
 		
 		
@@ -327,7 +353,7 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj3.setAdresa("Bulevar Cara Lazara 104");
 		smestaj3.setKategorija(5);
 		smestaj3.setTip(Tip.HOTEL);
-		smestaj3.setOcena(8.8);
+		smestaj3.setOcena(7.5);
 		smestaj3.setOpis("Eksluzivan hotel sa limana..");
 		smestaj3.setSobe(sobe3);
 		List<String> slikeSmestaj3 = new ArrayList();
@@ -356,6 +382,20 @@ public class DbSeeder implements CommandLineRunner{
 		List<Smestaj> smestaji = Arrays.asList(smestaj1,smestaj2,smestaj3);
 		smestajRepository.saveAll(smestaji);
 		
+		Recenzija recenzija=new Recenzija();
+		recenzija.setKorisnik(k1);
+		recenzija.setSmestaj(smestaj1);
+		recenzija.setId("1");
+		recenzija.setOcena(5);
+		
+		Komentar komentar=new Komentar();
+		komentar.setId("1");
+		komentar.setOdobren(false);
+		komentar.setSadrzaj("neki jako dobar komentar");
+		recenzija.setKomentar(komentar);
+//		recenzijaService.setRecenzija(recenzija);
+//		recenzijaService.getRecenzijaById(recenzija.getId());
+			
 	}
 
 }

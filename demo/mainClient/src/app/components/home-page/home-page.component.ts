@@ -26,6 +26,8 @@ export class HomePageComponent implements OnInit {
   private priceFrom: any;
   private priceTo: any;
 
+  private rating: any;
+
 
   private minDateFrom : any;
   private minDateTo : any;
@@ -51,6 +53,8 @@ export class HomePageComponent implements OnInit {
   private listMinPrice = [];
   private listMaxPrice = [];
 
+  private sortType = '';
+
 
   constructor(private router : Router, private searchService : SearchService, private authService : AuthServiceService) { }
 
@@ -60,7 +64,11 @@ export class HomePageComponent implements OnInit {
     this.numberOfPersons = "1";
     this.type = "0";
     this.category = "1";
-    this.minDateFrom = {year: 2018, month: 6, day: 15};
+    const today = new Date();
+    const dd = today.getDate();
+    const mm = today.getMonth() + 1; // January is 0!
+    const yyyy = today.getFullYear();
+    this.minDateFrom = {year: yyyy, month: mm, day: dd};
 
     this.parking = false;
     this.wifi = false;
@@ -109,9 +117,7 @@ export class HomePageComponent implements OnInit {
 
   }
 
-  inputPriceFrom() {
-    this.minPriceTo = this.priceFrom + 1;
-  }
+
 
   submitSearch() {
     if(!this.isOpenAdvancedSearch){
@@ -209,4 +215,39 @@ export class HomePageComponent implements OnInit {
 
   }
 
+
+  selectSort() {
+
+    console.log(this.accommodationArray);
+
+    if(this.sortType == "Price")
+    {
+        this.accommodationArray.sort( ( a, b) => {
+          console.log(a.sobe[0].cena);
+            return (a.sobe[0].cena - b.sobe[0].cena);
+        });
+    }
+    else if(this.sortType == "Category")
+    {  
+        this.accommodationArray.sort( ( a, b) => {
+            console.log(a.kategorija);
+            return (a.kategorija - b.kategorija);
+        });
+    }
+    else if(this.sortType == "Rating")
+    {
+        this.accommodationArray.sort( ( a, b) => {
+            console.log(a.ocena);
+            return (a.ocena - b.ocena);
+        });
+    }
+
+    console.log(this.accommodationArray);
+
+  }
+ 
+
+
 }
+
+
