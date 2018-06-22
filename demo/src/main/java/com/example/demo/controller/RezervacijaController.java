@@ -60,18 +60,18 @@ public class RezervacijaController {
 		Rezervacija rezervacija = new Rezervacija();
 		rezervacija.setId(Calendar.getInstance().getTimeInMillis()+"");
 		rezervacija.setIdSobe(r.getRoom_id());
-		rezervacija.setidKorisnika(r.getUser_id());
+		rezervacija.setIdKorisnika(r.getUser_id());
 		rezervacija.setOd(DatatypeFactory.newInstance().newXMLGregorianCalendar(r.getDateFrom()));
 		rezervacija.setDo(DatatypeFactory.newInstance().newXMLGregorianCalendar(r.getDateTo()));
 		
 		rezervacijaService.addReservation(rezervacija);
 		
 		Soba soba = sobaService.getSobaById(r.getRoom_id()).get();
-		soba.getRezervacija().add(rezervacija);
+		soba.getRezervacije().add(rezervacija);
 		sobaService.updateSoba(soba);
 		
 		Korisnik korisnik = korisnikService.getUserById(r.getUser_id()).get();
-		korisnik.getRezervacija().add(rezervacija);
+		korisnik.getRezervacije().add(rezervacija);
 		korisnikService.save(korisnik);
 		
 		return true;

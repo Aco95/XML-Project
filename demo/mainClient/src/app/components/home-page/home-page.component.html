@@ -25,7 +25,6 @@
   <form>
 
     <div class="row"> <!-- start row -->
-
       <div class="col">
         <div class="form-group">
           <label for="place">Place:</label>
@@ -45,7 +44,7 @@
       </div>
       <div class="col">
           <div class="form-group">
-            <label for="fromDate">From:</label>
+            <label for="fromDate">Date from:</label>
             <div class="input-group">
               <input class="form-control" placeholder="yyyy-mm-dd"
                       name="datePicker"  [(ngModel)]="dateFrom" [minDate]="minDateFrom" (ngModelChange)="chooseDateFrom()" ngbDatepicker #df="ngbDatepicker" required>
@@ -59,7 +58,7 @@
       </div>
       <div class="col">
           <div class="form-group">
-            <label for="toDate">To:</label>
+            <label for="toDate">Date to:</label>
             <div class="input-group">
               <input class="form-control" placeholder="yyyy-mm-dd"
                       name="datePicker" [(ngModel)]="dateTo" [minDate]="minDateTo" ngbDatepicker #dt="ngbDatepicker" required>
@@ -75,10 +74,30 @@
         <br>
         <button type="submit" class="btn btn-primary" (click)="submitSearch()">Search</button>
       </div>
-
     </div>  <!-- end row -->
 
-    
+    <div class="row"> <!-- start row -->
+      <div class="col">
+        <div class="form-group">
+            <!-- <md-input-container>
+                <label for="priceFrom">Price from ($):</label>
+                <input type="number" min="0" max="100" required mdInput placeholder="min price" [(ngModel)]="priceFrom" name="priceFrom" [formControl]="rateControl">
+                <md-error>Please enter a value between 0 and 100</md-error>
+            </md-input-container> -->
+
+          <label for="priceFrom">Price from ($):</label>     
+          <input type="number" [(ngModel)]="priceFrom" name="cenaOd" class="form-control" required> 
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="priceTo">Price to ($):</label>
+          <input type="number" [(ngModel)]="priceTo" name="cenaDo"  class="form-control" required>
+        </div>
+      </div>
+    </div>  <!-- end row -->
+
+
     <div id="accordion">
 
       <div class="card">
@@ -295,11 +314,19 @@
         
         </div>
 
-        <br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br>
+        <div class="app-title" class="col-md-1">
+          <h5> Price: ($)</h5>
+        </div>
+        <div class="col-md-1">
+          <p>{{listMinPrice[i]}} - {{listMaxPrice[i]}}</p>
+        </div>
+        <br><br><br>
 
         <div class="col-md-1">
           <button type="submit" class="btn btn-dark" (click)="onClickReserveAccommodation(accommodation)">Reserve</button>
         </div> 
+
       </div>
 
       <div class="col-md-2">
@@ -311,13 +338,6 @@
         <div class="col-md-1">
           <p>{{accommodation.ocena}}</p>
         </div>
-
-        <!-- <br><br><br><br><br><br><br><br><br><br><br><br>
-
-        <div class="col-md-1">
-          <button type="submit" class="btn btn-dark" [hidden]="isLoggedInUser" (click)="onClickGiveReview(accommodation)">Give review</button>
-        </div>  -->
-      
  
       </div>
   

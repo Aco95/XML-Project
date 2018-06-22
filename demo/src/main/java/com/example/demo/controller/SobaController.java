@@ -10,9 +10,12 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +37,16 @@ public class SobaController {
 	
 	@Autowired
 	private ISmestajService smestajService;
+	
+	
+	@RequestMapping(value="/getSmestajID", method=RequestMethod.POST)
+	public ResponseEntity<Object> getSmestajID(@RequestBody String roomID) {
+		
+		System.out.println("Trazim id smestaja");
+		String smestajID = sobaService.getSmestajID(roomID);
+		
+		return new ResponseEntity<Object>(smestajID,HttpStatus.OK);
+	}
 	
 	
 	@RequestMapping(
@@ -87,10 +100,10 @@ public class SobaController {
 		
 		List<Soba> slobodneSobe = new ArrayList<Soba>();
 		
-		for(Soba soba : smestaj.getSoba()) {
+		for(Soba soba : smestaj.getSobe()) {
 			if(soba.getKapacitet()==brojOsoba) {
 				
-				if(soba.getRezervacija().isEmpty()) {		// soba nikada nije rezervisana do sad
+				if(soba.getRezervacije().isEmpty()) {		// soba nikada nije rezervisana do sad
 					if(!slobodneSobe.contains(soba)) {
 						slobodneSobe.add(soba);
 						continue;
@@ -98,7 +111,7 @@ public class SobaController {
 				}
 				
 				boolean slobodna = true;
-				for(Rezervacija rez : soba.getRezervacija()) {
+				for(Rezervacija rez : soba.getRezervacije()) {
 					
 					if(isBetween(datumDolaska, rez.getOd(), rez.getDo()) || isBetween(datumOdlaska, rez.getOd(), rez.getDo())) {
 						System.out.println("soba "+soba.getBroj()+" je zauzeta tada..");

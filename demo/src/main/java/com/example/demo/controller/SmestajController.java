@@ -58,18 +58,19 @@ public class SmestajController {
 	
 	
 	@RequestMapping(
-			value = "/basicSearch/{place}/{numberOfPersons}/{dateFrom}/{dateTo}",
+			value = "/basicSearch/{place}/{numberOfPersons}/{dateFrom}/{dateTo}/{priceFrom}/{priceTo}",
 			method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public RezultatPretrageDTO basicSearch(@PathVariable("place") String place,
 			@PathVariable("numberOfPersons") String numberOfPersons,
-			@PathVariable("dateFrom") String dateFrom, @PathVariable("dateTo") String dateTo) throws  DatatypeConfigurationException{
+			@PathVariable("dateFrom") String dateFrom, @PathVariable("dateTo") String dateTo,
+			@PathVariable("priceFrom") String priceFrom, @PathVariable("priceTo") String priceTo) throws  DatatypeConfigurationException{
 		
 		
 		RezultatPretrageDTO rezultat = new RezultatPretrageDTO();
 		rezultat.setGreska(false);
 		
-		if(place.contains("undefined") || dateFrom.contains("undefined") || dateTo.contains("undefined")) {
+		if(place.contains("undefined") || dateFrom.contains("undefined") || dateTo.contains("undefined") || priceFrom.contains("undefined") || priceTo.contains("undefined")) {
 			
 			rezultat.setGreska(true);
 			return rezultat;
@@ -82,10 +83,14 @@ public class SmestajController {
 		System.out.println(numberOfPersons.substring(1, numberOfPersons.length()-1));
 		System.out.println(dateFrom);
 		System.out.println(dateTo);
+		System.out.println(priceFrom);
+		System.out.println(priceTo);
 		
 		
 		List<Smestaj> smestaji = smestajService.getSmestajbyMesto(place.substring(1, place.length()-1));
 		int brojOsoba = Integer.parseInt(numberOfPersons.substring(1, numberOfPersons.length()-1));
+		int cenaOd = Integer.parseInt(priceFrom);
+		int cenaDo = Integer.parseInt(priceTo);
 //		int brojOsoba = numberOfPersons;
 		
 //		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -118,10 +123,10 @@ public class SmestajController {
 		List<Smestaj> trazeniSmestaji = new ArrayList<Smestaj>();
 		
 		for(Smestaj smestaj : smestaji) {
-			for(Soba soba : smestaj.getSoba()) {
-				if(soba.getKapacitet()==brojOsoba) {
+			for(Soba soba : smestaj.getSobe()) {
+				if(soba.getKapacitet()==brojOsoba && (cenaOd<=soba.getCena() && soba.getCena()<=cenaDo)) {
 					
-					if(soba.getRezervacija().isEmpty()) {		// soba nikada nije rezervisana do sad
+					if(soba.getRezervacije().isEmpty()) {		// soba nikada nije rezervisana do sad
 						if(!trazeniSmestaji.contains(smestaj)) {
 							trazeniSmestaji.add(smestaj);
 							continue;
@@ -129,7 +134,7 @@ public class SmestajController {
 					}
 					
 					boolean slobodna = true;
-					for(Rezervacija rez : soba.getRezervacija()) {
+					for(Rezervacija rez : soba.getRezervacije()) {
 						
 						if(isBetween(datumDolaska, rez.getOd(), rez.getDo()) || isBetween(datumOdlaska, rez.getOd(), rez.getDo())) {
 							System.out.println("soba "+soba.getBroj()+" je zauzeta tada..");
@@ -159,13 +164,14 @@ public class SmestajController {
 	
 	
 	@RequestMapping(
-			value = "/advancedSearch/{place}/{numberOfPersons}/{dateFrom}/{dateTo}/{type}/{category}"
+			value = "/advancedSearch/{place}/{numberOfPersons}/{dateFrom}/{dateTo}/{priceFrom}/{priceTo}/{type}/{category}"
 					+ "/{parking}/{wifi}/{breakfast}/{half_board}/{board}/{TV}/{kitchen}/{bathroom}",
 			method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public RezultatPretrageDTO advancedSearch(@PathVariable("place") String place,
 			@PathVariable("numberOfPersons") String numberOfPersons,
 			@PathVariable("dateFrom") String dateFrom, @PathVariable("dateTo") String dateTo,
+			@PathVariable("priceFrom") String priceFrom, @PathVariable("priceTo") String priceTo,
 			@PathVariable("type") String type, @PathVariable("category") String category,
 			@PathVariable("parking") boolean parking, @PathVariable("wifi") boolean wifi,
 			@PathVariable("breakfast") boolean breakfast, @PathVariable("half_board") boolean half_board,  @PathVariable("board") boolean board, 
@@ -175,7 +181,7 @@ public class SmestajController {
 		RezultatPretrageDTO rezultat = new RezultatPretrageDTO();
 		rezultat.setGreska(false);
 		
-		if(place.contains("undefined") || dateFrom.contains("undefined") || dateTo.contains("undefined")) {
+		if(place.contains("undefined") || dateFrom.contains("undefined") || dateTo.contains("undefined") || priceFrom.contains("undefined") || priceTo.contains("undefined")) {
 			
 			rezultat.setGreska(true);
 			return rezultat;
@@ -188,11 +194,15 @@ public class SmestajController {
 		System.out.println(numberOfPersons.substring(1, numberOfPersons.length()-1));
 		System.out.println(dateFrom);
 		System.out.println(dateTo);
+		System.out.println(priceFrom);
+		System.out.println(priceTo);
 		
 		System.out.println(wifi);
 		
 		
 		int brojOsoba = Integer.parseInt(numberOfPersons.substring(1, numberOfPersons.length()-1));
+		int cenaOd = Integer.parseInt(priceFrom);
+		int cenaDo = Integer.parseInt(priceTo);
 		
 		int kategorija = Integer.parseInt(category.substring(1, category.length()-1));
 		int t = Integer.parseInt(type.substring(1, type.length()-1));
@@ -237,10 +247,10 @@ public class SmestajController {
         			&& smestaj.isWifi()==wifi && (smestaj.isDorucak()==breakfast || smestaj.isPolupansion()==half_board
         			|| smestaj.isPansion()==board) && smestaj.isTv()==TV && smestaj.isMiniKuhinja()==kitchen && smestaj.isPrivatnoKupatilo()==bathroom) {
         		
-				for(Soba soba : smestaj.getSoba()) {
-					if(soba.getKapacitet()==brojOsoba) {
+				for(Soba soba : smestaj.getSobe()) {
+					if(soba.getKapacitet()==brojOsoba && (cenaOd<=soba.getCena() && soba.getCena()<=cenaDo)) {
 						
-						if(soba.getRezervacija().isEmpty()) {		// soba nikada nije rezervisana do sad
+						if(soba.getRezervacije().isEmpty()) {		// soba nikada nije rezervisana do sad
 							if(!trazeniSmestaji.contains(smestaj)) {
 								trazeniSmestaji.add(smestaj);
 								continue;
@@ -248,7 +258,7 @@ public class SmestajController {
 						}
 						
 						boolean slobodna = true;
-						for(Rezervacija rez : soba.getRezervacija()) {
+						for(Rezervacija rez : soba.getRezervacije()) {
 							
 							if(isBetween(datumDolaska, rez.getOd(), rez.getDo()) || isBetween(datumOdlaska, rez.getOd(), rez.getDo())) {
 								System.out.println("soba "+soba.getBroj()+" je zauzeta tada..");

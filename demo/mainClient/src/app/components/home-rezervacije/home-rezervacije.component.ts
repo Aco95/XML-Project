@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RezervacijeService } from '../../services/rezervacije.service';
 import { Rezervacija } from '../../model/Rezervacija';
+import { Smestaj } from '../../model/Smestaj';
 
 
 @Component({
@@ -11,11 +12,15 @@ import { Rezervacija } from '../../model/Rezervacija';
 export class HomeRezervacijeComponent implements OnInit {
 
   rezervacije: Rezervacija[];
+  retVal: any;
+  tempRez : Rezervacija;
+  smestajID : String;
 
   constructor(private rezervacijeService: RezervacijeService) { }
 
   ngOnInit() {    
     this.getRezervacije();
+    this.retVal = [];
   }
 
   getRezervacije() : void {
@@ -23,8 +28,26 @@ export class HomeRezervacijeComponent implements OnInit {
     .subscribe(rezervacije => this.rezervacije = rezervacije);
   }
 
-  test() {
-    this.rezervacijeService.test();
+  getUserReservation() {
+    this.rezervacijeService.getUserReservation('3').subscribe(
+      (data: Rezervacija[]) => {
+        this.retVal = data;
+        console.log(data);         
+        //prodji skroz sve rezervacije       
+        this.getSmestajByRoomID('5')
+      }
+    )
+  }
+
+  getSmestajByRoomID(roomID: String) {
+
+    this.rezervacijeService.getSmestajByRoomID(roomID).subscribe(
+      (smestaj:String) => {
+        console.log(smestaj);
+        this.smestajID = smestaj;
+        
+      }
+    )
   }
 
 }

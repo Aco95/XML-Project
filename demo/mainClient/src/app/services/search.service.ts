@@ -37,22 +37,24 @@ export class SearchService {
 
   }
 
-  basicSearch(place:any, numberOfPersons:any, dateFrom:any, dateTo:any){
+  basicSearch(place:any, numberOfPersons:any, dateFrom:any, dateTo:any, priceFrom:any, priceTo:any){
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.get('http://localhost:8080/public/accommodations/basicSearch/'+JSON.stringify(place)+
-    "/"+JSON.stringify(numberOfPersons)+"/"+JSON.stringify(dateFrom)+"/"+JSON.stringify(dateTo), 
+    "/"+JSON.stringify(numberOfPersons)+"/"+JSON.stringify(dateFrom)+"/"+JSON.stringify(dateTo)+
+    "/"+JSON.stringify(priceFrom)+"/"+JSON.stringify(priceTo),
       { headers : headers }).map((data : Response) => data.json());
 
   }
 
-  advancedSearch(place:any, numberOfPersons:any, dateFrom:any, dateTo:any,
+  advancedSearch(place:any, numberOfPersons:any, dateFrom:any, dateTo:any, priceFrom:any, priceTo:any,
     type:any, category:any, parking:any, wifi:any, breakfast:any, half_board:any,
     board:any, TV:any, kitchen:any, bathroom:any) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.get('http://localhost:8080/public/accommodations/advancedSearch/'+JSON.stringify(place)+"/"
     +JSON.stringify(numberOfPersons)+"/"+JSON.stringify(dateFrom)+"/"+JSON.stringify(dateTo)+"/"
+    +JSON.stringify(priceFrom)+"/"+JSON.stringify(priceTo)+"/"
     +JSON.stringify(type)+"/"+JSON.stringify(category)+"/"+JSON.stringify(parking)+"/"+JSON.stringify(wifi)+"/"
     +JSON.stringify(breakfast)+"/"+JSON.stringify(half_board)+"/"+JSON.stringify(board)+"/"
     +JSON.stringify(TV)+"/"+JSON.stringify(kitchen)+"/"+JSON.stringify(bathroom), 

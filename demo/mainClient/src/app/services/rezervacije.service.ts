@@ -37,14 +37,16 @@ export class RezervacijeService {
       JSON.stringify(reservationDTO), { headers : headers }).map((data : Response) => data.json());
   }
 
-  test() {
-    this.s = '3';
+  getUserReservation(userID:String) {
+    return this.http.post('http://localhost:8080/public/reservations/get-user-reservation', userID ).map(
+      (data:Response) => data.json()
+    );
+  }
 
-    this.http.post('http://localhost:8080/public/reservations/get-user-reservation', this.s ).subscribe(
-      data => {
-        console.log(data);
-      }
-    )
+  getSmestajByRoomID(roomID:String) {
+    return this.http.post('http://localhost:8080/public/rooms/getSmestajID', roomID).map(
+      (data:Response) => data.json()
+    );
   }
 
 
