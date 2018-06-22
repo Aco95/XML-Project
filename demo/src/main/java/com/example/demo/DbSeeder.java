@@ -384,8 +384,8 @@ public class DbSeeder implements CommandLineRunner{
 		
 		Recenzija recenzija=new Recenzija();
 		recenzija.setKorisnik(k1);
-		recenzija.setSmestaj(smestaj1);
-		recenzija.setId("1");
+		//recenzija.setSmestajId("1");
+		recenzija.setId("3");
 		recenzija.setOcena(5);
 		
 		Komentar komentar=new Komentar();
@@ -393,8 +393,8 @@ public class DbSeeder implements CommandLineRunner{
 		komentar.setOdobren(false);
 		komentar.setSadrzaj("neki jako dobar komentar");
 		recenzija.setKomentar(komentar);
-		recenzijaService.setRecenzija(recenzija);
-		recenzijaService.getRecenzijaById(recenzija.getId());
+		//recenzijaService.setRecenzija(recenzija);
+		//recenzijaService.getRecenzijaById(recenzija.getId());
 			
 	}
 
