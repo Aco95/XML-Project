@@ -327,7 +327,7 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj3.setAdresa("Bulevar Cara Lazara 104");
 		smestaj3.setKategorija(5);
 		smestaj3.setTip(Tip.HOTEL);
-		smestaj3.setOcena(8.8);
+		smestaj3.setOcena(7.5);
 		smestaj3.setOpis("Eksluzivan hotel sa limana..");
 		smestaj3.setSobe(sobe3);
 		List<String> slikeSmestaj3 = new ArrayList();
