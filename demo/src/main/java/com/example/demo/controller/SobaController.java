@@ -10,9 +10,12 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +37,25 @@ public class SobaController {
 	
 	@Autowired
 	private ISmestajService smestajService;
+	
+	
+	@RequestMapping(value="/getSmestaj/{roomID}", method=RequestMethod.GET)
+	public ResponseEntity<Object> getSmestajID(@PathVariable("roomID") String roomID) {
+		
+		System.out.println("Trazim id smestaja");
+		String smestajID = sobaService.getSmestajID(roomID);
+		
+		Optional<Smestaj> smestaj = smestajService.getSmestajById(smestajID);
+		
+		return new ResponseEntity<Object>(smestaj,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/getRoom/{roomID}", method=RequestMethod.GET)
+	public ResponseEntity<Object> getSobaByID(@PathVariable("roomID") String roomID) {
+		
+		Optional<Soba> soba = sobaService.getSobaById(roomID);
+		return new ResponseEntity<Object>(soba, HttpStatus.OK);
+	}
 	
 	
 	@RequestMapping(

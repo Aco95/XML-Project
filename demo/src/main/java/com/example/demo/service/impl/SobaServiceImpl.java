@@ -34,6 +34,13 @@ public class SobaServiceImpl implements ISobaService{
 		return sobaRepository.save(s);
 	}
 
+	@Override
+	public String getSmestajID(String roomID) {
+		Soba soba = sobaRepository.getSmestajID(roomID);
+		
+		return soba.getIdSmestaja();
+	}
+
 	
 	
 }

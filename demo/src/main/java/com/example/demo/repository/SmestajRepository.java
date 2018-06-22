@@ -20,6 +20,7 @@ public interface SmestajRepository extends MongoRepository<Smestaj, String>{
 			+ "'dorucak' : ?5 ,'polupansion' : ?6 ,'pansion' : ?7 ,'tv' : ?8 ,'miniKuhinja' : ?9 ,'privatnoKupatilo' : ?10 }")
 	List<Smestaj> findByMoreAttributes(String mesto, Integer kategorija, Tip tip, Boolean parking,
 			Boolean wifi, Boolean dorucak, Boolean polupansion, Boolean pansion, Boolean tv, Boolean miniKuhinja, Boolean privatnoKupatilo);
+
 	
 
 }

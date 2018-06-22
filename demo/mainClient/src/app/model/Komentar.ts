@@ -5,5 +5,10 @@ export class Komentar {
     public sadrzaj: String;
     public odobren: boolean;
     
-    constructor() {}
+    constructor() {
+        this.id = "id";
+        this.datum = "datum";
+        this.sadrzaj = "";
+        this.odobren = false;
+    }
 }
