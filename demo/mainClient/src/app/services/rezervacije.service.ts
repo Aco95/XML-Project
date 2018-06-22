@@ -44,8 +44,14 @@ export class RezervacijeService {
   }
 
   getSmestajByRoomID(roomID:String) {
-    return this.http.post('http://localhost:8080/public/rooms/getSmestajID', roomID).map(
+    return this.http.get('http://localhost:8080/public/rooms/getSmestaj/'+roomID).map(
       (data:Response) => data.json()
+    );
+  }
+
+  getRoomByID(roomID) {
+    return this.http.get('http://localhost:8080/public/rooms/getRoom/'+roomID).map(
+      (data: Response) => data.json()
     );
   }
 

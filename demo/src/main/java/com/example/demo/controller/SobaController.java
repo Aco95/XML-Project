@@ -39,13 +39,22 @@ public class SobaController {
 	private ISmestajService smestajService;
 	
 	
-	@RequestMapping(value="/getSmestajID", method=RequestMethod.POST)
-	public ResponseEntity<Object> getSmestajID(@RequestBody String roomID) {
+	@RequestMapping(value="/getSmestaj/{roomID}", method=RequestMethod.GET)
+	public ResponseEntity<Object> getSmestajID(@PathVariable("roomID") String roomID) {
 		
 		System.out.println("Trazim id smestaja");
 		String smestajID = sobaService.getSmestajID(roomID);
 		
-		return new ResponseEntity<Object>(smestajID,HttpStatus.OK);
+		Optional<Smestaj> smestaj = smestajService.getSmestajById(smestajID);
+		
+		return new ResponseEntity<Object>(smestaj,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/getRoom/{roomID}", method=RequestMethod.GET)
+	public ResponseEntity<Object> getSobaByID(@PathVariable("roomID") String roomID) {
+		
+		Optional<Soba> soba = sobaService.getSobaById(roomID);
+		return new ResponseEntity<Object>(soba, HttpStatus.OK);
 	}
 	
 	
