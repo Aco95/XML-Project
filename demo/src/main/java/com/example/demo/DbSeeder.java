@@ -111,7 +111,7 @@ public class DbSeeder implements CommandLineRunner{
 		s1.setKapacitet(1); 	// jednokrevetna
 		s1.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
 		s1.setIdSmestaja("1");
-		s1.setCena(100);
+		s1.setCena(150);
 		
 		Soba s5 = new Soba();
 		s5.setId("5");
@@ -393,8 +393,8 @@ public class DbSeeder implements CommandLineRunner{
 		komentar.setOdobren(false);
 		komentar.setSadrzaj("neki jako dobar komentar");
 		recenzija.setKomentar(komentar);
-		recenzijaService.setRecenzija(recenzija);
-		recenzijaService.getRecenzijaById(recenzija.getId());
+//		recenzijaService.setRecenzija(recenzija);
+//		recenzijaService.getRecenzijaById(recenzija.getId());
 			
 	}
 
