@@ -19,6 +19,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class RezervacijeService {
 
+  s = "";
+
   constructor(private http: Http) { }
 
   getRezervacije(): Observable<Rezervacija[]> {
@@ -30,9 +32,27 @@ export class RezervacijeService {
 
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    alert(JSON.stringify(reservationDTO));
+    // alert(JSON.stringify(reservationDTO));
     return this.http.post('http://localhost:8080/public/reservations/addReservation', 
       JSON.stringify(reservationDTO), { headers : headers }).map((data : Response) => data.json());
+  }
+
+  getUserReservation(userID:String) {
+    return this.http.post('http://localhost:8080/public/reservations/get-user-reservation', userID ).map(
+      (data:Response) => data.json()
+    );
+  }
+
+  getSmestajByRoomID(roomID:String) {
+    return this.http.get('http://localhost:8080/public/rooms/getSmestaj/'+roomID).map(
+      (data:Response) => data.json()
+    );
+  }
+
+  getRoomByID(roomID) {
+    return this.http.get('http://localhost:8080/public/rooms/getRoom/'+roomID).map(
+      (data: Response) => data.json()
+    );
   }
 
 

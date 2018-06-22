@@ -12,5 +12,7 @@ public interface ISobaService {
 	Optional<Soba> getSobaById(String id);
 	
 	Soba updateSoba(Soba s);
+	
+	String getSmestajID(String roomID);
 
 }
