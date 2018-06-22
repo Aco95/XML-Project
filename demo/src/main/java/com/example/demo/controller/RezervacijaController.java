@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -75,6 +76,37 @@ public class RezervacijaController {
 		korisnikService.save(korisnik);
 		
 		return true;
+		
+	}
+	
+	
+	
+	@CrossOrigin(origins = "*")
+	@RequestMapping(
+			value = "/deleteReservation/{reservationID}",
+			method = RequestMethod.DELETE,
+			produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	public List<Rezervacija> deleteReservation(@PathVariable("reservationID") String reservationID) {
+		
+		System.out.println("id rezervacije: " + reservationID);
+		System.out.println(reservationID.substring(1, reservationID.length()-1));
+		
+		Rezervacija rezervacija = rezervacijaService.getReservationById(reservationID.substring(1, reservationID.length()-1)).get();
+		
+		rezervacijaService.deleteReservation(rezervacija.getId());
+		
+		Soba soba = sobaService.getSobaById(rezervacija.getIdSobe()).get();
+		soba.getRezervacije().remove(rezervacija);
+		sobaService.updateSoba(soba);
+		
+		Korisnik korisnik = korisnikService.getUserById(rezervacija.getIdKorisnika()).get();
+		korisnik.getRezervacije().remove(rezervacija);
+		korisnikService.save(korisnik);
+		
+//		return korisnik.getRezervacije();
+		return rezervacijaService.getUserReservation(rezervacija.getIdKorisnika());
+		
 		
 	}
 

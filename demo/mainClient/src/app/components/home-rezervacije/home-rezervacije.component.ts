@@ -75,4 +75,20 @@ export class HomeRezervacijeComponent implements OnInit {
     this.router.navigate(['/create-recenzija']);
   }
 
+
+  cancelReservation(rezervacija : any) {
+   
+    this.rezervacijeService.deleteReservation(rezervacija.id)
+    .subscribe(data => {
+      
+      this.retVal = data;
+      alert(this.retVal);
+      alert("You have successfully canceled your reservation.");  
+
+      } 
+    );
+
+
+  }
+
 }

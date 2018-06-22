@@ -56,4 +56,13 @@ export class RezervacijeService {
   }
 
 
+  deleteReservation(reservationID : any) {
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.delete('http://localhost:8080/public/reservations/deleteReservation/'+JSON.stringify(reservationID), 
+       { headers : headers }).map((data : Response) => data.json());
+  }
+
 }
