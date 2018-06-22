@@ -53,11 +53,6 @@ export class HomeRezervacijeComponent implements OnInit {
 
   getSmestajByRoomID(roomID: String, i: number) {
     this.rezervacijeService.getSmestajByRoomID(roomID).subscribe(
-<<<<<<< HEAD
-      (smestaj:String) => {
-        console.log(smestaj);
-        this.smestajID = smestaj;        
-=======
       (smestaj:Smestaj) => {
         console.log(smestaj.naziv);
         this.smestaji[i] = smestaj;
@@ -71,7 +66,6 @@ export class HomeRezervacijeComponent implements OnInit {
       (soba: Soba) => {
         console.log(soba);
         this.sobe[i] = soba
->>>>>>> f30c8d44d4cd30de1f7dda66eaa0b7d4cf44ca6e
       }
     )
     
