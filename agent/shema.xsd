@@ -1,82 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
-    <xs:element name="smestaj">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://techprimers.com/spring-boot-soap-example"
+    targetNamespace="http://techprimers.com/spring-boot-soap-example" elementFormDefault="qualified">
+
+    <xs:element name="getSmestajRequest">
         <xs:complexType>
-            <xs:choice>
-                <xs:sequence maxOccurs="unbounded" minOccurs="1">
-                    <xs:element ref="soba"/>
-                </xs:sequence>
-                <xs:sequence maxOccurs="unbounded" minOccurs="0">
-                    <xs:element name="slike_url" type="xs:string"/>
-                </xs:sequence>
-            </xs:choice>
-            <xs:attribute name="id" type="xs:string"/>
-            <xs:attribute name="naziv" type="xs:string"/>
-            <xs:attribute name="adresa" type="xs:string"/>
-            <xs:attribute name="mesto" type="xs:string"/>
-            <xs:attribute name="kategorija" type="xs:string"/>
-            <xs:attribute name="tip" type="tip"/>
-            <xs:attribute name="parking" type="xs:boolean"/>
-            <xs:attribute name="wifi" type="xs:boolean"/>
-            <xs:attribute name="dorucak" type="xs:boolean"/>
-            <xs:attribute name="polupansion" type="xs:boolean"/>
-            <xs:attribute name="pansion" type="xs:boolean"/>
-            <xs:attribute name="tv" type="xs:boolean"/>
-            <xs:attribute name="mini_kuhinja" type="xs:boolean"/>
-            <xs:attribute name="privatno_kupatilo" type="xs:boolean"/>
-            <xs:attribute name="ocena" type="xs:double"/>
-            <xs:attribute name="opis" type="xs:string"/>
+            <xs:sequence>
+                <xs:element name="id" type="xs:string"/>
+            </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="soba">
+
+    <xs:element name="getSmestajResponse">
         <xs:complexType>
-            <xs:sequence maxOccurs="unbounded" minOccurs="0">
-                <xs:element ref="rezervacija"/>
+            <xs:sequence>
+                <xs:element name="smestaj" type="tns:smestaj"/>
             </xs:sequence>
-            <xs:attribute name="cena" type="xs:int"/>
-            <xs:attribute name="id" type="xs:string"/>
-            <xs:attribute name="broj" type="xs:int"/>
-            <xs:attribute name="kapacitet" type="xs:int"/>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:complexType name="smestaj">
+
+        
+        <xs:sequence>
+            
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="sobe" type="tns:soba"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="slike_url" type="xs:string"/>
+            
+            
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="naziv" type="xs:string"/>
+            <xs:element name="adresa" type="xs:string"/>
+            <xs:element name="mesto" type="xs:string"/>
+            <xs:element name="kategorija" type="xs:int"/>
+            <xs:element name="tip" type="tns:tip"/>
+            <xs:element name="parking" type="xs:boolean"/>
+            <xs:element name="wifi" type="xs:boolean"/>
+            <xs:element name="dorucak" type="xs:boolean"/>
+            <xs:element name="polupansion" type="xs:boolean"/>
+            <xs:element name="pansion" type="xs:boolean"/>
+            <xs:element name="tv" type="xs:boolean"/>
+            <xs:element name="mini_kuhinja" type="xs:boolean"/>
+            <xs:element name="privatno_kupatilo" type="xs:boolean"/>
+            <xs:element name="ocena" type="xs:double"/>
+            <xs:element name="opis" type="xs:string"/>
+            
+        </xs:sequence>
+        
+    </xs:complexType>
+
+    <xs:complexType name="soba">
+
+        <xs:sequence>
+        
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="rezervacije" type="tns:rezervacija"/>
+            
+            <xs:element name="cena" type="xs:int"/>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="broj" type="xs:int"/>
+            <xs:element name="kapacitet" type="xs:int"/>
             <!--   <xs:attribute name="slobodna" type="xs:boolean"/>	-->
-            <xs:attribute name="id_smestaja" type="xs:string"/>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="korisnik">
-        <xs:complexType>
-            <xs:sequence maxOccurs="unbounded" minOccurs="1">
-                <xs:element ref="smestaj"/>
-                <xs:element ref="poruka"/>
-                <xs:element ref="poruka"/>
-            </xs:sequence>
-            <xs:attribute name="id" type="xs:string"/>
-            <xs:attribute name="ime" type="xs:string"/>
-            <xs:attribute name="prezime" type="xs:string"/>
-            <xs:attribute name="uloga" type="uloga"/>
-            <xs:attribute name="username" type="xs:string"/>
-            <xs:attribute name="password" type="xs:string"/>
-            <xs:attribute name="maticni_broj" type="xs:string"/>
-            <xs:attribute name="adresa" type="xs:string"/>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="recenzija">
-        <xs:complexType>
-            <xs:all maxOccurs="1">
-                <xs:element ref="korisnik"/>
-                <xs:element ref="smestaj"/>
-                <xs:element ref="komentar"/>
-            </xs:all>
-            <xs:attribute name="id" type="xs:string"/>
-            <xs:attribute name="ocena" type="xs:int"/>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="komentar">
-        <xs:complexType>
-            <xs:attribute name="id" type="xs:string"/>
-            <xs:attribute name="datum" type="xs:dateTime"/>
-            <xs:attribute name="sadrzaj" type="xs:string"/>
-            <xs:attribute name="odobren" type="xs:boolean"/>
-        </xs:complexType>
-    </xs:element>
+            <xs:element name="id_smestaja" type="xs:string"/>
+            
+        </xs:sequence>
+        
+        
+    </xs:complexType>
+
+    <xs:complexType name="korisnik">
+
+        <xs:sequence>
+            
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="smestaji" type="tns:smestaj"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="poslate_poruke" type="tns:poruka"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="primljene_poruke" type="tns:poruka"/>
+            
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="ime" type="xs:string"/>
+            <xs:element name="prezime" type="xs:string"/>
+            <xs:element name="uloga" type="tns:uloga"/>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="username" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+            <xs:element name="maticni_broj" type="xs:string"/>
+            <xs:element name="adresa" type="xs:string"/>
+            
+        </xs:sequence>
+        
+    </xs:complexType>
+
+
+
+    <xs:complexType name="recenzija">
+
+        <xs:sequence>
+            
+            <xs:element minOccurs="1" name="korisnik" type="tns:korisnik"/>
+            <xs:element minOccurs="1" name="smestaj" type="tns:smestaj"/>
+            <xs:element minOccurs="1" name="komentar" type="tns:komentar"/>
+            
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="ocena" type="xs:int"/>
+            
+        </xs:sequence>
+        
+    </xs:complexType>
+
+    <xs:complexType name="komentar">
+        
+        <xs:sequence>
+            
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="datum" type="xs:dateTime"/>
+            <xs:element name="sadrzaj" type="xs:string"/>
+            <xs:element name="odobren" type="xs:boolean"/>
+            
+        </xs:sequence>
+        
+    </xs:complexType>
+    
     <xs:simpleType name="realizacija">
         <xs:restriction base="xs:string">
             <xs:enumeration value="REALIZED"/>
@@ -85,6 +128,7 @@
             <xs:enumeration value="WAITING_TO_CONFIRM_REALIZATION"/>
         </xs:restriction>
     </xs:simpleType>
+    
     <xs:simpleType name="tip">
         <xs:restriction base="xs:string">
             <xs:enumeration value="HOTEL"/>
@@ -92,35 +136,45 @@
             <xs:enumeration value="APARTMENT"/>
         </xs:restriction>
     </xs:simpleType>
+    
     <xs:simpleType name="uloga">
         <xs:restriction base="xs:string">
             <xs:enumeration value="USER"/>
-            <xs:enumeration value="BED_AGENT"/>
+            <xs:enumeration value="AGENT"/>
             <xs:enumeration value="ADMIN"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:element name="rezervacija">
-        <xs:complexType>
-            <xs:attribute name="id" type="xs:string"/>
-            <xs:attribute name="od" type="xs:dateTime"/>
-            <xs:attribute name="do" type="xs:dateTime"/>
-            <xs:attribute name="id_sobe" type="xs:string"/>
-            <xs:attribute name="id_Korisnika" type="xs:string"/>
-            <xs:attribute name="realizacija" type="realizacija"/>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="poruka">
 
-        <xs:complexType>
-            <xs:all maxOccurs="1" minOccurs="1">
-                <xs:element ref="korisnik"/>
-            </xs:all>
-            <xs:attribute name="id" type="xs:string"/>
-            <xs:attribute name="procitana" type="xs:boolean"/>
-            <xs:attribute name="datum_slanja" type="xs:dateTime"/>
-            <xs:attribute name="naslov" type="xs:string"/>
-            <xs:attribute name="sadrzaj" type="xs:string"/>
-            <xs:attribute name="primljena" type="xs:boolean"/>
-        </xs:complexType>
-    </xs:element>
+    <xs:complexType name="rezervacija">
+        
+        <xs:sequence>
+            
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="od" type="xs:dateTime"/>
+            <xs:element name="do" type="xs:dateTime"/>
+            <xs:element name="id_sobe" type="xs:string"/>
+            <xs:element name="id_Korisnika" type="xs:string"/>
+            <xs:element name="realizacija" type="tns:realizacija"/>
+            
+        </xs:sequence>
+        
+    </xs:complexType>
+
+    <xs:complexType name="poruka">
+
+        <xs:sequence>
+            
+            <xs:element maxOccurs="1" minOccurs="1" name="sagovornik" type="tns:korisnik"/>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="procitana" type="xs:boolean"/>
+            <xs:element name="datum_slanja" type="xs:dateTime"/>
+            <xs:element name="naslov" type="xs:string"/>
+            <xs:element name="sadrzaj" type="xs:string"/>
+            <xs:element name="primljena" type="xs:boolean"/>
+            
+            
+        </xs:sequence>
+        
+    </xs:complexType>
+
 </xs:schema>
