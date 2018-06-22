@@ -11,7 +11,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import com.example.demo.entities.Komentar;
 import com.example.demo.entities.Korisnik;
+import com.example.demo.entities.Recenzija;
 import com.example.demo.entities.Smestaj;
 import com.example.demo.entities.Soba;
 import com.example.demo.entities.Tip;
@@ -21,6 +23,7 @@ import com.example.demo.repository.AdminRepository;
 import com.example.demo.repository.RezervacijaRepository;
 import com.example.demo.repository.SmestajRepository;
 import com.example.demo.repository.SobaRepository;
+import com.example.demo.service.IRecenzijaService;
 
 
 @Component
@@ -37,20 +40,14 @@ public class DbSeeder implements CommandLineRunner{
 	
 	@Autowired
 	private RezervacijaRepository rezervacijaRepository;
-	
-	
+
+	@Autowired
+	private IRecenzijaService recenzijaService;
 
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-		/*final String uri = "http://localhost:8010/cloud-demo/us-central1/helloHttp?name=jovica";
-
-	    RestTemplate restTemplate = new RestTemplate();
-	    String result = restTemplate.getForObject(uri, String.class);
-	    System.out.println("***********************http request***************");
-	    System.out.println(result);
-	    */
 		Korisnik k1 = new Korisnik();
 		k1.setId("1");
 		k1.setAdresa("Milovan Jelica 32");
@@ -348,6 +345,20 @@ public class DbSeeder implements CommandLineRunner{
 		List<Smestaj> smestaji = Arrays.asList(smestaj1,smestaj2,smestaj3);
 		smestajRepository.saveAll(smestaji);
 		
+		Recenzija recenzija=new Recenzija();
+		recenzija.setKorisnik(k1);
+		recenzija.setSmestaj(smestaj1);
+		recenzija.setId("1");
+		recenzija.setOcena(5);
+		
+		Komentar komentar=new Komentar();
+		komentar.setId("1");
+		komentar.setOdobren(false);
+		komentar.setSadrzaj("neki jako dobar komentar");
+		recenzija.setKomentar(komentar);
+		recenzijaService.setRecenzija(recenzija);
+		recenzijaService.getRecenzijaById(recenzija.getId());
+			
 	}
 
 }
