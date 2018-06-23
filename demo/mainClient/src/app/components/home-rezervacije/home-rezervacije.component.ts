@@ -22,6 +22,8 @@ export class HomeRezervacijeComponent implements OnInit {
   sobe: Soba[];
   user: any | null;
 
+  private agent : any;
+
   constructor(private rezervacijeService: RezervacijeService, private authService: AuthServiceService, private router: Router) { }
 
   ngOnInit() {    
@@ -81,14 +83,34 @@ export class HomeRezervacijeComponent implements OnInit {
     this.rezervacijeService.deleteReservation(rezervacija.id)
     .subscribe(data => {
       
-      this.retVal = data;
-      alert(this.retVal);
+      this.retVal = data
       alert("You have successfully canceled your reservation.");  
 
       } 
     );
 
 
+  }
+
+  contact(smestaj : any) {
+    this.rezervacijeService.getUserById(smestaj.idAgenta)
+    .subscribe(data => {
+      
+      this.agent = data;
+ 
+      this.rezervacijeService.selectAgent(this.agent);
+
+      this.rezervacijeService.currentAgent.subscribe(
+        currentAgent => 
+        {
+        console.log("Current agent from rezervacije: " +  currentAgent);
+        }
+      );
+
+      this.router.navigateByUrl('/send-message');
+      
+      } 
+    );
   }
 
 }

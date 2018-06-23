@@ -17,5 +17,6 @@ public interface IKorisnikService {
 	int count();
 
 	Optional<Korisnik> getUserById(String id);
+	Optional<Korisnik> getUserByUsername(String username);
 
 }

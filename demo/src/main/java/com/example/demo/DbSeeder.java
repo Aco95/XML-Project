@@ -316,7 +316,7 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj1.setMiniKuhinja(true);
 		smestaj1.setPrivatnoKupatilo(true);
 		smestaj1.setTv(true);
-		
+		smestaj1.setIdAgenta("2");
 		
 		List<Soba> sobe2 = Arrays.asList(s3,s4,s8,s9);
 		Smestaj smestaj2 = new Smestaj();
@@ -343,6 +343,7 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj2.setMiniKuhinja(true);
 		smestaj2.setPrivatnoKupatilo(true);
 		smestaj2.setTv(true);
+		smestaj2.setIdAgenta("2");
 		
 		
 		List<Soba> sobe3 = Arrays.asList(s2,s10,s11,s12);
@@ -376,6 +377,7 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj3.setMiniKuhinja(true);
 		smestaj3.setPrivatnoKupatilo(true);
 		smestaj3.setTv(true);
+		smestaj3.setIdAgenta("2");
 		
 		 
 		smestajRepository.deleteAll();

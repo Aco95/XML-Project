@@ -27,7 +27,8 @@ import com.example.demo.entities.Rezervacija;
 
 
 @RestController
-@RequestMapping(value="/users")
+@RequestMapping("/users")
+//@CrossOrigin(origins = "*")
 @CrossOrigin(origins="http://localhost:4200")
 public class KorisnikController {
 
@@ -99,4 +100,20 @@ public class KorisnikController {
 	    	System.out.println("treba da vrati:" +currentUser);
 	        return currentUser.getUser();
 	    }
+	  
+	  
+	  
+	  @RequestMapping(
+				value = "/getUserById/{id}",
+				method = RequestMethod.GET,
+				produces = MediaType.APPLICATION_JSON_VALUE)
+		public Korisnik getUserById(@PathVariable("id") String id){
+			
+		  	System.out.println("Id korisnika: " + id);
+		  
+			return korisnikService.getUserById(id).get();
+			
+		}
+	  
+	  
 }

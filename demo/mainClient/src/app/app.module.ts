@@ -32,6 +32,8 @@ import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecenzijaComponent } from './components/recenzija/recenzija.component';
 import { RecenzijaService } from './services/recenzija-service';
+import { SendMessageComponent } from './components/send-message/send-message.component';
+import { MessagesComponent } from './components/messages/messages.component';
 
 // factory dependency injection
 export function providerCustomHttp(backend: XHRBackend, defaultOptions: RequestOptions, auth: AuthServiceService, router: Router) {
@@ -49,7 +51,9 @@ export function providerCustomHttp(backend: XHRBackend, defaultOptions: RequestO
     CommentsComponent,
     RegistracijaComponent,
     ReserveAccommodationComponent,
-    RecenzijaComponent
+    RecenzijaComponent,
+    SendMessageComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,

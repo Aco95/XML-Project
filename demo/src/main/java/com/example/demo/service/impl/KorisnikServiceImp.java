@@ -76,4 +76,10 @@ public class KorisnikServiceImp implements IKorisnikService{
 		// TODO Auto-generated method stub
 		return korisnikRepository.findById(id);
 	}
+
+	@Override
+	public Optional<Korisnik> getUserByUsername(String username) {
+		// TODO Auto-generated method stub
+		return korisnikRepository.findOneByUsername(username);
+	}
 }
