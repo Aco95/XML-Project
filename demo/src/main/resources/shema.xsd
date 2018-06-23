@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:tns="http://www.w3.org/2001/XMLSchema/agent"
-    targetNamespace="http://www.w3.org/2001/XMLSchema/agent" elementFormDefault="qualified">
+    xmlns:tns="http://techprimers.com/demo"
+    targetNamespace="http://techprimers.com/demo" elementFormDefault="qualified">
 
-    <xs:element name="getSmestajRequest">
+    <xs:element name="addSmestajRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="id" type="xs:string"/>
+                <xs:element name="smestaj" type="tns:smestaj"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="getSmestajResponse">
+    <xs:element name="addSmestajResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="smestaj" type="tns:smestaj"/>
@@ -75,13 +75,11 @@
             <xs:element maxOccurs="unbounded" minOccurs="1" name="smestaji" type="tns:smestaj"/>
             <xs:element maxOccurs="unbounded" minOccurs="1" name="poslate_poruke" type="tns:poruka"/>
             <xs:element maxOccurs="unbounded" minOccurs="1" name="primljene_poruke" type="tns:poruka"/>
-            <xs:element maxOccurs="unbounded" minOccurs="1" name="rezervacije" type="tns:rezervacija"/>
             
             <xs:element name="id" type="xs:string"/>
             <xs:element name="ime" type="xs:string"/>
             <xs:element name="prezime" type="xs:string"/>
             <xs:element name="uloga" type="tns:uloga"/>
-            <xs:element name="email" type="xs:string"/>
             <xs:element name="username" type="xs:string"/>
             <xs:element name="password" type="xs:string"/>
             <xs:element name="maticni_broj" type="xs:string"/>

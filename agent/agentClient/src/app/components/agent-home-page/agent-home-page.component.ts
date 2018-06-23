@@ -44,14 +44,14 @@ export class AgentHomePageComponent implements OnInit {
   accommodationDoubleRooms : number;
   accommodationTripleRooms : number;
   accommodationQuadRooms : number;
-  accommodationWIFI : boolean;
-  accommodationPARKING : boolean;
-  accommodationTV : boolean;
-  accommodationBREAKFAST : boolean;
-  accommodationBOARDING_HOUSE : boolean;
-  accommodationHALF_BOARD : boolean;
-  accommodationSMALL_KITCHEN : boolean;
-  accommodationPRIVATE_BATHROOM : boolean;
+  accommodationWIFI : boolean = false;
+  accommodationPARKING : boolean = false;
+  accommodationTV : boolean = false;
+  accommodationBREAKFAST : boolean = false;
+  accommodationBOARDING_HOUSE : boolean = false;
+  accommodationHALF_BOARD : boolean = false;
+  accommodationSMALL_KITCHEN : boolean = false;
+  accommodationPRIVATE_BATHROOM : boolean = false;
   accommodationCategory : number;
 
   inbox : any[] = [];
@@ -121,6 +121,11 @@ export class AgentHomePageComponent implements OnInit {
 
     this.activities[index] = "app-menu__item active";
     this.panels[index] = true;
+
+    if (index == 0 ) {
+
+      this.getAccomodations();
+    }
 
   }
 

@@ -58,4 +58,10 @@ public class SmestajServiceImpl implements ISmestajService{
 		smestajRepository.delete(s);
 	}
 
+	@Override
+	public Smestaj insertAccommodation(Smestaj s) {
+		
+		return smestajRepository.insert(s);
+	}
+
 }

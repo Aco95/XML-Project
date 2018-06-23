@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:tns="http://www.w3.org/2001/XMLSchema/agent"
     targetNamespace="http://www.w3.org/2001/XMLSchema/agent" elementFormDefault="qualified">
-    
+
     <xs:element name="getSmestajRequest">
         <xs:complexType>
             <xs:sequence>
@@ -10,7 +10,7 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    
+
     <xs:element name="getSmestajResponse">
         <xs:complexType>
             <xs:sequence>
@@ -18,10 +18,10 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    
-    
+
+
     <xs:complexType name="smestaj">
-        
+
         
         <xs:sequence>
             
@@ -49,11 +49,11 @@
         </xs:sequence>
         
     </xs:complexType>
-    
+
     <xs:complexType name="soba">
-        
+
         <xs:sequence>
-            
+        
             <xs:element maxOccurs="unbounded" minOccurs="1" name="rezervacije" type="tns:rezervacija"/>
             
             <xs:element name="cena" type="xs:int"/>
@@ -67,9 +67,9 @@
         
         
     </xs:complexType>
-    
+
     <xs:complexType name="korisnik">
-        
+
         <xs:sequence>
             
             <xs:element maxOccurs="unbounded" minOccurs="1" name="smestaji" type="tns:smestaj"/>
@@ -90,11 +90,11 @@
         </xs:sequence>
         
     </xs:complexType>
-    
-    
-    
+
+
+
     <xs:complexType name="recenzija">
-        
+
         <xs:sequence>
             
             <xs:element minOccurs="1" name="korisnik" type="tns:korisnik"/>
@@ -107,7 +107,7 @@
         </xs:sequence>
         
     </xs:complexType>
-    
+
     <xs:complexType name="komentar">
         
         <xs:sequence>
@@ -145,7 +145,7 @@
             <xs:enumeration value="ADMIN"/>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <xs:complexType name="rezervacija">
         
         <xs:sequence>
@@ -160,9 +160,9 @@
         </xs:sequence>
         
     </xs:complexType>
-    
+
     <xs:complexType name="poruka">
-        
+
         <xs:sequence>
             
             <xs:element maxOccurs="1" minOccurs="1" name="sagovornik" type="tns:korisnik"/>
@@ -177,5 +177,5 @@
         </xs:sequence>
         
     </xs:complexType>
-    
+
 </xs:schema>

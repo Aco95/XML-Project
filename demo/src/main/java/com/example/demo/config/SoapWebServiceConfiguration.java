@@ -1,4 +1,4 @@
-package com.example.agent.config;
+package com.example.demo.config;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
@@ -15,7 +15,7 @@ import org.springframework.xml.xsd.XsdSchema;
 @EnableWs
 @Configuration
 public class SoapWebServiceConfiguration extends WsConfigurerAdapter {
-	
+
 	
 	@Bean
     public ServletRegistrationBean messageDispatcherServlet(ApplicationContext context) {
@@ -37,9 +37,8 @@ public class SoapWebServiceConfiguration extends WsConfigurerAdapter {
         DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
         definition.setSchema(userSchema);
         definition.setLocationUri("/soapWS");
-        definition.setPortTypeName("SmestajServicePort");
-        definition.setTargetNamespace("http://www.w3.org/2001/XMLSchema/agent");
+        definition.setPortTypeName("DemoServicePort");
+        definition.setTargetNamespace("http://techprimers.com/demo");
         return definition;
     }
-
 }
