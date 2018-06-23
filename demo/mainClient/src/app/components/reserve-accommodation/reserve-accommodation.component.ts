@@ -68,6 +68,7 @@ export class ReserveAccommodationComponent implements OnInit {
         }
 
         this.modifiedDateFrom = this.dateFrom;
+        alert(this.modifiedDateFrom);
         this.dateFrom += "T12:01:04.753Z";
 
         this.dateTo = reservation.dateTo.year + "-";
@@ -86,6 +87,7 @@ export class ReserveAccommodationComponent implements OnInit {
         }
 
         this.modifiedDateTo = this.dateTo;
+        alert(this.modifiedDateTo);
         this.dateTo += "T12:01:04.753Z";
 
 
@@ -93,8 +95,8 @@ export class ReserveAccommodationComponent implements OnInit {
         this.numberOfNights = Math.ceil(diff / (1000 * 3600 * 24)); 
         console.log(this.numberOfNights);
 
-        this.dateFrom = reservation.dateFrom;
-        this.dateTo = reservation.dateTo;
+        // this.dateFrom = reservation.dateFrom;
+        // this.dateTo = reservation.dateTo;
 
         this.searchService.getAccommodationFreeRooms(reservation.accommodation.id, reservation.numberOfPersons, reservation.dateFrom, reservation.dateTo)
         .subscribe(data => {
