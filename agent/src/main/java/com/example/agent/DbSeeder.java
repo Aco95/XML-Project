@@ -339,6 +339,7 @@ public class DbSeeder implements CommandLineRunner{
 		p3.setPrimljena(false);
 		
 		UserCredential uk = new UserCredential();
+		uk.setId("1");
 		uk.setEmail("agent@agent");
 		uk.setPassword("$2a$10$KjHNfVRioHre2sdAUxhaouv4BBLbhCj7cEnf.DgWAC57I9pOfo/8G");
 		

@@ -47,8 +47,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "poruka", propOrder = {
     "id",
-    "idKlijent",
-    "idAgent",
+    "idKlijenta",
+    "idAgenta",
     "procitana",
     "datumSlanja",
     "naslov",

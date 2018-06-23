@@ -36,16 +36,10 @@ export class LoginService {
 
   }
 
-  registerUser(user: any) {
-
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    alert(JSON.stringify(user));
-    return this.http.post('http://localhost:8080/public/user/create',
-      JSON.stringify(user), { headers: headers }).map((data: Response) => data.json());
+  checkAccount(email: string) {
+    let headers = new HttpHeaders();
+    return this.http
+      .get("http://localhost:8081/users/checkEmail/" + email).map(data => data.json());
   }
 
-  confirmRegistration(token: string) {
-    return this.http.get('http://localhost:8080/public/registrationConfirm?token=' + token);
-  }
 }

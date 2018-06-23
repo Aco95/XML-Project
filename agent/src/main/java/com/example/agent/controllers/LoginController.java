@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,5 +29,14 @@ public class LoginController {
 	    public UserCredential getUserPageAngular(@ModelAttribute("currentUser") CurrentUser currentUser) {
 	    	System.out.println("treba da vrati:" +currentUser);
 	        return currentUser.getUser();
+	    }
+	  
+	  @RequestMapping(
+	    		value = "/checkEmail/{email}",
+				method = RequestMethod.GET,
+				produces = MediaType.APPLICATION_JSON_VALUE)
+	    public Boolean getUserCredential(@PathVariable("email") String email) {
+	        
+		  return userCredentialService.checkEmail(email);
 	    }
 }
