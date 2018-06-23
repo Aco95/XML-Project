@@ -15,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 import com.example.demo.entities.Recenzija;
 import com.example.demo.service.IRecenzijaService;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
@@ -85,19 +86,67 @@ public class RecenzijaServiceImpl implements IRecenzijaService {
 	    System.out.println(result);	 
 	    System.out.println("rec id: "+rec.getKomentar().getSadrzaj());	 
 	    System.out.println("***********************http request get received***************");
-	    return new Recenzija();
+	    return rec;
 	}
 
 	@Override
-	public List<String> findByRejting(int prosecanRejting) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Recenzija> findBySmestajAndRejting(String smestajId,int ocena) {
+		String url=baseUri+"findBySmestajAndRejting?smestajId="+smestajId+"&"+"ocena="+ocena;
+	    RestTemplate restTemplate = new RestTemplate();
+	    String result = restTemplate.getForObject(url, String.class);
+	    System.out.println("***********************http request get sent***************");
+	    ObjectMapper objectMapper = new ObjectMapper();
+	    List<Recenzija> recList=new ArrayList<Recenzija>();
+	    try {
+	    	recList = objectMapper.readValue(result, new TypeReference<List<Recenzija>>(){});
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    System.out.println(result);	 
+	    System.out.println("rec lista velicina: "+recList.size());	 
+	    System.out.println("***********************http request get received***************");
+	    return recList;
 	}
 
 	@Override
 	public int calculateAverageRejtingForSmestaj(String smestajId) {
-		// TODO Auto-generated method stub
-		return 0;
+		String url=baseUri+"calculateAverageRejtingForSmestaj?filter=smestajId&value="+smestajId;
+	    RestTemplate restTemplate = new RestTemplate();
+	    String result = restTemplate.getForObject(url, String.class);
+	    System.out.println("***********************http request get sent***************");
+	    ObjectMapper objectMapper = new ObjectMapper();
+	    int rejting=0;
+	    try {
+	    	rejting = objectMapper.readValue(result, int.class);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    System.out.println(result);	 
+	    System.out.println("rejting je: "+rejting);	 
+	    System.out.println("***********************http request get received***************");
+	    return rejting;
+	}
+
+	@Override
+	public List<Recenzija> findByNotAllowed(Boolean allowed) {
+		String url=baseUri+"findByNotAllowed?allowed="+allowed;
+	    RestTemplate restTemplate = new RestTemplate();
+	    String result = restTemplate.getForObject(url, String.class);
+	    System.out.println("***********************http request get sent***************");
+	    ObjectMapper objectMapper = new ObjectMapper();
+	    List<Recenzija> recList=new ArrayList<Recenzija>();
+	    try {
+	    	recList = objectMapper.readValue(result, new TypeReference<List<Recenzija>>(){});
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    System.out.println(result);	 
+	    System.out.println("rec lista allowed:"+allowed+" velicina: "+recList.size());	 
+	    System.out.println("***********************http request get received***************");
+	    return recList;
 	}
 
 }

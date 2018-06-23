@@ -54,7 +54,7 @@ public class Recenzija {
     @XmlElement(required = true)
     protected Korisnik korisnik;
     @XmlElement(required = true)
-    protected Smestaj smestaj;
+    protected String smestajId;
     @XmlElement(required = true)
     protected Komentar komentar;
     
@@ -95,8 +95,8 @@ public class Recenzija {
      *     {@link Smestaj }
      *     
      */
-    public Smestaj getSmestaj() {
-        return smestaj;
+    public String getSmestajId() {
+        return smestajId;
     }
 
     /**
@@ -107,8 +107,8 @@ public class Recenzija {
      *     {@link Smestaj }
      *     
      */
-    public void setSmestaj(Smestaj value) {
-        this.smestaj = value;
+    public void setSmestajId(String value) {
+        this.smestajId = value;
     }
 
     /**
@@ -180,10 +180,10 @@ public class Recenzija {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Recenzija(Korisnik korisnik, Smestaj smestaj, Komentar komentar, int ocena) {
+	public Recenzija(Korisnik korisnik, String smestajId, Komentar komentar, int ocena) {
 		super();
 		this.korisnik = korisnik;
-		this.smestaj = smestaj;
+		this.smestajId = smestajId;
 		this.komentar = komentar;
 		this.ocena = ocena;
 	}

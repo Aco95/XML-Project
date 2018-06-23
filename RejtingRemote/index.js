@@ -110,7 +110,42 @@ exports.get = (req, res) => {
     });
 };
 
-exports.average = (req, res) => {
+exports.getAll = (req, res) => {
+  //const key = getKeyFromRequestData(req.body);
+    const query = datastore.createQuery(kind);
+	datastore.runQuery(query).then(results => {
+		console.log("query pokrenut");
+		console.log(results);
+	  const recenzije = results[0];
+	  res.status(200).send(JSON.stringify(recenzije));
+	  //res.sendStatus(200);
+	})
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send(err.message);
+      return Promise.reject(err);
+    });
+};
+
+exports.findByNotAllowed = (req, res) => {
+  //const key = getKeyFromRequestData(req.body);
+	let allowed=req.query.allowed=='true'
+    const query = datastore.createQuery(kind).filter('komentar.odobren','=',allowed);
+	datastore.runQuery(query).then(results => {
+		console.log("query pokrenut");
+		console.log(results);
+	  const recenzije = results[0];
+	  res.status(200).send(JSON.stringify(recenzije));
+	  //res.sendStatus(200);
+	})
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send(err.message);
+      return Promise.reject(err);
+    });
+};
+
+exports.calculateAverageRejtingForSmestaj = (req, res) => {
   let filter=req.query.filter;;
   let value=req.query.value
   let averageVal=0;
@@ -138,22 +173,16 @@ exports.average = (req, res) => {
 		
 };
 
-exports.search = (req, res) => {
-  let id = req.query.average
-
-  const query = datastore.createQuery(kind);
+exports.findBySmestajAndRejting = (req, res) => {
+  let ocena = parseInt(req.query.ocena);
+  let smestajId=req.query.smestajId;
+  const query = datastore.createQuery(kind).filter('ocena','=',ocena).filter('smestajId','=',smestajId);
   
 	datastore.runQuery(query).then(results => {
 		console.log("query pokrenut");
 		console.log(results);
-	  const recenzije = results[0];
-	  console.log("pojedinacne");
-	  recenzije.forEach(recenzija => {
-		  averageVal=recenzija.ocena+averageVal
-		  br=br+1;
-	  });
-	  
-	  res.status(200).send(JSON.stringify(averageVal/br));
+	  const recenzije = results[0];	  
+	  res.status(200).send(JSON.stringify(recenzije));
 	  //res.sendStatus(200);
 	})
     .catch((err) => {

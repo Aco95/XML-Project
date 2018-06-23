@@ -1,5 +1,9 @@
 <button (click)="getUserReservation()">Aktivne</button>
 <button >Završene</button>
+<button (click)="createRcensia()">Recenzija</button>
+
+<br>
+<br>
 
 <div *ngIf="retVal.length===0">
     Prazno
@@ -13,7 +17,7 @@
     <a href="">Više informacija</a><br>
     <span class="dugmici">
         <button>KONTAKTIRAJ</button>
-        <button>OTKAŽI</button>
+        <button (click)="cancelReservation(rezervacija)">OTKAŽI</button>
     </span>
     <hr>
     

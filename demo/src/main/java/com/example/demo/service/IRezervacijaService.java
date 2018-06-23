@@ -7,7 +7,10 @@ import com.example.demo.entities.Rezervacija;
 
 public interface IRezervacijaService {
 	
+	Optional<Rezervacija> getReservationById(String id);
 	Rezervacija addReservation(Rezervacija r);
 	List<Rezervacija> getUserReservation(String userID);
+	
+	void deleteReservation(String reservationID);
 
 }

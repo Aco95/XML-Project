@@ -111,7 +111,7 @@ public class DbSeeder implements CommandLineRunner{
 		s1.setKapacitet(1); 	// jednokrevetna
 		s1.setRezervacije(new ArrayList<Rezervacija>());		// bez rezervacija
 		s1.setIdSmestaja("1");
-		s1.setCena(100);
+		s1.setCena(150);
 		
 		Soba s5 = new Soba();
 		s5.setId("5");
@@ -353,7 +353,7 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj3.setAdresa("Bulevar Cara Lazara 104");
 		smestaj3.setKategorija(5);
 		smestaj3.setTip(Tip.HOTEL);
-		smestaj3.setOcena(8.8);
+		smestaj3.setOcena(7.5);
 		smestaj3.setOpis("Eksluzivan hotel sa limana..");
 		smestaj3.setSobe(sobe3);
 		List<String> slikeSmestaj3 = new ArrayList();
@@ -384,7 +384,7 @@ public class DbSeeder implements CommandLineRunner{
 		
 		Recenzija recenzija=new Recenzija();
 		recenzija.setKorisnik(k1);
-		//recenzija.setSmestajId("1");
+		recenzija.setSmestajId("1");
 		recenzija.setId("3");
 		recenzija.setOcena(5);
 		
@@ -393,9 +393,11 @@ public class DbSeeder implements CommandLineRunner{
 		komentar.setOdobren(false);
 		komentar.setSadrzaj("neki jako dobar komentar");
 		recenzija.setKomentar(komentar);
-		//recenzijaService.setRecenzija(recenzija);
-		//recenzijaService.getRecenzijaById(recenzija.getId());
-			
+//		recenzijaService.setRecenzija(recenzija);
+//		recenzijaService.getRecenzijaById(recenzija.getId());
+//		recenzijaService.findBySmestajAndRejting("1", 5);
+//		recenzijaService.calculateAverageRejtingForSmestaj("1");
+//		recenzijaService.findByNotAllowed(false);
 	}
 
 }

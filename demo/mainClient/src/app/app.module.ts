@@ -30,6 +30,8 @@ import { MyCustomHttp } from './services/my-custom-http';
 import { RequestOptions, XHRBackend } from '@angular/http';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RecenzijaComponent } from './components/recenzija/recenzija.component';
+import { RecenzijaService } from './services/recenzija-service';
 
 // factory dependency injection
 export function providerCustomHttp(backend: XHRBackend, defaultOptions: RequestOptions, auth: AuthServiceService, router: Router) {
@@ -46,7 +48,8 @@ export function providerCustomHttp(backend: XHRBackend, defaultOptions: RequestO
     HomeRezervacijeComponent,
     CommentsComponent,
     RegistracijaComponent,
-    ReserveAccommodationComponent
+    ReserveAccommodationComponent,
+    RecenzijaComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,7 @@ export function providerCustomHttp(backend: XHRBackend, defaultOptions: RequestO
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [HttpClientModule, SearchService, RezervacijeService, UserService, LoginService, AuthServiceService,
+  providers: [HttpClientModule, SearchService, RezervacijeService, UserService, LoginService, RecenzijaService, AuthServiceService,
     {
       provide: Http,
       useFactory: providerCustomHttp,

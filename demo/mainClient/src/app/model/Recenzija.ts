@@ -11,6 +11,9 @@ export class Recenzija {
     public ocena: Number;
 
     constructor() {
-
+        this.korisnik = null;
+        this.smestaj = null;
+        this.komentar = new Komentar();
+        this.ocena = null;
     }
 }

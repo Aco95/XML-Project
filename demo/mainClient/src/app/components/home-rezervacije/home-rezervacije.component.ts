@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RezervacijeService } from '../../services/rezervacije.service';
 import { Rezervacija } from '../../model/Rezervacija';
+import { Router } from '@angular/router';
+
 import { Smestaj } from '../../model/Smestaj';
 import { Soba } from '../../model/Soba';
 import { AuthServiceService } from '../../services/auth-service.service';
@@ -20,7 +22,7 @@ export class HomeRezervacijeComponent implements OnInit {
   sobe: Soba[];
   user: any | null;
 
-  constructor(private rezervacijeService: RezervacijeService, private authService: AuthServiceService) { }
+  constructor(private rezervacijeService: RezervacijeService, private authService: AuthServiceService, private router: Router) { }
 
   ngOnInit() {    
     this.getRezervacije();
@@ -67,6 +69,26 @@ export class HomeRezervacijeComponent implements OnInit {
       }
     )
     
+  }
+
+  createRcensia(){
+    this.router.navigate(['/create-recenzija']);
+  }
+
+
+  cancelReservation(rezervacija : any) {
+   
+    this.rezervacijeService.deleteReservation(rezervacija.id)
+    .subscribe(data => {
+      
+      this.retVal = data;
+      alert(this.retVal);
+      alert("You have successfully canceled your reservation.");  
+
+      } 
+    );
+
+
   }
 
 }
