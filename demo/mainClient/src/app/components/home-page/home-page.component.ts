@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SearchService } from "../../services/search.service";
 
-import { AuthServiceService} from '../../services/auth-service.service';
+import { AuthServiceService } from '../../services/auth-service.service';
 
-import { FormControl, Validators} from "@angular/forms";
+import { FormControl, Validators } from "@angular/forms";
 // import { FormControl } from '@angular/forms';
 
 @Component({
@@ -17,11 +17,11 @@ import { FormControl, Validators} from "@angular/forms";
 })
 export class HomePageComponent implements OnInit {
 
-  private accommodationArray : any;
+  private accommodationArray: any;
 
-  private place : any;
-  private numberOfPersons : any;
-  private dateFrom : any;
+  private place: any;
+  private numberOfPersons: any;
+  private dateFrom: any;
   private dateTo: any;
   private priceFrom: any;
   private priceTo: any;
@@ -29,34 +29,34 @@ export class HomePageComponent implements OnInit {
   private rating: any;
 
 
-  private minDateFrom : any;
-  private minDateTo : any;
+  private minDateFrom: any;
+  private minDateTo: any;
   private minPriceTo: any;
 
-  private type : any;
-  private category : any;
-  private parking : any;
-  private wifi : any;
-  private breakfast : any;
-  private half_board : any;
-  private board : any;
-  private TV : any;
-  private kitchen : any;
-  private bathroom : any;
+  private type: any;
+  private category: any;
+  private parking: any;
+  private wifi: any;
+  private breakfast: any;
+  private half_board: any;
+  private board: any;
+  private TV: any;
+  private kitchen: any;
+  private bathroom: any;
 
-  private isOpenAdvancedSearch : boolean;
-  private isOpenRezervacije : boolean;
+  private isOpenAdvancedSearch: boolean;
+  private isOpenRezervacije: boolean;
 
-  private loggedInUser : any;
+  private loggedInUser: any;
   // private isLoggedIn = true;    
-  
+
   private listMinPrice = [];
   private listMaxPrice = [];
 
   private sortType = '';
 
 
-  constructor(private router : Router, private searchService : SearchService, private authService : AuthServiceService) { }
+  constructor(private router: Router, private searchService: SearchService, private authService: AuthServiceService) { }
 
   ngOnInit() {
 
@@ -68,7 +68,7 @@ export class HomePageComponent implements OnInit {
     const dd = today.getDate();
     const mm = today.getMonth() + 1; // January is 0!
     const yyyy = today.getFullYear();
-    this.minDateFrom = {year: yyyy, month: mm, day: dd};
+    this.minDateFrom = { year: yyyy, month: mm, day: dd };
 
     this.parking = false;
     this.wifi = false;
@@ -92,20 +92,20 @@ export class HomePageComponent implements OnInit {
 
 
   clickRezervacije() {
-    if(!this.isOpenRezervacije) {
+    if (!this.isOpenRezervacije) {
       this.isOpenRezervacije = true;
     }
     else {
       this.isOpenRezervacije = false;
     }
     console.log(this.isOpenRezervacije);
-    
+
   }
 
 
   clickAdvancedSearch() {
 
-    if(!this.isOpenAdvancedSearch){
+    if (!this.isOpenAdvancedSearch) {
       this.isOpenAdvancedSearch = true;
       // alert("Opened");
 
@@ -120,12 +120,12 @@ export class HomePageComponent implements OnInit {
 
 
   submitSearch() {
-    if(!this.isOpenAdvancedSearch){
-      
-      this.searchService.basicSearch(this.place, this.numberOfPersons, this.dateFrom, this.dateTo, this.priceFrom, this.priceTo)
-      .subscribe(data => {
+    if (!this.isOpenAdvancedSearch) {
 
-          if(data.greska){
+      this.searchService.basicSearch(this.place, this.numberOfPersons, this.dateFrom, this.dateTo, this.priceFrom, this.priceTo)
+        .subscribe(data => {
+
+          if (data.greska) {
             alert("Please fill in all fields");
             this.router.navigateByUrl('/homeSearch');
           }
@@ -133,14 +133,14 @@ export class HomePageComponent implements OnInit {
             this.accommodationArray = data.trazeniSmestaji;
             console.log(this.accommodationArray);
 
-            for(let accommodation of this.accommodationArray){
+            for (let accommodation of this.accommodationArray) {
               let min = 200;
               let max = 200;
-              for(let room of accommodation.sobe){
-                if(room.cena<min)
+              for (let room of accommodation.sobe) {
+                if (room.cena < min)
                   min = room.cena;
 
-                if(room.cena > max)
+                if (room.cena > max)
                   max = room.cena;
               }
 
@@ -148,20 +148,20 @@ export class HomePageComponent implements OnInit {
               this.listMinPrice.push(min);
 
             }
-            
+
           }
-            
-        } 
-      );
+
+        }
+        );
 
     } else {
 
       this.searchService.advancedSearch(this.place, this.numberOfPersons, this.dateFrom, this.dateTo, this.priceFrom, this.priceTo,
-      this.type, this.category, this.parking, this.wifi, this.breakfast, this.half_board,
-      this.board, this.TV, this.kitchen, this.bathroom)
-      .subscribe(data => { 
+        this.type, this.category, this.parking, this.wifi, this.breakfast, this.half_board,
+        this.board, this.TV, this.kitchen, this.bathroom)
+        .subscribe(data => {
 
-          if(data.greska){
+          if (data.greska) {
             alert("Please fill in all fields");
             this.router.navigateByUrl('/homeSearch');
           }
@@ -169,14 +169,14 @@ export class HomePageComponent implements OnInit {
             this.accommodationArray = data.trazeniSmestaji;
             console.log(this.accommodationArray);
 
-            for(let accommodation of this.accommodationArray){
+            for (let accommodation of this.accommodationArray) {
               let min = accommodation.soba[0].cena;
               let max = accommodation.soba[0].cena;
-              for(let room of accommodation.soba){
-                if(room.cena<min)
+              for (let room of accommodation.soba) {
+                if (room.cena < min)
                   min = room.cena;
 
-                if(room.cena > max)
+                if (room.cena > max)
                   max = room.cena;
               }
 
@@ -184,25 +184,24 @@ export class HomePageComponent implements OnInit {
               this.listMinPrice.push(min);
 
             }
-              
+
           }
 
-        } 
-      );
+        }
+        );
 
     }
   }
 
 
-  onClickReserveAccommodation(Accommodation:any) : void {
+  onClickReserveAccommodation(Accommodation: any): void {
 
-    this.searchService.makeReservation({accommodation:Accommodation, numberOfPersons:this.numberOfPersons, dateFrom:this.dateFrom, dateTo:this.dateTo});
+    this.searchService.makeReservation({ accommodation: Accommodation, numberOfPersons: this.numberOfPersons, dateFrom: this.dateFrom, dateTo: this.dateTo });
 
-    if(this.loggedInUser != null) {
+    if (this.loggedInUser != null) {
       this.searchService.reservation.subscribe(
-        reservation => 
-        {
-        console.log("Reservation: " +  reservation);
+        reservation => {
+          console.log("Reservation: " + reservation);
         }
       );
 
@@ -220,32 +219,42 @@ export class HomePageComponent implements OnInit {
 
     console.log(this.accommodationArray);
 
-    if(this.sortType == "Price")
-    {
-        this.accommodationArray.sort( ( a, b) => {
-          console.log(a.sobe[0].cena);
-            return (a.sobe[0].cena - b.sobe[0].cena);
-        });
+    if (this.sortType == "Price") {
+      this.accommodationArray.sort((a, b) => {
+        console.log(a.sobe[0].cena);
+        return (a.sobe[0].cena - b.sobe[0].cena);
+      });
     }
-    else if(this.sortType == "Category")
-    {  
-        this.accommodationArray.sort( ( a, b) => {
-            console.log(a.kategorija);
-            return (a.kategorija - b.kategorija);
-        });
+    else if (this.sortType == "Category") {
+      this.accommodationArray.sort((a, b) => {
+        console.log(a.kategorija);
+        return (a.kategorija - b.kategorija);
+      });
     }
-    else if(this.sortType == "Rating")
-    {
-        this.accommodationArray.sort( ( a, b) => {
-            console.log(a.ocena);
-            return (a.ocena - b.ocena);
-        });
+    else if (this.sortType == "Rating") {
+      this.accommodationArray.sort((a, b) => {
+        console.log(a.ocena);
+        return (a.ocena - b.ocena);
+      });
     }
 
     console.log(this.accommodationArray);
 
   }
- 
+
+  searchByRating() {
+    this.searchService.ratingSearch(this.rating)
+      .subscribe(data => {
+        if (data.greska) {
+          alert("Please fill in all fields");
+          this.router.navigateByUrl('/homeSearch');
+        }
+        else {
+          this.accommodationArray = data.trazeniSmestaji;
+        }
+      });
+  }
+
 
 
 }

@@ -1,74 +1,26 @@
-<header class="app-header"><a class="app-header__logo" href="index.html">Vali</a>
-  <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
-  <!-- Navbar Right Menu-->
-  <ul class="app-nav">
-    <li class="app-search">
-      <input class="app-search__input" type="search" placeholder="Search">
-      <button class="app-search__button"><i class="fa fa-search"></i></button>
-    </li>
-    <!--Notification Menu-->
-    <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
-      <ul class="app-notification dropdown-menu dropdown-menu-right">
-        <li class="app-notification__title">You have 4 new notifications.</li>
-        <div class="app-notification__content">
-          <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
-              <div>
-                <p class="app-notification__message">Lisa sent you a mail</p>
-                <p class="app-notification__meta">2 min ago</p>
-              </div></a></li>
-          <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
-              <div>
-                <p class="app-notification__message">Mail server not working</p>
-                <p class="app-notification__meta">5 min ago</p>
-              </div></a></li>
-          <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
-              <div>
-                <p class="app-notification__message">Transaction complete</p>
-                <p class="app-notification__meta">2 days ago</p>
-              </div></a></li>
-          <div class="app-notification__content">
-            <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
-                <div>
-                  <p class="app-notification__message">Lisa sent you a mail</p>
-                  <p class="app-notification__meta">2 min ago</p>
-                </div></a></li>
-            <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
-                <div>
-                  <p class="app-notification__message">Mail server not working</p>
-                  <p class="app-notification__meta">5 min ago</p>
-                </div></a></li>
-            <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
-                <div>
-                  <p class="app-notification__message">Transaction complete</p>
-                  <p class="app-notification__meta">2 days ago</p>
-                </div></a></li>
-          </div>
-        </div>
-        <li class="app-notification__footer"><a href="#">See all notifications.</a></li>
-      </ul>
-    </li>
-    <!-- User Menu-->
-    <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
-      <ul class="dropdown-menu settings-menu dropdown-menu-right">
-        <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
-        <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i> Profile</a></li>
-        <li><a class="dropdown-item" href="page-login.html"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
-      </ul>
-    </li>
-  </ul>
-</header>
 <!-- Sidebar menu-->
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
-  <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
+  <div class="app-sidebar__user">
+    <img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
     <div>
       <p class="app-sidebar__user-name">John Doe</p>
       <p class="app-sidebar__user-designation">Frontend Developer</p>
     </div>
   </div>
   <ul class="app-menu">
-    <li><a class={{activities[0]}} href="JavaScript:void(0)" (click) = "switchActiveTab(0)"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">My Accommodations</span></a></li>
-    <li class="treeview"><a class={{activities[1]}} href="JavaScript:void(0)" (click) = "switchActiveTab(1)" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">New Accommodation</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+    <li>
+      <a class={{activities[0]}} href="JavaScript:void(0)" (click)="switchActiveTab(0)">
+        <i class="app-menu__icon fa fa-dashboard"></i>
+        <span class="app-menu__label">My Accommodations</span>
+      </a>
+    </li>
+    <li class="treeview">
+      <a class={{activities[1]}} href="JavaScript:void(0)" (click)="switchActiveTab(1)" data-toggle="treeview">
+        <i class="app-menu__icon fa fa-laptop"></i>
+        <span class="app-menu__label">New Accommodation</span>
+        <i class="treeview-indicator fa fa-angle-right"></i>
+      </a>
       <!-- <ul class="treeview-menu">
         <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Bootstrap Elements</a></li>
         <li><a class="treeview-item" href="https://fontawesome.com/v4.7.0/icons/" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> Font Icons</a></li>
@@ -76,15 +28,30 @@
         <li><a class="treeview-item" href="widgets.html"><i class="icon fa fa-circle-o"></i> Widgets</a></li>
       </ul> -->
     </li>
-    <li><a class={{activities[2]}} href="JavaScript:void(0)" (click) = "switchActiveTab(2)"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Reservations</span></a></li>
-    
-    <li class="treeview"><a class={{activities[3]}} href="JavaScript:void(0)" (click) = "switchActiveTab(3)" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Messages</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+    <li>
+      <a class={{activities[2]}} href="JavaScript:void(0)" (click)="switchActiveTab(2)">
+        <i class="app-menu__icon fa fa-pie-chart"></i>
+        <span class="app-menu__label">Reservations</span>
+      </a>
+    </li>
+
+    <li class="treeview">
+      <a class={{activities[3]}} href="JavaScript:void(0)" (click)="switchActiveTab(3)" data-toggle="treeview">
+        <i class="app-menu__icon fa fa-th-list"></i>
+        <span class="app-menu__label">Messages</span>
+        <i class="treeview-indicator fa fa-angle-right"></i>
+      </a>
       <!-- <ul class="treeview-menu">
         <li><a class="treeview-item" href="table-basic.html"><i class="icon fa fa-circle-o"></i> Basic Tables</a></li>
         <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-circle-o"></i> Data Tables</a></li>
       </ul> -->
     </li>
-    <li class="treeview"><a class={{activities[4]}} href="JavaScript:void(0)" (click) = "switchActiveTab(4)" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">My Profile</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+    <li class="treeview">
+      <a class={{activities[4]}} href="JavaScript:void(0)" (click)="switchActiveTab(4)" data-toggle="treeview">
+        <i class="app-menu__icon fa fa-file-text"></i>
+        <span class="app-menu__label">My Profile</span>
+        <i class="treeview-indicator fa fa-angle-right"></i>
+      </a>
       <!-- <ul class="treeview-menu">
         <li><a class="treeview-item" href="blank-page.html"><i class="icon fa fa-circle-o"></i> Blank Page</a></li>
         <li><a class="treeview-item" href="page-login.html"><i class="icon fa fa-circle-o"></i> Login Page</a></li>
@@ -99,143 +66,145 @@
   </ul>
 </aside>
 <main class="app-content" *ngIf=panels[0]>
-  <div class="app-title" >
+  <div class="app-title">
     <div>
-      <h1><i class="fa fa-dashboard"></i> Accommodations</h1>
+      <h1>
+        <i class="fa fa-dashboard"></i> Accommodations</h1>
       <p>You can see the list of your accommodations below.</p>
     </div>
 
-    
+
 
     <ngb-alert type="success" *ngIf="showSuccessNotification" (close)="showSuccessNotification = false">Success! You changed your working schedule.</ngb-alert>
     <ngb-alert type="danger" *ngIf="showErrorNotification" (close)="showErrorNotification = false">Error! Some of your clients already made a reservation.</ngb-alert>
   </div>
-  
+
   <div class="row">
     <div class="col-md-6" *ngFor="let accommodation of accommodations; let i = index">
       <div class="tile">
         <div class="row">
 
           <div class="col-md-10">
-              <h3 class="tile-title"><span class="badge badge-info">{{accommodation.tip}} </span> &nbsp; {{accommodation.naziv}}</h3>
+            <h3 class="tile-title">
+              <span class="badge badge-info">{{accommodation.tip}} </span> &nbsp; {{accommodation.naziv}}</h3>
           </div>
 
           <div class="col-md-2">
 
-              <div class="app-title" class="col-md-1">
+            <div class="app-title" class="col-md-1">
 
-                <p> Category: </p>
+              <p> Category: </p>
 
-              </div>
+            </div>
 
-              <div class="col-md-1">
+            <div class="col-md-1">
 
-                  <ngb-rating [(rate)]="accommodation.kategorija" [readonly]="true"></ngb-rating>
+              <ngb-rating [(rate)]="accommodation.kategorija" [readonly]="true"></ngb-rating>
 
-              </div>
-              
+            </div>
+
           </div>
         </div>
-        
+
         <div id="{{i}}" class="carousel slide" data-ride="carousel">
-            <ul class="carousel-indicators" >
-              <li data-target="#demo" *ngFor="let slika of accommodation.slikeUrl; let j = index;" data-slide-to="j"  class="active"></li>
-              
-            </ul>
-            <div class="carousel-inner">
-              <div class="carousel-item active" >
-                <img src="{{accommodation.slikeUrl[0]}}" alt="Cover" width="1100" height="500">
-                <div class="carousel-caption">
-                  <h3>Address:</h3>
-                  <p>{{accommodation.adresa}}  , {{accommodation.mesto}}</p>
-                </div>   
+          <ul class="carousel-indicators">
+            <li data-target="#demo" *ngFor="let slika of accommodation.slikeUrl; let j = index;" data-slide-to="j" class="active"></li>
+
+          </ul>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="{{accommodation.slikeUrl[0]}}" alt="Cover" width="1100" height="500">
+              <div class="carousel-caption">
+                <h3>Address:</h3>
+                <p>{{accommodation.adresa}} , {{accommodation.mesto}}</p>
               </div>
-              <div class="carousel-item" *ngFor="let slika of accommodation.slikeUrl | slice:1; let j = index;">
-                <img  src="{{slika}}" alt="Additional" width="1100" height="500">
-                <div  class="carousel-caption">
-                  <h3>Description:</h3>
-                  <p>{{accommodation.opis}}</p>
-                </div>   
-              </div>
-              
             </div>
-            <a class="carousel-control-prev" href="#{{i}}" data-slide="prev">
-              <span class="carousel-control-prev-icon"></span>
-            </a>
-            <a class="carousel-control-next" href="#{{i}}" data-slide="next">
-              <span class="carousel-control-next-icon"></span>
-            </a>
+            <div class="carousel-item" *ngFor="let slika of accommodation.slikeUrl | slice:1; let j = index;">
+              <img src="{{slika}}" alt="Additional" width="1100" height="500">
+              <div class="carousel-caption">
+                <h3>Description:</h3>
+                <p>{{accommodation.opis}}</p>
+              </div>
+            </div>
+
+          </div>
+          <a class="carousel-control-prev" href="#{{i}}" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </a>
+          <a class="carousel-control-next" href="#{{i}}" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </a>
         </div>
 
         <div class="row-md-2">
 
-            <h2>Additional services:</h2>
+          <h2>Additional services:</h2>
 
-            <div class="row-md-50">
-                <span class="badge badge-success" *ngIf=accommodation.wifi>WIFI</span>
-                <span class="badge badge-success" *ngIf=accommodation.parking>PARKING</span>
-                <span class="badge badge-success" *ngIf=accommodation.tv>TV</span>
-                <span class="badge badge-success" *ngIf=accommodation.dorucak>BREAKFAST</span>
-                <span class="badge badge-success" *ngIf=accommodation.pansion>BOARDING HOUSE</span>
-                <span class="badge badge-success" *ngIf=accommodation.polupansion>HALF BOARD</span>
-                <span class="badge badge-success" *ngIf=accommodation.miniKuhinja>SMALL KITCHEN</span>
-                <span class="badge badge-success" *ngIf=accommodation.privatnoKupatilo>PRIVATE BATHROOM</span>
-            </div>
-            
+          <div class="row-md-50">
+            <span class="badge badge-success" *ngIf=accommodation.wifi>WIFI</span>
+            <span class="badge badge-success" *ngIf=accommodation.parking>PARKING</span>
+            <span class="badge badge-success" *ngIf=accommodation.tv>TV</span>
+            <span class="badge badge-success" *ngIf=accommodation.dorucak>BREAKFAST</span>
+            <span class="badge badge-success" *ngIf=accommodation.pansion>BOARDING HOUSE</span>
+            <span class="badge badge-success" *ngIf=accommodation.polupansion>HALF BOARD</span>
+            <span class="badge badge-success" *ngIf=accommodation.miniKuhinja>SMALL KITCHEN</span>
+            <span class="badge badge-success" *ngIf=accommodation.privatnoKupatilo>PRIVATE BATHROOM</span>
+          </div>
+
         </div>
         <div class="row-md-2" style="margin-top:20px">
 
 
           <ng-template #popContent>
-            
-            
+
+
+            <div class="form-group">
+              <label for="typeCombo">Rooms</label>
+              <select class="form-control" size="3" [(ngModel)]="roomNo" name="roomNo">
+                <option *ngFor="let soba of accommodation.sobe; let j = index;">{{soba.broj}}</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-top:10px">
               <div class="form-group">
-                  <label for="typeCombo">Rooms</label>
-                  <select class="form-control" size="3"  [(ngModel)]="roomNo" name = "roomNo">
-                    <option  *ngFor="let soba of accommodation.sobe; let j = index;">{{soba.broj}}</option>
-                  </select>
-              </div>
-
-              <div class="form-group" style="margin-top:10px">
-                  <div class="form-group">
-                    <label for="fromDate">From:</label>
-                    <div class="input-group">
-                      <input class="form-control"  placeholder="yyyy-mm-dd" 
-                              name="datePicker"   [(ngModel)]="dateFrom" [minDate]="minDateFrom" (ngModelChange)="setMinDateTo()" ngbDatepicker #df="ngbDatepicker" required>
-                      <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" (click)="df.toggle()" type="button">
-                          <img src="../../../assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-                        </button>
-                      </div>
-                    </div>
+                <label for="fromDate">From:</label>
+                <div class="input-group">
+                  <input class="form-control" placeholder="yyyy-mm-dd" name="datePicker" [(ngModel)]="dateFrom" [minDate]="minDateFrom" (ngModelChange)="setMinDateTo()"
+                    ngbDatepicker #df="ngbDatepicker" required>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" (click)="df.toggle()" type="button">
+                      <img src="../../../assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+                    </button>
                   </div>
+                </div>
               </div>
+            </div>
+            <div class="form-group">
               <div class="form-group">
-                  <div class="form-group">
-                    <label for="toDate">To:</label>
-                    <div class="input-group">
-                      <input class="form-control" placeholder="yyyy-mm-dd"
-                              name="datePicker"  [(ngModel)]="dateTo" [minDate]="minDateTo" ngbDatepicker #dt="ngbDatepicker" required>
-                      <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" (click)="dt.toggle()" type="button">
-                          <img src="../../../assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-                        </button>
-                      </div>
-                    </div>
+                <label for="toDate">To:</label>
+                <div class="input-group">
+                  <input class="form-control" placeholder="yyyy-mm-dd" name="datePicker" [(ngModel)]="dateTo" [minDate]="minDateTo" ngbDatepicker
+                    #dt="ngbDatepicker" required>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" (click)="dt.toggle()" type="button">
+                      <img src="../../../assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+                    </button>
                   </div>
-                  
+                </div>
               </div>
 
-              <div class="form-group" style="margin-top:10px">
-                  <button class="btn btn-primary" (click) = "setNewSchedule(accommodation)" type="submit">Set</button>
-              </div>
+            </div>
 
-              
+            <div class="form-group" style="margin-top:10px">
+              <button class="btn btn-primary" (click)="setNewSchedule(accommodation)" type="submit">Set</button>
+            </div>
+
+
           </ng-template>
 
           <button type="button" class="btn btn-outline-secondary mr-2" [ngbPopover]="popContent" placement="right" popoverTitle="Set new schedule">
             Working schedule
-          </button> 
+          </button>
 
         </div>
       </div>
@@ -243,498 +212,545 @@
 
   </div>
 
-  
+
 </main>
 
 <main class="app-content" *ngIf=panels[1]>
-    <div class="app-title">
-      <div>
-          <h1><i class="fa fa-edit"></i> Insert accomodation</h1>
-          <p>Fill in all the requires fields if you want to add new accomodation.</p>
-        </div>
-       
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="tile">
-            <div class="row">
-              <div class="col-lg-5">
-                <form>
+  <div class="app-title">
+    <div>
+      <h1>
+        <i class="fa fa-edit"></i> Insert accomodation</h1>
+      <p>Fill in all the requires fields if you want to add new accomodation.</p>
+    </div>
 
-                  <div class="form-group">
-                    <label class="control-label">Name</label>
-                    <input class="form-control" type="text" [(ngModel)] = "accommodationName" name = "accommodationName" placeholder="Enter full name">
-                  </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <div class="row">
+          <div class="col-lg-5">
+            <form>
 
-                  <div class="form-group">
-                    <label class="control-label">Address</label>
-                    <input class="form-control" [(ngModel)] = "accommodationAddress" name = "accommodationAddress" type="text" placeholder="Enter address">
-                  </div>
-
-                  <div class="form-group">
-                    <label class="control-label">City</label>
-                    <input class="form-control" [(ngModel)] = "accommodationCity" name = "accommodationCity" type="text" placeholder="Enter city">
-                  </div>
-
-                  <div class="form-group">
-                      <label for="descriptionTextArea">Category</label>
-                      <ngb-rating class="form-control-file" [(ngModel)] = "accommodationCategory" name = "accommodationCategory" [rate]="0"></ngb-rating>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="descriptionTextArea">Description</label>
-                    <textarea class="form-control" [(ngModel)] = "accommodationDescription" name = "accommodationDescription" id="descriptionTextArea" rows="3"></textarea>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="exampleInputFile">Image</label>
-                    <input class="form-control-file"   #file (change)="updateFile(file)" type="file"  aria-describedby="fileHelp"><small class="form-text text-muted " id="fileHelp">Use above input to upload image of your accommodation.</small>
-                  </div>
-          
-                  <div class="form-group">
-                    <label for="typeCombo">Type</label>
-                    <select class="form-control"  [(ngModel)] = "accommodationType" name = "accommodationType">
-                      <option>HOTEL</option>
-                      <option>BED_BREAKFAST</option>
-                      <option>APARTMENT</option> 
-                    </select>
-                  </div>
- 
-                </form>
+              <div class="form-group">
+                <label class="control-label">Name</label>
+                <input class="form-control" type="text" [(ngModel)]="accommodationName" name="accommodationName" placeholder="Enter full name">
               </div>
-              <div class="col-lg-5 offset-lg-1">
-                <form>
-                  <div class="form-group">
-                    <label class="control-label">Number of single rooms</label>
-                    <input class="form-control" [(ngModel)] = "accommodationSingleRooms" name = "accommodationSingleRooms" type="text" placeholder="Enter number of rooms">
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label">Number of double rooms</label>
-                    <input class="form-control" [(ngModel)] = "accommodationDoubleRooms" name = "accommodationDoubleRooms" type="text" placeholder="Enter number of rooms">
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label">Number of triple rooms</label>
-                    <input class="form-control" [(ngModel)] = "accommodationTripleRooms" name = "accommodationTripleRooms" type="text" placeholder="Enter number of rooms">
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label">Number of quad rooms</label>
-                    <input class="form-control" [(ngModel)] = "accommodationQuadRooms" name = "accommodationQuadRooms" type="text" placeholder="Enter number of rooms">
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label">Input addons</label>
-                    <div class="form-group">
-                      <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-                      <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                        <input class="form-control" id="exampleInputAmount" type="text" placeholder="Amount">
-                        <div class="input-group-append"><span class="input-group-text">.00</span></div>
-                      </div>
+
+              <div class="form-group">
+                <label class="control-label">Address</label>
+                <input class="form-control" [(ngModel)]="accommodationAddress" name="accommodationAddress" type="text" placeholder="Enter address">
+              </div>
+
+              <div class="form-group">
+                <label class="control-label">City</label>
+                <input class="form-control" [(ngModel)]="accommodationCity" name="accommodationCity" type="text" placeholder="Enter city">
+              </div>
+
+              <div class="form-group">
+                <label for="descriptionTextArea">Category</label>
+                <ngb-rating class="form-control-file" [(ngModel)]="accommodationCategory" name="accommodationCategory" [rate]="0"></ngb-rating>
+              </div>
+
+              <div class="form-group">
+                <label for="descriptionTextArea">Description</label>
+                <textarea class="form-control" [(ngModel)]="accommodationDescription" name="accommodationDescription" id="descriptionTextArea"
+                  rows="3"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputFile">Image</label>
+                <input class="form-control-file" #file (change)="updateFile(file)" type="file" aria-describedby="fileHelp">
+                <small class="form-text text-muted " id="fileHelp">Use above input to upload image of your accommodation.</small>
+              </div>
+
+              <div class="form-group">
+                <label for="typeCombo">Type</label>
+                <select class="form-control" [(ngModel)]="accommodationType" name="accommodationType">
+                  <option>HOTEL</option>
+                  <option>BED_BREAKFAST</option>
+                  <option>APARTMENT</option>
+                </select>
+              </div>
+
+            </form>
+          </div>
+          <div class="col-lg-5 offset-lg-1">
+            <form>
+              <div class="form-group">
+                <label class="control-label">Number of single rooms</label>
+                <input class="form-control" [(ngModel)]="accommodationSingleRooms" name="accommodationSingleRooms" type="text" placeholder="Enter number of rooms">
+              </div>
+              <div class="form-group">
+                <label class="control-label">Number of double rooms</label>
+                <input class="form-control" [(ngModel)]="accommodationDoubleRooms" name="accommodationDoubleRooms" type="text" placeholder="Enter number of rooms">
+              </div>
+              <div class="form-group">
+                <label class="control-label">Number of triple rooms</label>
+                <input class="form-control" [(ngModel)]="accommodationTripleRooms" name="accommodationTripleRooms" type="text" placeholder="Enter number of rooms">
+              </div>
+              <div class="form-group">
+                <label class="control-label">Number of quad rooms</label>
+                <input class="form-control" [(ngModel)]="accommodationQuadRooms" name="accommodationQuadRooms" type="text" placeholder="Enter number of rooms">
+              </div>
+              <div class="form-group">
+                <label class="control-label">Input addons</label>
+                <div class="form-group">
+                  <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">$</span>
+                    </div>
+                    <input class="form-control" id="exampleInputAmount" type="text" placeholder="Amount">
+                    <div class="input-group-append">
+                      <span class="input-group-text">.00</span>
                     </div>
                   </div>
-
-                  <div class="form-group">
-
-                      <label class="control-label">Additional services</label>
-
-                      <div  class="row">
-
-                      
-                          <div class="col-lg-5">
-      
-                              <div class="form-check">
-                                  <label class="form-check-label">
-                                    <input class="form-check-input" [(ngModel)] = "accommodationWIFI" name = "accommodationWIFI" type="checkbox">WIFI
-                                  </label>
-                              </div>
-      
-                              <div class="form-check">
-                                  <label class="form-check-label">
-                                    <input class="form-check-input" [(ngModel)] = "accommodationPARKING" name = "accommodationPARKING" type="checkbox">PARKING
-                                  </label>
-                              </div>
-      
-                              <div class="form-check">
-                                  <label class="form-check-label">
-                                    <input class="form-check-input"  [(ngModel)] = "accommodationTV" name = "accommodationTV" type="checkbox">TV
-                                  </label>
-                              </div>
-      
-                              <div class="form-check">
-                                  <label class="form-check-label">
-                                    <input class="form-check-input" [(ngModel)] = "accommodationBREAKFAST" name = "accommodationBREAKFAST" type="checkbox">BREAKFAST
-                                  </label>
-                              </div>
-      
-                          </div>
-      
-                          <div class="col-lg-5">
-      
-                              <div class="form-check">
-                                  <label class="form-check-label">
-                                    <input class="form-check-input" [(ngModel)] = "accommodationBOARDING_HOUSE" name = "accommodationBOARDING_HOUSE" type="checkbox">BOARDING HOUSE
-                                  </label>
-                              </div>
-      
-                              <div class="form-check">
-                                  <label class="form-check-label">
-                                    <input class="form-check-input" [(ngModel)] = "accommodationHALF_BOARD" name = "accommodationHALF_BOARD" type="checkbox">HALF BOARD
-                                  </label>
-                              </div>
-      
-                              <div class="form-check">
-                                  <label class="form-check-label">
-                                    <input class="form-check-input" [(ngModel)] = "accommodationSMALL_KITCHEN" name = "accommodationSMALL_KITCHEN" type="checkbox">SMALL KITCHEN
-                                  </label>
-                              </div>
-      
-                              <div class="form-check">
-                                  <label class="form-check-label">
-                                    <input class="form-check-input" [(ngModel)] = "accommodationPRIVATE_BATHROOM" name = "accommodationPRIVATE_BATHROOM" type="checkbox">PRIVATE BATHROOM
-                                  </label>
-                              </div>
-      
-                          </div>
-      
-                        </div>
-                  </div>
-   
-                </form>
+                </div>
               </div>
-            </div>
-            <div class="tile-footer">
-              <button class="btn btn-primary" (click) = "insertNewAccommodation()" type="submit">Submit</button>
-            </div>
+
+              <div class="form-group">
+
+                <label class="control-label">Additional services</label>
+
+                <div class="row">
+
+
+                  <div class="col-lg-5">
+
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" [(ngModel)]="accommodationWIFI" name="accommodationWIFI" type="checkbox">WIFI
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" [(ngModel)]="accommodationPARKING" name="accommodationPARKING" type="checkbox">PARKING
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" [(ngModel)]="accommodationTV" name="accommodationTV" type="checkbox">TV
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" [(ngModel)]="accommodationBREAKFAST" name="accommodationBREAKFAST" type="checkbox">BREAKFAST
+                      </label>
+                    </div>
+
+                  </div>
+
+                  <div class="col-lg-5">
+
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" [(ngModel)]="accommodationBOARDING_HOUSE" name="accommodationBOARDING_HOUSE" type="checkbox">BOARDING HOUSE
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" [(ngModel)]="accommodationHALF_BOARD" name="accommodationHALF_BOARD" type="checkbox">HALF BOARD
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" [(ngModel)]="accommodationSMALL_KITCHEN" name="accommodationSMALL_KITCHEN" type="checkbox">SMALL KITCHEN
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" [(ngModel)]="accommodationPRIVATE_BATHROOM" name="accommodationPRIVATE_BATHROOM" type="checkbox">PRIVATE BATHROOM
+                      </label>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+
+            </form>
           </div>
         </div>
+        <div class="tile-footer">
+          <button class="btn btn-primary" (click)="insertNewAccommodation()" type="submit">Submit</button>
+        </div>
       </div>
+    </div>
+  </div>
 </main>
 
 <main class="app-content" *ngIf=panels[2]>
-    
-    <div class="app-title">
-        <div>
-          <h1><i class="fa fa-th-list"></i> List of your clients reservations</h1>
-          <p>The table below shows reservations at your accommodations.</p>
+
+  <div class="app-title">
+    <div>
+      <h1>
+        <i class="fa fa-th-list"></i> List of your clients reservations</h1>
+      <p>The table below shows reservations at your accommodations.</p>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <div class="tile-body">
+          <table class="table table-hover table-bordered" id="sampleTable">
+            <thead>
+              <tr>
+                <th class="text-center">Client</th>
+                <th class="text-center">From</th>
+                <th class="text-center">To</th>
+                <th class="text-center">Accommodation</th>
+                <th class="text-center">Room Number</th>
+                <th class="text-center">Earnings [$]</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let reservation of reservations; let j = index;">
+                <td align="center">{{reservation.klijent.username}}</td>
+                <td align="center">{{reservation.od.split("T")[0]}}</td>
+                <td align="center">{{reservation._do.split("T")[0]}}</td>
+                <td align="center">{{reservation.smestaj.naziv}}</td>
+                <td align="center">{{reservation.soba.broj}}</td>
+                <td align="center">{{reservationsEarnings[j]}}</td>
+                <td align="center" *ngIf="reservation.realizacija=='WAITING_TO_CONFIRM_REALIZATION'">
+
+                  <button style="width:100px" (click)="markAsRealized(j)" class="btn btn-outline-primary" type="button">Realized</button>
+                  <button style="width:100px;margin-left:1em;" (click)="markAsUnrealized(j)" class="btn btn-outline-danger" type="button">Unrealised</button>
+                </td>
+                <td align="center" *ngIf="reservation.realizacija=='WAITING_TO_CHECK_IN'">
+
+                  <button class="btn btn-outline-info" disabled="" type="button">Waiting for client to check in</button>
+
+                </td>
+                <td align="center" *ngIf="reservation.realizacija=='REALIZED'">
+
+                  <button disabled="" class="btn btn-outline-primary" type="button">Realized</button>
+
+                </td>
+                <td align="center" *ngIf="reservation.realizacija=='UNREALIZED'">
+
+                  <button disabled="" class="btn btn-outline-danger" type="button">Unrealized</button>
+
+                </td>
+              </tr>
+
+
+
+            </tbody>
+          </table>
         </div>
-        
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="tile">
-            <div class="tile-body">
-              <table class="table table-hover table-bordered" id="sampleTable">
-                <thead>
-                  <tr>
-                    <th class="text-center">Client</th>
-                    <th class="text-center">From</th>
-                    <th class="text-center">To</th>
-                    <th class="text-center">Accommodation</th>
-                    <th class="text-center">Room Number</th>
-                    <th class="text-center">Earnings [$]</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let reservation of reservations; let j = index;">
-                    <td align="center">{{reservation.klijent.username}}</td>
-                    <td align="center">{{reservation.od.split("T")[0]}}</td>
-                    <td align="center">{{reservation._do.split("T")[0]}}</td>
-                    <td align="center">{{reservation.smestaj.naziv}}</td>
-                    <td align="center">{{reservation.soba.broj}}</td>
-                    <td align="center">{{reservationsEarnings[j]}}</td>
-                    <td align="center" *ngIf="reservation.realizacija=='WAITING_TO_CONFIRM_REALIZATION'">
-
-                        <button style="width:100px" (click) = "markAsRealized(j)" class="btn btn-outline-primary" type="button">Realized</button>
-                        <button style="width:100px;margin-left:1em;" (click) = "markAsUnrealized(j)" class="btn btn-outline-danger" type="button">Unrealised</button>
-                    </td> 
-                    <td align="center" *ngIf="reservation.realizacija=='WAITING_TO_CHECK_IN'">
-
-                        <button  class="btn btn-outline-info" disabled="" type="button">Waiting for client to check in</button>
-                        
-                    </td>
-                    <td align="center" *ngIf="reservation.realizacija=='REALIZED'">
-
-                        <button disabled="" class="btn btn-outline-primary" type="button">Realized</button>
-                        
-                    </td>
-                    <td align="center" *ngIf="reservation.realizacija=='UNREALIZED'">
-
-                        <button disabled="" class="btn btn-outline-danger" type="button">Unrealized</button>
-                        
-                    </td>
-                  </tr>
-                  
-                  
-                  
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
+    </div>
+  </div>
 </main>
 
 <main class="app-content" *ngIf=panels[3]>
-    <div class="app-title">
-        <div>
-          <h1><i class="fa fa-envelope-o"></i> Mailbox</h1>
-          <p>List of your conversations with clients.</p>
+  <div class="app-title">
+    <div>
+      <h1>
+        <i class="fa fa-envelope-o"></i> Mailbox</h1>
+      <p>List of your conversations with clients.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <a class="mb-2 btn btn-primary btn-block" href="JavaScript:void(0)" (click)="switchInboxSent(2)">Compose Mail</a>
+      <div class="tile p-0">
+        <h4 class="tile-title folder-head">Folders</h4>
+        <div class="tile-body">
+          <ul class="nav nav-pills flex-column mail-nav">
+            <li class="nav-item active">
+              <a class="{{inboxSent[0]}}" (click)="switchInboxSent(0)" href="JavaScript:void(0)">
+                <i class="fa fa-inbox fa-fw"></i> Inbox
+                <span *ngIf="unread != 0" class="badge badge-pill badge-primary float-right">{{unread}}</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="{{inboxSent[1]}}" href="JavaScript:void(0)" (click)="switchInboxSent(1)">
+                <i class="fa fa-envelope-o fa-fw"></i> Sent</a>
+            </li>
+          </ul>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-3"><a class="mb-2 btn btn-primary btn-block" href="JavaScript:void(0)" (click) = "switchInboxSent(2)">Compose Mail</a>
-          <div class="tile p-0">
-            <h4 class="tile-title folder-head">Folders</h4>
-            <div class="tile-body">
-              <ul class="nav nav-pills flex-column mail-nav">
-                <li class="nav-item active"><a class="{{inboxSent[0]}}" (click) = "switchInboxSent(0)" href="JavaScript:void(0)"><i class="fa fa-inbox fa-fw"></i> Inbox<span *ngIf="unread != 0"class="badge badge-pill badge-primary float-right">{{unread}}</span></a></li>
-                <li class="nav-item"><a class="{{inboxSent[1]}}" href="JavaScript:void(0)" (click) = "switchInboxSent(1)"><i class="fa fa-envelope-o fa-fw"></i> Sent</a></li>
-              </ul>
-            </div>
+    </div>
+    <!-- PRIKAZ PORUKA IZ INBOXA -->
+    <div class="col-md-9" *ngIf=msgPanels[0]>
+      <div class="tile">
+        <div class="mailbox-controls">
+          <div class="form-check">
+            <label>
+              <input type="checkbox">
+              <span class="label-text"></span>
+            </label>
+
           </div>
+
         </div>
-        <!-- PRIKAZ PORUKA IZ INBOXA -->
-        <div class="col-md-9" *ngIf=msgPanels[0]>
-          <div class="tile">
-            <div class="mailbox-controls">
-              <div class="form-check" >
-                <label>
-                  <input type="checkbox"><span class="label-text"></span>
-                </label>
-                
-              </div>
-              
-            </div>
-            <div class="table-responsive mailbox-messages">
-              <table class="table table-hover">
-                  
-                <tbody>
-                  
-                  <tr *ngFor="let poruka of inbox; let j = index;">
-                    <a href="JavaScript:void(0)" (click) = "markAsReadInbox(j)">
+        <div class="table-responsive mailbox-messages">
+          <table class="table table-hover">
+
+            <tbody>
+
+              <tr *ngFor="let poruka of inbox; let j = index;">
+                <a href="JavaScript:void(0)" (click)="markAsReadInbox(j)">
 
 
-                    
-                      <td>
-                        <div class="form-check">
-                          <label>
-                            <input type="checkbox"><span class="label-text"> </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td ><a href="JavaScript:void(0)"><i class="fa fa-star-o"></i></a></td>
-                      <td width="10%"><a href="JavaScript:void(0)"> <u> {{poruka.sagovornik.username}} </u></a></td>
-                      <td *ngIf=!poruka.procitana width="65%"class="mail-subject"><b><u>{{poruka.naslov}}</u></b> &nbsp;{{poruka.sadrzaj.substring(0, 300)}}</td>
-                      <td *ngIf=poruka.procitana width="65%"class="mail-subject"><u>{{poruka.naslov}}</u> &nbsp;{{poruka.sadrzaj.substring(0, 300)}}</td>
-                      <td width="10%"><i class="fa fa-paperclip"></i></td>
-                      <td width="15%">{{poruka.datumSlanja.split("T")[0]}}</td>
+
+                  <td>
+                    <div class="form-check">
+                      <label>
+                        <input type="checkbox">
+                        <span class="label-text"> </span>
+                      </label>
+                    </div>
+                  </td>
+                  <td>
+                    <a href="JavaScript:void(0)">
+                      <i class="fa fa-star-o"></i>
                     </a>
-                  </tr>
-                 
-                  
-                </tbody>
-              </table>
-            </div>
-            
-          </div>
+                  </td>
+                  <td width="10%">
+                    <a href="JavaScript:void(0)">
+                      <u> {{poruka.sagovornik.username}} </u>
+                    </a>
+                  </td>
+                  <td *ngIf=!poruka.procitana width="65%" class="mail-subject">
+                    <b>
+                      <u>{{poruka.naslov}}</u>
+                    </b> &nbsp;{{poruka.sadrzaj.substring(0, 300)}}</td>
+                  <td *ngIf=poruka.procitana width="65%" class="mail-subject">
+                    <u>{{poruka.naslov}}</u> &nbsp;{{poruka.sadrzaj.substring(0, 300)}}</td>
+                  <td width="10%">
+                    <i class="fa fa-paperclip"></i>
+                  </td>
+                  <td width="15%">{{poruka.datumSlanja.split("T")[0]}}</td>
+                </a>
+              </tr>
+
+
+            </tbody>
+          </table>
         </div>
 
-        <!-- PRIKAZ POSLATIH PORUKA -->
-        <div class="col-md-9" *ngIf=msgPanels[1]>
-           
-            <div class="tile">
-                <div class="mailbox-controls">
-                  <div class="form-check" >
-                    <label>
-                      <input type="checkbox"><span class="label-text"></span>
-                    </label>
-                    
-                  </div>
-                  
-                </div>
-                <div class="table-responsive mailbox-messages">
-                  <table class="table table-hover">
-                    <tbody>
-                      <tr *ngFor="let poruka of sent; let j = index;">
-                        <a href="JavaScript:void(0)" (click) = "openSentMessage(j)">
-                          <td>
-                            <div class="form-check">
-                              <label>
-                                <input type="checkbox"><span class="label-text"> </span>
-                              </label>
-                            </div>
-                          </td>
-                          <td ><a href="JavaScript:void(0)"><i class="fa fa-star-o"></i></a></td>
-                          <td width="10%"><a href="JavaScript:void(0)"> <u> {{poruka.sagovornik.username}} </u></a></td>
-                          <td width="65%"class="mail-subject"><u>{{poruka.naslov}}</u> &nbsp;{{poruka.sadrzaj.substring(0, 300)}}</td>
-                          <td width="10%"><i class="fa fa-paperclip"></i></td>
-                          <td width="15%">{{poruka.datumSlanja.split("T")[0]}}</td>
-                        </a>
-                      </tr>
-                     
-                      
-                    </tbody>
-                  </table>
-                </div>
-                
-              </div>
-        </div>
-
-        <!-- FORMA ZA SLANJE NOVE PORUKE -->
-        <div class="col-md-9" *ngIf=msgPanels[2]>
-            <div class="tile">
-                <div class="mailbox-controls">
-                  <div class="form-check" >
-                    
-                    
-                  </div>
-                  <div class="table-responsive mailbox-messages">
-                    <form>
-
-    
-                      <div class="form-group">
-                          <label for="typeCombo">To</label>
-                          <select class="form-control"  [(ngModel)] = "messageRecipient" name = "messageRecipient" >
-                            <option *ngFor="let client of clients; let j = index;" >{{client.username}}</option>
-                          </select>
-                        </div>
-                      <div class="form-group">
-                        <label class="control-label">Subject</label>
-                        <input class="form-control" [(ngModel)] = "messageSubject" name = "messageSubject" type="text" placeholder="Title">
-                      </div>
-    
-                      <div class="form-group">
-                        <label for="descriptionTextArea">Content</label>
-                        <textarea class="form-control" [(ngModel)] = "messageContent" name = "messageContent" id="descriptionTextArea" rows="3"></textarea>
-                      </div>
-                      <div >
-                          <button class="btn btn-primary" type="submit" (click) = "sendMessage()"> Send </button>
-                      </div>
-                    </form>
-                  </div>
-                  
-                  
-                </div>
-                
-                
-              </div>
-        </div>
-
-        <!-- DETALJNIJI PRIKAZ PRIMLJENE PORUKE -->
-        <div class="col-md-9" *ngIf=msgPanels[3]>
-            <div class="tile">
-                <div class="mailbox-controls">
-                  <div class="form-check" >
-                    
-                    
-                  </div>
-                  <div class="table-responsive mailbox-messages">
-                    <form>
-
-                        <div class="form-group">
-                            <label class="control-label">From</label>
-                            <input class="form-control" [(ngModel)] = "messageRecipient" name = "messageRecipient" type="text" readonly="true">
-                          </div>
-                      <div class="form-group">
-                        <label class="control-label">Subject</label>
-                        <input class="form-control" [(ngModel)] = "messageSubject" name = "messageSubject" type="text" readonly="true">
-                      </div>
-    
-                      <div class="form-group">
-                        <label for="descriptionTextArea">Content</label>
-                        <textarea class="form-control" [(ngModel)] = "messageContent" name = "messageContent" id="descriptionTextArea" rows="3" readonly="true"></textarea>
-                      </div>
-                      <div >
-                          <button class="btn btn-primary" type="submit" (click) = "reply()"> Reply </button>
-                      </div>
-                    </form>
-                  </div>
-                  
-                  
-                </div>
-                
-                
-              </div>
-        </div>
-
-        <!-- PANEL ZA ODGOVOR NA PRIMLJENU PORUKU -->
-        <div class="col-md-9" *ngIf=msgPanels[4]>
-            <div class="tile">
-                <div class="mailbox-controls">
-                  <div class="form-check" >
-                    
-                    
-                  </div>
-                  <div class="table-responsive mailbox-messages">
-                    <form>
-
-                        <div class="form-group">
-                            <label class="control-label">To</label>
-                            <input class="form-control" [(ngModel)] = "messageRecipient" name = "messageRecipient" type="text" readonly="true">
-                          </div>
-                      <div class="form-group">
-                        <label class="control-label">Subject</label>
-                        <input class="form-control" [(ngModel)] = "messageSubject" name = "messageSubject" type="text" readonly="true">
-                      </div>
-    
-                      <div class="form-group">
-                        <label for="descriptionTextArea">Content</label>
-                        <textarea class="form-control" [(ngModel)] = "messageContent" name = "messageContent" id="descriptionTextArea" rows="3"></textarea>
-                      </div>
-                      <div >
-                          <button class="btn btn-primary" type="submit" (click) = "sendMessage()"> Send </button>
-                      </div>
-                    </form>
-                  </div>
-                  
-                  
-                </div>
-                
-                
-              </div>
-        </div>
-
-        <!-- PANEL ZA PONOVNI ODGOVOR IZ POSLATIH PORUKA -->
-        <div class="col-md-9" *ngIf=msgPanels[5]>
-            <div class="tile">
-                <div class="mailbox-controls">
-                  <div class="form-check" >
-                    
-                    
-                  </div>
-                  <div class="table-responsive mailbox-messages">
-                    <form>
-
-                        <div class="form-group">
-                            <label class="control-label">To</label>
-                            <input class="form-control" [(ngModel)] = "messageRecipient" name = "messageRecipient" type="text" readonly="true">
-                          </div>
-                      <div class="form-group">
-                        <label class="control-label">Subject</label>
-                        <input class="form-control" [(ngModel)] = "messageSubject" name = "messageSubject" type="text" readonly="true">
-                      </div>
-    
-                      <div class="form-group">
-                        <label for="descriptionTextArea">Content</label>
-                        <textarea class="form-control" [(ngModel)] = "messageContent" name = "messageContent" id="descriptionTextArea" rows="3" readonly="true"></textarea>
-                      </div>
-                      <div >
-                          <button class="btn btn-primary" type="submit" (click) = "reply()"> Reply </button>
-                      </div>
-                    </form>
-                  </div>
-                  
-                  
-                </div>
-                
-                
-              </div>
-        </div>
       </div>
+    </div>
+
+    <!-- PRIKAZ POSLATIH PORUKA -->
+    <div class="col-md-9" *ngIf=msgPanels[1]>
+
+      <div class="tile">
+        <div class="mailbox-controls">
+          <div class="form-check">
+            <label>
+              <input type="checkbox">
+              <span class="label-text"></span>
+            </label>
+
+          </div>
+
+        </div>
+        <div class="table-responsive mailbox-messages">
+          <table class="table table-hover">
+            <tbody>
+              <tr *ngFor="let poruka of sent; let j = index;">
+                <a href="JavaScript:void(0)" (click)="openSentMessage(j)">
+                  <td>
+                    <div class="form-check">
+                      <label>
+                        <input type="checkbox">
+                        <span class="label-text"> </span>
+                      </label>
+                    </div>
+                  </td>
+                  <td>
+                    <a href="JavaScript:void(0)">
+                      <i class="fa fa-star-o"></i>
+                    </a>
+                  </td>
+                  <td width="10%">
+                    <a href="JavaScript:void(0)">
+                      <u> {{poruka.sagovornik.username}} </u>
+                    </a>
+                  </td>
+                  <td width="65%" class="mail-subject">
+                    <u>{{poruka.naslov}}</u> &nbsp;{{poruka.sadrzaj.substring(0, 300)}}</td>
+                  <td width="10%">
+                    <i class="fa fa-paperclip"></i>
+                  </td>
+                  <td width="15%">{{poruka.datumSlanja.split("T")[0]}}</td>
+                </a>
+              </tr>
+
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FORMA ZA SLANJE NOVE PORUKE -->
+    <div class="col-md-9" *ngIf=msgPanels[2]>
+      <div class="tile">
+        <div class="mailbox-controls">
+          <div class="form-check">
+
+
+          </div>
+          <div class="table-responsive mailbox-messages">
+            <form>
+
+
+              <div class="form-group">
+                <label for="typeCombo">To</label>
+                <select class="form-control" [(ngModel)]="messageRecipient" name="messageRecipient">
+                  <option *ngFor="let client of clients; let j = index;">{{client.username}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="control-label">Subject</label>
+                <input class="form-control" [(ngModel)]="messageSubject" name="messageSubject" type="text" placeholder="Title">
+              </div>
+
+              <div class="form-group">
+                <label for="descriptionTextArea">Content</label>
+                <textarea class="form-control" [(ngModel)]="messageContent" name="messageContent" id="descriptionTextArea" rows="3"></textarea>
+              </div>
+              <div>
+                <button class="btn btn-primary" type="submit" (click)="sendMessage()"> Send </button>
+              </div>
+            </form>
+          </div>
+
+
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- DETALJNIJI PRIKAZ PRIMLJENE PORUKE -->
+    <div class="col-md-9" *ngIf=msgPanels[3]>
+      <div class="tile">
+        <div class="mailbox-controls">
+          <div class="form-check">
+
+
+          </div>
+          <div class="table-responsive mailbox-messages">
+            <form>
+
+              <div class="form-group">
+                <label class="control-label">From</label>
+                <input class="form-control" [(ngModel)]="messageRecipient" name="messageRecipient" type="text" readonly="true">
+              </div>
+              <div class="form-group">
+                <label class="control-label">Subject</label>
+                <input class="form-control" [(ngModel)]="messageSubject" name="messageSubject" type="text" readonly="true">
+              </div>
+
+              <div class="form-group">
+                <label for="descriptionTextArea">Content</label>
+                <textarea class="form-control" [(ngModel)]="messageContent" name="messageContent" id="descriptionTextArea" rows="3" readonly="true"></textarea>
+              </div>
+              <div>
+                <button class="btn btn-primary" type="submit" (click)="reply()"> Reply </button>
+              </div>
+            </form>
+          </div>
+
+
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- PANEL ZA ODGOVOR NA PRIMLJENU PORUKU -->
+    <div class="col-md-9" *ngIf=msgPanels[4]>
+      <div class="tile">
+        <div class="mailbox-controls">
+          <div class="form-check">
+
+
+          </div>
+          <div class="table-responsive mailbox-messages">
+            <form>
+
+              <div class="form-group">
+                <label class="control-label">To</label>
+                <input class="form-control" [(ngModel)]="messageRecipient" name="messageRecipient" type="text" readonly="true">
+              </div>
+              <div class="form-group">
+                <label class="control-label">Subject</label>
+                <input class="form-control" [(ngModel)]="messageSubject" name="messageSubject" type="text" readonly="true">
+              </div>
+
+              <div class="form-group">
+                <label for="descriptionTextArea">Content</label>
+                <textarea class="form-control" [(ngModel)]="messageContent" name="messageContent" id="descriptionTextArea" rows="3"></textarea>
+              </div>
+              <div>
+                <button class="btn btn-primary" type="submit" (click)="sendMessage()"> Send </button>
+              </div>
+            </form>
+          </div>
+
+
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- PANEL ZA PONOVNI ODGOVOR IZ POSLATIH PORUKA -->
+    <div class="col-md-9" *ngIf=msgPanels[5]>
+      <div class="tile">
+        <div class="mailbox-controls">
+          <div class="form-check">
+
+
+          </div>
+          <div class="table-responsive mailbox-messages">
+            <form>
+
+              <div class="form-group">
+                <label class="control-label">To</label>
+                <input class="form-control" [(ngModel)]="messageRecipient" name="messageRecipient" type="text" readonly="true">
+              </div>
+              <div class="form-group">
+                <label class="control-label">Subject</label>
+                <input class="form-control" [(ngModel)]="messageSubject" name="messageSubject" type="text" readonly="true">
+              </div>
+
+              <div class="form-group">
+                <label for="descriptionTextArea">Content</label>
+                <textarea class="form-control" [(ngModel)]="messageContent" name="messageContent" id="descriptionTextArea" rows="3" readonly="true"></textarea>
+              </div>
+              <div>
+                <button class="btn btn-primary" type="submit" (click)="reply()"> Reply </button>
+              </div>
+            </form>
+          </div>
+
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
 </main>
 
 <main class="app-content" *ngIf=panels[4]>
-    <h1>
+  <h1>
 
-      Mejvene 4
-    </h1>
+    Mejvene 4
+  </h1>
 </main>

@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.agent.entities.Korisnik;
 import com.example.agent.repositories.KorisnikRepository;
-import com.example.agent.services.KorisnikService;
+import com.example.agent.services.IKorisnikService;
 
 @Service
-public class KorisnikServiceImpl implements KorisnikService {
+public class KorisnikServiceImpl implements IKorisnikService {
 
 	@Autowired
 	private KorisnikRepository korisnikRepository;
@@ -32,5 +32,12 @@ public class KorisnikServiceImpl implements KorisnikService {
 	public Optional<Korisnik> getById(String id) {
 		
 		return korisnikRepository.findById(id);
+	}
+
+	@Override
+	public Optional<Korisnik> getUserByEmail(String email) {
+		Optional<Korisnik> korisnik =korisnikRepository.findOneByEmail(email);
+		System.out.println("korisnik servis***");
+		return korisnik;
 	}
 }

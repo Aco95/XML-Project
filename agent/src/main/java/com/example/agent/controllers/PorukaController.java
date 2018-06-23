@@ -35,7 +35,7 @@ import com.example.agent.entities.Poruka;
 import com.example.agent.entities.Smestaj;
 import com.example.agent.entities.Soba;
 import com.example.agent.repositories.KorisnikRepository;
-import com.example.agent.services.KorisnikService;
+import com.example.agent.services.IKorisnikService;
 import com.example.agent.services.PorukaService;
 import com.example.agent.services.SmestajService;
 
@@ -48,7 +48,7 @@ public class PorukaController {
 	private PorukaService porukaService;
 	
 	@Autowired
-	private KorisnikService korisnikService;
+	private IKorisnikService korisnikService;
 	
 	@RequestMapping(
 			value = "/getPrimljenePoruke", 
