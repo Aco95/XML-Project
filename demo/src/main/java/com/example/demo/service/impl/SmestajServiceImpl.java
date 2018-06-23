@@ -63,4 +63,10 @@ public class SmestajServiceImpl implements ISmestajService{
 		return smestajRepository.findByRejting(ocena);
 	}
 
+	@Override
+	public Smestaj insertAccommodation(Smestaj s) {
+		
+		return smestajRepository.insert(s);
+	}
+
 }

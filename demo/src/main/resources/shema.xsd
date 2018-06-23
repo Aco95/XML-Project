@@ -3,15 +3,15 @@
     xmlns:tns="http://techprimers.com/demo"
     targetNamespace="http://techprimers.com/demo" elementFormDefault="qualified">
 
-    <xs:element name="getSmestajRequest">
+    <xs:element name="addSmestajRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="id" type="xs:string"/>
+                <xs:element name="smestaj" type="tns:smestaj"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="getSmestajResponse">
+    <xs:element name="addSmestajResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="smestaj" type="tns:smestaj"/>

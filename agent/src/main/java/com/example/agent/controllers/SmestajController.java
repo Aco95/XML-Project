@@ -10,11 +10,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.agent.services.SmestajService;
+import com.example.agent.demoModel.AddSmestajRequest;
+import com.example.agent.demoModel.AddSmestajResponse;
+import com.example.agent.demoModel.DemoServicePort;
+import com.example.agent.demoModel.DemoServicePortService;
 import com.example.agent.dtos.SmestajDTO;
 import com.example.agent.entities.Rezervacija;
 import com.example.agent.entities.Smestaj;
 import com.example.agent.entities.Soba;
+import com.example.agent.entities.Tip;
 
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -47,7 +54,7 @@ public class SmestajController {
 			method = RequestMethod.POST,
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Smestaj registerCinema(@RequestBody SmestajDTO sDTO) {
+	public Smestaj registerSmestaj(@RequestBody SmestajDTO sDTO) {
 			
 		int brojSoba = sDTO.getBrJednokrevetnih() + sDTO.getBrDvokrevetnih() + sDTO.getBrTrokrevetnih() + sDTO.getBrCetvorokrevetnih();
 		Smestaj smestaj = new Smestaj();
@@ -101,7 +108,106 @@ public class SmestajController {
 		smestaj.setSobe(sobe);
 		smestaj.setSlikeUrl(sDTO.getSlikeUrl());
 		
-		return smestajService.insertAccommodation(smestaj);
+		com.example.agent.demoModel.Soba demoSoba = new com.example.agent.demoModel.Soba();
+		List<com.example.agent.demoModel.Soba> demoSobe = new ArrayList<>();
+		
+		for (Soba soba : smestaj.getSobe()) {
+			
+			demoSoba.setBroj(soba.getBroj());
+			demoSoba.setCena(soba.getCena());
+			demoSoba.setId(soba.getId());
+			demoSoba.setIdSmestaja(soba.getIdSmestaja());
+			demoSoba.setKapacitet(soba.getKapacitet());
+			
+			demoSobe.add(demoSoba);
+			
+		}
+		
+		com.example.agent.demoModel.Smestaj demoSmestaj = new com.example.agent.demoModel.Smestaj();
+		demoSmestaj.setId(smestaj.getId());
+		demoSmestaj.setNaziv(smestaj.getNaziv());
+		demoSmestaj.setAdresa(smestaj.getAdresa());
+		demoSmestaj.setMesto(smestaj.getMesto());
+		demoSmestaj.setKategorija(smestaj.getKategorija());
+		demoSmestaj.setTip(com.example.agent.demoModel.Tip.valueOf(smestaj.getTip().value()));
+		demoSmestaj.setWifi(smestaj.isWifi());
+		demoSmestaj.setParking(smestaj.isParking());
+		demoSmestaj.setDorucak(smestaj.isDorucak());
+		demoSmestaj.setPansion(smestaj.isPansion());
+		demoSmestaj.setPolupansion(smestaj.isPolupansion());
+		demoSmestaj.setMiniKuhinja(smestaj.isMiniKuhinja());
+		demoSmestaj.setPrivatnoKupatilo(smestaj.isPrivatnoKupatilo());
+		demoSmestaj.setOcena(smestaj.getOcena());
+		demoSmestaj.setOpis(smestaj.getOpis());
+		demoSmestaj.setSobe(demoSobe);
+		demoSmestaj.setSlikeUrl(smestaj.getSlikeUrl());
+		
+		
+		
+		
+		
+		
+		
+			
+		Socket sock = new Socket();
+		InetSocketAddress addr = new InetSocketAddress("www.google.com", 80);
+		
+		try {
+			
+			sock.connect(addr);
+			
+			
+			
+			
+			
+		} catch (Exception e) {
+		
+			System.out.println("NEMA NETA");
+			
+			Smestaj nemaNeta = new Smestaj();
+			nemaNeta.setNaziv("noInternetConnection");
+			return nemaNeta;
+			
+		} finally {
+			
+			try {
+				
+				sock.close();
+				
+			} catch (Exception e) {
+				
+				System.out.println("Greska pri zatvaranju konekcije");
+			}
+			
+		}
+		
+		System.out.println("IMA NETA");
+		
+		smestaj = smestajService.insertAccommodation(smestaj);
+		
+		if (smestaj != null) {
+			
+			
+			DemoServicePortService demoServicePortService = new DemoServicePortService();
+			DemoServicePort port = demoServicePortService.getDemoServicePortSoap11();
+			AddSmestajRequest addSmestajRequest = new AddSmestajRequest();
+			addSmestajRequest.setSmestaj(demoSmestaj);
+			AddSmestajResponse addSmestajResponse = port.addSmestaj(addSmestajRequest);
+			
+			System.out.println("U glavnu bazu upisan smestaj: " + addSmestajResponse.getSmestaj().getNaziv());
+		
+			return smestaj;
+			
+		} else {
+			
+			return null;
+		}
+			
+			
+		
+			
+		
+
 			
 	}
 	

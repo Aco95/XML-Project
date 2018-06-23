@@ -21,8 +21,10 @@ public class SmestajEndpoint {
 	@PayloadRoot(namespace = "http://www.w3.org/2001/XMLSchema/agent",
             localPart = "getSmestajRequest")
     @ResponsePayload
-    public GetSmestajResponse getSmestajRequest(@RequestPayload GetSmestajRequest request) {
+    public GetSmestajResponse getSmestaj(@RequestPayload GetSmestajRequest request) {
 		GetSmestajResponse response = new GetSmestajResponse();
+		
+		System.out.println("DA VIDIMO: " + request.getId());
         response.setSmestaj(smestajService.getById(request.getId()).get());
         return response;
     }
