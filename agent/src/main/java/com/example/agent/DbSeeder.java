@@ -28,10 +28,12 @@ import com.example.agent.repositories.PorukaRepository;
 import com.example.agent.repositories.RezervacijaRepository;
 import com.example.agent.repositories.SmestajRepository;
 import com.example.agent.repositories.SobaRepository;
+import com.example.agent.repositories.UserCredentialRepository;
 import com.example.agent.entities.Smestaj;
 import com.example.agent.entities.Soba;
 import com.example.agent.entities.Tip;
 import com.example.agent.entities.Uloga;
+import com.example.agent.entities.UserCredential;
 import com.example.agent.entities.Rezervacija;
 
 
@@ -53,6 +55,9 @@ public class DbSeeder implements CommandLineRunner{
 	
 	@Autowired
 	private RezervacijaRepository rezervacijaRepository;
+	
+	@Autowired
+	private UserCredentialRepository userCredentialRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -332,6 +337,12 @@ public class DbSeeder implements CommandLineRunner{
 		p3.setProcitana(false);
 		p3.setSagovornik(k3);
 		p3.setPrimljena(false);
+		
+		UserCredential uk = new UserCredential();
+		uk.setEmail("agent@agent");
+		uk.setPassword("$2a$10$KjHNfVRioHre2sdAUxhaouv4BBLbhCj7cEnf.DgWAC57I9pOfo/8G");
+		
+		userCredentialRepository.save(uk);
 		
 		porukaRepository.deleteAll();
 		

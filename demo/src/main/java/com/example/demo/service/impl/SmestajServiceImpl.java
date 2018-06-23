@@ -57,5 +57,10 @@ public class SmestajServiceImpl implements ISmestajService{
 	public void deleteSmestaj(Smestaj s) {
 		smestajRepository.delete(s);
 	}
+	
+	@Override
+	public List<Smestaj> getSmestajbyRejting(double ocena){
+		return smestajRepository.findByRejting(ocena);
+	}
 
 }

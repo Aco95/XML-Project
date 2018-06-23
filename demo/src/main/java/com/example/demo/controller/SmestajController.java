@@ -315,5 +315,16 @@ public class SmestajController {
 	                    .compare(end) == DatatypeConstants.EQUAL);
 	}
 	
-
+	@RequestMapping(
+			value = "/ratingSearch/{rejting}",
+			method = RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public RezultatPretrageDTO ratingSearch(@PathVariable("rejting") String rejting) {
+		double rejtingInt=Double.parseDouble(rejting);
+		List<Smestaj> trazeniSmestaji=smestajService.getSmestajbyRejting(rejtingInt);
+		RezultatPretrageDTO rezultat=new RezultatPretrageDTO();
+		rezultat.setGreska(false);
+		rezultat.setTrazeniSmestaji(trazeniSmestaji);
+		return rezultat;
+	}
 }
