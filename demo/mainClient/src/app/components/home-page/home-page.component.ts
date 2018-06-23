@@ -134,8 +134,8 @@ export class HomePageComponent implements OnInit {
             console.log(this.accommodationArray);
 
             for(let accommodation of this.accommodationArray){
-              let min = accommodation.sobe[0].cena;
-              let max = accommodation.sobe[0].cena;
+              let min = 200;
+              let max = 200;
               for(let room of accommodation.sobe){
                 if(room.cena<min)
                   min = room.cena;

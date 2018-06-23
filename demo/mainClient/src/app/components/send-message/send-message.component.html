@@ -1,0 +1,38 @@
+<br><br>
+
+<!-- FORMA ZA SLANJE NOVE PORUKE -->
+        <div class="col-md-9">
+            <div class="tile">
+                <div class="mailbox-controls">
+                  <div class="form-check" >
+                    
+                    
+                  </div>
+                  <div class="table-responsive mailbox-messages">
+                    <form>
+
+                      <div class="form-group">
+                          <label for="typeCombo">To</label>
+                          <input class="form-control" [(ngModel)] = "messageRecipient" name = "messageRecipient"  [readonly]="true" type="text" placeholder="Title">
+                        </div>
+                      <div class="form-group">
+                        <label class="control-label">Subject</label>
+                        <input class="form-control" [(ngModel)] = "messageSubject" name = "messageSubject" type="text" placeholder="Title">
+                      </div>
+    
+                      <div class="form-group">
+                        <label for="descriptionTextArea">Content</label>
+                        <textarea class="form-control" [(ngModel)] = "messageContent" name = "messageContent" id="descriptionTextArea" rows="3"></textarea>
+                      </div>
+                      <div >
+                          <button class="btn btn-primary" type="submit" (click) = "submitSendMessage()"> Send </button>
+                      </div>
+                    </form>
+                  </div>
+                  
+                  
+                </div>
+                
+                
+              </div>
+        </div>

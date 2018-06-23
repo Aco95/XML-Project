@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.RezervacijaDTO;
 import com.example.demo.entities.Korisnik;
 import com.example.demo.entities.Rezervacija;
+import com.example.demo.entities.Smestaj;
 import com.example.demo.entities.Soba;
+import com.example.demo.entities.Uloga;
 import com.example.demo.service.IKorisnikService;
 import com.example.demo.service.IRezervacijaService;
 import com.example.demo.service.ISobaService;
@@ -110,4 +112,48 @@ public class RezervacijaController {
 		
 	}
 
+	
+	 @RequestMapping(
+				value = "/getUserById/{id}",
+				method = RequestMethod.GET,
+				produces = MediaType.APPLICATION_JSON_VALUE)
+		public Korisnik getUserById(@PathVariable("id") String id){
+			
+		  	System.out.println("Id korisnika: " + id);
+		  
+			return korisnikService.getUserById(id.substring(1, id.length()-1)).get();
+			
+		}
+	 
+	 
+	 @RequestMapping(
+				value = "/getUserByUsername/{username}",
+				method = RequestMethod.GET,
+				produces = MediaType.APPLICATION_JSON_VALUE)
+		public Korisnik getUserByUsername(@PathVariable("username") String username){
+			
+		  	System.out.println(username);
+		  
+			return korisnikService.getUserByUsername(username.substring(1, username.length()-1)).get();
+			
+		}
+	 
+	 @RequestMapping(
+				value = "/getAgenti",
+				method = RequestMethod.GET, 
+				produces = MediaType.APPLICATION_JSON_VALUE)
+		public List<Korisnik> getAgenti(){
+			
+			List<Korisnik> korisnici = korisnikService.findAll();
+			List<Korisnik> agenti = new ArrayList<Korisnik>();
+			
+			for(Korisnik k : korisnici) {
+				if(k.getUloga() == Uloga.AGENT) {
+					agenti.add(k);
+				}
+			}
+			
+			return agenti;
+		}
+	 
 }

@@ -7,6 +7,8 @@ import { HomeRezervacijeComponent } from "./components/home-rezervacije/home-rez
 import { RegistracijaComponent } from "./components/registracija/registracija.component";
 import { ReserveAccommodationComponent } from './components/reserve-accommodation/reserve-accommodation.component';
 import { RecenzijaComponent } from './components/recenzija/recenzija.component';
+import { SendMessageComponent } from './components/send-message/send-message.component';
+import { MessagesComponent } from './components/messages/messages.component';
 
 const appRoutes: Routes =
     [
@@ -46,6 +48,16 @@ const appRoutes: Routes =
     {
         path:'create-recenzija',
         component: RecenzijaComponent
+    },
+
+    {
+        path: 'send-message',
+        component: SendMessageComponent
+    },
+
+    {
+        path: 'messages',
+        component: MessagesComponent
     }
 
     ]

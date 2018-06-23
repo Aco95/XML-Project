@@ -21,6 +21,9 @@ export class RezervacijeService {
 
   s = "";
 
+  private a = new BehaviorSubject<any>(null);
+  currentAgent = this.a.asObservable();
+
   constructor(private http: Http) { }
 
   getRezervacije(): Observable<Rezervacija[]> {
@@ -63,6 +66,77 @@ export class RezervacijeService {
 
     return this.http.delete('http://localhost:8080/public/reservations/deleteReservation/'+JSON.stringify(reservationID), 
        { headers : headers }).map((data : Response) => data.json());
+  }
+
+  getUserById(userID : any) {
+    console.log(userID);
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:8080/public/reservations/getUserById/'+JSON.stringify(userID), 
+      { headers : headers }).map((data : Response) => data.json());
+
+  }
+
+  getUserByUsername(username : any) {     // treba mi kontroler za ovo
+    console.log(username);
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:8080/public/reservations/getUserByUsername/'+JSON.stringify(username), 
+      { headers : headers }).map((data : Response) => data.json());
+
+  }
+
+  selectAgent(agent : any) {
+
+    this.a.next(agent);
+  }
+
+
+  sendMessage(porukaDTO : any) {
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    // alert(JSON.stringify(reservationDTO));
+    return this.http.post('http://localhost:8080/public/messages/sendMessage', 
+      JSON.stringify(porukaDTO), { headers : headers }).map((data : Response) => data.json());
+  }
+
+
+  getInbox(){
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.get("http://localhost:8080/public/messages/getPrimljenePoruke").map(data => data.json())
+
+    .catch((err:HttpErrorResponse) =>
+    {
+        alert(err.status + " " + err.error.error + " \n" + err.error.message);
+        return Observable.throw(err);
+    });
+  
+  }
+
+  getSent(){
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.get("http://localhost:8080/public/messages/getPoslatePoruke").map(data => data.json())
+
+    .catch((err:HttpErrorResponse) =>
+    {
+        alert(err.status + " " + err.error.error + " \n" + err.error.message);
+        return Observable.throw(err);
+    });
+  
+  }
+
+  getAgenti(){                          // treba mi kontroler za ovo
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:8080/public/reservations/getAgenti', 
+      { headers : headers }).map((data : Response) => data.json());
   }
 
 }

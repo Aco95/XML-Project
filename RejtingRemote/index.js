@@ -24,7 +24,7 @@ const datastore = Datastore();
   projectId: 'rejting-remote'
 });*/
 
-const kind="Recenzija";
+const kind="Recenzija2";
 /**
  * Gets a Datastore key from the kind/key pair in the request.
  *
@@ -34,13 +34,11 @@ const kind="Recenzija";
  * @returns {object} Datastore key object.
  */
 function getKeyFromRequestData (requestData) {
+	console.log("telo je:"+ JSON.stringify(requestData.body));
   if (!requestData.body.id) {
     throw new Error('Key not provided. Make sure you have a "key" property in your request');
   }
 
-  if (!requestData.kind) {
-    throw new Error('Kind not provided. Make sure you have a "kind" property in your request');
-  }
 
   return datastore.key([kind, requestData.body.id]);
 }
@@ -69,11 +67,12 @@ function getKeyFromRequestData (requestData) {
 
 exports.set = (req, res) => {
   // The value contains a JSON document representing the entity we want to save
+  console.log("izmenjen set");
   if (!req.body) {
     throw new Error('Value not provided. Make sure you have a "value" property in your request');
   }
 
-  const key = getKeyFromRequestData(req.body);
+  const key = getKeyFromRequestData(req);
   const entity = {
     key: key,
     data: req.body
@@ -90,6 +89,7 @@ exports.set = (req, res) => {
 
 exports.get = (req, res) => {
   //const key = getKeyFromRequestData(req.body);
+  console.log("izmenjeno");
   let id = req.query.id
   const key=datastore.key([kind,id]);
   
@@ -109,6 +109,114 @@ exports.get = (req, res) => {
       return Promise.reject(err);
     });
 };
+
+exports.getAll = (req, res) => {
+  //const key = getKeyFromRequestData(req.body);
+    const query = datastore.createQuery(kind);
+	datastore.runQuery(query).then(results => {
+		console.log("query pokrenut");
+		console.log(results);
+	  const recenzije = results[0];
+	  res.status(200).send(JSON.stringify(recenzije));
+	  //res.sendStatus(200);
+	})
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send(err.message);
+      return Promise.reject(err);
+    });
+};
+
+exports.findByNotAllowed = (req, res) => {
+  //const key = getKeyFromRequestData(req.body);
+	let allowed=req.query.allowed=='true'
+    const query = datastore.createQuery(kind).filter('komentar.odobren','=',allowed);
+	datastore.runQuery(query).then(results => {
+		console.log("query pokrenut");
+		console.log(results);
+	  const recenzije = results[0];
+	  res.status(200).send(JSON.stringify(recenzije));
+	  //res.sendStatus(200);
+	})
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send(err.message);
+      return Promise.reject(err);
+    });
+};
+
+exports.calculateAverageRejtingForSmestaj = (req, res) => {
+  let filter=req.query.filter;;
+  let value=req.query.value
+  let averageVal=0;
+  let br=0;
+  const query = datastore.createQuery(kind).filter(filter,'=',value);
+  
+	datastore.runQuery(query).then(results => {
+		console.log("query pokrenut");
+		console.log(results);
+	  const recenzije = results[0];
+	  console.log("pojedinacne");
+	  recenzije.forEach(recenzija => {
+		  averageVal=recenzija.ocena+averageVal
+		  br=br+1;
+	  });
+	  
+	  res.status(200).send(JSON.stringify(averageVal/br));
+	  //res.sendStatus(200);
+	})
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send(err.message);
+      return Promise.reject(err);
+    });
+		
+};
+
+exports.findBySmestajAndRejting = (req, res) => {
+  let ocena = parseInt(req.query.ocena);
+  let smestajId=req.query.smestajId;
+  const query = datastore.createQuery(kind).filter('ocena','=',ocena).filter('smestajId','=',smestajId);
+  
+	datastore.runQuery(query).then(results => {
+		console.log("query pokrenut");
+		console.log(results);
+	  const recenzije = results[0];	  
+	  res.status(200).send(JSON.stringify(recenzije));
+	  //res.sendStatus(200);
+	})
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send(err.message);
+      return Promise.reject(err);
+    });
+		
+};
+
+exports.approve = (req, res) => {
+  //const key = getKeyFromRequestData(req.body);
+  console.log("izmenjeno");
+  let id = req.query.id
+  const key=datastore.key([kind,id]);
+  
+  return datastore.get(key)
+    .then(([entity]) => {
+      // The get operation will not fail for a non-existent entity, it just
+      // returns an empty dictionary.
+      if (!entity) {
+        throw new Error(`No entity found for key ${key.path.join('/')}.`);
+      }
+		entity.komentar.odobren=true;
+		datastore.save(entity);
+      res.status(200).send(entity);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send(err.message);
+      return Promise.reject(err);
+    });
+};
+
 
 exports.helloHttp = function helloHttp(req, res) {
   

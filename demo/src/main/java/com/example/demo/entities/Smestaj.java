@@ -75,7 +75,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
     "miniKuhinja",
     "privatnoKupatilo",
     "ocena",
-    "opis"
+    "opis",
+    "idAgenta"
 })
 @Document(collection="Smestaji")
 public class Smestaj {
@@ -112,6 +113,8 @@ public class Smestaj {
     protected double ocena;
     @XmlElement(required = true)
     protected String opis;
+    @XmlElement(required = true)
+    protected String idAgenta;
 
     /**
      * Gets the value of the sobe property.
@@ -491,6 +494,15 @@ public class Smestaj {
 
 	public void setSlikeUrl(List<String> slikeUrl) {
 		this.slikeUrl = slikeUrl;
+	}
+
+
+	public String getIdAgenta() {
+		return idAgenta;
+	}
+
+	public void setIdAgenta(String idAgenta) {
+		this.idAgenta = idAgenta;
 	}
 
 	public Smestaj() {

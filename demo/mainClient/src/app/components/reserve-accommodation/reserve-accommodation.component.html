@@ -25,12 +25,7 @@
               <label for="fromDate">From:</label>
               <div class="input-group">
                 <input class="form-control" placeholder="yyyy-mm-dd"
-                        name="datePicker"  [(ngModel)]="dateFrom" [minDate]="minDateFrom" (ngModelChange)="chooseDateFrom()" ngbDatepicker #df="ngbDatepicker" [readonly]="true" required>
-                <!-- <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" (click)="df.toggle()" type="button">
-                    <img src="../../../assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-                  </button>
-                </div> -->
+                        name="datePicker1"  [(ngModel)]="modifiedDateFrom" [readonly]="true" required>
               </div>
             </div>
         </div>
@@ -39,12 +34,7 @@
               <label for="toDate">To:</label>
               <div class="input-group">
                 <input class="form-control" placeholder="yyyy-mm-dd"
-                        name="datePicker" [(ngModel)]="dateTo" [minDate]="minDateTo" ngbDatepicker #dt="ngbDatepicker" [readonly]="true" required>
-                <!-- <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" (click)="dt.toggle()" type="button">
-                    <img src="../../../assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-                  </button>
-                </div> -->
+                        name="datePicker2" [(ngModel)]="modifiedDateTo" [readonly]="true" required>
               </div>
             </div>
         </div>

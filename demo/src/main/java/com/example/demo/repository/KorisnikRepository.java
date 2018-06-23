@@ -10,6 +10,8 @@ import com.example.demo.entities.Korisnik;
 @Repository
 public interface KorisnikRepository extends MongoRepository<Korisnik, String> {
 	Optional<Korisnik> findOneByEmail(String email);
+	
+	Optional<Korisnik> findOneByUsername(String username);
 
 
 }

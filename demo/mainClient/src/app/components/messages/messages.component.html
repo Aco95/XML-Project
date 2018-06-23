@@ -1,0 +1,260 @@
+<br><br>
+
+<main class="app-content">
+    <div class="app-title">
+        <div>
+          <h1><i class="fa fa-envelope-o"></i> Mailbox</h1>
+          <p>List of your conversations with agents.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3"><a class="mb-2 btn btn-primary btn-block" href="JavaScript:void(0)" (click) = "switchInboxSent(2)">Compose Mail</a>
+          <div class="tile p-0">
+            <h4 class="tile-title folder-head">Folders</h4>
+            <div class="tile-body">
+              <ul class="nav nav-pills flex-column mail-nav">
+                <li class="nav-item active"><a class="{{inboxSent[0]}}" (click) = "switchInboxSent(0)" href="JavaScript:void(0)"><i class="fa fa-inbox fa-fw"></i> Inbox<span *ngIf="unread != 0"class="badge badge-pill badge-primary float-right">{{unread}}</span></a></li>
+                <li class="nav-item"><a class="{{inboxSent[1]}}" href="JavaScript:void(0)" (click) = "switchInboxSent(1)"><i class="fa fa-envelope-o fa-fw"></i> Sent</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- PRIKAZ PORUKA IZ INBOXA -->
+        <div class="col-md-9" *ngIf=msgPanels[0]>
+          <div class="tile">
+            <div class="mailbox-controls">
+              <div class="form-check" >
+                <label>
+                  <input type="checkbox"><span class="label-text"></span>
+                </label>
+                
+              </div>
+              
+            </div>
+            <div class="table-responsive mailbox-messages">
+              <table class="table table-hover">
+                  
+                <tbody>
+                  
+                  <tr *ngFor="let poruka of inbox; let j = index;">
+                    <a href="JavaScript:void(0)" (click) = "markAsReadInbox(j)">
+
+
+                    
+                      <td>
+                        <div class="form-check">
+                          <label>
+                            <input type="checkbox"><span class="label-text"> </span>
+                          </label>
+                        </div>
+                      </td>
+                      <td ><a href="JavaScript:void(0)"><i class="fa fa-star-o"></i></a></td>
+                      <td width="10%"><a href="JavaScript:void(0)"> <u> {{listAgenataPrimljene[j].username}} </u></a></td>
+                      <td *ngIf=!poruka.procitana width="65%"class="mail-subject"><b><u>{{poruka.naslov}}</u></b> &nbsp;{{poruka.sadrzaj.substring(0, 300)}}</td>
+                      <td *ngIf=poruka.procitana width="65%"class="mail-subject"><u>{{poruka.naslov}}</u> &nbsp;{{poruka.sadrzaj.substring(0, 300)}}</td>
+                      <td width="10%"><i class="fa fa-paperclip"></i></td>
+                      <td width="15%">{{poruka.datumSlanja.split("T")[0]}}</td>
+                    </a>
+                  </tr>
+                 
+                  
+                </tbody>
+              </table>
+            </div>
+            
+          </div>
+        </div>
+
+        <!-- PRIKAZ POSLATIH PORUKA -->
+        <div class="col-md-9" *ngIf=msgPanels[1]>
+           
+            <div class="tile">
+                <div class="mailbox-controls">
+                  <div class="form-check" >
+                    <label>
+                      <input type="checkbox"><span class="label-text"></span>
+                    </label>
+                    
+                  </div>
+                  
+                </div>
+                <div class="table-responsive mailbox-messages">
+                  <table class="table table-hover">
+                    <tbody>
+                      <tr *ngFor="let poruka of sent; let j = index;">
+                        <a href="JavaScript:void(0)" (click) = "openSentMessage(j)">
+                          <td>
+                            <div class="form-check">
+                              <label>
+                                <input type="checkbox"><span class="label-text"> </span>
+                              </label>
+                            </div>
+                          </td>
+                          <td ><a href="JavaScript:void(0)"><i class="fa fa-star-o"></i></a></td>
+                          <td width="10%"><a href="JavaScript:void(0)"> <u> {{listAgenataPoslate[j].username}} </u></a></td>
+                          <td width="65%"class="mail-subject"><u>{{poruka.naslov}}</u> &nbsp;{{poruka.sadrzaj.substring(0, 300)}}</td>
+                          <td width="10%"><i class="fa fa-paperclip"></i></td>
+                          <td width="15%">{{poruka.datumSlanja.split("T")[0]}}</td>
+                        </a>
+                      </tr>
+                     
+                      
+                    </tbody>
+                  </table>
+                </div>
+                
+              </div>
+        </div>
+
+        <!-- FORMA ZA SLANJE NOVE PORUKE -->
+        <div class="col-md-9" *ngIf=msgPanels[2]>
+            <div class="tile">
+                <div class="mailbox-controls">
+                  <div class="form-check" >
+                    
+                    
+                  </div>
+                  <div class="table-responsive mailbox-messages">
+                    <form>
+
+    
+                      <div class="form-group">
+                          <label for="typeCombo">To</label>
+                          <select class="form-control"  [(ngModel)] = "messageRecipient" name = "messageRecipient" >
+                            <option *ngFor="let agent of agents; let j = index;" >{{agent.username}}</option>
+                          </select>
+                        </div>
+                      <div class="form-group">
+                        <label class="control-label">Subject</label>
+                        <input class="form-control" [(ngModel)] = "messageSubject" name = "messageSubject" type="text" placeholder="Title">
+                      </div>
+    
+                      <div class="form-group">
+                        <label for="descriptionTextArea">Content</label>
+                        <textarea class="form-control" [(ngModel)] = "messageContent" name = "messageContent" id="descriptionTextArea" rows="3"></textarea>
+                      </div>
+                      <div >
+                          <button class="btn btn-primary" type="submit" (click) = "sendMessage()"> Send </button>
+                      </div>
+                    </form>
+                  </div>
+                  
+                  
+                </div>
+                
+                
+              </div>
+        </div>
+
+        <!-- DETALJNIJI PRIKAZ PRIMLJENE PORUKE -->
+        <div class="col-md-9" *ngIf=msgPanels[3]>
+            <div class="tile">
+                <div class="mailbox-controls">
+                  <div class="form-check" >
+                    
+                    
+                  </div>
+                  <div class="table-responsive mailbox-messages">
+                    <form>
+
+                        <div class="form-group">
+                            <label class="control-label">From</label>
+                            <input class="form-control" [(ngModel)] = "messageRecipient" name = "messageRecipient" type="text" readonly="true">
+                          </div>
+                      <div class="form-group">
+                        <label class="control-label">Subject</label>
+                        <input class="form-control" [(ngModel)] = "messageSubject" name = "messageSubject" type="text" readonly="true">
+                      </div>
+    
+                      <div class="form-group">
+                        <label for="descriptionTextArea">Content</label>
+                        <textarea class="form-control" [(ngModel)] = "messageContent" name = "messageContent" id="descriptionTextArea" rows="3" readonly="true"></textarea>
+                      </div>
+                      <div >
+                          <button class="btn btn-primary" type="submit" (click) = "reply()"> Reply </button>
+                      </div>
+                    </form>
+                  </div>
+                  
+                  
+                </div>
+                
+                
+              </div>
+        </div>
+
+        <!-- PANEL ZA ODGOVOR NA PRIMLJENU PORUKU -->
+        <div class="col-md-9" *ngIf=msgPanels[4]>
+            <div class="tile">
+                <div class="mailbox-controls">
+                  <div class="form-check" >
+                    
+                    
+                  </div>
+                  <div class="table-responsive mailbox-messages">
+                    <form>
+
+                        <div class="form-group">
+                            <label class="control-label">To</label>
+                            <input class="form-control" [(ngModel)] = "messageRecipient" name = "messageRecipient" type="text" readonly="true">
+                          </div>
+                      <div class="form-group">
+                        <label class="control-label">Subject</label>
+                        <input class="form-control" [(ngModel)] = "messageSubject" name = "messageSubject" type="text" readonly="true">
+                      </div>
+    
+                      <div class="form-group">
+                        <label for="descriptionTextArea">Content</label>
+                        <textarea class="form-control" [(ngModel)] = "messageContent" name = "messageContent" id="descriptionTextArea" rows="3"></textarea>
+                      </div>
+                      <div >
+                          <button class="btn btn-primary" type="submit" (click) = "sendMessage()"> Send </button>
+                      </div>
+                    </form>
+                  </div>
+                  
+                  
+                </div>
+                
+                
+              </div>
+        </div>
+
+        <!-- PANEL ZA PONOVNI ODGOVOR IZ POSLATIH PORUKA -->
+        <div class="col-md-9" *ngIf=msgPanels[5]>
+            <div class="tile">
+                <div class="mailbox-controls">
+                  <div class="form-check" >
+                    
+                    
+                  </div>
+                  <div class="table-responsive mailbox-messages">
+                    <form>
+
+                        <div class="form-group">
+                            <label class="control-label">To</label>
+                            <input class="form-control" [(ngModel)] = "messageRecipient" name = "messageRecipient" type="text" readonly="true">
+                          </div>
+                      <div class="form-group">
+                        <label class="control-label">Subject</label>
+                        <input class="form-control" [(ngModel)] = "messageSubject" name = "messageSubject" type="text" readonly="true">
+                      </div>
+    
+                      <div class="form-group">
+                        <label for="descriptionTextArea">Content</label>
+                        <textarea class="form-control" [(ngModel)] = "messageContent" name = "messageContent" id="descriptionTextArea" rows="3" readonly="true"></textarea>
+                      </div>
+                      <div >
+                          <button class="btn btn-primary" type="submit" (click) = "reply()"> Reply </button>
+                      </div>
+                    </form>
+                  </div>
+                  
+                  
+                </div>
+                
+                
+              </div>
+        </div>
+      </div>
+</main>

@@ -8,6 +8,8 @@ public interface IRecenzijaService {
 
 	void setRecenzija(Recenzija recenzija);
 	Recenzija getRecenzijaById(String recenzijaId);
-	List<String> findByRejting(int prosecanRejting);
+	List<Recenzija> findBySmestajAndRejting(String smestajId,int ocena);
 	int calculateAverageRejtingForSmestaj(String smestajId);
+	public List<Recenzija> findByNotAllowed(Boolean allowed) ;
+	
 }

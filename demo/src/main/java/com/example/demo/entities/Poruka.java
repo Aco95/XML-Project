@@ -46,8 +46,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "poruka", propOrder = {
-    "sagovornik",
     "id",
+    "idKlijent",
+    "idAgent",
     "procitana",
     "datumSlanja",
     "naslov",
@@ -57,12 +58,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection="Poruke")
 public class Poruka {
 
-    @XmlElement(required = true)
-    protected Korisnik sagovornik;
-    
     @Id
     @XmlElement(required = true)
     protected String id;
+    @XmlElement(name = "id_klijenta", required = true)
+    protected String idKlijenta;
+    @XmlElement(name = "id_agenta", required = true)
+    protected String idAgenta;
+    @XmlElement(required = true)
     protected boolean procitana;
     @XmlElement(name = "datum_slanja", required = true)
     @XmlSchemaType(name = "dateTime")
@@ -73,31 +76,9 @@ public class Poruka {
     protected String sadrzaj;
     protected boolean primljena;
 
-    /**
-     * Gets the value of the sagovornik property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Korisnik }
-     *     
-     */
-    public Korisnik getSagovornik() {
-        return sagovornik;
-    }
-
-    /**
-     * Sets the value of the sagovornik property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Korisnik }
-     *     
-     */
-    public void setSagovornik(Korisnik value) {
-        this.sagovornik = value;
-    }
-
-    /**
+   
+ 
+	/**
      * Gets the value of the id property.
      * 
      * @return
@@ -121,7 +102,24 @@ public class Poruka {
         this.id = value;
     }
 
-    /**
+    
+    public String getIdKlijenta() {
+		return idKlijenta;
+	}
+
+	public void setIdKlijenta(String idKlijent) {
+		this.idKlijenta = idKlijent;
+	}
+
+	public String getIdAgenta() {
+		return idAgenta;
+	}
+
+	public void setIdAgenta(String idAgent) {
+		this.idAgenta = idAgent;
+	}
+
+	/**
      * Gets the value of the procitana property.
      * 
      */
@@ -230,16 +228,22 @@ public class Poruka {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Poruka(Korisnik sagovornik, boolean procitana, XMLGregorianCalendar datumSlanja, String naslov,
+	public Poruka(String idKlijenta, String idAgenta, boolean procitana, XMLGregorianCalendar datumSlanja, String naslov,
 			String sadrzaj, boolean primljena) {
 		super();
-		this.sagovornik = sagovornik;
+		this.idKlijenta = idKlijenta;
+		this.idAgenta = idAgenta;
 		this.procitana = procitana;
 		this.datumSlanja = datumSlanja;
 		this.naslov = naslov;
 		this.sadrzaj = sadrzaj;
 		this.primljena = primljena;
 	}
+
+	
+	
+
+	
     
     
 
