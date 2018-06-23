@@ -8,5 +8,7 @@ public class AgentApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AgentApplication.class, args);
+		
+		System.out.println("Helou agente jodza.");
 	}
 }

@@ -10,4 +10,10 @@ public interface PorukaService {
 	List<Poruka> getByPrimljena(Boolean primljena);
 	
 	Poruka insertMessage(Poruka p);
+	
+	Boolean deleteAll();
+	
+	Poruka deleteMessage(Poruka p);
+	
+	Poruka update(Poruka p);
 }

@@ -25,6 +25,30 @@ public interface DemoServicePort {
 
     /**
      * 
+     * @param getPorukeRequest
+     * @return
+     *     returns com.techprimers.demo.GetPorukeResponse
+     */
+    @WebMethod
+    @WebResult(name = "getPorukeResponse", targetNamespace = "http://techprimers.com/demo", partName = "getPorukeResponse")
+    public GetPorukeResponse getPoruke(
+        @WebParam(name = "getPorukeRequest", targetNamespace = "http://techprimers.com/demo", partName = "getPorukeRequest")
+        GetPorukeRequest getPorukeRequest);
+
+    /**
+     * 
+     * @param addMessageRequest
+     * @return
+     *     returns com.techprimers.demo.AddMessageResponse
+     */
+    @WebMethod
+    @WebResult(name = "addMessageResponse", targetNamespace = "http://techprimers.com/demo", partName = "addMessageResponse")
+    public AddMessageResponse addMessage(
+        @WebParam(name = "addMessageRequest", targetNamespace = "http://techprimers.com/demo", partName = "addMessageRequest")
+        AddMessageRequest addMessageRequest);
+
+    /**
+     * 
      * @param addSmestajRequest
      * @return
      *     returns com.techprimers.demo.AddSmestajResponse
