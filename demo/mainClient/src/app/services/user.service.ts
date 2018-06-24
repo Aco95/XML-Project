@@ -32,6 +32,11 @@ export class UserService {
         console.log(data);
       }
     )
+
+  }
+
+  getUser(){
+    return this.http.get<Korisnik>(this.backUrl+'angularUser');
   }
 
   

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -20,6 +21,8 @@ import com.example.demo.entities.Tip;
 import com.example.demo.entities.Uloga;
 import com.example.demo.entities.Rezervacija;
 import com.example.demo.repository.AdminRepository;
+import com.example.demo.repository.KomentarRepository;
+import com.example.demo.repository.RecenzijaRepository;
 import com.example.demo.repository.RezervacijaRepository;
 import com.example.demo.repository.SmestajRepository;
 import com.example.demo.repository.SobaRepository;
@@ -43,6 +46,12 @@ public class DbSeeder implements CommandLineRunner{
 
 	@Autowired
 	private IRecenzijaService recenzijaService;
+	
+	@Autowired
+	private KomentarRepository komentarRepository;
+	
+	@Autowired
+	private RecenzijaRepository recenzijaRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -273,6 +282,9 @@ public class DbSeeder implements CommandLineRunner{
 		List<Rezervacija> reze = Arrays.asList(rez51,rez52, rez53, rez21);		
 		rezervacijaRepository.saveAll(reze);
 		
+		komentarRepository.deleteAll();
+		
+		recenzijaRepository.deleteAll();
 		
 		korisnikRepository.deleteAll();
 		List<Korisnik> korisnici = Arrays.asList(k1,k2,k3,k4);
@@ -395,7 +407,29 @@ public class DbSeeder implements CommandLineRunner{
 		komentar.setOdobren(false);
 		komentar.setSadrzaj("neki jako dobar komentar");
 		recenzija.setKomentar(komentar);
-//		recenzijaService.setRecenzija(recenzija);
+		
+		//---------------------------RECENZIJE ZA HOTEL PARK----------------------//
+		
+		Recenzija r1 = new Recenzija();
+		Komentar komentar1 = new Komentar();		
+		komentar1.setId("1");
+		komentar1.setDatum(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-04-10"));
+		komentar1.setOdobren(true);
+		komentar1.setSadrzaj("Divan hotel. Sanjao sam kako sa Jovicom bezuspesno namestam fejk cloud 8 sati."
+						+ "Nadam se da nikada necu ovo iskusiti u zivotu.");
+		r1.setId("1");
+		r1.setKomentar(komentar1);
+		r1.setKorisnik(k4);
+		r1.setOcena(10);
+		r1.setSmestajId("1");		
+		
+		komentarRepository.save(komentar1);
+		recenzijaRepository.save(r1);
+		
+		//------------------------------------------------------------------------//
+				
+		
+		//recenzijaService.setRecenzija(recenzija);
 //		recenzijaService.getRecenzijaById(recenzija.getId());
 //		recenzijaService.findBySmestajAndRejting("1", 5);
 //		recenzijaService.calculateAverageRejtingForSmestaj("1");
