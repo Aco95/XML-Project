@@ -14,6 +14,8 @@ public interface ISmestajService {
 	
 	List<Smestaj> getSmestajbyMesto(String mesto);
 	
+	List<Smestaj> getSmestajbyUserId(String id);
+	
 	List<Smestaj> getSmestajbyMoreAttributes(String mesto, Integer kategorija, Tip tip, Boolean parking,
 			Boolean wifi, Boolean dorucak, Boolean polupansion, Boolean pansion, Boolean tv, Boolean miniKuhinja, Boolean privatnoKupatilo);
 	
@@ -24,4 +26,5 @@ public interface ISmestajService {
 	Smestaj insertAccommodation(Smestaj s);
 	List<Smestaj> getSmestajbyRejting(double ocena);
 
+	List<Smestaj> getSmestajByAgentId(String agentId);
 }

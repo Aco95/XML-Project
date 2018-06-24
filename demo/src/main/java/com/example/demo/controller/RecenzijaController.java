@@ -68,7 +68,7 @@ public class RecenzijaController {
 		s.setOcena(rec.getOcena());
 		s.setSmestajId(rec.getSmestajId());				
 		
-		//s.setKorisnik(currentUser.getUser());
+		s.setKorisnik(s.getKorisnik());
 		
 		recenzijaService.save(s);
 		return rec;

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.agent.entities.UserCredential;
+import com.example.agent.services.IRemoteServices;
 import com.example.agent.services.IUserCredentialService;
 import com.example.agent.entities.CurrentUser;
 
@@ -22,12 +23,14 @@ public class LoginController {
 	@Autowired
 	private IUserCredentialService userCredentialService;
 	
+	@Autowired IRemoteServices remoteService;
 	  @RequestMapping(
 	    		value = "/angularUser",
 				method = RequestMethod.GET,
 				produces = MediaType.APPLICATION_JSON_VALUE)
 	    public UserCredential getUserPageAngular(@ModelAttribute("currentUser") CurrentUser currentUser) {
 	    	System.out.println("treba da vrati:" +currentUser);
+	    	remoteService.getAllSmestajByAgent(currentUser.getUser().getId());
 	        return currentUser.getUser();
 	    }
 	  

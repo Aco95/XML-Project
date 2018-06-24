@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Recenzija } from '../../model/Recenzija';
 import { RecenzijaService } from '../../services/recenzija-service';
+import { Korisnik } from '../../model/Korisnik';
+import { AuthServiceService} from '../../services/auth-service.service';
 
 
 @Component({
@@ -14,8 +16,8 @@ export class RecenzijaComponent implements OnInit {
   recenzija: Recenzija = new Recenzija();
   form: FormGroup;
   idSmestaja: string;
-
-  constructor(private router: Router, private formBuilder: FormBuilder, private recenzijaService: RecenzijaService) { }
+  korisnik: Korisnik;
+  constructor(private authService:AuthServiceService, private router: Router, private formBuilder: FormBuilder, private recenzijaService: RecenzijaService) { }
   
 
   ngOnInit() {
@@ -37,9 +39,13 @@ export class RecenzijaComponent implements OnInit {
   }
 
   submit(event: any){
+
+    this.korisnik = this.authService.getUser();
+
     this.recenzija.ocena = ((document.getElementById("ocena") as HTMLSelectElement).selectedIndex + 1);
     this.recenzija.komentar.sadrzaj = ((document.getElementById("komentar") as HTMLInputElement).value);
     this.recenzija.smestajId = this.idSmestaja;
+    this.recenzija.korisnik = this.korisnik;
     console.log(this.recenzija);
     //this.recenzijaService.createRecenzija(this.recenzija).subscribe( data => this.router.navigate(['/rezervacije']));
     this.recenzijaService.createRecenzija(this.recenzija).subscribe(data =>{

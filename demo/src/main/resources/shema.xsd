@@ -33,7 +33,24 @@
                 <xs:element name="userCredential" type="tns:userCredential"/>
             </xs:sequence>
         </xs:complexType>
+        
     </xs:element>
+       <xs:element name="getAllSmestajRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="agentId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAllSmestajResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="smestajList"  maxOccurs="unbounded" minOccurs="0"  type="tns:smestaj"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
     <xs:element name="addMessageRequest">
         <xs:complexType>
             <xs:sequence>
@@ -79,6 +96,22 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="rezervacija" type="tns:rezervacija"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="getRezervacijeRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getRezervacijeResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="rezervacije" type="tns:rezervacija"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

@@ -15,6 +15,8 @@ public interface SmestajRepository extends MongoRepository<Smestaj, String>{
 	@Query("{'mesto' : ?0 }")
 	List<Smestaj> findByMesto(String mesto);
 	
+	@Query("{'idAgenta' : ?0 }")
+	List<Smestaj> findByIdAgenta(String id);
 	
 	@Query("{'mesto': ?0 ,'kategorija' : ?1 ,'tip' : ?2 ,'parking' : ?3 ,'wifi' : ?4 ,"
 			+ "'dorucak' : ?5 ,'polupansion' : ?6 ,'pansion' : ?7 ,'tv' : ?8 ,'miniKuhinja' : ?9 ,'privatnoKupatilo' : ?10 }")
@@ -25,4 +27,6 @@ public interface SmestajRepository extends MongoRepository<Smestaj, String>{
 	@Query("{'ocena' : ?0 }")
 	List<Smestaj> findByRejting(double ocena);
 	
+	@Query("{'idAgenta' : ?0 }")
+	List<Smestaj> getAllByAgentId(String agentId);
 }
