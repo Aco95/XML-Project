@@ -228,6 +228,19 @@ public class DbSeeder implements CommandLineRunner{
 		
 		rezervacijeZaSobu5.add(rez53);
 		
+		//Dodajem jos jednu rezervaciju za korisnika ID='3'
+		Rezervacija rez53prosla = new Rezervacija();
+		rez53prosla.setId("1488");
+		rez53prosla.setIdSobe("5");
+		rez53prosla.setOd(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-01-04"));
+		rez53prosla.setDo(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-03-12"));
+		rez53prosla.setIdKorisnika("3");
+				
+		k3.getRezervacije().add(rez53prosla);
+				
+		rezervacijeZaSobu5.add(rez53prosla);
+				
+		
 		//Dodajem jos  jednu  rezervaciju za korisnika ID='3', ali u drugom smestaju
 		Rezervacija rez21 = new Rezervacija();
 		rez21.setId("4");
@@ -355,7 +368,7 @@ public class DbSeeder implements CommandLineRunner{
 		// -----------------------------------------------------------------------------------//
 		
 		rezervacijaRepository.deleteAll();	
-		List<Rezervacija> reze = Arrays.asList(rez51,rez52, rez53, rez21);		
+		List<Rezervacija> reze = Arrays.asList(rez51,rez52, rez53, rez21, rez53prosla);		
 		rezervacijaRepository.saveAll(reze);
 		
 		komentarRepository.deleteAll();

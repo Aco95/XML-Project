@@ -13,11 +13,15 @@ import { RecenzijaService } from '../../services/recenzija-service';
 export class RecenzijaComponent implements OnInit {
   recenzija: Recenzija = new Recenzija();
   form: FormGroup;
+  idSmestaja: string;
 
   constructor(private router: Router, private formBuilder: FormBuilder, private recenzijaService: RecenzijaService) { }
   
 
   ngOnInit() {
+
+    this.idSmestaja = localStorage.getItem('recenzijaSmestaj');
+
     this.form = this.formBuilder.group({
       id: new FormControl(this.recenzija.id),
       ocena: new FormControl(this.recenzija.ocena,[Validators.required]),
@@ -35,8 +39,11 @@ export class RecenzijaComponent implements OnInit {
   submit(event: any){
     this.recenzija.ocena = ((document.getElementById("ocena") as HTMLSelectElement).selectedIndex + 1);
     this.recenzija.komentar.sadrzaj = ((document.getElementById("komentar") as HTMLInputElement).value);
+    this.recenzija.smestajId = this.idSmestaja;
     console.log(this.recenzija);
     //this.recenzijaService.createRecenzija(this.recenzija).subscribe( data => this.router.navigate(['/rezervacije']));
-    this.recenzijaService.createRecenzija(this.recenzija);
+    this.recenzijaService.createRecenzija(this.recenzija).subscribe(data =>{
+      this.router.navigate['/rezervacije'];
+    });
   }
 }

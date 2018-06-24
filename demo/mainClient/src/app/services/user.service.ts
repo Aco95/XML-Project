@@ -31,11 +31,7 @@ export class UserService {
       'email': korisnik.email
     };
     
-    this.http.post<Korisnik>(this.backUrl+'register', this.data).subscribe(
-      data => {
-        console.log(data);
-      }
-    )
+   return this.http.post<Korisnik>(this.backUrl+'register', this.data);
 
   }
 
