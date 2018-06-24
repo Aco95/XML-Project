@@ -20,8 +20,12 @@ import com.example.demo.entities.GetPorukeRequest;
 import com.example.demo.entities.GetPorukeResponse;
 import com.example.demo.entities.GetRezervacijeRequest;
 import com.example.demo.entities.GetRezervacijeResponse;
+import com.example.demo.entities.GetSobaRequest;
+import com.example.demo.entities.GetSobaResponse;
 import com.example.demo.entities.GetUserCredentialRequest;
 import com.example.demo.entities.GetUserCredentialResponse;
+import com.example.demo.entities.GetUserRequest;
+import com.example.demo.entities.GetUserResponse;
 import com.example.demo.entities.Korisnik;
 import com.example.demo.entities.Smestaj;
 import com.example.demo.entities.Soba;
@@ -34,6 +38,7 @@ import com.example.demo.service.IRezervacijaService;
 import com.example.demo.service.IKorisnikService;
 
 import com.example.demo.service.ISmestajService;
+import com.example.demo.service.ISobaService;
 
 @Endpoint
 public class DemoEndpoint {
@@ -47,6 +52,9 @@ public class DemoEndpoint {
 	
 	@Autowired
     private IPorukaService porukaService;
+	
+	@Autowired
+    private ISobaService sobaService;
 
 	
 	@Autowired
@@ -128,6 +136,7 @@ public class DemoEndpoint {
     			for (Rezervacija rez : soba.getRezervacije()) {
     				
     				rezervacije.add(rez);
+    				System.out.println("AJ I OVDE DA VIDIMO OD " + rez.getOd());
     			}
     		}
     	}
@@ -148,6 +157,28 @@ public class DemoEndpoint {
 		userCredential.setPassword(korisnik.getPassword());
 		
         response.setUserCredential(userCredential);
+        return response;
+    }
+    
+    @PayloadRoot(namespace = "http://techprimers.com/demo",
+            localPart = "getUserRequest")
+    @ResponsePayload
+    public GetUserResponse getUser(@RequestPayload GetUserRequest request) {
+    	GetUserResponse response = new GetUserResponse();
+		
+		response.setKorisnik(korisnikService.getUserById(request.getId()).get());
+        
+        return response;
+    }
+    
+    @PayloadRoot(namespace = "http://techprimers.com/demo",
+            localPart = "getSobaRequest")
+    @ResponsePayload
+    public GetSobaResponse getSoba(@RequestPayload GetSobaRequest request) {
+    	GetSobaResponse response = new GetSobaResponse();
+		
+		response.setSoba(sobaService.getSobaById(request.getId()).get());
+        
         return response;
     }
 	

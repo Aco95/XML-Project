@@ -15,6 +15,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,6 +39,7 @@ import com.example.agent.repositories.KorisnikRepository;
 import com.example.agent.services.IKorisnikService;
 import com.example.agent.services.PorukaService;
 import com.example.agent.services.SmestajService;
+import com.example.agent.entities.CurrentUser;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -55,12 +57,12 @@ public class PorukaController {
 			method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 
-	public List<Poruka> getPrimljenePoruke() {
+	public List<Poruka> getPrimljenePoruke(@ModelAttribute("currentUser") CurrentUser currentUser) {
 		
 		DemoServicePortService demoServicePortService = new DemoServicePortService();
 		DemoServicePort port = demoServicePortService.getDemoServicePortSoap11();
 		GetPorukeRequest getPorukeRequest = new GetPorukeRequest();
-		getPorukeRequest.setId("1");
+		getPorukeRequest.setId(currentUser.getId());
 		GetPorukeResponse getPorukeResponse = port.getPoruke(getPorukeRequest);
 		
 		
@@ -108,7 +110,7 @@ public class PorukaController {
 			method = RequestMethod.POST,
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Poruka sendMessage(@RequestBody PorukaDTO pDTO) {
+	public Poruka sendMessage(@RequestBody PorukaDTO pDTO, @ModelAttribute("currentUser") CurrentUser currentUser) {
 			
 		Poruka p = new Poruka();
 		Korisnik k = korisnikService.getByUsername(pDTO.getSagovornik());
@@ -139,7 +141,7 @@ public class PorukaController {
 	    pDemo.setDatumSlanja(p.getDatumSlanja());
 	    pDemo.setSadrzaj(p.getSadrzaj());
 	    pDemo.setIdKlijenta(p.getSagovornik().getId());
-	    pDemo.setIdAgenta("1");
+	    pDemo.setIdAgenta(currentUser.getId());
 	    
 	    
 		//provera konekcije jer aplikacija treba da radi i u offline rezimu

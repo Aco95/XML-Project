@@ -40,4 +40,10 @@ public class KorisnikServiceImpl implements IKorisnikService {
 		System.out.println("korisnik servis***");
 		return korisnik;
 	}
+
+	@Override
+	public Korisnik save(Korisnik korisnik) {
+		
+		return korisnikRepository.save(korisnik);
+	}
 }

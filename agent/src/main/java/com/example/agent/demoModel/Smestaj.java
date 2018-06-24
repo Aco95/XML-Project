@@ -65,7 +65,8 @@ import javax.xml.bind.annotation.XmlType;
     "miniKuhinja",
     "privatnoKupatilo",
     "ocena",
-    "opis"
+    "opis",
+    "idAgenta"
 })
 public class Smestaj {
 
@@ -98,6 +99,8 @@ public class Smestaj {
     protected double ocena;
     @XmlElement(required = true)
     protected String opis;
+    @XmlElement(required = true)
+    protected String idAgenta;
 
     /**
      * Gets the value of the sobe property.
@@ -128,7 +131,15 @@ public class Smestaj {
         return this.sobe;
     }
 
-    public void setSobe(List<Soba> sobe) {
+    public String getIdAgenta() {
+		return idAgenta;
+	}
+
+	public void setIdAgenta(String idAgenta) {
+		this.idAgenta = idAgenta;
+	}
+
+	public void setSobe(List<Soba> sobe) {
 		this.sobe = sobe;
 	}
 

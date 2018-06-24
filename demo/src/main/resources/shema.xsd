@@ -99,6 +99,38 @@
         </xs:complexType>
     </xs:element>
     
+    <xs:element name="getUserRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getUserResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element  name="korisnik" type="tns:korisnik"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="getSobaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getSobaResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="soba" type="tns:soba"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
     <xs:complexType name="smestaj">
 
         

@@ -4,6 +4,7 @@ package com.example.agent.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import com.example.agent.demoModel.AddSmestajResponse;
 import com.example.agent.demoModel.DemoServicePort;
 import com.example.agent.demoModel.DemoServicePortService;
 import com.example.agent.dtos.SmestajDTO;
+import com.example.agent.entities.CurrentUser;
 import com.example.agent.entities.Rezervacija;
 import com.example.agent.entities.Smestaj;
 import com.example.agent.entities.Soba;
@@ -54,7 +56,7 @@ public class SmestajController {
 			method = RequestMethod.POST,
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Smestaj registerSmestaj(@RequestBody SmestajDTO sDTO) {
+	public Smestaj registerSmestaj(@RequestBody SmestajDTO sDTO, @ModelAttribute("currentUser") CurrentUser currentUser) {
 			
 		int brojSoba = sDTO.getBrJednokrevetnih() + sDTO.getBrDvokrevetnih() + sDTO.getBrTrokrevetnih() + sDTO.getBrCetvorokrevetnih();
 		Smestaj smestaj = new Smestaj();
@@ -141,7 +143,7 @@ public class SmestajController {
 		demoSmestaj.setOpis(smestaj.getOpis());
 		demoSmestaj.setSobe(demoSobe);
 		demoSmestaj.setSlikeUrl(smestaj.getSlikeUrl());
-		
+		demoSmestaj.setIdAgenta(currentUser.getId());
 		//provera konekcije jer aplikacija treba da radi i u offline rezimu
 		Socket sock = new Socket();
 		InetSocketAddress addr = new InetSocketAddress("www.google.com", 80);

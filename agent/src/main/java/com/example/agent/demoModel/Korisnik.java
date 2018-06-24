@@ -51,7 +51,8 @@ import javax.xml.bind.annotation.XmlType;
     "username",
     "password",
     "maticniBroj",
-    "adresa"
+    "adresa",
+    "email"
 })
 public class Korisnik {
 
@@ -78,8 +79,18 @@ public class Korisnik {
     protected String maticniBroj;
     @XmlElement(required = true)
     protected String adresa;
+    @XmlElement(required = true)
+    protected String email;
 
-    /**
+    public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
      * Gets the value of the smestaji property.
      * 
      * <p>

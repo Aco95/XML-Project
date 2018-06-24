@@ -571,21 +571,21 @@ public class DbSeeder implements CommandLineRunner{
 		
 		//---------------------------RECENZIJE ZA HOTEL PARK----------------------//
 		
-		Recenzija r1 = new Recenzija();
+		Recenzija rc1 = new Recenzija();
 		Komentar komentar1 = new Komentar();		
 		komentar1.setId("1");
 		komentar1.setDatum(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-04-10"));
 		komentar1.setOdobren(true);
 		komentar1.setSadrzaj("Divan hotel. Sanjao sam kako sa Jovicom bezuspesno namestam fejk cloud 8 sati."
 						+ "Nadam se da nikada necu ovo iskusiti u zivotu.");
-		r1.setId("1");
-		r1.setKomentar(komentar1);
-		r1.setKorisnik(k4);
-		r1.setOcena(10);
-		r1.setSmestajId("1");		
+		rc1.setId("1");
+		rc1.setKomentar(komentar1);
+		rc1.setKorisnik(k4);
+		rc1.setOcena(10);
+		rc1.setSmestajId("1");		
 		
 		komentarRepository.save(komentar1);
-		recenzijaRepository.save(r1);
+		recenzijaRepository.save(rc1);
 		
 		//------------------------------------------------------------------------//
 				

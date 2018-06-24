@@ -15,5 +15,7 @@ public interface IKorisnikService {
 	List<Korisnik> getAll();
 	
 	Optional<Korisnik> getUserByEmail(String email);
+	
+	Korisnik save(Korisnik korisnik);
 
 }

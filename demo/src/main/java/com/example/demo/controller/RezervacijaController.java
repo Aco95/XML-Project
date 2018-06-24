@@ -28,6 +28,7 @@ import com.example.demo.entities.Soba;
 import com.example.demo.entities.Uloga;
 import com.example.demo.service.IKorisnikService;
 import com.example.demo.service.IRezervacijaService;
+import com.example.demo.service.ISmestajService;
 import com.example.demo.service.ISobaService;
 
 @RestController
@@ -37,6 +38,9 @@ public class RezervacijaController {
 	
 	@Autowired
 	private ISobaService sobaService;
+	
+	@Autowired
+	private ISmestajService smestajService;
 	
 	@Autowired
 	private IRezervacijaService rezervacijaService;
@@ -71,9 +75,25 @@ public class RezervacijaController {
 		
 		rezervacijaService.addReservation(rezervacija);
 		
-		Soba soba = sobaService.getSobaById(r.getRoom_id()).get();
+		Soba soba = sobaService.getSobaById(rezervacija.getIdSobe()).get();
+		System.out.println("SEKUND PRED UPDATE " + rezervacija.getIdSobe());
 		soba.getRezervacije().add(rezervacija);
 		sobaService.updateSoba(soba);
+		
+		Smestaj smestaj = smestajService.getSmestajById(soba.getIdSmestaja()).get();
+		
+		int indexSobe = 0;
+		for (int i = 0; i < smestaj.getSobe().size(); i++) {
+			
+			if (smestaj.getSobe().get(i).getId().equals(soba.getId())) {
+				
+				indexSobe = i;
+				break;
+			}
+		}
+		
+		smestaj.getSobe().set(indexSobe, soba);
+		smestajService.saveEditedSmestaj(smestaj);
 		
 		Korisnik korisnik = korisnikService.getUserById(r.getUser_id()).get();
 		korisnik.getRezervacije().add(rezervacija);

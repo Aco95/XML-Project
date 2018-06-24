@@ -42,7 +42,7 @@
             <div class="form-group">
               <label for="selectRoom">Select room: </label>
               <select class="custom-select" [(ngModel)]="selectedRoom" name="izabranaSoba" (change)="selectRoom()">
-                  <option *ngFor="let r of freeRooms" [value]="r.cena">{{r.broj}}</option>
+                  <option *ngFor="let r of freeRooms" [value]="r">{{r.broj}}</option>
               </select>
           </div>
         </div>

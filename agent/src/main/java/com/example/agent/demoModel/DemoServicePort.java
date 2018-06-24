@@ -25,18 +25,6 @@ public interface DemoServicePort {
 
     /**
      * 
-     * @param getUserCredentialRequest
-     * @return
-     *     returns com.techprimers.demo.GetUserCredentialResponse
-     */
-    @WebMethod
-    @WebResult(name = "getUserCredentialResponse", targetNamespace = "http://techprimers.com/demo", partName = "getUserCredentialResponse")
-    public GetUserCredentialResponse getUserCredential(
-        @WebParam(name = "getUserCredentialRequest", targetNamespace = "http://techprimers.com/demo", partName = "getUserCredentialRequest")
-        GetUserCredentialRequest getUserCredentialRequest);
-
-    /**
-     * 
      * @param getPorukeRequest
      * @return
      *     returns com.techprimers.demo.GetPorukeResponse
@@ -61,15 +49,15 @@ public interface DemoServicePort {
 
     /**
      * 
-     * @param addRezervacijaRequest
+     * @param getUserRequest
      * @return
-     *     returns com.techprimers.demo.AddRezervacijaResponse
+     *     returns com.techprimers.demo.GetUserResponse
      */
     @WebMethod
-    @WebResult(name = "addRezervacijaResponse", targetNamespace = "http://techprimers.com/demo", partName = "addRezervacijaResponse")
-    public AddRezervacijaResponse addRezervacija(
-        @WebParam(name = "addRezervacijaRequest", targetNamespace = "http://techprimers.com/demo", partName = "addRezervacijaRequest")
-        AddRezervacijaRequest addRezervacijaRequest);
+    @WebResult(name = "getUserResponse", targetNamespace = "http://techprimers.com/demo", partName = "getUserResponse")
+    public GetUserResponse getUser(
+        @WebParam(name = "getUserRequest", targetNamespace = "http://techprimers.com/demo", partName = "getUserRequest")
+        GetUserRequest getUserRequest);
 
     /**
      * 
@@ -82,6 +70,42 @@ public interface DemoServicePort {
     public AddMessageResponse addMessage(
         @WebParam(name = "addMessageRequest", targetNamespace = "http://techprimers.com/demo", partName = "addMessageRequest")
         AddMessageRequest addMessageRequest);
+
+    /**
+     * 
+     * @param getSobaRequest
+     * @return
+     *     returns com.techprimers.demo.GetSobaResponse
+     */
+    @WebMethod
+    @WebResult(name = "getSobaResponse", targetNamespace = "http://techprimers.com/demo", partName = "getSobaResponse")
+    public GetSobaResponse getSoba(
+        @WebParam(name = "getSobaRequest", targetNamespace = "http://techprimers.com/demo", partName = "getSobaRequest")
+        GetSobaRequest getSobaRequest);
+
+    /**
+     * 
+     * @param getUserCredentialRequest
+     * @return
+     *     returns com.techprimers.demo.GetUserCredentialResponse
+     */
+    @WebMethod
+    @WebResult(name = "getUserCredentialResponse", targetNamespace = "http://techprimers.com/demo", partName = "getUserCredentialResponse")
+    public GetUserCredentialResponse getUserCredential(
+        @WebParam(name = "getUserCredentialRequest", targetNamespace = "http://techprimers.com/demo", partName = "getUserCredentialRequest")
+        GetUserCredentialRequest getUserCredentialRequest);
+
+    /**
+     * 
+     * @param addRezervacijaRequest
+     * @return
+     *     returns com.techprimers.demo.AddRezervacijaResponse
+     */
+    @WebMethod
+    @WebResult(name = "addRezervacijaResponse", targetNamespace = "http://techprimers.com/demo", partName = "addRezervacijaResponse")
+    public AddRezervacijaResponse addRezervacija(
+        @WebParam(name = "addRezervacijaRequest", targetNamespace = "http://techprimers.com/demo", partName = "addRezervacijaRequest")
+        AddRezervacijaRequest addRezervacijaRequest);
 
     /**
      * 

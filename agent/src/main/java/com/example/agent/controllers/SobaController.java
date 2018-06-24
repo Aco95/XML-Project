@@ -11,14 +11,22 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.agent.demoModel.AddSmestajRequest;
+import com.example.agent.demoModel.AddSmestajResponse;
+import com.example.agent.demoModel.DemoServicePort;
+import com.example.agent.demoModel.DemoServicePortService;
+import com.example.agent.demoModel.GetSobaRequest;
+import com.example.agent.demoModel.GetSobaResponse;
 import com.example.agent.dtos.RezervacijaDTO;
 import com.example.agent.dtos.SobaDTO;
+import com.example.agent.entities.CurrentUser;
 import com.example.agent.entities.Rezervacija;
 import com.example.agent.entities.Smestaj;
 import com.example.agent.entities.Soba;
@@ -43,7 +51,7 @@ public class SobaController {
 	private SmestajService smestajService;
 	
 	@RequestMapping(value = "/changeSobaSchedule", method = RequestMethod.PUT)
-	public @ResponseBody Boolean changeSobaSchedule(@RequestBody SobaDTO sDTO) throws DatatypeConfigurationException{
+	public @ResponseBody Boolean changeSobaSchedule(@RequestBody SobaDTO sDTO, @ModelAttribute("currentUser") CurrentUser currentUser) throws DatatypeConfigurationException{
 	 
 		System.out.println("Poslato: " + sDTO.getFrom());
 		System.out.println("Poslato: " + sDTO.getTo());
@@ -105,6 +113,8 @@ public class SobaController {
 			
 			return true;
 		}
+		
+		
 			
 		
 		

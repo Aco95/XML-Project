@@ -102,10 +102,11 @@ export class ReserveAccommodationComponent implements OnInit {
         .subscribe(data => {
   
           this.freeRooms = data;
+          console.log("huhuh");
           console.log(this.freeRooms);
 
-          this.selectedRoom = this.freeRooms[0].cena;
-          this.pricePerNight = this.selectedRoom;
+          this.selectedRoom = this.freeRooms[0];
+          this.pricePerNight = this.selectedRoom.cena;
           this.totalPrice = this.numberOfNights * this.pricePerNight;
               
           } 
@@ -116,14 +117,15 @@ export class ReserveAccommodationComponent implements OnInit {
   }
 
   selectRoom(){
-    this.pricePerNight = this.selectedRoom;
+    this.pricePerNight = this.selectedRoom.cena;
+    console.log("selected room")
     console.log(this.selectedRoom);
     this.totalPrice = this.numberOfNights * this.pricePerNight;
   }
 
   confirmReservation(){
-
-    this.rezervacijeService.addReservation({room_id: this.reservation.accommodation.id, dateFrom : this.modifiedDateFrom, dateTo : this.modifiedDateTo, user_id : this.loggedInUser.id})
+    // alert(this.selectedRoom.id);
+    this.rezervacijeService.addReservation({room_id: this.selectedRoom.id, dateFrom : this.modifiedDateFrom + "T18:30:00.963+02:00", dateTo : this.modifiedDateTo + "T18:30:00.963+02:00", user_id : this.loggedInUser.id})
     .subscribe(data =>
       {
         if(data){
