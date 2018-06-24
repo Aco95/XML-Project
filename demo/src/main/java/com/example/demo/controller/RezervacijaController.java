@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.RezervacijaDTO;
 import com.example.demo.entities.Korisnik;
+import com.example.demo.entities.Realizacija;
 import com.example.demo.entities.Rezervacija;
 import com.example.demo.entities.Smestaj;
 import com.example.demo.entities.Soba;
@@ -66,6 +67,7 @@ public class RezervacijaController {
 		rezervacija.setIdKorisnika(r.getUser_id());
 		rezervacija.setOd(DatatypeFactory.newInstance().newXMLGregorianCalendar(r.getDateFrom()));
 		rezervacija.setDo(DatatypeFactory.newInstance().newXMLGregorianCalendar(r.getDateTo()));
+		rezervacija.setRealizacija(Realizacija.WAITING_TO_CHECK_IN);
 		
 		rezervacijaService.addReservation(rezervacija);
 		

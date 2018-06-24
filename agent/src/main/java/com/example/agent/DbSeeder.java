@@ -343,7 +343,7 @@ public class DbSeeder implements CommandLineRunner{
 		uk.setEmail("agent@agent");
 		uk.setPassword("$2a$10$KjHNfVRioHre2sdAUxhaouv4BBLbhCj7cEnf.DgWAC57I9pOfo/8G");
 		
-		userCredentialRepository.save(uk);
+		//userCredentialRepository.save(uk);
 		
 		porukaRepository.deleteAll();
 		

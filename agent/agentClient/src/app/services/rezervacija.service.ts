@@ -33,6 +33,22 @@ export class RezervacijaService {
   
   }
 
+  getNoveRezervacije(){
+
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.get("http://localhost:8081/rezervacije/getNewReservations").map(data => data.json())
+
+    .catch((err:HttpErrorResponse) =>
+    {
+        alert(err.status + " " + err.error.error + " \n" + err.error.message);
+        return Observable.throw(err);
+    });
+  
+  }
+
   changeRealization(reservation : any) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');

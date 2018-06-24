@@ -69,4 +69,10 @@ public class SmestajServiceImpl implements ISmestajService{
 		return smestajRepository.insert(s);
 	}
 
+	@Override
+	public List<Smestaj> getSmestajbyUserId(String id) {
+		
+		return smestajRepository.findByIdAgenta(id);
+	}
+
 }

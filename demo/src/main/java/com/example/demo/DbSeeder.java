@@ -2,6 +2,8 @@ package com.example.demo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.entities.Poruka;
+import com.example.demo.entities.Realizacija;
 import com.example.demo.entities.Komentar;
 import com.example.demo.entities.Korisnik;
 import com.example.demo.entities.Recenzija;
@@ -104,9 +107,9 @@ public class DbSeeder implements CommandLineRunner{
 		k4.setPrezime("Boskovic");
 		k4.setUsername("bb");
 		k4.setMaticniBroj("1234567890123");
-		k4.setEmail("bole@email");
-		k4.setPassword("$2a$10$wws6XE7uyO2I23B355XXlOBnV/fSgU2GANadnkxAF3uWQ.7lYqMHS");
-		k4.setUloga(Uloga.USER);
+		k4.setEmail("agent@agent");
+		k4.setPassword("$2a$10$KjHNfVRioHre2sdAUxhaouv4BBLbhCj7cEnf.DgWAC57I9pOfo/8G");
+		k4.setUloga(Uloga.AGENT);
 		k4.setRezervacije(new ArrayList<Rezervacija>());
 
 		Poruka p1 = new Poruka();
@@ -203,7 +206,7 @@ public class DbSeeder implements CommandLineRunner{
 		rez51.setDo(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-07-12"));
 		rez51.setIdKorisnika("3");
 
-		k3.getRezervacije().add(rez51);
+		//k3.getRezervacije().add(rez51);
 
 
 		rezervacijeZaSobu5.add(rez51);
@@ -216,7 +219,7 @@ public class DbSeeder implements CommandLineRunner{
 		rez53.setDo(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-09-12"));
 		rez53.setIdKorisnika("3");
 		
-		k3.getRezervacije().add(rez53);
+		//k3.getRezervacije().add(rez53);
 		
 		rezervacijeZaSobu5.add(rez53);
 		
@@ -228,7 +231,7 @@ public class DbSeeder implements CommandLineRunner{
 		rez21.setDo(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-10-10"));
 		rez21.setIdKorisnika("3");
 		
-		k3.getRezervacije().add(rez21);
+		//k3.getRezervacije().add(rez21);
 		
 		ArrayList<Rezervacija> rezervacijeZaSobu2 = new ArrayList<Rezervacija>();
 		
@@ -243,12 +246,12 @@ public class DbSeeder implements CommandLineRunner{
 		rez52.setDo(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-08-20"));
 		rez52.setIdKorisnika("4");
 
-		k4.getRezervacije().add(rez52);
+		//k4.getRezervacije().add(rez52);
 
 		rezervacijeZaSobu5.add(rez52);
 		
 		
-		s5.setRezervacije(rezervacijeZaSobu5);
+		//s5.setRezervacije(rezervacijeZaSobu5);
 		s5.setIdSmestaja("1");
 		
 		Soba s6 = new Soba();
@@ -317,7 +320,7 @@ public class DbSeeder implements CommandLineRunner{
 		s2.setId("2");
 		s2.setBroj(2);
 		s2.setKapacitet(1); 	// jednokrevetna
-		s2.setRezervacije(rezervacijeZaSobu2);		// ubacena 1 rezervacija
+		//s2.setRezervacije(rezervacijeZaSobu2);		// ubacena 1 rezervacija
 		s2.setIdSmestaja("3");
 		s2.setCena(100);
 		
@@ -346,9 +349,91 @@ public class DbSeeder implements CommandLineRunner{
 		s12.setCena(400);
 		// -----------------------------------------------------------------------------------//
 		
-		rezervacijaRepository.deleteAll();	
-		List<Rezervacija> reze = Arrays.asList(rez51,rez52, rez53, rez21);		
-		rezervacijaRepository.saveAll(reze);
+		Rezervacija r1 = new Rezervacija();
+		r1.setId("1");
+		r1.setIdKorisnika("2");
+		r1.setIdSobe("1");
+		
+		Calendar cal1 = Calendar.getInstance();
+		cal1.set(2018, 5, 19, 18, 42, 9);
+		Date date1 = cal1.getTime(); 
+		GregorianCalendar c1 = new GregorianCalendar();
+		c1.setTime(date1);
+		XMLGregorianCalendar xmlgr1 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c1);
+		
+		r1.setOd(xmlgr1);
+		
+		Calendar cal2 = Calendar.getInstance();
+		cal2.set(2018, 8, 5, 12, 0, 0);
+		Date date2 = cal2.getTime(); 
+		GregorianCalendar c2 = new GregorianCalendar();
+		c2.setTime(date2);
+		XMLGregorianCalendar xmlgr2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c2);
+		
+		r1.setDo(xmlgr2);
+		r1.setRealizacija(Realizacija.WAITING_TO_CHECK_IN);
+		
+		Rezervacija r2 = new Rezervacija();
+		r2.setId("2");
+		r2.setIdKorisnika("3");
+		r2.setIdSobe("2");
+		
+		Calendar cal3 = Calendar.getInstance();
+		cal3.set(2018, 7, 12, 18, 30, 0);
+		Date date3 = cal3.getTime(); 
+		GregorianCalendar c3 = new GregorianCalendar();
+		c3.setTime(date3);
+		XMLGregorianCalendar xmlgr3 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c3);
+		
+		r2.setOd(xmlgr3);
+		
+		Calendar cal4 = Calendar.getInstance();
+		cal4.set(2018, 7, 19, 15, 0, 0);
+		Date date4 = cal4.getTime(); 
+		GregorianCalendar c4 = new GregorianCalendar();
+		c4.setTime(date4);
+		XMLGregorianCalendar xmlgr4 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c4);
+		
+		r2.setDo(xmlgr4);
+		r2.setRealizacija(Realizacija.WAITING_TO_CHECK_IN);
+		
+		Rezervacija r3 = new Rezervacija();
+		r3.setId("3");
+		r3.setIdKorisnika("2");
+		r3.setIdSobe("3");
+		
+		Calendar cal5 = Calendar.getInstance();
+		cal5.set(2018, 6, 5, 9, 0, 0);
+		Date date5 = cal5.getTime(); 
+		GregorianCalendar c5 = new GregorianCalendar();
+		c5.setTime(date5);
+		XMLGregorianCalendar xmlgr5 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c5);
+		
+		r3.setOd(xmlgr5);
+		
+		Calendar cal6 = Calendar.getInstance();
+		cal6.set(2018, 6, 25, 12, 30, 0);
+		Date date6 = cal6.getTime(); 
+		GregorianCalendar c6 = new GregorianCalendar();
+		c6.setTime(date6);
+		XMLGregorianCalendar xmlgr6 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c6);
+		
+		r3.setDo(xmlgr6);
+		r3.setRealizacija(Realizacija.WAITING_TO_CHECK_IN);
+		
+		rezervacijaRepository.deleteAll();
+		
+		List<Rezervacija> rezervacije = Arrays.asList(r1, r2, r3);
+		
+		rezervacijaRepository.saveAll(rezervacije);
+		
+		s1.getRezervacije().add(r1);
+		s2.getRezervacije().add(r2);
+		s3.getRezervacije().add(r3);
+		
+		//rezervacijaRepository.deleteAll();	
+		//List<Rezervacija> reze = Arrays.asList(rez51,rez52, rez53, rez21);		
+		//rezervacijaRepository.saveAll(reze);
 		
 		
 		korisnikRepository.deleteAll();
@@ -393,7 +478,7 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj1.setMiniKuhinja(true);
 		smestaj1.setPrivatnoKupatilo(true);
 		smestaj1.setTv(true);
-		smestaj1.setIdAgenta("2");
+		smestaj1.setIdAgenta("4");
 		
 		List<Soba> sobe2 = Arrays.asList(s3,s4,s8,s9);
 		Smestaj smestaj2 = new Smestaj();
@@ -420,7 +505,7 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj2.setMiniKuhinja(true);
 		smestaj2.setPrivatnoKupatilo(true);
 		smestaj2.setTv(true);
-		smestaj2.setIdAgenta("2");
+		smestaj2.setIdAgenta("4");
 		
 		
 		List<Soba> sobe3 = Arrays.asList(s2,s10,s11,s12);
@@ -454,7 +539,7 @@ public class DbSeeder implements CommandLineRunner{
 		smestaj3.setMiniKuhinja(true);
 		smestaj3.setPrivatnoKupatilo(true);
 		smestaj3.setTv(true);
-		smestaj3.setIdAgenta("2");
+		smestaj3.setIdAgenta("4");
 		
 		 
 		smestajRepository.deleteAll();

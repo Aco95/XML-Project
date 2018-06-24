@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +22,8 @@ import com.example.agent.demoModel.DemoServicePort;
 import com.example.agent.demoModel.DemoServicePortService;
 import com.example.agent.demoModel.GetPorukeRequest;
 import com.example.agent.demoModel.GetPorukeResponse;
+import com.example.agent.demoModel.GetRezervacijeRequest;
+import com.example.agent.demoModel.GetRezervacijeResponse;
 import com.example.agent.dtos.RezervacijaDTO;
 import com.example.agent.entities.Korisnik;
 import com.example.agent.entities.Realizacija;
@@ -31,6 +34,7 @@ import com.example.agent.services.IKorisnikService;
 import com.example.agent.services.RezervacijaService;
 import com.example.agent.services.SmestajService;
 import com.example.agent.services.SobaService;
+import com.example.agent.entities.CurrentUser;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -104,7 +108,9 @@ public class RezervacijaController {
 	            	
 	            	//potrebno je ovu promenu odma sacuvati u bazu, jer jedino ovde proveravam dal je poceo boravak
 	            	rezervacijaService.update(rezervacije.get(i));
+	            
 	            }
+				
 			} else {
 				
 				rDTO.setRealizacija(rezervacije.get(i).getRealizacija());
@@ -120,6 +126,42 @@ public class RezervacijaController {
 		return rezervacijeDTO;
 		
 	}
+	
+	@RequestMapping(
+			value = "/getNewReservations", 
+			method = RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<RezervacijaDTO> getNewReservations(@ModelAttribute("currentUser") CurrentUser currentUser) {
+		
+		System.out.println("POGODJEN SAMMMMMM" + currentUser.getId());
+		DemoServicePortService demoServicePortService = new DemoServicePortService();
+		DemoServicePort port = demoServicePortService.getDemoServicePortSoap11();
+		GetRezervacijeRequest getRezervacijeRequest = new GetRezervacijeRequest();
+		getRezervacijeRequest.setId(currentUser.getId());
+		GetRezervacijeResponse getRezervacijeResponse = port.getRezervacije(getRezervacijeRequest);
+		
+System.out.println("Broj rezervacija na glavnom backu: " + getRezervacijeResponse.getRezervacije().size());
+		for (com.example.agent.demoModel.Rezervacija rez : getRezervacijeResponse.getRezervacije()) {
+			
+			Rezervacija r = new Rezervacija();
+			r.setId(rez.getId());
+			r.setOd(rez.getOd());
+			r.setDo(rez.getDo());
+			r.setIdKorisnika(rez.getIdKorisnika());
+			r.setIdSobe(rez.getIdSobe());
+			r.setRealizacija(Realizacija.valueOf(rez.getRealizacija().value()));
+			
+			rezervacijaService.update(r);
+		}
+		
+		return getRezervacije();
+		
+		
+		
+	}
+	
+	
+	
 	
 	@RequestMapping(value = "/changeRealizacija", method = RequestMethod.PUT)
 	public @ResponseBody Rezervacija changeRealizacija(@RequestBody RezervacijaDTO rDTO){

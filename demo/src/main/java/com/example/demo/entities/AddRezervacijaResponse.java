@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "smestaj"
+    "rezervacija"
 })
 @XmlRootElement(name = "addRezervacijaResponse")
 public class AddRezervacijaResponse {

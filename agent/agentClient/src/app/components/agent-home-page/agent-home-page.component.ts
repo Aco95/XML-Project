@@ -126,10 +126,14 @@ export class AgentHomePageComponent implements OnInit {
 
       this.getAccomodations();
 
+    } else if (index == 2) {
+
+      this.getNewReservations();
+
     } else if (index == 3) {
-
-
+ 
       this.getInbox();
+      
     }
 
   }
@@ -304,6 +308,11 @@ export class AgentHomePageComponent implements OnInit {
 
     this.rezervacijaService.getRezervacije().subscribe(data=> { this.reservations = data; this.calculateEarningsOfReservations(data); console.log(data)});
 
+  }
+
+  getNewReservations() {
+
+    this.rezervacijaService.getNoveRezervacije().subscribe(data=> { this.reservations = data; this.calculateEarningsOfReservations(data); console.log(data)});
   }
 
   calculateEarningsOfReservations(reservations : any) {
