@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,6 +52,38 @@ public class RezervacijaController {
 		List<Rezervacija> ss = rezervacijaService.getUserReservation(id);
 		
 		return new ResponseEntity<Object>(ss, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/get-user-reservation-active/{userId}", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Rezervacija> getUserReservationActive(@PathVariable("userId") String id){
+		List<Rezervacija> ss = rezervacijaService.getUserReservation(id);
+		List<Rezervacija> retVal = new ArrayList<Rezervacija>(); 
+		Date today = new Date();
+		
+		for(Rezervacija rz: ss){
+			Date rez_do = rz.getDo().toGregorianCalendar().getTime();
+			if(today.before(rez_do)){
+				retVal.add(rz);
+			}
+		}						
+		return retVal;
+	}
+	
+	@RequestMapping(value="/get-user-reservation-passed/{userId}", method=RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Rezervacija> getUserReservationPassed(@PathVariable("userId")String id){
+		List<Rezervacija> ss = rezervacijaService.getUserReservation(id);
+		List<Rezervacija> retVal = new ArrayList<Rezervacija>(); 
+		Date today = new Date();
+		
+		for(Rezervacija rz: ss){
+			Date rez_do = rz.getDo().toGregorianCalendar().getTime();
+			if(today.after(rez_do)){
+				retVal.add(rz);
+			}
+		}						
+		return retVal;
 	}
 	
 	@RequestMapping(

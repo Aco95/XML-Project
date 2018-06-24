@@ -159,4 +159,9 @@ public class RecenzijaServiceImpl implements IRecenzijaService {
 		return recenzijaRepository.findAll();
 	}
 
+	@Override
+	public Recenzija save(Recenzija r) {
+		return recenzijaRepository.save(r);
+	}
+
 }

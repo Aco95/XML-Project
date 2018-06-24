@@ -24,7 +24,7 @@ export class RezervacijeService {
   private a = new BehaviorSubject<any>(null);
   currentAgent = this.a.asObservable();
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private httpClient: HttpClient) { }
 
   getRezervacije(): Observable<Rezervacija[]> {
     return of(REZERVACIJE);
@@ -44,6 +44,14 @@ export class RezervacijeService {
     return this.http.post('http://localhost:8080/public/reservations/get-user-reservation', userID ).map(
       (data:Response) => data.json()
     );
+  }
+
+  getUserReservationActive(userId:string){
+    return this.httpClient.get<Rezervacija[]>('http://localhost:8080/public/reservations/get-user-reservation-active/'+userId);
+  }
+
+  getUserReservationPassed(userId:string){
+    return this.httpClient.get<Rezervacija[]>('http://localhost:8080/public/reservations/get-user-reservation-passed/'+userId);
   }
 
   getSmestajByRoomID(roomID:String) {

@@ -20,6 +20,7 @@ export class UserService {
 
     this.data = korisnik;
 
+
     return this.http.post(this.backUrl+'register', this.data)
   }
 
