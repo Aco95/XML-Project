@@ -24,4 +24,5 @@ public interface ISmestajService {
 	Smestaj insertAccommodation(Smestaj s);
 	List<Smestaj> getSmestajbyRejting(double ocena);
 
+	List<Smestaj> getSmestajByAgentId(String agentId);
 }

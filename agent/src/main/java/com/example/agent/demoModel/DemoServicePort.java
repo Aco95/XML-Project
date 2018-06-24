@@ -71,4 +71,16 @@ public interface DemoServicePort {
         @WebParam(name = "addSmestajRequest", targetNamespace = "http://techprimers.com/demo", partName = "addSmestajRequest")
         AddSmestajRequest addSmestajRequest);
 
+    /**
+     * 
+     * @param getAllSmestajRequest
+     * @return
+     *     returns com.techprimers.demo.GetAllSmestajResponse
+     */
+    @WebMethod
+    @WebResult(name = "getAllSmestajResponse", targetNamespace = "http://techprimers.com/demo", partName = "getAllSmestajResponse")
+    public GetAllSmestajResponse getAllSmestaj(
+        @WebParam(name = "getAllSmestajRequest", targetNamespace = "http://techprimers.com/demo", partName = "getAllSmestajRequest")
+        GetAllSmestajRequest getAllSmestajRequest);
+
 }

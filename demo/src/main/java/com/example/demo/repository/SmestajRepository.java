@@ -25,4 +25,6 @@ public interface SmestajRepository extends MongoRepository<Smestaj, String>{
 	@Query("{'ocena' : ?0 }")
 	List<Smestaj> findByRejting(double ocena);
 	
+	@Query("{'idAgenta' : ?0 }")
+	List<Smestaj> getAllByAgentId(String agentId);
 }

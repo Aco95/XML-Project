@@ -1,5 +1,7 @@
 package com.example.demo.endpoint;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -10,11 +12,14 @@ import com.example.demo.entities.AddMessageRequest;
 import com.example.demo.entities.AddMessageResponse;
 import com.example.demo.entities.AddSmestajRequest;
 import com.example.demo.entities.AddSmestajResponse;
+import com.example.demo.entities.GetAllSmestajRequest;
+import com.example.demo.entities.GetAllSmestajResponse;
 import com.example.demo.entities.GetPorukeRequest;
 import com.example.demo.entities.GetPorukeResponse;
 import com.example.demo.entities.GetUserCredentialRequest;
 import com.example.demo.entities.GetUserCredentialResponse;
 import com.example.demo.entities.Korisnik;
+import com.example.demo.entities.Smestaj;
 import com.example.demo.entities.UserCredential;
 import com.example.demo.service.IPorukaService;
 import com.example.demo.service.IKorisnikService;
@@ -97,5 +102,19 @@ public class DemoEndpoint {
         response.setUserCredential(userCredential);
         return response;
     }
+	
+	
+	@PayloadRoot(namespace = "http://techprimers.com/demo",
+            localPart = "getAllSmestajRequest")
+    @ResponsePayload
+    public GetAllSmestajResponse getAllSmestaj(@RequestPayload GetAllSmestajRequest request) {
+		GetAllSmestajResponse response = new GetAllSmestajResponse();
+		
+		List<Smestaj> smestajList=smestajService.getSmestajByAgentId(request.getAgentId());
+		response.setSmestajList(smestajList);
+        return response;
+        
+    }
+	
 	
 }
