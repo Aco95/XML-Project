@@ -84,6 +84,38 @@
     </xs:element>
 
 
+	<xs:element name="addRezervacijaRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="rezervacija" type="tns:rezervacija"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addRezervacijaResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="rezervacija" type="tns:rezervacija"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="getRezervacijeRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getRezervacijeResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="rezervacije" type="tns:rezervacija"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
     <xs:complexType name="smestaj">
 
         

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SearchService } from "../../services/search.service";
+import { Smestaj } from "../../model/Smestaj"
 
 import { AuthServiceService } from '../../services/auth-service.service';
 
@@ -214,7 +215,12 @@ export class HomePageComponent implements OnInit {
 
   }
 
-
+  viewComments(smestaj: Smestaj) {
+    console.log("Selektovani smestaj je:");
+    console.log(smestaj.id);
+    localStorage.setItem('activeComments', smestaj.id);
+    this.router.navigate(['/accommodationComments'])
+  }
   selectSort() {
 
     console.log(this.accommodationArray);

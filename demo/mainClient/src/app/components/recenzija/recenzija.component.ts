@@ -23,7 +23,7 @@ export class RecenzijaComponent implements OnInit {
       ocena: new FormControl(this.recenzija.ocena,[Validators.required]),
       korisnik: new FormControl(this.recenzija.korisnik),
       komentar: new FormControl(this.recenzija.komentar.sadrzaj),
-      smestaj: new FormControl(this.recenzija.smestaj),      
+      smestaj: new FormControl(this.recenzija.smestajId),      
     });
   }
 

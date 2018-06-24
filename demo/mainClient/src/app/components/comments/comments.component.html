@@ -1,0 +1,22 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th align="center">Korisnik</th>
+    <th align="center">Date</th>
+    <th align="center">Content</th>
+    <th align="center">Ocena</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let recenzija of recenzijeFront">
+    <td>{{recenzija.korisnik.email}}</td>
+    <td>{{recenzija.komentar.datum}}</td>
+    <td>
+    	<p>
+    		{{recenzija.komentar.sadrzaj}} 
+    	</p>
+    </td>
+    <td>{{recenzija.ocena}}</td>
+  </tr>
+  </tbody>
+</table>

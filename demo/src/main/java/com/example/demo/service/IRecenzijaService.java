@@ -12,4 +12,7 @@ public interface IRecenzijaService {
 	int calculateAverageRejtingForSmestaj(String smestajId);
 	public List<Recenzija> findByNotAllowed(Boolean allowed) ;
 	
+	//non-cloud
+	List<Recenzija> findAll();
+	
 }

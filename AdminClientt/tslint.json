@@ -6,7 +6,7 @@
     "arrow-return-shorthand": true,
     "callable-types": true,
     "class-name": true,
-    "comment-format": [
+    "commenit-format": [
       true,
       "check-space"
     ],

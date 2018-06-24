@@ -9,6 +9,7 @@ import { ReserveAccommodationComponent } from './components/reserve-accommodatio
 import { RecenzijaComponent } from './components/recenzija/recenzija.component';
 import { SendMessageComponent } from './components/send-message/send-message.component';
 import { MessagesComponent } from './components/messages/messages.component';
+import { CommentsComponent } from './components/comments/comments.component';
 
 const appRoutes: Routes =
     [
@@ -58,6 +59,10 @@ const appRoutes: Routes =
     {
         path: 'messages',
         component: MessagesComponent
+    },
+    {
+        path:'accommodationComments',
+        component:CommentsComponent
     }
 
     ]

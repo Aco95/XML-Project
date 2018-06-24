@@ -2,7 +2,7 @@ import { Soba } from "./Soba";
 
 export class Smestaj {
 
-    public id: String;
+    public id: string;
     public naziv: String;
     public adresa: String;
     public mesto: String;

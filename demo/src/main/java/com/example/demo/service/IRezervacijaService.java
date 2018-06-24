@@ -12,5 +12,7 @@ public interface IRezervacijaService {
 	List<Rezervacija> getUserReservation(String userID);
 	
 	void deleteReservation(String reservationID);
+	
+	Rezervacija update(Rezervacija r);
 
 }

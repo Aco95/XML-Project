@@ -1,5 +1,5 @@
-set DATASTORE_DATASET=cloud-demo-datastore
+set DATASTORE_DATASET=test-id
 set DATASTORE_EMULATOR_HOST=localhost:8081
 set DATASTORE_EMULATOR_HOST_PATH=localhost:8081/datastore
 set DATASTORE_HOST=http://localhost:8081
-set DATASTORE_PROJECT_ID=cloud-demo-datastore
+set DATASTORE_PROJECT_ID=test-id

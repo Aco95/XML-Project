@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.entities.Recenzija;
+import com.example.demo.repository.RecenzijaRepository;
 import com.example.demo.service.IRecenzijaService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -21,6 +23,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 
 @Service
 public class RecenzijaServiceImpl implements IRecenzijaService {
+	
+	@Autowired
+	RecenzijaRepository recenzijaRepository;
 	
 	final private String baseUri="http://localhost:8010/test-id/us-central1/";
 	@Override
@@ -147,6 +152,11 @@ public class RecenzijaServiceImpl implements IRecenzijaService {
 	    System.out.println("rec lista allowed:"+allowed+" velicina: "+recList.size());	 
 	    System.out.println("***********************http request get received***************");
 	    return recList;
+	}
+
+	@Override
+	public List<Recenzija> findAll() {
+		return recenzijaRepository.findAll();
 	}
 
 }
