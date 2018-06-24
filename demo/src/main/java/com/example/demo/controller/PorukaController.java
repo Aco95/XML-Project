@@ -11,12 +11,14 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.PorukaDTO;
+import com.example.demo.entities.CurrentUser;
 import com.example.demo.entities.Korisnik;
 import com.example.demo.entities.Poruka;
 import com.example.demo.service.IKorisnikService;
@@ -41,9 +43,10 @@ public class PorukaController {
 			method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 
-	public List<Poruka> getPrimljenePoruke() {
+	public List<Poruka> getPrimljenePoruke(@ModelAttribute("currentUser") CurrentUser currentUser) {
 		
-		return porukaService.getByPrimljena(true);
+		
+		return currentUser.getUser().getPrimljenePoruke();
 		
 	}
 	
@@ -52,9 +55,9 @@ public class PorukaController {
 			method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 
-	public List<Poruka> getPoslatePoruke() {
+	public List<Poruka> getPoslatePoruke(@ModelAttribute("currentUser") CurrentUser currentUser) {
 		
-		return porukaService.getByPrimljena(false);
+		return currentUser.getUser().getPoslatePoruke();
 		
 	}
 	

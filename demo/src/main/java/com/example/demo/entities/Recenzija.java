@@ -46,7 +46,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
     "smestajId",
     "komentar",
     "id",
-    "ocena"
+    "ocena",
+    
 })
 @Document(collection="Recenzije")
 public class Recenzija {

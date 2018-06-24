@@ -6,13 +6,17 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-
+import com.example.demo.entities.AddMessageRequest;
+import com.example.demo.entities.AddMessageResponse;
 import com.example.demo.entities.AddSmestajRequest;
 import com.example.demo.entities.AddSmestajResponse;
+import com.example.demo.entities.GetPorukeRequest;
+import com.example.demo.entities.GetPorukeResponse;
 import com.example.demo.entities.GetUserCredentialRequest;
 import com.example.demo.entities.GetUserCredentialResponse;
 import com.example.demo.entities.Korisnik;
 import com.example.demo.entities.UserCredential;
+import com.example.demo.service.IPorukaService;
 import com.example.demo.service.IKorisnikService;
 import com.example.demo.service.ISmestajService;
 
@@ -26,6 +30,10 @@ public class DemoEndpoint {
 	@Autowired
     private IKorisnikService korisnikService;
 	
+	@Autowired
+    private IPorukaService porukaService;
+
+	
 	@PayloadRoot(namespace = "http://techprimers.com/demo",
             localPart = "addSmestajRequest")
     @ResponsePayload
@@ -34,6 +42,43 @@ public class DemoEndpoint {
 		
 		
         response.setSmestaj(smestajService.insertAccommodation((request.getSmestaj())));
+        return response;
+    }
+	
+	@PayloadRoot(namespace = "http://techprimers.com/demo",
+            localPart = "addMessageRequest")
+    @ResponsePayload
+    public AddMessageResponse addMessage(@RequestPayload AddMessageRequest request) {
+		AddMessageResponse response = new AddMessageResponse();
+		
+		System.out.println("POGODIO INSERTOVANJE PORUKE");
+        response.setPoruka(porukaService.insertMessage(request.getPoruka()));
+        
+        if (response.getPoruka() != null) {
+        	
+        	Korisnik klijent = korisnikService.getUserById(request.getPoruka().getIdKlijenta()).get();
+            klijent.getPrimljenePoruke().add(request.getPoruka());
+    		korisnikService.save(klijent);
+    		
+    		Korisnik agent = korisnikService.getUserById(request.getPoruka().getIdAgenta()).get();
+    		agent.getPoslatePoruke().add(request.getPoruka());
+    		korisnikService.save(agent);
+           
+        	
+        }
+        
+        return response;
+        
+    }
+	
+	@PayloadRoot(namespace = "http://techprimers.com/demo",
+            localPart = "getPorukeRequest")
+    @ResponsePayload
+    public GetPorukeResponse getPoruke(@RequestPayload GetPorukeRequest request) {
+		GetPorukeResponse response = new GetPorukeResponse();
+		
+		Korisnik agent = korisnikService.getUserById(request.getId()).get();
+        response.setPoruke(agent.getPrimljenePoruke());
         return response;
     }
 	

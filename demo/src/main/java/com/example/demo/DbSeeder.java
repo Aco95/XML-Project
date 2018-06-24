@@ -2,15 +2,18 @@ package com.example.demo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import com.example.demo.entities.Poruka;
 import com.example.demo.entities.Komentar;
 import com.example.demo.entities.Korisnik;
 import com.example.demo.entities.Recenzija;
@@ -20,6 +23,7 @@ import com.example.demo.entities.Tip;
 import com.example.demo.entities.Uloga;
 import com.example.demo.entities.Rezervacija;
 import com.example.demo.repository.AdminRepository;
+import com.example.demo.repository.PorukaRepository;
 import com.example.demo.repository.RezervacijaRepository;
 import com.example.demo.repository.SmestajRepository;
 import com.example.demo.repository.SobaRepository;
@@ -37,6 +41,9 @@ public class DbSeeder implements CommandLineRunner{
 	
 	@Autowired
 	private SmestajRepository smestajRepository;
+	
+	@Autowired
+	private PorukaRepository porukaRepository;
 	
 	@Autowired
 	private RezervacijaRepository rezervacijaRepository;
@@ -58,7 +65,7 @@ public class DbSeeder implements CommandLineRunner{
 		k1.setPassword("test1234");
 		k1.setEmail("email@email");
 		k1.setPassword("$2a$10$wws6XE7uyO2I23B355XXlOBnV/fSgU2GANadnkxAF3uWQ.7lYqMHS");
-		k1.setUloga(Uloga.ADMIN);
+		k1.setUloga(Uloga.AGENT);
 		k1.setBlokiran(false);
 		
 		
@@ -72,7 +79,7 @@ public class DbSeeder implements CommandLineRunner{
 		k2.setPassword("test1234");
 		k2.setEmail("jo@jo");
 		k2.setPassword("$2a$10$wws6XE7uyO2I23B355XXlOBnV/fSgU2GANadnkxAF3uWQ.7lYqMHS");
-		k2.setUloga(Uloga.AGENT);
+		k2.setUloga(Uloga.USER);
 		k2.setBlokiran(true);
 		
 		Korisnik k3 = new Korisnik();
@@ -102,8 +109,78 @@ public class DbSeeder implements CommandLineRunner{
 		k4.setUloga(Uloga.USER);
 		k4.setRezervacije(new ArrayList<Rezervacija>());
 
+		Poruka p1 = new Poruka();
+		p1.setId("1");
+		p1.setNaslov("Obavestenje");
 		
+		GregorianCalendar gcal1 = new GregorianCalendar();
+	      XMLGregorianCalendar xgcal1 = DatatypeFactory.newInstance()
+	            .newXMLGregorianCalendar(gcal1);
+		p1.setDatumSlanja(xgcal1);
 		
+		p1.setSadrzaj("Pozdrav, kasnicu jedan dan zbog problema sa automobilom.");
+		p1.setProcitana(false);
+		p1.setIdAgenta("1");
+		p1.setIdKlijenta("2");
+		p1.setPrimljena(true);
+		
+		Poruka p2 = new Poruka();
+		p2.setId("2");
+		p2.setNaslov("Bitno pitanje oko kuhinje");
+		
+		GregorianCalendar gcal2 = new GregorianCalendar();
+	      XMLGregorianCalendar xgcal2 = DatatypeFactory.newInstance()
+	            .newXMLGregorianCalendar(gcal2);
+		p2.setDatumSlanja(xgcal2);
+		
+		p2.setSadrzaj("Pozdrav, da li postoji frizider u okviru mini kuhinje?");
+		p2.setProcitana(false);
+		p2.setIdAgenta("1");
+		p2.setIdKlijenta("3");
+		p2.setPrimljena(true);
+		
+		Poruka p3 = new Poruka();
+		p3.setId("3");
+		p3.setNaslov("Bitno pitanje oko kuhinje");
+		
+		GregorianCalendar gcal3 = new GregorianCalendar();
+	      XMLGregorianCalendar xgcal3 = DatatypeFactory.newInstance()
+	            .newXMLGregorianCalendar(gcal3);
+		p3.setDatumSlanja(xgcal3);
+		
+		p3.setSadrzaj("Pozdrav, postoji frizider u kuhinji.");
+		p3.setProcitana(false);
+		p3.setIdAgenta("1");
+		p3.setIdKlijenta("3");
+		p3.setPrimljena(false);
+		
+		List<Poruka> k1primljeneporuke = new ArrayList<>();
+		k1primljeneporuke.add(p1);
+		k1primljeneporuke.add(p2);
+		k1.getPrimljenePoruke().add(p1);
+		k1.getPrimljenePoruke().add(p2);
+		
+		List<Poruka> k1poslateeporuke = new ArrayList<>();
+		k1poslateeporuke.add(p3);
+		k1.getPoslatePoruke().add(p3);
+		
+		List<Poruka> k2poslateeporuke = new ArrayList<>();
+		k2poslateeporuke.add(p1);
+		k2.getPoslatePoruke().add(p1);
+		
+		List<Poruka> k3poslateporuke = new ArrayList<>();
+		k3poslateporuke.add(p2);
+		k3.getPoslatePoruke().add(p2);
+		
+		List<Poruka> k3primljeneporuke = new ArrayList<>();
+		k3primljeneporuke.add(p3);
+		k3.getPrimljenePoruke().add(p3);
+		
+		porukaRepository.deleteAll();
+		
+		List<Poruka> poruke = Arrays.asList(p1, p2, p3);
+		
+		porukaRepository.saveAll(poruke);
 		// -------------------------- sobe za Hotel Park --------------------------------//
 		Soba s1 = new Soba();
 		s1.setId("1");
