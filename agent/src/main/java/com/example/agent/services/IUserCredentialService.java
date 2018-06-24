@@ -11,5 +11,5 @@ import com.example.agent.entities.UserCredential;
 
 public interface IUserCredentialService {
 	Optional<UserCredential> getUserByEmail(String email);
-
+	boolean checkEmail(String email);
 }
