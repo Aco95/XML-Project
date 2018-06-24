@@ -15,7 +15,7 @@ const appRoutes: Routes =
     [
         {
             path: '', component: HomePageComponent,
-           // canActivate: [AuthGuard],
+            canActivate: [AuthGuard],
         },
         { path: 'user-comments', component: CommentsComponent },
         { path: 'register-agent', component: RegisterAgentComponent },
@@ -25,7 +25,7 @@ const appRoutes: Routes =
         {
             path: 'homePage',
             component: HomePageComponent,
-           // canActivate: [AuthGuard],
+            canActivate: [AuthGuard],
 
         }
     ];

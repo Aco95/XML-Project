@@ -125,6 +125,11 @@ export class AgentHomePageComponent implements OnInit {
     if (index == 0 ) {
 
       this.getAccomodations();
+
+    } else if (index == 3) {
+
+
+      this.getInbox();
     }
 
   }
@@ -198,7 +203,7 @@ export class AgentHomePageComponent implements OnInit {
   getInbox() {
 
 
-    this.porukaService.getInbox().subscribe(data=> { this.inbox = data;this.getUnreadMessages(data); console.log(data)});
+    this.porukaService.getInbox().subscribe(data=> { this.inbox = data;this.unread = 0; this.getUnreadMessages(data); console.log(data)});
 
   }
 

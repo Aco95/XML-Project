@@ -29,8 +29,8 @@ import com.example.demo.entities.Rezervacija;
 
 @RestController
 @RequestMapping("/users")
-//@CrossOrigin(origins = "*")
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins = "*")
+//@CrossOrigin(origins="http://localhost:4200")
 public class KorisnikController {
 
 	@Autowired

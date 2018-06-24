@@ -21,7 +21,7 @@ import com.example.agent.entities.Realizacija;
 import com.example.agent.entities.Rezervacija;
 import com.example.agent.entities.Smestaj;
 import com.example.agent.entities.Soba;
-import com.example.agent.services.KorisnikService;
+import com.example.agent.services.IKorisnikService;
 import com.example.agent.services.RezervacijaService;
 import com.example.agent.services.SmestajService;
 import com.example.agent.services.SobaService;
@@ -36,7 +36,7 @@ public class RezervacijaController {
 	private RezervacijaService rezervacijaService;
 	
 	@Autowired
-	private KorisnikService korisnikService;
+	private IKorisnikService korisnikService;
 	
 	@Autowired
 	private SobaService sobaService;

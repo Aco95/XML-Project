@@ -142,13 +142,7 @@ public class SmestajController {
 		demoSmestaj.setSobe(demoSobe);
 		demoSmestaj.setSlikeUrl(smestaj.getSlikeUrl());
 		
-		
-		
-		
-		
-		
-		
-			
+		//provera konekcije jer aplikacija treba da radi i u offline rezimu
 		Socket sock = new Socket();
 		InetSocketAddress addr = new InetSocketAddress("www.google.com", 80);
 		
@@ -203,11 +197,6 @@ public class SmestajController {
 			return null;
 		}
 			
-			
-		
-			
-		
-
 			
 	}
 	

@@ -18,6 +18,53 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    
+     <xs:element name="getUserCredentialRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="email" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getUserCredentialResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userCredential" type="tns:userCredential"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="addMessageRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="poruka" type="tns:poruka"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addMessageResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="poruka" type="tns:poruka"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="getPorukeRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getPorukeResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="poruke" type="tns:poruka"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
 
     <xs:complexType name="smestaj">
@@ -48,8 +95,22 @@
             
         </xs:sequence>
         
+        
     </xs:complexType>
 
+  <xs:complexType name="userCredential">
+
+        
+        <xs:sequence>
+            
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+            
+        </xs:sequence>
+        
+    </xs:complexType>
+    
     <xs:complexType name="soba">
 
         <xs:sequence>
@@ -163,8 +224,9 @@
 
         <xs:sequence>
             
-            <xs:element maxOccurs="1" minOccurs="1" name="sagovornik" type="tns:korisnik"/>
             <xs:element name="id" type="xs:string"/>
+            <xs:element name="id_klijenta" type="xs:string"/>
+            <xs:element name="id_agenta" type="xs:string"/>
             <xs:element name="procitana" type="xs:boolean"/>
             <xs:element name="datum_slanja" type="xs:dateTime"/>
             <xs:element name="naslov" type="xs:string"/>
