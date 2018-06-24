@@ -17,7 +17,7 @@ import { UserService } from './services/user.service';
 
 import { HomeRezervacijeComponent } from './components/home-rezervacije/home-rezervacije.component';
 
-import { CommentsComponent } from './comments/comments.component';
+import { CommentsComponent } from './components/comments/comments.component';
 import { RegistracijaComponent } from './components/registracija/registracija.component';
 import { ReserveAccommodationComponent } from './components/reserve-accommodation/reserve-accommodation.component';
 
@@ -34,6 +34,7 @@ import { RecenzijaComponent } from './components/recenzija/recenzija.component';
 import { RecenzijaService } from './services/recenzija-service';
 import { SendMessageComponent } from './components/send-message/send-message.component';
 import { MessagesComponent } from './components/messages/messages.component';
+import { CommentsService } from './services/comments-service';
 
 // factory dependency injection
 export function providerCustomHttp(backend: XHRBackend, defaultOptions: RequestOptions, auth: AuthServiceService, router: Router) {
@@ -64,7 +65,7 @@ export function providerCustomHttp(backend: XHRBackend, defaultOptions: RequestO
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [HttpClientModule, SearchService, RezervacijeService, UserService, LoginService, RecenzijaService, AuthServiceService,
+  providers: [HttpClientModule,CommentsService ,SearchService, RezervacijeService, UserService, LoginService, RecenzijaService, AuthServiceService,
     {
       provide: Http,
       useFactory: providerCustomHttp,
