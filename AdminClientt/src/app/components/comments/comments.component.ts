@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Comment } from '../../entities/comment';
+import { Recenzija } from '../../entities/recenzija';
 import { CommentService } from '../../services/comment-service';
 
 
@@ -12,18 +13,18 @@ import { CommentService } from '../../services/comment-service';
 })
   
 export class CommentsComponent implements OnInit {
-  comments: Comment[];
+  recenzije: Recenzija[];
   
   constructor(private router: Router, private commentService: CommentService) {}
  
   ngOnInit() {
     this.commentService.getAllComments().subscribe( data => {
-      this.comments = data;
-      console.log(this.comments);
+      this.recenzije = data;
+      console.log(this.recenzije);
     });
   }
   
-  allowComment(komentar: Comment) {
-    this.commentService.allowComment(komentar).subscribe(data => this.comments = this.comments.filter(u => u !== komentar));
+  allowComment(recenzija: Recenzija) {
+    this.commentService.allowComment(recenzija).subscribe(data => this.recenzije = this.recenzije.filter(u => u !== recenzija));
   }
 }

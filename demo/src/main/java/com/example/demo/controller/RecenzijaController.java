@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +25,7 @@ import com.example.demo.entities.CurrentUser;
 import com.example.demo.entities.Komentar;
 import com.example.demo.entities.Recenzija;
 import com.example.demo.service.IRecenzijaService;
+import com.example.demo.service.ISmestajService;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -32,10 +35,36 @@ public class RecenzijaController {
 	@Autowired
 	private IRecenzijaService recenzijaService;
 	
+	@Autowired
+	private ISmestajService smestajService;
+	
 	@GetMapping
 	public List<Recenzija> getComments(){														
 		System.out.println("DEBUG::PRONALAZI RECENZIJE");
 		return recenzijaService.findAll();	
+	}
+	
+	@RequestMapping(value="/getNotAllowed", method=RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Recenzija> getNotAllowed(){
+		//return recenzijaService.findByNotAllowed(false);
+		List<Recenzija> ret = new ArrayList<Recenzija>();
+		List<Recenzija> all = recenzijaService.findAll();
+		for (Recenzija r: all){
+			if(!r.getKomentar().isOdobren()){
+				ret.add(r);
+			}
+		}
+		return ret;
+	}
+	
+	@PutMapping
+	public void allowComemnt(@RequestBody Recenzija r){
+		//commentService.findCommentById(k.getId()).get().setOdobren(true);
+		System.out.println("ULAZI U MENJANJE KOMENTARA");
+		r.getKomentar().setOdobren(true);
+		recenzijaService.save(r);
+		//recenzijaService.setRecenzija(r);
 	}
 	
 	@RequestMapping(
@@ -71,6 +100,12 @@ public class RecenzijaController {
 		s.setKorisnik(s.getKorisnik());
 		
 		recenzijaService.save(s);
+		//recenzijaService.setRecenzija(recenzija);
+		//double avg = recenzijaService.calculateAverageRejtingForSmestaj(s.getSmestajId);
+		//avg = Math.round(avg * 100.0)/100.0
+		//smestajService.getSmestajById(s.getSmestajId()).get().setOcena(avg);
+		//smestajService.insertAccommodation(smestajService.getSmestajById(s.getSmestajId()).get());
+		
 		return rec;
 	}
 }

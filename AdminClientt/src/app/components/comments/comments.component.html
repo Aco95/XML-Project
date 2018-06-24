@@ -8,15 +8,15 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let comment of comments">
+  <tr *ngFor="let recenzija of recenzije">
     <td></td>
-    <td>{{comment.datum}}</td>
+    <td>{{recenzija.komentar.datum}}</td>
     <td>
     	<p>
-    		{{comment.sadrzaj}} 
+    		{{recenzija.komentar.sadrzaj}} 
     	</p>
     </td>
-    <td><button class="btn btn-danger" (click)="allowComment(comment)">Allow</button></td>
+    <td><button class="btn btn-danger" (click)="allowComment(recenzija)">Allow</button></td>
   </tr>
   </tbody>
 </table>
