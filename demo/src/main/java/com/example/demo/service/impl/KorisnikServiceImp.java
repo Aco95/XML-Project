@@ -60,8 +60,12 @@ public class KorisnikServiceImp implements IKorisnikService{
 	}
 	@Override
 	public Optional<Korisnik> getUserByEmail(String email) {
+		
 		Optional<Korisnik> korisnik =korisnikRepository.findOneByEmail(email);
+		
 		System.out.println("korisnik servis***");
+		
+		
 		return korisnik;
 	}
 
