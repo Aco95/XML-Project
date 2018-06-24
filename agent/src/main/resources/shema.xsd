@@ -19,6 +19,24 @@
         </xs:complexType>
     </xs:element>
 
+	<!--  ova 2 elementa ne koristim, ipak mi ne trebaju-->
+	<xs:element name="addMessageRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="poruka" type="tns:poruka"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addMessageResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="poruka" type="tns:poruka"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    
 
     <xs:complexType name="smestaj">
 

@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,8 +29,8 @@ import com.example.demo.entities.Rezervacija;
 
 @RestController
 @RequestMapping("/users")
-//@CrossOrigin(origins = "*")
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins = "*")
+//@CrossOrigin(origins="http://localhost:4200")
 public class KorisnikController {
 
 	@Autowired
@@ -88,8 +89,19 @@ public class KorisnikController {
 			regKorisnik.setId(ssize);
 		}
 		
-		korisnikService.save(regKorisnik);
+		System.out.println("Primljen email: "+user.getEmail());
 		
+		Optional<Korisnik> korisnik = korisnikService.getUserByEmail(email);
+		
+		if(!korisnik.isPresent()) {
+			System.out.println("Ne postoji prethodno taj mejl u bazi");
+			korisnikService.save(regKorisnik);
+		}
+		else {
+			System.out.println("Vec postoji ovaj email");
+			regKorisnik.setId("-1");
+		}
+				
 		return new ResponseEntity<Object>(regKorisnik, HttpStatus.OK);
 	}
 	  @RequestMapping(

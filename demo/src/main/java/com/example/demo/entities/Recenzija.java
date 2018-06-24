@@ -43,10 +43,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "recenzija", propOrder = {
     "korisnik",
-    "smestaj",
+    "smestajId",
     "komentar",
     "id",
-    "ocena"
+    "ocena",
+    
 })
 @Document(collection="Recenzije")
 public class Recenzija {

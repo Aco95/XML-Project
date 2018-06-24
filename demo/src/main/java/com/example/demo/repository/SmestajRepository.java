@@ -22,5 +22,7 @@ public interface SmestajRepository extends MongoRepository<Smestaj, String>{
 			Boolean wifi, Boolean dorucak, Boolean polupansion, Boolean pansion, Boolean tv, Boolean miniKuhinja, Boolean privatnoKupatilo);
 
 	
-
+	@Query("{'ocena' : ?0 }")
+	List<Smestaj> findByRejting(double ocena);
+	
 }

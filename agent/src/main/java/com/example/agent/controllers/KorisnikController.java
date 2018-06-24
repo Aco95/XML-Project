@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.agent.entities.Korisnik;
-import com.example.agent.services.KorisnikService;
+import com.example.agent.services.IKorisnikService;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -18,7 +18,7 @@ import com.example.agent.services.KorisnikService;
 public class KorisnikController {
 
 	@Autowired
-	private KorisnikService korisnikService;
+	private IKorisnikService korisnikService;
 	
 	@RequestMapping(
 			value = "/getAll", 

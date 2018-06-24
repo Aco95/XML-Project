@@ -68,6 +68,10 @@ export class MessagesComponent implements OnInit {
 
     this.inboxSent[index] = "nav-link active";
     this.msgPanels[index] = true;
+
+    this.messageRecipient = "";
+    this.messageContent = "";
+    this.messageSubject = "";
   }
 
 
@@ -76,10 +80,11 @@ export class MessagesComponent implements OnInit {
 
     this.rezervacijeService.getInbox().subscribe(data=> { 
       this.inbox = data;
-      this.getUnreadMessages(data); 
-      for(let message of this.inbox){
+      for(let message of data){
         this.rezervacijeService.getUserById(message.idAgenta)
           .subscribe(user => {
+            this.unread = 0;
+            this.getUnreadMessages(data); 
             this.listAgenataPrimljene.push(user);
           });
       }
@@ -92,10 +97,11 @@ export class MessagesComponent implements OnInit {
 
 
     this.rezervacijeService.getSent().subscribe(data=> { 
-      this.sent = data; 
+      this.sent = data;
       for(let message of this.sent){
         this.rezervacijeService.getUserById(message.idAgenta)
           .subscribe(user => {
+            
             this.listAgenataPoslate.push(user);
           });
       }
@@ -128,42 +134,54 @@ export class MessagesComponent implements OnInit {
     this.msgPanels[0] = false;
     this.inboxSent[0] = "nav-link";
 
-    this.rezervacijeService.getUserByUsername(this.inbox[index].idAgenta)
-    .subscribe(data => {
-      this.messageRecipient = data.username;    
-      this.messageSubject = this.inbox[index].naslov;
-      this.messageContent = this.inbox[index].sadrzaj;
-      } 
-    );
+    this.messageRecipient = this.listAgenataPrimljene[index].username;
+    this.messageSubject = this.inbox[index].naslov;
+    this.messageContent = this.inbox[index].sadrzaj;
+
+    // this.rezervacijeService.getUserByUsername(this.inbox[index].idAgenta)
+    // .subscribe(data => {
+    //   this.messageRecipient = data.username;    
+      
+    //   } 
+    // );
     
       
   }
 
   sendMessage() {
 
-    this.rezervacijeService.getUserByUsername(this.messageRecipient)
-    .subscribe(data => {
-      this.currentAgent = data;
+    let agentID : string;
 
-      this.rezervacijeService.sendMessage({idKlijenta : this.currentClient.id, idAgenta : this.currentAgent.id, naslov : this.messageSubject, sadrzaj : this.messageContent, procitana : false, primljena : false}).subscribe(data => {
+    for (let user of this.listAgenataPrimljene) {
 
-        console.log(data);
-        this.getSent(); 
-        this. msgPanels[2] = false;
-        this. msgPanels[4] = false;
-        this. msgPanels[5] = false;
-        this.inboxSent[2] = "nav-link"; 
-        this.msgPanels[1] = true;    
-        this.inboxSent[1] = "nav-link active"; 
-  
-        this.messageRecipient = "";
-        this.messageSubject = "";
-        this.messageContent = "";
-  
-      });
+        if (user.username == this.messageRecipient) {
+
+          agentID = user.id;
+
+        }
+
+
+    }
+    
+
+    this.rezervacijeService.sendMessage({idKlijenta : this.currentClient.id, idAgenta : agentID, naslov : this.messageSubject, sadrzaj : this.messageContent, procitana : false, primljena : false}).subscribe(data => {
+
+      console.log(data);
+      this.getSent(); 
+      this. msgPanels[2] = false;
+      this. msgPanels[4] = false;
+      this. msgPanels[5] = false;
+      this.inboxSent[2] = "nav-link"; 
+      this.msgPanels[1] = true;    
+      this.inboxSent[1] = "nav-link active"; 
+
+      this.messageRecipient = "";
+      this.messageSubject = "";
+      this.messageContent = "";
+
+    });
       
-      } 
-    );
+     
  
 
   }
@@ -192,13 +210,9 @@ export class MessagesComponent implements OnInit {
     this.inboxSent[1] = "nav-link"; 
     this.msgPanels[5] = true;
 
-    this.rezervacijeService.getUserByUsername(this.inbox[index].idAgenta)
-    .subscribe(data => {
-      this.messageRecipient = data.username;    
-      this.messageSubject = this.inbox[index].naslov;
-      this.messageContent = this.inbox[index].sadrzaj;
-      } 
-    );
+    this.messageRecipient = this.listAgenataPoslate[index].username;
+    this.messageSubject = this.sent[index].naslov;
+    this.messageContent = this.sent[index].sadrzaj;
   }
 
 }

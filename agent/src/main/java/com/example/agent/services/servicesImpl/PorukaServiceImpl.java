@@ -27,5 +27,27 @@ public class PorukaServiceImpl implements PorukaService{
 		return porukaRepository.insert(p);
 	}
 
+	@Override
+	public Boolean deleteAll() {
+		
+		porukaRepository.deleteAll();
+		
+		return true;
+	}
+
+	@Override
+	public Poruka deleteMessage(Poruka p) {
+		
+		porukaRepository.delete(p);
+		
+		return p;
+	}
+
+	@Override
+	public Poruka update(Poruka p) {
+		
+		return porukaRepository.save(p);
+	}
+
 	
 }

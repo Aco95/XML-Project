@@ -22,5 +22,6 @@ public interface ISmestajService {
 	void deleteSmestaj (Smestaj s);
 	
 	Smestaj insertAccommodation(Smestaj s);
+	List<Smestaj> getSmestajbyRejting(double ocena);
 
 }
