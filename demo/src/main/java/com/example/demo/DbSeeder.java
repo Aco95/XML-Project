@@ -589,37 +589,34 @@ public class DbSeeder implements CommandLineRunner{
 		
 		//---------------------------RECENZIJE ZA HOTEL PARK----------------------//
 		
-<<<<<<< HEAD
 		Recenzija rc1 = new Recenzija();
-=======
 		Recenzija rc = new Recenzija();
->>>>>>> branch 'master' of https://github.com/Aco95/XML-Project.git
+
 		Komentar komentar1 = new Komentar();		
 		komentar1.setId("1");
 		komentar1.setDatum(DatatypeFactory.newInstance().newXMLGregorianCalendar("2018-04-10"));
 		komentar1.setOdobren(true);
 		komentar1.setSadrzaj("Divan hotel. Sanjao sam kako sa Jovicom bezuspesno namestam fejk cloud 8 sati."
 						+ "Nadam se da nikada necu ovo iskusiti u zivotu.");
-<<<<<<< HEAD
+
 		rc1.setId("1");
 		rc1.setKomentar(komentar1);
 		rc1.setKorisnik(k4);
 		rc1.setOcena(10);
 		rc1.setSmestajId("1");		
-=======
 		rc.setId("1");
 		rc.setKomentar(komentar1);
 		rc.setKorisnik(k4);
 		rc.setOcena(10);
 		rc.setSmestajId("1");		
->>>>>>> branch 'master' of https://github.com/Aco95/XML-Project.git
+
 		
 		komentarRepository.save(komentar1);
-<<<<<<< HEAD
+
 		recenzijaRepository.save(rc1);
-=======
+
 		recenzijaRepository.save(rc);
->>>>>>> branch 'master' of https://github.com/Aco95/XML-Project.git
+
 		
 		//------------------------------------------------------------------------//
 				
