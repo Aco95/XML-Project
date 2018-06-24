@@ -16,6 +16,8 @@ import com.example.demo.entities.AddRezervacijaRequest;
 import com.example.demo.entities.AddRezervacijaResponse;
 import com.example.demo.entities.AddSmestajRequest;
 import com.example.demo.entities.AddSmestajResponse;
+import com.example.demo.entities.GetAllSmestajRequest;
+import com.example.demo.entities.GetAllSmestajResponse;
 import com.example.demo.entities.GetPorukeRequest;
 import com.example.demo.entities.GetPorukeResponse;
 import com.example.demo.entities.GetRezervacijeRequest;
@@ -181,5 +183,19 @@ public class DemoEndpoint {
         
         return response;
     }
+	
+	
+	@PayloadRoot(namespace = "http://techprimers.com/demo",
+            localPart = "getAllSmestajRequest")
+    @ResponsePayload
+    public GetAllSmestajResponse getAllSmestaj(@RequestPayload GetAllSmestajRequest request) {
+		GetAllSmestajResponse response = new GetAllSmestajResponse();
+		
+		List<Smestaj> smestajList=smestajService.getSmestajByAgentId(request.getAgentId());
+		response.setSmestajList(smestajList);
+        return response;
+        
+    }
+	
 	
 }

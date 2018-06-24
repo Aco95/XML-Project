@@ -14,8 +14,10 @@ import { AuthServiceService } from '../../services/auth-service.service';
   styleUrls: ['./home-rezervacije.component.css']
 })
 export class HomeRezervacijeComponent implements OnInit {
-
+  visible: boolean;
   rezervacije: Rezervacija[];
+  rezervacijeAktivne: Rezervacija[];
+  rezervacijeProsle: Rezervacija[];
   retVal: any;
   tempRez: Rezervacija;
   smestaji: Smestaj[];
@@ -38,9 +40,10 @@ export class HomeRezervacijeComponent implements OnInit {
   }
 
   getUserReservation() {
-    this.rezervacijeService.getUserReservation(this.user.id).subscribe(
+    this.rezervacijeService.getUserReservationActive(this.user.id).subscribe(
       (data: Rezervacija[]) => {
-        this.retVal = data;   
+        this.visible=true;
+        this.rezervacijeAktivne = data;   
         this.smestaji = new Array(data.length);
         this.sobe = new Array(data.length);     
         console.log("Smestaj length: "+this.smestaji.length);
@@ -50,7 +53,29 @@ export class HomeRezervacijeComponent implements OnInit {
           this.getSobaInfo(data[i].idSobe,i);
         }
       }
-    )
+   )
+   //this.rezervacijeService.getUserReservationActive(this.user.id).subscribe(data =>{
+     // this.rezervacijeAktivne = data;
+   //});
+
+  }
+
+  getUserReservationPassed(){
+    this.rezervacijeService.getUserReservationPassed(this.user.id).subscribe(
+      (data: Rezervacija[]) => {
+        this.visible=false;
+        this.rezervacijeAktivne = data;   
+        this.smestaji = new Array(data.length);
+        this.sobe = new Array(data.length);     
+        console.log("Smestaj length: "+this.smestaji.length);
+        var i:number;
+        for(i = 0; i < data.length; i++) {
+          this.getSmestajByRoomID(data[i].idSobe, i);
+          this.getSobaInfo(data[i].idSobe,i);
+        }
+      }
+   )
+
   }
 
   getSmestajByRoomID(roomID: String, i: number) {
@@ -73,7 +98,8 @@ export class HomeRezervacijeComponent implements OnInit {
     
   }
 
-  createRcensia(){
+  createRcensia(idSmestaja: string){
+    localStorage.setItem('recenzijaSmestaj', idSmestaja);
     this.router.navigate(['/create-recenzija']);
   }
 

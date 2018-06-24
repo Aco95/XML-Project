@@ -68,6 +68,11 @@ public class SmestajServiceImpl implements ISmestajService{
 		
 		return smestajRepository.insert(s);
 	}
+	
+	public List<Smestaj> getSmestajByAgentId(String agentId){
+		return smestajRepository.getAllByAgentId(agentId);
+	}
+
 
 	@Override
 	public List<Smestaj> getSmestajbyUserId(String id) {

@@ -1,24 +1,23 @@
 <button (click)="getUserReservation()">Aktivne</button>
-<button >Završene</button>
-<button (click)="createRcensia()">Recenzija</button>
+<button (click)="getUserReservationPassed()">Završene</button>
+
 
 <br>
 <br>
 
-<div *ngIf="retVal.length===0">
-    Prazno
-</div>
-
-<div *ngFor="let rezervacija of retVal; let i = index">
+<div class="kontejner" style="overflow:scroll;">
+<div *ngFor="let rezervacija of rezervacijeAktivne; let i = index">
     <p>Naziv smestaja i mesto: {{smestaji[i].naziv}} - {{smestaji[i].mesto}}</p>
     <p>Datum rezervacije: {{rezervacija.od}} - {{rezervacija.do}}</p>
     <p>Soba #{{rezervacija.idSobe}}</p>
     <p>Kapacitet: {{sobe[i].kapacitet}}</p>
     <a href="">Više informacija</a><br>
     <span class="dugmici">
-        <button (click)="contact(smestaji[i])">KONTAKTIRAJ</button>
-        <button (click)="cancelReservation(rezervacija)">OTKAŽI</button>
+        <button *ngIf="visible" (click)="contact(smestaji[i])">KONTAKTIRAJ</button>
+        <button *ngIf="visible" (click)="cancelReservation(rezervacija)">OTKAŽI</button>
+        <button *ngIf="!visible" (click)="createRcensia(smestaji[i].id)">Recenzija</button>
     </span>
     <hr>
     
+</div>
 </div>

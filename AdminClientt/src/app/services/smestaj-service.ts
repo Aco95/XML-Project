@@ -9,7 +9,7 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class SmestajService {
   
-  private serviceUrl = '/api_comment';
+  private serviceUrl = 'http://localhost:8080/api_comment';
   
   constructor(private http: HttpClient) { }
   

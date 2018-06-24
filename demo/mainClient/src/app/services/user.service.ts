@@ -18,25 +18,12 @@ export class UserService {
 
     console.log('Registracija');
 
-    this.data = {
-      'id': '1',
-      'ime': korisnik.ime,
-      'prezime': korisnik.prezime,
-      'uloga': korisnik.uloga,
-      'username': korisnik.username,
-      'password': korisnik.password,
-      'maticniBroj': korisnik.maticniBroj,
-      'adresa': korisnik.adresa,
-      'blokiran': korisnik.blokiran,
-      'email': korisnik.email
-    };
-    
-    this.http.post<Korisnik>(this.backUrl+'register', this.data).subscribe(
-      data => {
-        console.log(data);
-      }
-    )
+    this.data = korisnik;
 
+
+    return this.http.post(this.backUrl+'register', this.data)
   }
+
+  
 
 }

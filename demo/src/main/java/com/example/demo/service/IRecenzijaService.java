@@ -14,5 +14,6 @@ public interface IRecenzijaService {
 	
 	//non-cloud
 	List<Recenzija> findAll();
+	Recenzija save(Recenzija r);
 	
 }
