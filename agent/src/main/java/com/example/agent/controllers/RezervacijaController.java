@@ -15,6 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.agent.demoModel.AddRezervacijaRequest;
+import com.example.agent.demoModel.AddRezervacijaResponse;
+import com.example.agent.demoModel.DemoServicePort;
+import com.example.agent.demoModel.DemoServicePortService;
+import com.example.agent.demoModel.GetPorukeRequest;
+import com.example.agent.demoModel.GetPorukeResponse;
 import com.example.agent.dtos.RezervacijaDTO;
 import com.example.agent.entities.Korisnik;
 import com.example.agent.entities.Realizacija;
@@ -126,7 +132,28 @@ public class RezervacijaController {
 		r.set_do(rDTO.get_do());
 		r.setRealizacija(rDTO.getRealizacija());
 		
+		com.example.agent.demoModel.Rezervacija rDemo = new com.example.agent.demoModel.Rezervacija();
+		rDemo.setId(r.getId());
+		rDemo.setOd(r.getOd());
+		rDemo.setDo(r.getDo());
+		rDemo.setIdKorisnika(r.getIdKorisnika());
+		rDemo.setIdSobe(r.getIdSobe());
+		rDemo.setRealizacija(com.example.agent.demoModel.Realizacija.valueOf(r.getRealizacija().value()));
 		
-		return rezervacijaService.update(r);
+		if (rezervacijaService.update(r) != null) {
+			
+			DemoServicePortService demoServicePortService = new DemoServicePortService();
+			DemoServicePort port = demoServicePortService.getDemoServicePortSoap11();
+			AddRezervacijaRequest addRezervacijaRequest = new AddRezervacijaRequest();
+			addRezervacijaRequest.setRezervacija(rDemo);
+			AddRezervacijaResponse addRezervacijaResponse = port.addRezervacija(addRezervacijaRequest);
+			
+			return rezervacijaService.update(r);
+			
+		} else {
+			
+			return null;
+		}
+		
 	}
 }

@@ -37,6 +37,18 @@ public interface DemoServicePort {
 
     /**
      * 
+     * @param addRezervacijaRequest
+     * @return
+     *     returns com.techprimers.demo.AddRezervacijaResponse
+     */
+    @WebMethod
+    @WebResult(name = "addRezervacijaResponse", targetNamespace = "http://techprimers.com/demo", partName = "addRezervacijaResponse")
+    public AddRezervacijaResponse addRezervacija(
+        @WebParam(name = "addRezervacijaRequest", targetNamespace = "http://techprimers.com/demo", partName = "addRezervacijaRequest")
+        AddRezervacijaRequest addRezervacijaRequest);
+
+    /**
+     * 
      * @param addMessageRequest
      * @return
      *     returns com.techprimers.demo.AddMessageResponse

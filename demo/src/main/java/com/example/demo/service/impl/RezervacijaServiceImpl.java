@@ -48,5 +48,12 @@ public class RezervacijaServiceImpl implements IRezervacijaService{
 	}
 
 
+	@Override
+	public Rezervacija update(Rezervacija r) {
+		
+		return rezervacijaRepository.save(r);
+	}
+
+
 
 }

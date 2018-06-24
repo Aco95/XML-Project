@@ -8,6 +8,8 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import com.example.demo.entities.AddMessageRequest;
 import com.example.demo.entities.AddMessageResponse;
+import com.example.demo.entities.AddRezervacijaRequest;
+import com.example.demo.entities.AddRezervacijaResponse;
 import com.example.demo.entities.AddSmestajRequest;
 import com.example.demo.entities.AddSmestajResponse;
 import com.example.demo.entities.GetPorukeRequest;
@@ -15,6 +17,7 @@ import com.example.demo.entities.GetPorukeResponse;
 import com.example.demo.entities.Korisnik;
 import com.example.demo.service.IKorisnikService;
 import com.example.demo.service.IPorukaService;
+import com.example.demo.service.IRezervacijaService;
 import com.example.demo.service.ISmestajService;
 
 @Endpoint
@@ -29,6 +32,9 @@ public class DemoEndpoint {
 	
 	@Autowired
     private IPorukaService porukaService;
+	
+	@Autowired
+    private IRezervacijaService rezervacijaService;
 	
 	@PayloadRoot(namespace = "http://techprimers.com/demo",
             localPart = "addSmestajRequest")
@@ -75,6 +81,17 @@ public class DemoEndpoint {
 		
 		Korisnik agent = korisnikService.getUserById(request.getId()).get();
         response.setPoruke(agent.getPrimljenePoruke());
+        return response;
+    }
+	
+	@PayloadRoot(namespace = "http://techprimers.com/demo",
+            localPart = "addRezervacijaRequest")
+    @ResponsePayload
+    public AddRezervacijaResponse addRezervacija(@RequestPayload AddRezervacijaRequest request) {
+		AddRezervacijaResponse response = new AddRezervacijaResponse();
+		
+		
+        response.setRezervacija(rezervacijaService.update(request.getRezervacija()));
         return response;
     }
 	
